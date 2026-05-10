@@ -1,0 +1,26 @@
+/*
+ * content.css — injected into every shadow root via WXT cssInjectionMode:'ui'
+ * WXT automatically replaces :root → :host when injecting into shadow roots.
+ *
+ * Tokens come from @deveprobe/ui/src/globals.css — do not duplicate them here.
+ */
+
+@import "@deveprobe/ui/src/globals.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: "Geist", system-ui, sans-serif;
+    font-size: 13px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+}

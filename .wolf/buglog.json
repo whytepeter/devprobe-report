@@ -1,0 +1,1126 @@
+{
+  "version": 1,
+  "bugs": [
+    {
+      "id": "bug-001",
+      "timestamp": "2026-05-03T19:22:27.709Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "Had '../components/capture/ScreenshotCapture.vue'",
+      "fix": "Changed to '../components/capture/screenshot/ScreenshotCaptur",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-03T19:22:27.709Z"
+    },
+    {
+      "id": "bug-002",
+      "timestamp": "2026-05-03T19:23:13.334Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/components/capture/screenshot/ScreenshotPanel.vue",
+      "root_cause": "Had '../annotation/AnnotationCanvas.vue'",
+      "fix": "Changed to './annotation/AnnotationCanvas.vue'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-03T19:23:13.334Z"
+    },
+    {
+      "id": "bug-003",
+      "timestamp": "2026-05-03T19:35:51.217Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-03T19:35:51.217Z"
+    },
+    {
+      "id": "bug-004",
+      "timestamp": "2026-05-03T19:47:50.737Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/components/capture/screenshot/annotation/useAnnotationCanvas.ts",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 3→6 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-03T19:47:50.737Z"
+    },
+    {
+      "id": "bug-005",
+      "timestamp": "2026-05-03T20:00:00.000Z",
+      "error_message": "Shapes (rect, circle, arrow) don't start where the mouse is clicked; drawing from top of screenshot starts below the actual click point",
+      "file": "annotation/AnnotationCanvas.vue",
+      "root_cause": "Canvas used `object-fit: contain` CSS which letterboxes the bitmap inside the element. getBoundingClientRect() returns the full element bounds including the empty letterbox areas, so toCanvasPx() mapped coordinates against the wrong origin and scale — producing a systematic offset proportional to the letterbox size.",
+      "fix": "Removed `object-contain` from canvas element. Added ResizeObserver on wrapper div to track available space reactively. Added bitmapW/bitmapH reactive refs to useAnnotationCanvas composable (updated in initCanvas). Component computes CSS display size as Math.min(wrapperW/bitmapW, wrapperH/bitmapH) * bitmap dimensions — canvas element exactly matches bitmap aspect ratio, so getBoundingClientRect() is always correct and toCanvasPx() requires no offset adjustment.",
+      "tags": [
+        "canvas",
+        "coordinates",
+        "object-fit",
+        "annotation",
+        "drawing"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-03T20:00:00.000Z"
+    },
+    {
+      "id": "bug-006",
+      "timestamp": "2026-05-03T20:07:24.348Z",
+      "error_message": "Missing await",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "Async call without await — returned Promise instead of value",
+      "fix": "Added await to async call",
+      "tags": [
+        "auto-detected",
+        "async-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-03T20:07:24.348Z"
+    },
+    {
+      "id": "bug-007",
+      "timestamp": "2026-05-03T20:07:53.889Z",
+      "error_message": "Wrong reference: watchTheme should be onThemeChange",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "Used \"watchTheme\" instead of \"onThemeChange\"",
+      "fix": "Changed watchTheme → onThemeChange",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-03T20:07:53.889Z"
+    },
+    {
+      "id": "bug-008",
+      "timestamp": "2026-05-03T20:08:02.181Z",
+      "error_message": "Type error",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation | Also: initTheme(container);; onRemove(app, container) {",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 3,
+      "last_seen": "2026-05-03T20:08:18.505Z"
+    },
+    {
+      "id": "bug-009",
+      "timestamp": "2026-05-03T20:25:13.926Z",
+      "error_message": "Type error",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation | Also: const host = (container.getRootNode() as ShadowRoot).host as; host.style.zIndex = '2147483647';",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-03T20:25:23.427Z"
+    },
+    {
+      "id": "bug-010",
+      "timestamp": "2026-05-03T20:39:52.384Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/tailwind.config.ts",
+      "root_cause": "Had 'media'",
+      "fix": "Changed to 'class'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-03T20:39:52.384Z"
+    },
+    {
+      "id": "bug-011",
+      "timestamp": "2026-05-04T08:29:47.879Z",
+      "error_message": "CSS fix: placeholder",
+      "file": "apps/extension/src/components/capture/PostComposeModal.vue",
+      "root_cause": "placeholder: text-[#ccc] focus:outline-none\" → text-[#bbb] focus:outline-none\"",
+      "fix": "Changed placeholder: text-[#ccc] focus:outline-none\" → text-[#bbb] focus:outline-none\"",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-04T08:29:58.585Z"
+    },
+    {
+      "id": "bug-012",
+      "timestamp": "2026-05-04T08:42:08.228Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/extension/src/components/capture/screenshot/annotation/useAnnotationCanvas.ts",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check) | Also: if (tool.value === 'grab') {; const idx = hitTest(cx, cy); | Also: if (tool.value === 'grab') {; if (isGrabbing.value && grabStartShape && selectedIdx.value  | Also: // Commit a grab-move; if (isGrabbing.value) {",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 4,
+      "last_seen": "2026-05-04T08:42:54.167Z"
+    },
+    {
+      "id": "bug-013",
+      "timestamp": "2026-05-04T08:42:14.982Z",
+      "error_message": "Wrong condition in logic",
+      "file": "apps/extension/src/components/capture/screenshot/annotation/useAnnotationCanvas.ts",
+      "root_cause": "Condition was: if (tool.value === 'select')",
+      "fix": "Changed to: if (tool.value === 'grab')",
+      "tags": [
+        "auto-detected",
+        "logic-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-04T08:42:22.824Z"
+    },
+    {
+      "id": "bug-014",
+      "timestamp": "2026-05-04T08:43:27.801Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/components/capture/screenshot/annotation/AnnotationCanvas.vue",
+      "root_cause": "4 lines replaced/restructured",
+      "fix": "Rewrote 8→3 lines (4 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T08:43:27.801Z"
+    },
+    {
+      "id": "bug-015",
+      "timestamp": "2026-05-04T08:43:34.201Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/components/capture/screenshot/annotation/AnnotationCanvas.vue",
+      "root_cause": "Had \"flex h-full w-full items-center justify-center px",
+      "fix": "Changed to \"flex h-full w-full items-center justify-center px",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T08:43:34.201Z"
+    },
+    {
+      "id": "bug-016",
+      "timestamp": "2026-05-04T08:44:01.518Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/components/capture/screenshot/annotation/AnnotationToolbar.vue",
+      "root_cause": "Had 'select'",
+      "fix": "Changed to 'grab'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T08:44:01.518Z"
+    },
+    {
+      "id": "bug-017",
+      "timestamp": "2026-05-04T08:44:11.964Z",
+      "error_message": "CSS fix: hover",
+      "file": "apps/extension/src/components/capture/screenshot/annotation/AnnotationToolbar.vue",
+      "root_cause": "hover: bg-black/5 hover:text-black' → bg-red-50 hover:text-[#dc2626]\"",
+      "fix": "Changed hover: bg-black/5 hover:text-black' → bg-red-50 hover:text-[#dc2626]\"",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T08:44:11.964Z"
+    },
+    {
+      "id": "bug-018",
+      "timestamp": "2026-05-04T08:44:52.981Z",
+      "error_message": "CSS fix: placeholder",
+      "file": "apps/extension/src/components/capture/PostComposeModal.vue",
+      "root_cause": "placeholder: text-[#bbb] focus:outline-none\" → text-[#bbb]",
+      "fix": "Changed placeholder: text-[#bbb] focus:outline-none\" → text-[#bbb]",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-04T08:49:32.766Z"
+    },
+    {
+      "id": "bug-019",
+      "timestamp": "2026-05-04T08:50:39.766Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/components/capture/screenshot/ScreenshotPanel.vue",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 13→16 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T08:50:39.766Z"
+    },
+    {
+      "id": "bug-020",
+      "timestamp": "2026-05-04T09:31:56.799Z",
+      "error_message": "Incorrect value in code",
+      "file": "packages/ui/src/components/button/DpButton.vue",
+      "root_cause": "Had '../lib/utils.js'",
+      "fix": "Changed to '../../lib/utils.js'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T09:31:56.799Z"
+    },
+    {
+      "id": "bug-021",
+      "timestamp": "2026-05-04T09:31:57.175Z",
+      "error_message": "Incorrect value in code",
+      "file": "packages/ui/src/components/badge/DpBadge.vue",
+      "root_cause": "Had '../lib/utils.js'",
+      "fix": "Changed to '../../lib/utils.js'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T09:31:57.175Z"
+    },
+    {
+      "id": "bug-022",
+      "timestamp": "2026-05-04T09:32:02.112Z",
+      "error_message": "Incorrect value in code",
+      "file": "packages/ui/src/components/icon-button/DpIconButton.vue",
+      "root_cause": "Had './DpButton.vue'",
+      "fix": "Changed to '../button/DpButton.vue'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T09:32:02.112Z"
+    },
+    {
+      "id": "bug-023",
+      "timestamp": "2026-05-04T09:32:02.898Z",
+      "error_message": "Incorrect value in code",
+      "file": "packages/ui/src/components/select/DpSelect.vue",
+      "root_cause": "Had '../lib/utils.js'",
+      "fix": "Changed to '../../lib/utils.js'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T09:32:02.898Z"
+    },
+    {
+      "id": "bug-024",
+      "timestamp": "2026-05-04T09:32:07.228Z",
+      "error_message": "Incorrect value in code",
+      "file": "packages/ui/src/components/input/DpInput.vue",
+      "root_cause": "Had '../lib/utils.js'",
+      "fix": "Changed to '../../lib/utils.js'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T09:32:07.228Z"
+    },
+    {
+      "id": "bug-025",
+      "timestamp": "2026-05-04T09:32:08.129Z",
+      "error_message": "Incorrect value in code",
+      "file": "packages/ui/src/components/textarea/DpTextarea.vue",
+      "root_cause": "Had '../lib/utils.js'",
+      "fix": "Changed to '../../lib/utils.js'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T09:32:08.129Z"
+    },
+    {
+      "id": "bug-026",
+      "timestamp": "2026-05-04T09:33:50.698Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
+      "root_cause": "Had '@deveprobe/ui/src/components/DpButton.vue'",
+      "fix": "Changed to '@deveprobe/ui/src/components/button/DpButton.vue'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T09:33:50.698Z"
+    },
+    {
+      "id": "bug-027",
+      "timestamp": "2026-05-04T09:36:56.629Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
+      "root_cause": "6 lines replaced/restructured",
+      "fix": "Rewrote 10→9 lines (6 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T09:36:56.629Z"
+    },
+    {
+      "id": "bug-028",
+      "timestamp": "2026-05-04T09:37:01.810Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
+      "root_cause": "Had '../../../lib/theme.js'",
+      "fix": "Changed to '@deveprobe/ui/src/components/icon-button/DpIconBu",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T09:37:01.810Z"
+    },
+    {
+      "id": "bug-029",
+      "timestamp": "2026-05-04T09:37:05.626Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/entrypoints/popup/App.vue",
+      "root_cause": "Had \"launchError = '",
+      "fix": "Changed to \"ghost\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T09:37:05.626Z"
+    },
+    {
+      "id": "bug-030",
+      "timestamp": "2026-05-04T09:37:14.548Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/components/launcher/LauncherItem.vue",
+      "root_cause": "4 lines replaced/restructured",
+      "fix": "Rewrote 5→3 lines (4 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T09:37:14.548Z"
+    },
+    {
+      "id": "bug-031",
+      "timestamp": "2026-05-04T09:37:23.245Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/entrypoints/popup/components/ActionItem.vue",
+      "root_cause": "Had \"text-2xs text-[var(--text-muted)]\"",
+      "fix": "Changed to \"neutral\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T09:37:23.245Z"
+    },
+    {
+      "id": "bug-032",
+      "timestamp": "2026-05-04T09:51:40.715Z",
+      "error_message": "CSS fix: focus-visible",
+      "file": "apps/extension/src/assets/main.css",
+      "root_cause": "focus-visible: outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]/60 → outline-none focus-visible:ring-2",
+      "fix": "Changed focus-visible: outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]/60 → outline-none focus-visible:ring-2",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "css"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-04T09:51:42.285Z"
+    },
+    {
+      "id": "bug-033",
+      "timestamp": "2026-05-04T09:51:47.501Z",
+      "error_message": "CSS fix: active",
+      "file": "apps/extension/src/assets/content.css",
+      "root_cause": "active: scale-[0.98] → scale-[0.98] focus-visible:outline-none",
+      "fix": "Changed active: scale-[0.98] → scale-[0.98] focus-visible:outline-none",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "css"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T09:51:47.501Z"
+    },
+    {
+      "id": "bug-034",
+      "timestamp": "2026-05-04T13:49:31.229Z",
+      "error_message": "Wrong reference: button should be dropdown",
+      "file": "packages/ui/src/components/select/DpSelect.vue",
+      "root_cause": "Used \"button\" instead of \"dropdown\"",
+      "fix": "Changed button → dropdown",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T13:49:31.229Z"
+    },
+    {
+      "id": "bug-035",
+      "timestamp": "2026-05-04T14:03:53.090Z",
+      "error_message": "CSS fix: file",
+      "file": "packages/ui/src/components/ui/input/Input.vue",
+      "root_cause": "file: border-0 file:bg-transparent file:text-foreground file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50', props.class)\"> → border-0 file:bg-transparent file:text-foreground file:text-sm file:font-medium',",
+      "fix": "Changed file: border-0 file:bg-transparent file:text-foreground file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50', props.class)\"> → border-0 file:bg-transparent file:text-foreground file:text-sm file:font-medium',",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T14:03:53.090Z"
+    },
+    {
+      "id": "bug-036",
+      "timestamp": "2026-05-04T14:04:01.214Z",
+      "error_message": "CSS fix: placeholder",
+      "file": "packages/ui/src/components/ui/textarea/Textarea.vue",
+      "root_cause": "placeholder: text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50', props.class)\" /> → text-muted-foreground',",
+      "fix": "Changed placeholder: text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50', props.class)\" /> → text-muted-foreground',",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T14:04:01.214Z"
+    },
+    {
+      "id": "bug-037",
+      "timestamp": "2026-05-04T14:19:13.913Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/wxt.config.ts",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 5→14 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T14:19:13.913Z"
+    },
+    {
+      "id": "bug-038",
+      "timestamp": "2026-05-04T14:44:20.327Z",
+      "error_message": "Incorrect value in code",
+      "file": "packages/ui/src/components/ui/command/CommandDialog.vue",
+      "root_cause": "Had '@/components/ui/dialog'",
+      "fix": "Changed to '@ui/components/ui/dialog'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T14:44:20.327Z"
+    },
+    {
+      "id": "bug-039",
+      "timestamp": "2026-05-04T16:13:47.179Z",
+      "error_message": "CSS fix: focus-visible",
+      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
+      "root_cause": "focus-visible: outline-none active:scale-[0.97]', → ring-0 focus-visible:ring-offset-0',",
+      "fix": "Changed focus-visible: outline-none active:scale-[0.97]', → ring-0 focus-visible:ring-offset-0',",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T16:13:47.179Z"
+    },
+    {
+      "id": "bug-040",
+      "timestamp": "2026-05-04T19:46:57.131Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
+      "root_cause": "Had \"flex h-full flex-col bg-card\"",
+      "fix": "Changed to \"rootEl\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T19:46:57.131Z"
+    },
+    {
+      "id": "bug-041",
+      "timestamp": "2026-05-04T19:47:04.749Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check) | Also: const rootEl = ref<HTMLElement | null>(null);; const shadowRoot = computed(() => rootEl.value?.getRootNode(",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-04T19:47:17.255Z"
+    },
+    {
+      "id": "bug-042",
+      "timestamp": "2026-05-04T19:48:19.375Z",
+      "error_message": "Null/undefined access in ",
+      "file": "packages/ui/src/components/ui/select/SelectContent.vue",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T19:48:19.375Z"
+    },
+    {
+      "id": "bug-043",
+      "timestamp": "2026-05-04T19:48:31.492Z",
+      "error_message": "Wrong reference: ShadowSelectContent should be SelectContent",
+      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
+      "root_cause": "Used \"ShadowSelectContent\" instead of \"SelectContent\"",
+      "fix": "Changed ShadowSelectContent → SelectContent",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-04T19:48:35.341Z"
+    },
+    {
+      "id": "bug-044",
+      "timestamp": "2026-05-04T19:57:22.987Z",
+      "error_message": "Incorrect value in code",
+      "file": "packages/ui/src/components/ui/button/index.ts",
+      "root_cause": "Had \"inline-flex items-center justify-center gap-1.5 w",
+      "fix": "Changed to \"inline-flex items-center justify-center gap-1.5 w",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-04T20:00:30.917Z"
+    },
+    {
+      "id": "bug-045",
+      "timestamp": "2026-05-04T20:05:14.674Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/assets/content.css",
+      "root_cause": "16 lines replaced/restructured",
+      "fix": "Rewrote 20→3 lines (16 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "css"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T20:05:14.674Z"
+    },
+    {
+      "id": "bug-046",
+      "timestamp": "2026-05-04T20:08:13.604Z",
+      "error_message": "Incorrect value in code",
+      "file": "packages/ui/src/components/ui/select/SelectItem.vue",
+      "root_cause": "Had 'relative flex w-full cursor-default select-none i",
+      "fix": "Changed to 'relative flex w-full cursor-default select-none i",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-04T20:08:13.604Z"
+    },
+    {
+      "id": "bug-047",
+      "timestamp": "2026-05-10T18:38:55.628Z",
+      "error_message": "CSS fix: placeholder",
+      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
+      "root_cause": "placeholder: text-muted focus:ring-0 → text-muted-foreground/60 focus:ring-0",
+      "fix": "Changed placeholder: text-muted focus:ring-0 → text-muted-foreground/60 focus:ring-0",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-10T18:38:55.628Z"
+    },
+    {
+      "id": "bug-048",
+      "timestamp": "2026-05-10T19:20:00.000Z",
+      "error_message": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'get')",
+      "file": "apps/extension/src/lib/theme.ts, apps/extension/src/lib/auth.ts",
+      "root_cause": "chrome.storage.local is unavailable in content script contexts inside iframes (e.g. Gmail). Bare calls to chrome.storage.local.get/set/remove throw TypeError when storage is inaccessible, crashing the content script on startup.",
+      "fix": "Wrapped all chrome.storage.local calls in try/catch. getTheme() falls back to 'light', getAuth() returns null, set/remove/toggle calls silently swallow the error.",
+      "tags": [
+        "content-script",
+        "chrome-storage",
+        "iframe",
+        "error-handling",
+        "crash-on-startup"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-10T19:20:00.000Z"
+    },
+    {
+      "id": "bug-049",
+      "timestamp": "2026-05-10T18:57:35.652Z",
+      "error_message": "Missing await",
+      "file": "apps/extension/src/entrypoints/background.ts",
+      "root_cause": "Async call without await — returned Promise instead of value",
+      "fix": "Added await to async call",
+      "tags": [
+        "auto-detected",
+        "async-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-10T18:57:35.652Z"
+    },
+    {
+      "id": "bug-050",
+      "timestamp": "2026-05-10T18:57:40.768Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 7→6 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-10T18:57:40.768Z"
+    },
+    {
+      "id": "bug-051",
+      "timestamp": "2026-05-10T20:25:00.000Z",
+      "error_message": "Clicking 'Create issue' closes the modal but doesn't open the new issue tab",
+      "file": "apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue, apps/extension/src/entrypoints/background.ts",
+      "root_cause": "openInTab() called chrome.tabs?.create() from the content script. chrome.tabs is undefined in content scripts, so the optional chain silently no-ops (no throw → window.open fallback never fires). emit('close') still ran, tearing down the modal with nothing else happening.",
+      "fix": "Added OPEN_TAB message handler in background.ts that calls chrome.tabs.create. ScreenshotCapture.openInTab now sends chrome.runtime.sendMessage({ type: 'OPEN_TAB', url }), with window.open fallback if the send rejects.",
+      "tags": [
+        "content-script",
+        "chrome-tabs",
+        "message-passing",
+        "silent-failure",
+        "background-bridge"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-10T20:25:00.000Z"
+    },
+    {
+      "id": "bug-052",
+      "timestamp": "2026-05-10T19:04:27.065Z",
+      "error_message": "Incorrect value in code",
+      "file": "packages/api/package.json",
+      "root_cause": "Had \"^0.33.0\"",
+      "fix": "Changed to \"^0.36.4\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 3,
+      "last_seen": "2026-05-10T19:05:06.771Z"
+    },
+    {
+      "id": "bug-053",
+      "timestamp": "2026-05-10T19:07:50.021Z",
+      "error_message": "Significant refactor of ",
+      "file": "packages/api/wrangler.toml",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 15→19 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "toml"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-10T19:07:50.021Z"
+    },
+    {
+      "id": "bug-054",
+      "timestamp": "2026-05-10T19:08:03.687Z",
+      "error_message": "Significant refactor of ",
+      "file": "packages/api/src/lib/env.ts",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 8→5 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-10T19:08:03.687Z"
+    },
+    {
+      "id": "bug-055",
+      "timestamp": "2026-05-10T19:10:33.672Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/entrypoints/popup/App.vue",
+      "root_cause": "Had `${webAppUrl}/extension/connect`",
+      "fix": "Changed to \"connectUrl\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-10T19:10:33.672Z"
+    },
+    {
+      "id": "bug-056",
+      "timestamp": "2026-05-10T19:11:05.393Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/web/src/pages/ExtensionConnectPage.vue",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-10T19:11:05.393Z"
+    },
+    {
+      "id": "bug-057",
+      "timestamp": "2026-05-10T20:00:00.000Z",
+      "error_message": "Cannot read properties of undefined (reading 'get') — chrome.storage.local.get() throws in Gmail iframe context",
+      "file": "apps/extension/src/lib/theme.ts, apps/extension/src/lib/auth.ts",
+      "root_cause": "chrome.storage API is inaccessible inside cross-origin iframes even when the `storage` permission is declared. Sites like Gmail embed many iframes; the content script injected into those iframes throws when calling chrome.storage methods.",
+      "fix": "Wrapped every chrome.storage call in try/catch. getTheme() returns 'light', getAuth() returns null, set/clear ops no-op silently on failure. watchTheme/onThemeChange return () => {} on failure.",
+      "tags": [
+        "chrome-extension",
+        "iframe",
+        "chrome-storage",
+        "content-script",
+        "gmail",
+        "crash"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-10T20:00:00.000Z"
+    },
+    {
+      "id": "bug-058",
+      "timestamp": "2026-05-10T20:01:00.000Z",
+      "error_message": "Placeholder text invisible in IssueComposePanel — title and description placeholders not visible in light or dark mode",
+      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
+      "root_cause": "Used `placeholder:text-muted` which maps to --muted (93% lightness warm gray). The token resolves to an almost-invisible color on light backgrounds.",
+      "fix": "Changed to `placeholder:text-muted-foreground/60` — visible but clearly distinct from real input text.",
+      "tags": [
+        "ui",
+        "placeholder",
+        "tailwind",
+        "shadow-dom",
+        "css-tokens"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-10T20:01:00.000Z"
+    },
+    {
+      "id": "bug-059",
+      "timestamp": "2026-05-10T20:02:00.000Z",
+      "error_message": "Browser default 3D button borders (outset ButtonFace) showing through shadcn buttons inside shadow DOM",
+      "file": "apps/extension/src/assets/content.css",
+      "root_cause": "Without `@tailwind base` (preflight), browser applies `button { border: 2px outset ButtonFace; appearance: auto }` which leaks through shadow DOM.",
+      "fix": "Added `@tailwind base` to content.css so preflight runs inside the shadow root. WXT rewrites :root to :host automatically.",
+      "tags": [
+        "shadow-dom",
+        "tailwind",
+        "preflight",
+        "button",
+        "css",
+        "chrome-extension"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-10T20:02:00.000Z"
+    },
+    {
+      "id": "bug-060",
+      "timestamp": "2026-05-10T20:03:00.000Z",
+      "error_message": "shadcn Select dropdown escapes shadow DOM — loses all CSS tokens, renders unstyled on host page",
+      "file": "packages/ui/src/components/ui/select/SelectContent.vue",
+      "root_cause": "reka-ui's SelectPortal teleports to document.body by default; CSS tokens are scoped to shadow root so content teleported outside loses all styling.",
+      "fix": "Added `to?: string | Element` prop to SelectContent, forwarded to SelectPortal. Extension passes shadow root; web app uses default 'body'.",
+      "tags": [
+        "shadow-dom",
+        "select",
+        "portal",
+        "reka-ui",
+        "css-tokens",
+        "chrome-extension"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-10T20:03:00.000Z"
+    },
+    {
+      "id": "bug-061",
+      "timestamp": "2026-05-10T19:34:46.585Z",
+      "error_message": "Missing guard clause",
+      "file": "apps/extension/src/lib/auth.ts",
+      "root_cause": "No early return/throw for edge case: area !== \"local\"",
+      "fix": "Added guard clause: if (area !== \"local\")",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-10T19:34:46.585Z"
+    },
+    {
+      "id": "bug-062",
+      "timestamp": "2026-05-10T19:36:24.726Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/extension/src/components/launcher/FloatingLauncher.vue",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-10T19:36:24.726Z"
+    },
+    {
+      "id": "bug-063",
+      "timestamp": "2026-05-10T19:36:49.929Z",
+      "error_message": "Missing guard clause",
+      "file": "apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+      "root_cause": "No early return/throw for edge case: submitting.value",
+      "fix": "Added guard clause: if (submitting.value)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-10T19:36:49.929Z"
+    },
+    {
+      "id": "bug-064",
+      "timestamp": "2026-05-10T19:37:01.666Z",
+      "error_message": "CSS fix: placeholder",
+      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
+      "root_cause": "placeholder: text-muted-foreground/60 focus:ring-0 font-sans\" → text-muted-foreground/60 focus:ring-0 font-sans disabled:cursor-not-allowed\"",
+      "fix": "Changed placeholder: text-muted-foreground/60 focus:ring-0 font-sans\" → text-muted-foreground/60 focus:ring-0 font-sans disabled:cursor-not-allowed\"",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-10T19:37:17.762Z"
+    },
+    {
+      "id": "bug-065",
+      "timestamp": "2026-05-10T19:37:24.209Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 6→7 lines (2 removed) | Also: <div v-if=\"projects.length > 0\" class=\"space-y-1.5; <div class=\"relative\">",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-10T19:41:23.085Z"
+    },
+    {
+      "id": "bug-066",
+      "timestamp": "2026-05-10T19:41:28.452Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
+      "root_cause": "Had \"@deveprobe/shared\"",
+      "fix": "Changed to \"../../lib/env.js\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-10T19:41:28.452Z"
+    },
+    {
+      "id": "bug-067",
+      "timestamp": "2026-05-10T19:41:48.173Z",
+      "error_message": "Missing await",
+      "file": "apps/extension/src/components/launcher/ConnectPrompt.vue",
+      "root_cause": "Async call without await — returned Promise instead of value",
+      "fix": "Added await to async call",
+      "tags": [
+        "auto-detected",
+        "async-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-10T19:41:48.173Z"
+    },
+    {
+      "id": "bug-068",
+      "timestamp": "2026-05-10T19:42:02.504Z",
+      "error_message": "Missing await",
+      "file": "apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+      "root_cause": "Async call without await — returned Promise instead of value",
+      "fix": "Added await to async call | Also: await openInTab(`${WEB_APP_URL}/issue/${issue.id}`);",
+      "tags": [
+        "auto-detected",
+        "async-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-10T19:42:13.564Z"
+    },
+    {
+      "id": "bug-069",
+      "timestamp": "2026-05-10T19:43:01.179Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-10T19:43:01.179Z"
+    }
+  ]
+}

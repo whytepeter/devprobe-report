@@ -1,0 +1,85 @@
+/*
+ * main.css — web app entry styles.
+ * Tokens come from @deveprobe/ui/src/globals.css — do not duplicate them here.
+ */
+
+@import "@deveprobe/ui/src/globals.css";
+
+@font-face {
+  font-family: "Geist";
+  src: url("../../node_modules/geist/dist/fonts/geist-sans/Geist-Variable.woff2")
+    format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("../../node_modules/geist/dist/fonts/geist-sans/Geist-Italic[wght].woff2")
+    format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist Mono";
+  src: url("../../node_modules/geist/dist/fonts/geist-mono/GeistMono-Variable.woff2")
+    format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: "Geist", system-ui, sans-serif;
+    font-size: 13px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code,
+  pre,
+  .mono {
+    font-family: "Geist Mono", ui-monospace, monospace;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+}
+
+@layer components {
+  .chip {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium;
+  }
+  .chip-critical {
+    @apply chip bg-red-500/10 text-red-500;
+  }
+  .chip-high {
+    @apply chip bg-orange-500/10 text-orange-500;
+  }
+  .chip-medium {
+    @apply chip bg-amber-500/10 text-amber-600;
+  }
+  .chip-low {
+    @apply chip bg-secondary text-muted-foreground;
+  }
+}

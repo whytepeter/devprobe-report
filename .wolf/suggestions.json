@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-05-04T03:01:24.739Z",
+  "achievements": [
+    "Bootstrapped complete monorepo in a single day (2026-05-03): pnpm workspaces with packages/shared (Zod schemas + types + enums), packages/api (Hono on CF Workers, Drizzle schema, auth/projects/issues/attachments routes), apps/web (Vue 3 + Vite dashboard), apps/extension (WXT + Vue 3)",
+    "Phase 1 complete: scaffold compiles clean across all 3 packages — shared types, auth JWT flow, full DB schema in Drizzle",
+    "Phase 3 complete: extension screenshot capture end-to-end — FloatingLauncher FAB, RegionSelector drag-to-crop, AnnotationCanvas with draw/undo/redo, PostComposeModal, SubmitSuccess state",
+    "Shadow DOM architecture established via WXT createShadowRootUi() — CSS fully isolated from host page, Tailwind utilities bundled into shadow roots via content.css",
+    "Persistent dark/light theme system shared across popup and all shadow DOM content script UIs (localStorage dp_theme, propagates via theme.ts)",
+    "useAnnotationCanvas composable extracted — annotation drawing logic decoupled from component tree",
+    "10 critical WXT/shadow DOM gotchas documented in cerebrum.md (message listener ordering, pointer-events inheritance, darkMode:media requirement, chrome.tabs unavailability in content scripts)"
+  ],
+  "improvements": [
+    "Reconcile accent color: BUILDPLAN.md specifies blue (#3b82f6) but cerebrum.md records violet (#7c3aed) — one of these is stale; pick one and align main.css, tailwind.config.ts, and all chip/button components",
+    "Delete legacy dead-code directories: apps/extension/src/popup/, apps/extension/src/background/, apps/extension/src/content/ — WXT entrypoints are in src/entrypoints/ and these old files will never be bundled",
+    "apps/web still uses mock.ts everywhere — api.ts client exists but is never called; add a feature flag or env var to switch between mock and real API so the web app can be tested against the live worker",
+    "PostComposeModal.vue at ~2812 tokens is doing too much — extract the form fields into a sub-component (IssueForm.vue) per the cerebrum headless-slot pattern already documented",
+    "content.ts was rewritten 10+ times this session — add a brief comment block at the top of the final version explaining the three shadow UIs it manages so future sessions don't re-derive the architecture"
+  ],
+  "next_tasks": [
+    "Phase 4 — Screen recording capture: read SCREEN_RECORDING_SPEC.md (required per cerebrum), scaffold components/capture/recording/, add RECORD action to FloatingLauncher, implement MediaRecorder flow in background.ts",
+    "Wire PostComposeModal submit to real API: call api.createIssue() then api.uploadAttachment() for the cropped screenshot dataURL — currently the submit button fires an emit that goes nowhere",
+    "Implement IssuePage.vue (currently ~186 tok stub): full evidence view with screenshot preview, browser metadata table, severity/status editors — this is the core product screen",
+    "DB migrations: run drizzle-kit generate + migrate against Neon dev branch; verify schema.ts round-trips cleanly before connecting the web app",
+    "ProjectsPage.vue and SettingsPage.vue are stubs (~255 and ~209 tok): implement project list with create-project flow, settings page with org name + API key management",
+    "Deploy packages/api to Cloudflare Workers (wrangler.toml exists, secrets not set): provision Neon DB URL, JWT secret, R2 bucket, queue bindings in wrangler.toml and CF dashboard"
+  ],
+  "risks": [
+    "Queue handlers (handleAiQueue, handleIntegrationQueue, handleNotificationQueue) in packages/api/src/queues/handlers.ts are stubs — any submitted issue that triggers AI analysis or integration routing will silently no-op; log a TODO or throw so failures are visible",
+    "No test coverage anywhere: zero unit or integration tests across all 3 packages — the shadow DOM flow and API auth path in particular have complex invariants (message ordering, JWT expiry) that are currently only validated manually",
+    "content.ts instability: 10+ rewrites in one session is a signal this file is fragile — shadow host styling, pointer-events, and message listener ordering are all load-bearing; any future change to the three-UI mount pattern risks breaking the capture flow silently",
+    "R2 attachment upload (packages/api/src/routes/attachments.ts) has never been tested end-to-end: the presigned URL generation path depends on CF R2 bindings that don't exist in local dev — need a staging environment or wrangler --remote before this path can be trusted",
+    "Extension auth handoff (/extension/connect page) stores tokens in chrome.storage but there is no token refresh logic — JWTs will expire silently and API calls will 401 with no user-visible error or re-auth prompt"
+  ]
+}

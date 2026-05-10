@@ -1,0 +1,148 @@
+/*
+ * globals.css — single source of truth for all design tokens.
+ *
+ * Imported by every app CSS file. Contains no @tailwind directives,
+ * no font-face, and no html/body rules — those live in each app.
+ *
+ * Two token families:
+ *   1. shadcn-vue HSL tokens (--background, --primary, etc.)
+ *   2. Legacy surface tokens (--bg-base, --accent-hex, etc.)
+ */
+
+@layer base {
+  /* ── Neutral scale (warm stone — static, same in light & dark) ───────────── */
+  :root {
+    --neutral-50:  52 20% 98%;    /* #FAFAF8 */
+    --neutral-100: 52 8%  95%;    /* #F5F5F0  = --bg-base light */
+    --neutral-200: 52 8%  93%;    /* #EEEEE9  = --bg-subtle light */
+    --neutral-300: 46 11% 89%;    /* #E8E7E1  = --bg-overlay light */
+    --neutral-400: 46 8%  81%;    /* #D1CFC8 */
+    --neutral-500: 46 5%  71%;    /* #BBBAB4  = --border-strong light */
+    --neutral-600: 60 3%  54%;    /* #8A8980  = --text-muted light */
+    --neutral-700: 60 3%  34%;    /* #585752  = --text-secondary light */
+    --neutral-800: 60 4%  22%;    /* #393937  = --bg-subtle dark */
+    --neutral-900: 40 5%  16%;    /* #2B2A27  = --bg-base dark */
+    --neutral-950: 60 3%  10%;    /* #1A1A18  = --text-primary light */
+  }
+
+  /* ── Light ───────────────────────────────────────────────────────────────── */
+  :root {
+    /* shadcn-vue HSL tokens */
+    --background:             0 0% 100%;
+    --foreground:             60 3% 10%;
+    --card:                   0 0% 100%;
+    --card-foreground:        60 3% 10%;
+    --popover:                0 0% 100%;
+    --popover-foreground:     60 3% 10%;
+    --primary:                262 84% 58%;
+    --primary-foreground:     0 0% 100%;
+    --secondary:              52 8% 93%;
+    --secondary-foreground:   60 3% 10%;
+    --muted:                  52 8% 93%;
+    --muted-foreground:       60 4% 52%;
+    --accent:                 262 84% 58%;
+    --accent-foreground:      0 0% 100%;
+    --destructive:            0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border:                 46 14% 86%;
+    --input:                  46 14% 86%;
+    --ring:                   262 84% 58%;
+    --radius:                 0.5rem;
+
+    /* Legacy surface tokens */
+    --bg-base:       #F5F5F0;
+    --bg-elevated:   #FFFFFF;
+    --bg-subtle:     #EEEEE9;
+    --bg-overlay:    #E8E7E1;
+    --border-strong: #BBBAB4;
+    --text-primary:   #1A1A18;
+    --text-secondary: #585752;
+    --text-muted:     #8A8980;
+    --accent-hex:     #7c3aed;
+    --accent-hover:   #6d28d9;
+    --accent-light:   #EDE9FE;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+    --shadow-lg: 0 20px 60px rgba(0,0,0,0.10), 0 4px 16px rgba(0,0,0,0.07);
+  }
+
+  /* ── Dark ────────────────────────────────────────────────────────────────── */
+  .dark {
+    --background:             40 5% 16%;
+    --foreground:             0 0% 93%;
+    --card:                   40 5% 12%;
+    --card-foreground:        0 0% 93%;
+    --popover:                40 5% 12%;
+    --popover-foreground:     0 0% 93%;
+    --primary:                262 72% 65%;
+    --primary-foreground:     0 0% 100%;
+    --secondary:              40 4% 22%;
+    --secondary-foreground:   0 0% 93%;
+    --muted:                  40 4% 22%;
+    --muted-foreground:       40 2% 63%;
+    --accent:                 262 72% 65%;
+    --accent-foreground:      0 0% 100%;
+    --destructive:            0 74% 58%;
+    --destructive-foreground: 0 0% 100%;
+    --border:                 40 4% 27%;
+    --input:                  40 4% 27%;
+    --ring:                   262 72% 65%;
+
+    --bg-base:       #2B2A27;
+    --bg-elevated:   #1F1E1B;
+    --bg-subtle:     #393937;
+    --bg-overlay:    #302F2C;
+    --border-strong: #58574F;
+    --text-primary:   #EEEEEE;
+    --text-secondary: #A0A09E;
+    --text-muted:     #6A6A68;
+    --accent-hex:     #8b5cf6;
+    --accent-hover:   #a78bfa;
+    --accent-light:   #2E1065;
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.20), 0 1px 2px rgba(0,0,0,0.15);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.30), 0 1px 4px rgba(0,0,0,0.20);
+    --shadow-lg: 0 20px 60px rgba(0,0,0,0.50), 0 4px 16px rgba(0,0,0,0.30);
+  }
+
+  /* ── Explicit light override (for theme toggle) ───────────────────────────── */
+  .light {
+    --background:             0 0% 100%;
+    --foreground:             60 3% 10%;
+    --card:                   0 0% 100%;
+    --card-foreground:        60 3% 10%;
+    --popover:                0 0% 100%;
+    --popover-foreground:     60 3% 10%;
+    --primary:                262 84% 58%;
+    --primary-foreground:     0 0% 100%;
+    --secondary:              52 8% 93%;
+    --secondary-foreground:   60 3% 10%;
+    --muted:                  52 8% 93%;
+    --muted-foreground:       60 4% 52%;
+    --accent:                 262 84% 58%;
+    --accent-foreground:      0 0% 100%;
+    --destructive:            0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border:                 46 14% 86%;
+    --input:                  46 14% 86%;
+    --ring:                   262 84% 58%;
+
+    --bg-base:       #F5F5F0;
+    --bg-elevated:   #FFFFFF;
+    --bg-subtle:     #EEEEE9;
+    --bg-overlay:    #E8E7E1;
+    --border-strong: #BBBAB4;
+    --text-primary:   #1A1A18;
+    --text-secondary: #585752;
+    --text-muted:     #8A8980;
+    --accent-hex:     #7c3aed;
+    --accent-hover:   #6d28d9;
+    --accent-light:   #EDE9FE;
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+    --shadow-lg: 0 20px 60px rgba(0,0,0,0.10), 0 4px 16px rgba(0,0,0,0.07);
+  }
+}

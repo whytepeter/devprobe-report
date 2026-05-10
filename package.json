@@ -1,0 +1,20 @@
+{
+  "name": "deveprobe",
+  "private": true,
+  "version": "0.0.1",
+  "packageManager": "pnpm@10.12.1",
+  "scripts": {
+    "dev:web": "pnpm --filter @deveprobe/web dev",
+    "dev:api": "pnpm --filter @deveprobe/api dev",
+    "dev:extension": "pnpm --filter @deveprobe/extension dev",
+    "build:web": "pnpm --filter @deveprobe/web build",
+    "build:api": "pnpm --filter @deveprobe/api build",
+    "build:extension": "pnpm --filter @deveprobe/extension build",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "pnpm -r lint"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}
