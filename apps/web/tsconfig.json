@@ -7,8 +7,13 @@
     "types": ["vite/client"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/*": ["./src/*"],
+      "@ui/*": ["../../packages/ui/src/*"]
+    },
+    // reka-ui's strict optional typings + vee-validate's componentField shape
+    // produce false-positive errors with this flag enabled. Strict mode is
+    // still on; this only relaxes the "undefined must be explicit" check.
+    "exactOptionalPropertyTypes": false
   },
   "include": ["src/**/*", "env.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]

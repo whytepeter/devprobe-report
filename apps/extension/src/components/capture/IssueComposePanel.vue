@@ -108,6 +108,18 @@
             </div>
 
             <div
+              v-else-if="projectsLoadError"
+              class="rounded-lg border border-destructive/30 bg-destructive/10 px-3 py-2.5 space-y-1"
+            >
+              <p class="text-[12px] font-medium text-destructive">
+                Couldn't load projects
+              </p>
+              <p class="text-[11px] leading-snug text-destructive/80 break-all">
+                {{ projectsLoadError }}
+              </p>
+            </div>
+
+            <div
               v-else-if="projects.length === 0"
               class="rounded-lg border border-dashed border-border bg-secondary/40 px-3 py-2.5 space-y-2"
             >
@@ -126,22 +138,23 @@
               </a>
             </div>
 
-            <div v-else class="relative">
-              <select
-                v-model="form.projectId"
+            <Select v-else v-model="form.projectId" :disabled="submitting">
+              <SelectTrigger
                 :disabled="submitting"
-                class="w-full h-8 pl-3 pr-8 rounded-lg text-[12px] font-sans appearance-none cursor-pointer bg-secondary border border-border text-foreground outline-none focus:ring-2 focus:ring-ring focus:border-ring transition-all duration-150 disabled:cursor-not-allowed disabled:opacity-70"
+                class="w-full text-xs text-foreground font-normal gap-2 px-2.5 disabled:cursor-not-allowed"
               >
-                <option v-for="p in projects" :key="p.id" :value="p.id">
-                  {{ p.name }}
-                </option>
-              </select>
-              <Icon
-                name="chevron-down"
-                :size="12"
-                class="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none"
-              />
-            </div>
+                <Icon name="folder-open" :size="12" :stroke-width="1.75" class="shrink-0 text-muted-foreground" />
+                <SelectValue placeholder="Pick a project" />
+              </SelectTrigger>
+              <SelectContent :to="shadowRoot ?? undefined">
+                <SelectItem v-for="p in projects" :key="p.id" :value="p.id">
+                  <span class="flex items-baseline gap-2">
+                    <span>{{ p.name }}</span>
+                    <span class="font-mono text-[10px] text-muted-foreground">{{ p.slug }}</span>
+                  </span>
+                </SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           <!-- Error -->
@@ -170,9 +183,8 @@
             <SelectValue />
           </SelectTrigger>
           <SelectContent :to="shadowRoot ?? undefined">
-            <SelectItem value="anyone">Anyone with the link</SelectItem>
-            <SelectItem value="project">Only people in this project</SelectItem>
-            <SelectItem value="invited">Only invited people</SelectItem>
+            <SelectItem value="public">Anyone with the link</SelectItem>
+            <SelectItem value="private">Only people in this workspace</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -205,17 +217,10 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
-import Icon from "../base/Icon.vue";
-import {
-  Button,
-  Select,
-  SelectContent,
-  SelectTrigger,
-  SelectValue,
-  SelectItem,
-} from "@deveprobe/ui";
+import { Button, Icon, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@deveprobe/ui";
 import { api } from "../../lib/api.js";
 import { WEB_APP_URL } from "../../lib/env.js";
+import { getAuth } from "../../lib/auth.js";
 import type { Project } from "@deveprobe/shared";
 
 export interface ComposeForm {
@@ -283,18 +288,26 @@ const form = ref<ComposeForm>({
   summary: "",
   severity: "medium",
   projectId: "",
-  visibility: "anyone",
+  visibility: "private",
 });
 const projects = ref<Project[]>([]);
 const projectsLoading = ref(true);
+const projectsLoadError = ref("");
 const canSubmit = computed(() => form.value.title.trim().length > 0);
 
 onMounted(async () => {
   try {
-    projects.value = await api.listProjects();
-    if (projects.value[0]) form.value.projectId = projects.value[0].id;
-  } catch {
-    /* not connected */
+    const [list, auth] = await Promise.all([api.listProjects(), getAuth()]);
+    projects.value = list;
+    // Prefer the active project the user picked in the popup; fall back to the first.
+    const preferred = auth?.defaultProjectId && list.some((p) => p.id === auth.defaultProjectId)
+      ? auth.defaultProjectId
+      : list[0]?.id;
+    if (preferred) form.value.projectId = preferred;
+  } catch (e) {
+    // Surface the real reason so an empty list isn't indistinguishable from a network/auth failure.
+    projectsLoadError.value = (e as Error).message || "Couldn't load projects.";
+    console.warn("[DevProbe] listProjects failed:", e);
   } finally {
     projectsLoading.value = false;
   }

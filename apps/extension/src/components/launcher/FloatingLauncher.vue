@@ -9,6 +9,7 @@
       type="button"
       @click.stop="toggleMenu"
       :aria-label="menuOpen ? 'Close DevProbe' : 'Open DevProbe'"
+      style="pointer-events: auto;"
       :class="[
         'fixed bottom-5 right-5 z-[2147483647]',
         'flex h-11 w-11 items-center justify-center rounded-full',
@@ -41,6 +42,7 @@
       <div
         v-if="menuOpen"
         @click.stop
+        style="pointer-events: auto;"
         class="fixed bottom-[72px] right-5 z-[2147483647] w-[248px] origin-bottom-right
                rounded-2xl border border-[var(--border)] bg-[var(--bg-elevated)] p-1.5
                shadow-[0_16px_48px_rgba(0,0,0,0.14),0_2px_8px_rgba(0,0,0,0.08)]"
@@ -89,7 +91,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
-import Icon          from '../base/Icon.vue';
+import { Icon } from '@deveprobe/ui';
 import LauncherItem  from './LauncherItem.vue';
 import ConnectPrompt from './ConnectPrompt.vue';
 import { getAuth, onAuthChange, type StoredAuth } from '../../lib/auth.js';

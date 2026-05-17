@@ -1121,6 +1121,374 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-10T19:43:01.179Z"
+    },
+    {
+      "id": "bug-070",
+      "timestamp": "2026-05-11T00:11:32.325Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/web/src/main.ts",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 14→21 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T00:11:32.325Z"
+    },
+    {
+      "id": "bug-071",
+      "timestamp": "2026-05-11T00:26:46.968Z",
+      "error_message": "Incorrect value in code",
+      "file": "packages/ui/package.json",
+      "root_cause": "Had \"^4.4.3\"",
+      "fix": "Changed to \"^3.23.8\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-11T00:26:57.199Z"
+    },
+    {
+      "id": "bug-072",
+      "timestamp": "2026-05-11T00:44:59.524Z",
+      "error_message": "CSS fix: update",
+      "file": "apps/web/src/features/projects/components/CreateProjectDialog.vue",
+      "root_cause": "update: model-value=\"onNameInput(value as string)\" → model-value=\"onNameInput($event)\"",
+      "fix": "Changed update: model-value=\"onNameInput(value as string)\" → model-value=\"onNameInput($event)\"",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-11T00:45:05.224Z"
+    },
+    {
+      "id": "bug-073",
+      "timestamp": "2026-05-11T00:45:11.440Z",
+      "error_message": "Wrong reference: Silence should be script",
+      "file": "apps/web/src/features/projects/components/CreateProjectDialog.vue",
+      "root_cause": "Used \"Silence\" instead of \"script\"",
+      "fix": "Changed Silence → script",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T00:45:11.440Z"
+    },
+    {
+      "id": "bug-074",
+      "timestamp": "2026-05-11T10:38:54.558Z",
+      "error_message": "Missing guard clause",
+      "file": "apps/web/src/features/projects/components/CreateProjectDialog.vue",
+      "root_cause": "No early return/throw for edge case: slugTouched.value",
+      "fix": "Added guard clause: if (slugTouched.value)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T10:38:54.558Z"
+    },
+    {
+      "id": "bug-075",
+      "timestamp": "2026-05-11T10:50:19.673Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 10→13 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T10:50:19.673Z"
+    },
+    {
+      "id": "bug-076",
+      "timestamp": "2026-05-11T10:54:39.417Z",
+      "error_message": "Missing error handling in function",
+      "file": "apps/extension/src/entrypoints/background.ts",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T10:54:39.417Z"
+    },
+    {
+      "id": "bug-077",
+      "timestamp": "2026-05-11T10:54:49.350Z",
+      "error_message": "Type error",
+      "file": "apps/extension/src/entrypoints/background.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T10:54:49.350Z"
+    },
+    {
+      "id": "bug-078",
+      "timestamp": "2026-05-11T14:37:38.062Z",
+      "error_message": "Type error",
+      "file": "apps/extension/src/lib/api.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T14:37:38.062Z"
+    },
+    {
+      "id": "bug-079",
+      "timestamp": "2026-05-11T14:40:38.770Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T14:40:38.770Z"
+    },
+    {
+      "id": "bug-080",
+      "timestamp": "2026-05-11T15:05:35.338Z",
+      "error_message": "Missing await",
+      "file": "apps/extension/src/lib/api.ts",
+      "root_cause": "Async call without await — returned Promise instead of value",
+      "fix": "Added await to async call",
+      "tags": [
+        "auto-detected",
+        "async-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T15:05:35.338Z"
+    },
+    {
+      "id": "bug-081",
+      "timestamp": "2026-05-11T15:05:56.376Z",
+      "error_message": "Type error",
+      "file": "apps/extension/src/entrypoints/background.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T15:05:56.376Z"
+    },
+    {
+      "id": "bug-082",
+      "timestamp": "2026-05-11T15:07:01.335Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T15:07:01.335Z"
+    },
+    {
+      "id": "bug-083",
+      "timestamp": "2026-05-11T15:27:49.608Z",
+      "error_message": "Null/undefined access in ",
+      "file": "packages/api/src/routes/attachments.ts",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T15:27:49.608Z"
+    },
+    {
+      "id": "bug-084",
+      "timestamp": "2026-05-11T15:29:24.005Z",
+      "error_message": "Wrong reference: Issue should be IssueWithAttachments",
+      "file": "apps/web/src/features/issues/composables/useIssue.ts",
+      "root_cause": "Used \"Issue\" instead of \"IssueWithAttachments\"",
+      "fix": "Changed Issue → IssueWithAttachments",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T15:29:24.005Z"
+    },
+    {
+      "id": "bug-085",
+      "timestamp": "2026-05-11T15:29:43.691Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/web/src/features/issues/composables/useIssue.ts",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T15:29:43.691Z"
+    },
+    {
+      "id": "bug-086",
+      "timestamp": "2026-05-11T15:44:26.725Z",
+      "error_message": "Type error",
+      "file": "packages/shared/src/schemas.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T15:44:26.725Z"
+    },
+    {
+      "id": "bug-087",
+      "timestamp": "2026-05-11T15:44:44.907Z",
+      "error_message": "Wrong reference: returning should be parsed",
+      "file": "packages/api/src/routes/issues.ts",
+      "root_cause": "Used \"returning\" instead of \"parsed\"",
+      "fix": "Changed returning → parsed",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T15:44:44.907Z"
+    },
+    {
+      "id": "bug-088",
+      "timestamp": "2026-05-11T15:45:04.304Z",
+      "error_message": "CSS fix: visibility",
+      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
+      "root_cause": "visibility: \"anyone\", → \"private\",",
+      "fix": "Changed visibility: \"anyone\", → \"private\",",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T15:45:04.304Z"
+    },
+    {
+      "id": "bug-089",
+      "timestamp": "2026-05-11T15:45:29.674Z",
+      "error_message": "CSS fix: --border, --input",
+      "file": "packages/ui/src/globals.css",
+      "root_cause": "--border: 46 14% 86% → 46 10% 91%; --input: 46 14% 86% → 46 10% 91%",
+      "fix": "Changed --border: 46 14% 86% → 46 10% 91%; --input: 46 14% 86% → 46 10% 91%",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "css"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-11T15:45:39.083Z"
+    },
+    {
+      "id": "bug-090",
+      "timestamp": "2026-05-11T16:10:24.892Z",
+      "error_message": "Type error",
+      "file": "packages/api/src/routes/issues.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T16:10:24.892Z"
+    },
+    {
+      "id": "bug-091",
+      "timestamp": "2026-05-11T16:13:46.049Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/web/src/features/workspace-shell/DashboardLayout.vue",
+      "root_cause": "Had \"Inbox\"",
+      "fix": "Changed to \"Issues\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T16:13:46.049Z"
+    },
+    {
+      "id": "bug-092",
+      "timestamp": "2026-05-11T16:16:26.245Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/web/src/features/issues/composables/useIssue.ts",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 9→19 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-11T16:16:26.245Z"
     }
   ]
 }

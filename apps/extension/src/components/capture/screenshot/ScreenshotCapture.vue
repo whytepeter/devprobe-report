@@ -83,6 +83,7 @@ async function onSubmit(form: ComposeForm) {
       title:       form.title,
       summary:     form.summary || undefined,
       severity:    form.severity,
+      visibility:  form.visibility,
       pageUrl:     props.browserMeta.pageUrl,
       browserMeta: props.browserMeta,
     });

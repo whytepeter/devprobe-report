@@ -53,3 +53,40 @@ name = "devprobe-api"
 
 [env.development.vars]
 ENVIRONMENT = "development"
+
+# Environment-scoped bindings: wrangler does NOT inherit top-level r2_buckets,
+# queues, or kv_namespaces into a named environment — they must be repeated.
+# In local `wrangler dev --env development`, Miniflare emulates these.
+[[env.development.r2_buckets]]
+binding = "ASSETS"
+bucket_name = "devprobe-storage"
+
+[[env.development.queues.producers]]
+binding = "AI_QUEUE"
+queue = "deveprobe-ai"
+
+[[env.development.queues.producers]]
+binding = "INTEGRATION_QUEUE"
+queue = "deveprobe-integrations"
+
+[[env.development.queues.producers]]
+binding = "NOTIFICATION_QUEUE"
+queue = "deveprobe-notifications"
+
+[[env.development.queues.consumers]]
+queue = "deveprobe-ai"
+max_batch_size = 10
+max_batch_timeout = 30
+max_retries = 3
+
+[[env.development.queues.consumers]]
+queue = "deveprobe-integrations"
+max_batch_size = 5
+max_batch_timeout = 10
+max_retries = 5
+
+[[env.development.queues.consumers]]
+queue = "deveprobe-notifications"
+max_batch_size = 20
+max_batch_timeout = 5
+max_retries = 3

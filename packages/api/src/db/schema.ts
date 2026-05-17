@@ -515,6 +515,11 @@ export const recordingSessionsRelations = relations(recordingSessions, ({ one, m
   attachments: many(attachments),
 }));
 
+export const attachmentsRelations = relations(attachments, ({ one }) => ({
+  issue: one(issues, { fields: [attachments.issueId], references: [issues.id] }),
+  session: one(recordingSessions, { fields: [attachments.sessionId], references: [recordingSessions.id] }),
+}));
+
 export const annotationSessionsRelations = relations(annotationSessions, ({ many }) => ({
   pins: many(pins),
 }));

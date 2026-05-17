@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-05-03T09:04:22.146Z",
   "lifetime": {
-    "total_tokens_estimated": 1122653,
-    "total_reads": 684,
-    "total_writes": 1131,
-    "total_sessions": 16,
-    "anatomy_hits": 624,
-    "anatomy_misses": 44,
-    "repeated_reads_blocked": 86,
-    "estimated_savings_vs_bare_cli": 410857
+    "total_tokens_estimated": 1217584,
+    "total_reads": 727,
+    "total_writes": 1269,
+    "total_sessions": 21,
+    "anatomy_hits": 664,
+    "anatomy_misses": 47,
+    "repeated_reads_blocked": 87,
+    "estimated_savings_vs_bare_cli": 419574
   },
   "sessions": [
     {
@@ -10746,6 +10746,1107 @@
         "writes_count": 26,
         "repeated_reads_blocked": 0,
         "anatomy_lookups": 7
+      }
+    },
+    {
+      "id": "session-2026-05-10-2026",
+      "started": "2026-05-10T19:26:54.860Z",
+      "ended": "2026-05-11T00:07:02.754Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 994,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/LauncherItem.vue",
+          "tokens_estimated": 641,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/ActionList.vue",
+          "tokens_estimated": 503,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/theme.ts",
+          "tokens_estimated": 676,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 2307,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+          "tokens_estimated": 908,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 2166,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/pages/ProjectsPage.vue",
+          "tokens_estimated": 255,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/shared/src/schemas.ts",
+          "tokens_estimated": 2634,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 2370,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/launch.json",
+          "tokens_estimated": 100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/auth.ts",
+          "tokens_estimated": 278,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/ConnectPrompt.vue",
+          "tokens_estimated": 431,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 741,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 434,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 278,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+          "tokens_estimated": 405,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 333,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 156,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 118,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 89,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/PostComposeModal.vue",
+          "tokens_estimated": 103,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/extension.ts",
+          "tokens_estimated": 253,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/auth.ts",
+          "tokens_estimated": 135,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/auth.ts",
+          "tokens_estimated": 222,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/auth.ts",
+          "tokens_estimated": 271,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 581,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 40,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 111,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/ConnectPrompt.vue",
+          "tokens_estimated": 186,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+          "tokens_estimated": 92,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+          "tokens_estimated": 72,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+          "tokens_estimated": 36,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/theme.ts",
+          "tokens_estimated": 158,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/theme.ts",
+          "tokens_estimated": 165,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/theme.ts",
+          "tokens_estimated": 164,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 120,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/pages/ProjectsPage.vue",
+          "tokens_estimated": 2007,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 13554,
+        "output_tokens_estimated": 7979,
+        "reads_count": 11,
+        "writes_count": 27,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 11
+      }
+    },
+    {
+      "id": "session-2026-05-11-1131",
+      "started": "2026-05-11T10:31:36.636Z",
+      "ended": "2026-05-11T10:43:54.938Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/projects/components/CreateProjectDialog.vue",
+          "tokens_estimated": 1428,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/projects/components/CreateProjectDialog.vue",
+          "tokens_estimated": 61,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/projects/components/CreateProjectDialog.vue",
+          "tokens_estimated": 141,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 1428,
+        "output_tokens_estimated": 202,
+        "reads_count": 1,
+        "writes_count": 2,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 1
+      }
+    },
+    {
+      "id": "session-2026-05-11-1131",
+      "started": "2026-05-11T10:31:36.636Z",
+      "ended": "2026-05-11T10:51:42.474Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/projects/components/CreateProjectDialog.vue",
+          "tokens_estimated": 1428,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 2581,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/projects/components/CreateProjectDialog.vue",
+          "tokens_estimated": 61,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/projects/components/CreateProjectDialog.vue",
+          "tokens_estimated": 141,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 167,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 420,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 4009,
+        "output_tokens_estimated": 789,
+        "reads_count": 2,
+        "writes_count": 4,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      }
+    },
+    {
+      "id": "session-2026-05-11-1537",
+      "started": "2026-05-11T14:37:21.219Z",
+      "ended": "2026-05-11T14:41:45.963Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
+          "tokens_estimated": 525,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 815,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 58,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 45,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts",
+          "tokens_estimated": 699,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/AccountMenu.vue",
+          "tokens_estimated": 1555,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
+          "tokens_estimated": 407,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 970,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/ActiveProjectChip.vue",
+          "tokens_estimated": 424,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 245,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 52,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 1340,
+        "output_tokens_estimated": 4455,
+        "reads_count": 2,
+        "writes_count": 9,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      }
+    },
+    {
+      "id": "session-2026-05-11-1537",
+      "started": "2026-05-11T14:37:21.219Z",
+      "ended": "2026-05-11T15:07:43.857Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
+          "tokens_estimated": 525,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 815,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 58,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 45,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts",
+          "tokens_estimated": 699,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/AccountMenu.vue",
+          "tokens_estimated": 1555,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
+          "tokens_estimated": 407,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 970,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/ActiveProjectChip.vue",
+          "tokens_estimated": 424,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 245,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 52,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 256,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/background.ts",
+          "tokens_estimated": 351,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 264,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 1340,
+        "output_tokens_estimated": 5326,
+        "reads_count": 2,
+        "writes_count": 12,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      }
+    },
+    {
+      "id": "session-2026-05-11-1537",
+      "started": "2026-05-11T14:37:21.219Z",
+      "ended": "2026-05-11T15:23:06.191Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
+          "tokens_estimated": 525,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 815,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/wrangler.toml",
+          "tokens_estimated": 310,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/shared/lib/format.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 58,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 45,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts",
+          "tokens_estimated": 699,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/AccountMenu.vue",
+          "tokens_estimated": 1555,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
+          "tokens_estimated": 407,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 970,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/ActiveProjectChip.vue",
+          "tokens_estimated": 424,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 245,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 52,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 256,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/background.ts",
+          "tokens_estimated": 351,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 264,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/wrangler.toml",
+          "tokens_estimated": 305,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/shared/lib/format.ts",
+          "tokens_estimated": 274,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 1650,
+        "output_tokens_estimated": 5905,
+        "reads_count": 4,
+        "writes_count": 14,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 3
+      }
+    },
+    {
+      "id": "session-2026-05-11-1537",
+      "started": "2026-05-11T14:37:21.219Z",
+      "ended": "2026-05-11T15:32:46.458Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
+          "tokens_estimated": 525,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 815,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/wrangler.toml",
+          "tokens_estimated": 310,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/shared/lib/format.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/issues.ts",
+          "tokens_estimated": 708,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/attachments.ts",
+          "tokens_estimated": 872,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/db/schema.ts",
+          "tokens_estimated": 6039,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssue.ts",
+          "tokens_estimated": 454,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 58,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 45,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts",
+          "tokens_estimated": 699,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/AccountMenu.vue",
+          "tokens_estimated": 1555,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
+          "tokens_estimated": 407,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 970,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/ActiveProjectChip.vue",
+          "tokens_estimated": 424,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 245,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 52,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 256,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/background.ts",
+          "tokens_estimated": 351,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 264,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/wrangler.toml",
+          "tokens_estimated": 305,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/shared/lib/format.ts",
+          "tokens_estimated": 274,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/issues.ts",
+          "tokens_estimated": 65,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/attachments.ts",
+          "tokens_estimated": 383,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/db/schema.ts",
+          "tokens_estimated": 152,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useAttachmentUrl.ts",
+          "tokens_estimated": 351,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/AttachmentImage.vue",
+          "tokens_estimated": 539,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/IssueAttachments.vue",
+          "tokens_estimated": 427,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssue.ts",
+          "tokens_estimated": 122,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssue.ts",
+          "tokens_estimated": 16,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssue.ts",
+          "tokens_estimated": 53,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/IssuePage.vue",
+          "tokens_estimated": 145,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/IssuePage.vue",
+          "tokens_estimated": 106,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 9723,
+        "output_tokens_estimated": 8264,
+        "reads_count": 8,
+        "writes_count": 25,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 7
+      }
+    },
+    {
+      "id": "session-2026-05-11-1537",
+      "started": "2026-05-11T14:37:21.219Z",
+      "ended": "2026-05-11T16:02:46.711Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
+          "tokens_estimated": 525,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 815,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/wrangler.toml",
+          "tokens_estimated": 310,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/shared/lib/format.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/issues.ts",
+          "tokens_estimated": 717,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/attachments.ts",
+          "tokens_estimated": 872,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/db/schema.ts",
+          "tokens_estimated": 6039,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssue.ts",
+          "tokens_estimated": 454,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 691,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/shared/src/schemas.ts",
+          "tokens_estimated": 2634,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 2205,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 1146,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 58,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 45,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts",
+          "tokens_estimated": 699,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/AccountMenu.vue",
+          "tokens_estimated": 1555,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
+          "tokens_estimated": 407,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 970,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/ActiveProjectChip.vue",
+          "tokens_estimated": 424,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 245,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 52,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 256,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/background.ts",
+          "tokens_estimated": 351,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 264,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/wrangler.toml",
+          "tokens_estimated": 305,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/shared/lib/format.ts",
+          "tokens_estimated": 274,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/issues.ts",
+          "tokens_estimated": 65,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/attachments.ts",
+          "tokens_estimated": 383,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/db/schema.ts",
+          "tokens_estimated": 152,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useAttachmentUrl.ts",
+          "tokens_estimated": 351,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/AttachmentImage.vue",
+          "tokens_estimated": 539,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/IssueAttachments.vue",
+          "tokens_estimated": 427,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssue.ts",
+          "tokens_estimated": 122,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssue.ts",
+          "tokens_estimated": 16,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssue.ts",
+          "tokens_estimated": 53,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/IssuePage.vue",
+          "tokens_estimated": 145,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/IssuePage.vue",
+          "tokens_estimated": 106,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 808,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/background.ts",
+          "tokens_estimated": 416,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/shared/src/schemas.ts",
+          "tokens_estimated": 76,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/issues.ts",
+          "tokens_estimated": 56,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 68,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 37,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+          "tokens_estimated": 109,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/ui/src/globals.css",
+          "tokens_estimated": 135,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/ui/src/globals.css",
+          "tokens_estimated": 93,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 323,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 190,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 175,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 102,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 16408,
+        "output_tokens_estimated": 10852,
+        "reads_count": 12,
+        "writes_count": 38,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 11
+      }
+    },
+    {
+      "id": "session-2026-05-17-1529",
+      "started": "2026-05-17T14:29:42.646Z",
+      "ended": "2026-05-17T14:50:03.696Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/AttachmentImage.vue",
+          "tokens_estimated": 503,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/dashboard/components/IssueCard.vue",
+          "tokens_estimated": 241,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/dashboard/components/IssueCard.vue",
+          "tokens_estimated": 110,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/dashboard/components/IssueCard.vue",
+          "tokens_estimated": 103,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/IssueMedia.vue",
+          "tokens_estimated": 223,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/IssueMedia.vue",
+          "tokens_estimated": 215,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/AttachmentImage.vue",
+          "tokens_estimated": 165,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/AttachmentImage.vue",
+          "tokens_estimated": 147,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 503,
+        "output_tokens_estimated": 1204,
+        "reads_count": 1,
+        "writes_count": 7,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 1
       }
     }
   ],

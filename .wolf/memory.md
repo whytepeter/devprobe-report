@@ -658,3 +658,168 @@
 | 20:42 | Edited apps/extension/src/lib/theme.ts | added 2 condition(s) | ~164 |
 | 20:43 | Edited apps/extension/src/entrypoints/content.ts | added error handling | ~120 |
 | 20:43 | Session end: 26 writes across 10 files (auth.ts, ConnectPrompt.vue, App.vue, FloatingLauncher.vue, ScreenshotCapture.vue) | 7 reads | ~14167 tok |
+| 01:05 | Created apps/web/src/pages/ProjectsPage.vue | — | ~1873 |
+| 01:07 | Session end: 27 writes across 11 files (auth.ts, ConnectPrompt.vue, App.vue, FloatingLauncher.vue, ScreenshotCapture.vue) | 11 reads | ~21533 tok |
+| 01:11 | Edited apps/web/src/main.ts | expanded (+7 lines) | ~200 |
+| 01:11 | Created apps/web/src/stores/auth.ts | — | ~779 |
+| 01:12 | Created apps/web/src/lib/api.ts | — | ~379 |
+| 01:12 | Created apps/web/src/router/index.ts | — | ~548 |
+| 01:12 | Created apps/web/src/components/layout/PageHeader.vue | — | ~184 |
+| 01:12 | Created apps/web/src/components/layout/PageEmpty.vue | — | ~219 |
+| 01:12 | Created apps/web/src/components/layout/AuthLayout.vue | — | ~274 |
+| 01:13 | Created apps/web/src/components/layout/UserMenu.vue | — | ~781 |
+| 01:13 | Created apps/web/src/layouts/DashboardLayout.vue | — | ~599 |
+| 01:13 | Created apps/web/src/pages/LoginPage.vue | — | ~623 |
+| 01:16 | Created packages/ui/src/components/icon/Icon.vue | — | ~335 |
+| 01:16 | Created packages/ui/src/components/icon/index.ts | — | ~14 |
+| 01:16 | Edited packages/ui/src/index.ts | 2→5 lines | ~72 |
+| 01:22 | Edited apps/web/src/main.ts | 5→5 lines | ~62 |
+| 01:22 | Created apps/web/src/features/auth/SignupPage.vue | — | ~753 |
+| 01:23 | Created apps/web/src/features/dashboard/DashboardPage.vue | — | ~1997 |
+| 01:23 | Created apps/web/src/features/settings/SettingsPage.vue | — | ~695 |
+| 01:23 | Created apps/web/src/features/settings/components/Field.vue | — | ~131 |
+| 01:24 | Created apps/web/src/features/not-found/NotFoundPage.vue | — | ~190 |
+| 01:25 | Created apps/web/src/features/extension-connect/utils/extension-id.ts | — | ~166 |
+| 01:25 | Created apps/web/src/features/extension-connect/composables/useExtensionHandoff.ts | — | ~588 |
+| 01:26 | Edited packages/ui/package.json | 2→2 lines | ~15 |
+| 01:26 | Edited apps/web/package.json | inline fix | ~6 |
+| 01:27 | Created packages/ui/src/components/ui/form/useFormField.ts | — | ~241 |
+| 01:27 | Created packages/ui/src/components/ui/form/FormField.vue | — | ~284 |
+| 01:27 | Created packages/ui/src/components/ui/form/FormItem.vue | — | ~81 |
+| 01:28 | Created packages/ui/src/components/ui/form/FormLabel.vue | — | ~158 |
+| 01:28 | Created packages/ui/src/components/ui/form/FormControl.vue | — | ~193 |
+| 01:28 | Created packages/ui/src/components/ui/form/FormDescription.vue | — | ~83 |
+| 01:28 | Created packages/ui/src/components/ui/form/FormMessage.vue | — | ~163 |
+| 01:28 | Created packages/ui/src/components/ui/form/index.ts | — | ~168 |
+| 01:28 | Edited packages/ui/src/index.ts | expanded (+12 lines) | ~109 |
+| 01:28 | Created apps/web/src/features/auth/components/LoginForm.vue | — | ~586 |
+| 01:29 | Created apps/web/src/features/auth/components/LoginForm.vue | — | ~625 |
+| 01:29 | Created apps/web/src/features/auth/LoginPage.vue | — | ~269 |
+| 01:29 | Created apps/web/src/features/auth/components/SignupForm.vue | — | ~829 |
+| 01:30 | Created apps/web/src/features/auth/SignupPage.vue | — | ~253 |
+| 01:30 | Created apps/web/src/features/extension-connect/components/ConnectStateUnauthed.vue | — | ~121 |
+| 01:30 | Created apps/web/src/features/extension-connect/components/ConnectStateForm.vue | — | ~568 |
+| 01:30 | Created apps/web/src/features/extension-connect/components/ConnectStateConnected.vue | — | ~139 |
+| 01:31 | Created apps/web/src/features/extension-connect/ExtensionConnectPage.vue | — | ~701 |
+| 01:31 | Created apps/web/src/features/projects/utils/slug.ts | — | ~85 |
+| 01:31 | Created apps/web/src/features/projects/composables/useProjects.ts | — | ~294 |
+| 01:31 | Created apps/web/src/features/projects/components/ProjectCard.vue | — | ~199 |
+| 01:32 | Created apps/web/src/features/projects/components/CreateProjectDialog.vue | — | ~1451 |
+| 01:32 | Created apps/web/src/features/projects/ProjectsPage.vue | — | ~560 |
+| 01:32 | Created apps/web/src/features/dashboard/utils/host.ts | — | ~35 |
+| 01:32 | Created apps/web/src/features/dashboard/composables/useIssues.ts | — | ~548 |
+| 01:32 | Created apps/web/src/features/dashboard/components/IssueFilters.vue | — | ~791 |
+| 01:33 | Created apps/web/src/features/dashboard/components/IssueRow.vue | — | ~424 |
+| 01:33 | Created apps/web/src/features/dashboard/components/IssueList.vue | — | ~104 |
+| 01:33 | Created apps/web/src/features/dashboard/DashboardPage.vue | — | ~453 |
+| 01:34 | Created apps/web/src/features/issues/composables/useIssue.ts | — | ~454 |
+| 01:34 | Created apps/web/src/features/issues/components/IssueHeader.vue | — | ~262 |
+| 01:34 | Created apps/web/src/features/issues/components/IssueMeta.vue | — | ~300 |
+| 01:34 | Created apps/web/src/features/issues/IssuePage.vue | — | ~647 |
+| 01:35 | Edited apps/web/tsconfig.json | 12→16 lines | ~149 |
+| 01:35 | Edited apps/web/tsconfig.json | 3→4 lines | ~26 |
+| 01:44 | Edited apps/web/src/features/projects/components/CreateProjectDialog.vue | 16→16 lines | ~138 |
+| 01:45 | Edited apps/web/src/features/projects/components/CreateProjectDialog.vue | modified onNameInput() | ~51 |
+| 01:45 | Edited apps/web/src/features/projects/components/CreateProjectDialog.vue | removed 3 lines | ~3 |
+| 01:45 | Edited apps/web/src/features/projects/components/CreateProjectDialog.vue | inline fix | ~22 |
+
+## Session: 2026-05-11 11:31
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-11 11:31
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 11:38 | Edited apps/web/src/features/projects/components/CreateProjectDialog.vue | 8→7 lines | ~57 |
+| 11:38 | Edited apps/web/src/features/projects/components/CreateProjectDialog.vue | onNameInput() → watch() | ~132 |
+| 11:43 | Session end: 2 writes across 1 files (CreateProjectDialog.vue) | 1 reads | ~1630 tok |
+| 11:50 | Edited apps/extension/src/components/capture/IssueComposePanel.vue | CSS: failed | ~156 |
+| 11:50 | Edited apps/extension/src/components/capture/IssueComposePanel.vue | expanded (+12 lines) | ~392 |
+| 11:51 | Session end: 4 writes across 2 files (CreateProjectDialog.vue, IssueComposePanel.vue) | 2 reads | ~4798 tok |
+| 11:54 | Edited apps/extension/src/entrypoints/background.ts | added error handling | ~634 |
+| 11:54 | Edited apps/extension/src/entrypoints/background.ts | modified if() | ~119 |
+| 11:55 | Created apps/extension/src/lib/api.ts | — | ~540 |
+
+## Session: 2026-05-11 15:37
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 15:37 | Edited apps/extension/src/lib/api.ts | expanded (+9 lines) | ~58 |
+| 15:37 | Edited apps/extension/src/lib/api.ts | 2→4 lines | ~45 |
+| 15:38 | Created apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts | — | ~699 |
+| 15:38 | Created apps/extension/src/entrypoints/popup/components/AccountMenu.vue | — | ~1451 |
+| 15:39 | Created apps/extension/src/entrypoints/popup/components/PopupHeader.vue | — | ~380 |
+| 15:40 | Created apps/extension/src/entrypoints/popup/App.vue | — | ~905 |
+| 15:40 | Created apps/extension/src/entrypoints/popup/components/ActiveProjectChip.vue | — | ~396 |
+| 15:40 | Edited apps/extension/src/components/capture/IssueComposePanel.vue | added optional chaining | ~228 |
+| 15:40 | Edited apps/extension/src/components/capture/IssueComposePanel.vue | added 1 import(s) | ~49 |
+| 15:41 | Session end: 9 writes across 7 files (api.ts, usePopupAccount.ts, AccountMenu.vue, PopupHeader.vue, App.vue) | 2 reads | ~5795 tok |
+| 16:05 | Edited apps/extension/src/lib/api.ts | expanded (+8 lines) | ~256 |
+| 16:05 | Edited apps/extension/src/entrypoints/background.ts | modified handleApiFetch() | ~351 |
+| 16:07 | Edited apps/extension/src/components/capture/IssueComposePanel.vue | added nullish coalescing | ~247 |
+| 16:07 | Session end: 12 writes across 8 files (api.ts, usePopupAccount.ts, AccountMenu.vue, PopupHeader.vue, App.vue) | 2 reads | ~6666 tok |
+| 16:17 | Edited packages/api/wrangler.toml | expanded (+37 lines) | ~285 |
+| 16:22 | Created apps/web/src/shared/lib/format.ts | — | ~274 |
+| 16:23 | Session end: 14 writes across 10 files (api.ts, usePopupAccount.ts, AccountMenu.vue, PopupHeader.vue, App.vue) | 4 reads | ~7555 tok |
+| 16:27 | Edited packages/api/src/routes/issues.ts | 7→8 lines | ~65 |
+| 16:27 | Edited packages/api/src/routes/attachments.ts | added optional chaining | ~383 |
+| 16:28 | Edited packages/api/src/db/schema.ts | 5→10 lines | ~152 |
+| 16:28 | Created apps/web/src/features/issues/composables/useAttachmentUrl.ts | — | ~351 |
+| 16:28 | Created apps/web/src/features/issues/components/AttachmentImage.vue | — | ~503 |
+| 16:28 | Created apps/web/src/features/issues/components/IssueAttachments.vue | — | ~399 |
+| 16:29 | Edited apps/web/src/features/issues/composables/useIssue.ts | 6→9 lines | ~122 |
+| 16:29 | Edited apps/web/src/features/issues/composables/useIssue.ts | inline fix | ~16 |
+| 16:29 | Edited apps/web/src/features/issues/composables/useIssue.ts | added nullish coalescing | ~53 |
+| 16:29 | Edited apps/web/src/features/issues/IssuePage.vue | CSS: IssueAttachments | ~135 |
+| 16:30 | Edited apps/web/src/features/issues/IssuePage.vue | added 1 import(s) | ~99 |
+| 16:32 | Session end: 25 writes across 18 files (api.ts, usePopupAccount.ts, AccountMenu.vue, PopupHeader.vue, App.vue) | 8 reads | ~17987 tok |
+| 16:43 | Created apps/extension/src/lib/api.ts | — | ~808 |
+| 16:43 | Edited apps/extension/src/entrypoints/background.ts | modified base64ToBytes() | ~416 |
+| 16:44 | Edited packages/shared/src/schemas.ts | 4→5 lines | ~76 |
+| 16:44 | Edited packages/api/src/routes/issues.ts | 2→3 lines | ~56 |
+| 16:44 | Edited apps/extension/src/components/capture/IssueComposePanel.vue | 5→4 lines | ~64 |
+| 16:45 | Edited apps/extension/src/components/capture/IssueComposePanel.vue | 7→7 lines | ~34 |
+| 16:45 | Edited apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue | CSS: visibility | ~102 |
+| 16:45 | Edited packages/ui/src/globals.css | 11→12 lines | ~135 |
+| 16:45 | Edited packages/ui/src/globals.css | 9→9 lines | ~93 |
+| 16:57 | Edited apps/extension/src/entrypoints/content.ts | modified createShadowRootUi() | ~323 |
+| 17:01 | Edited apps/extension/src/entrypoints/content.ts | added 1 condition(s) | ~190 |
+| 17:01 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | CSS: pointer-events | ~164 |
+| 17:01 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | CSS: pointer-events | ~95 |
+| 17:02 | Session end: 38 writes across 23 files (api.ts, usePopupAccount.ts, AccountMenu.vue, PopupHeader.vue, App.vue) | 12 reads | ~27260 tok |
+| 17:10 | Edited packages/api/src/routes/issues.ts | expanded (+16 lines) | ~293 |
+| 17:11 | Created apps/web/src/features/issues/components/TypeChip.vue | — | ~394 |
+| 17:11 | Created apps/web/src/features/issues/components/UserAvatar.vue | — | ~481 |
+| 17:11 | Created apps/web/src/features/dashboard/components/IssueCard.vue | — | ~991 |
+| 17:12 | Created apps/web/src/features/dashboard/components/IssueGrid.vue | — | ~158 |
+| 17:12 | Created apps/web/src/features/dashboard/components/ViewToggle.vue | — | ~354 |
+| 17:12 | Created apps/web/src/features/dashboard/components/IssueFilters.vue | — | ~942 |
+| 17:13 | Created apps/web/src/features/dashboard/DashboardPage.vue | — | ~558 |
+| 17:13 | Edited apps/web/src/features/workspace-shell/DashboardLayout.vue | inline fix | ~17 |
+| 17:14 | Created apps/web/src/features/issues/components/IssueHero.vue | — | ~541 |
+| 17:14 | Created apps/web/src/features/issues/components/IssueMedia.vue | — | ~500 |
+| 17:14 | Created apps/web/src/features/issues/components/IssueDescription.vue | — | ~202 |
+| 17:15 | Created apps/web/src/features/issues/components/IssueDescription.vue | — | ~192 |
+| 17:15 | Created apps/web/src/features/issues/components/IssueActivity.vue | — | ~765 |
+| 17:16 | Created apps/web/src/features/issues/IssuePage.vue | — | ~1083 |
+| 17:16 | Edited apps/web/src/features/issues/composables/useIssue.ts | expanded (+10 lines) | ~170 |
+
+## Session: 2026-05-17 15:29
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 15:30 | Edited apps/web/src/features/dashboard/components/IssueCard.vue | 21→22 lines | ~225 |
+| 15:31 | Edited apps/web/src/features/dashboard/components/IssueCard.vue | 6→6 lines | ~102 |
+| 15:31 | Edited apps/web/src/features/dashboard/components/IssueCard.vue | 4→9 lines | ~96 |
+| 15:32 | Edited apps/web/src/features/issues/components/IssueMedia.vue | expanded (+6 lines) | ~208 |
+| 15:32 | Edited apps/web/src/features/issues/components/IssueMedia.vue | 20→24 lines | ~200 |
+| 15:33 | Edited apps/web/src/features/issues/components/AttachmentImage.vue | expanded (+9 lines) | ~154 |
+| 15:34 | Edited apps/web/src/features/issues/components/AttachmentImage.vue | 9→13 lines | ~137 |
+| 15:50 | Session end: 7 writes across 3 files (IssueCard.vue, IssueMedia.vue, AttachmentImage.vue) | 1 reads | ~1707 tok |
+
+## Session: 2026-05-17 16:20
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|

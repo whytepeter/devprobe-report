@@ -46,6 +46,7 @@ export const CreateIssueSchema = z.object({
   browserMeta: z.record(z.unknown()).optional(),
   assigneeId: z.string().uuid().optional(),
   labels: z.array(z.string()).optional(),
+  visibility: z.enum(Object.values(IssueVisibility) as [IssueVisibility, ...IssueVisibility[]]).optional(),
 });
 export type CreateIssueInput = z.infer<typeof CreateIssueSchema>;
 

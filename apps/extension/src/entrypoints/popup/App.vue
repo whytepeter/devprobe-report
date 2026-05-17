@@ -1,12 +1,28 @@
 <!--
-  Extension popup — launcher only.
-  Capture actions are gated behind a connected workspace. Without auth, the
-  popup shows a single connect prompt; with auth, the action list.
-  On screenshot: sends START_REGION_SELECT to the content script, then closes.
+  Extension popup
+  ───────────────
+  Capture actions are gated behind a connected workspace. Without auth the
+  popup shows a single connect prompt; with auth, the action list plus an
+  active-project chip strip.
+
+  The right side of the header hosts an AccountMenu (user identity, project
+  switcher, dashboard link, disconnect).
 -->
 <template>
-  <div class="w-[360px] bg-card text-foreground">
-    <PopupHeader :connected="!!auth" :connect-url="connectUrl" />
+  <div class="w-[360px] bg-card text-foreground font-sans">
+    <PopupHeader>
+      <template #menu>
+        <AccountMenu
+          :auth="account.auth.value"
+          :me="account.me.value"
+          :projects="account.projects.value"
+          :loading="account.loading.value"
+          :active-project-id="account.activeProjectId.value"
+          @select="account.selectProject"
+          @disconnect="account.disconnect"
+        />
+      </template>
+    </PopupHeader>
 
     <!-- Pending -->
     <div v-if="launching" class="px-5 py-10 text-center space-y-2">
@@ -20,11 +36,17 @@
       <Button variant="ghost" size="sm" @click="launchError = ''">Dismiss</Button>
     </div>
 
-    <!-- Disconnected: prompt user to connect -->
-    <ConnectPrompt v-else-if="!auth" />
+    <!-- Disconnected -->
+    <ConnectPrompt v-else-if="!account.auth.value" />
 
-    <!-- Connected: capture actions -->
-    <ActionList v-else @screenshot="onScreenshot" />
+    <!-- Connected -->
+    <template v-else>
+      <ActionList @screenshot="onScreenshot" />
+      <ActiveProjectChip
+        :active-project="account.activeProject.value"
+        :loading="account.loading.value"
+      />
+    </template>
 
     <!-- Footer URL -->
     <div v-if="currentUrl && !launching" class="px-4 py-2 border-t border-border">
@@ -34,27 +56,22 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted } from 'vue';
+import { Button } from '@deveprobe/ui';
 import PopupHeader   from './components/PopupHeader.vue';
 import ActionList    from './components/ActionList.vue';
+import AccountMenu   from './components/AccountMenu.vue';
+import ActiveProjectChip from './components/ActiveProjectChip.vue';
 import ConnectPrompt from '../../components/launcher/ConnectPrompt.vue';
-import { Button }    from '@deveprobe/ui';
-import { getAuth, onAuthChange, type StoredAuth } from '../../lib/auth.js';
-import { WEB_APP_URL } from '../../lib/env.js';
+import { usePopupAccount } from './composables/usePopupAccount.js';
+import { safeSendMessage } from '../../lib/extension.js';
 
-const auth        = ref<StoredAuth | null>(null);
+const account = usePopupAccount();
 const currentUrl  = ref('');
 const launching   = ref(false);
 const launchError = ref('');
 
-// Pre-fill the extension id so the connect page can auto-handoff in one click.
-const connectUrl = `${WEB_APP_URL}/extension/connect?ext=${chrome.runtime.id}`;
-
-let unsubscribeAuth: (() => void) | null = null;
-
 onMounted(async () => {
-  auth.value = await getAuth();
-  unsubscribeAuth = onAuthChange((next) => { auth.value = next; });
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   if (tab?.url) {
     try {
@@ -66,15 +83,13 @@ onMounted(async () => {
   }
 });
 
-onUnmounted(() => { unsubscribeAuth?.(); });
-
 async function onScreenshot() {
   launchError.value = '';
   launching.value   = true;
   try {
-    const res = await chrome.runtime.sendMessage({
+    const res = await safeSendMessage<{ ok?: boolean; error?: string }>({
       type:    'FORWARD_TO_CONTENT',
-      payload: { type: 'START_REGION_SELECT', auth: auth.value },
+      payload: { type: 'START_REGION_SELECT', auth: account.auth.value },
     });
     if (!res?.ok) throw new Error(res?.error ?? 'Could not start capture');
     window.close();

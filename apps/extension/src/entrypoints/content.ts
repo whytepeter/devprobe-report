@@ -89,6 +89,21 @@ export default defineContentScript({
       },
     });
     launcherUi.mount();
+    // Pin the host to the viewport corner so the FAB inside always receives
+    // clicks even if the host page wraps body in a transformed container
+    // (which breaks position:fixed for descendants). pointer-events:none
+    // means the host itself never blocks the host page; only the FAB's own
+    // auto rules capture clicks.
+    {
+      const host = document.querySelector('dp-launcher') as HTMLElement | null;
+      if (host) {
+        host.style.position = 'fixed';
+        host.style.bottom = '0';
+        host.style.right = '0';
+        host.style.zIndex = '2147483647';
+        host.style.pointerEvents = 'none';
+      }
+    }
 
     // ── Region selector ───────────────────────────────────────────────────────
     // Mounts a full-page drag overlay; on confirm, captures + crops the region.

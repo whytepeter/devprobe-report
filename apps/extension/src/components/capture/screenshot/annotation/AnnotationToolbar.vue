@@ -160,7 +160,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
-import Icon from '../../../base/Icon.vue';
+import { Icon } from '@deveprobe/ui';
 import Tip from './ToolbarTip.vue';
 import type { DrawTool } from './types.js';
 
