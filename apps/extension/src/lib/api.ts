@@ -1,29 +1,58 @@
-import { API_URL } from "./env.js";
-import { getAuth } from "./auth.js";
-import type { Issue, Project, Attachment, ApiResponse } from "@deveprobe/shared";
+import type { Issue, Attachment } from "@deveprobe/shared";
+import { isExtensionAlive } from "./extension.js";
 
-async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
-  const auth = await getAuth();
-  const headers = new Headers(init.headers);
-  if (auth?.token) headers.set("Authorization", `Bearer ${auth.token}`);
-  if (init.body && !(init.body instanceof FormData) && !headers.has("Content-Type")) {
-    headers.set("Content-Type", "application/json");
-  }
+export interface Me {
+  id: string;
+  email: string;
+  name: string;
+  avatarUrl: string | null;
+  orgId: string;
+  role: string;
+}
 
-  const res = await fetch(`${API_URL}${path}`, { ...init, headers });
-  const json = (await res.json()) as ApiResponse<T>;
-  if (!json.ok) {
-    throw new Error(json.error?.message ?? `Request failed: ${res.status}`);
+/**
+ * API client
+ * ──────────
+ * All requests are proxied through the background service worker via
+ * chrome.runtime.sendMessage so calls leave with the extension's
+ * chrome-extension:// origin (which the Worker's CORS allows). Content
+ * scripts inherit the host page origin which the Worker rejects.
+ *
+ * Binary payloads go over as base64 strings — Blob/File AND ArrayBuffer
+ * both arrive as `{}` on the SW side, so JSON-safe serialisation is the
+ * only reliable transport for file uploads.
+ */
+type ApiResult<T> =
+  | { ok: true; data: T }
+  | { ok: false; status?: number; error: string };
+
+async function send<T>(msg: Record<string, unknown>): Promise<T> {
+  if (!isExtensionAlive()) {
+    throw new Error("Extension context invalidated — reload the page.");
   }
-  return json.data;
+  const res = (await chrome.runtime.sendMessage({ type: "API_FETCH", ...msg })) as ApiResult<T> | undefined;
+  if (!res) throw new Error("No response from background worker.");
+  if (!res.ok) throw new Error(res.error);
+  return res.data;
+}
+
+/** Encode an ArrayBuffer as base64. Chunked to avoid call-stack overflow on big blobs. */
+function bufferToBase64(buffer: ArrayBuffer): string {
+  const bytes = new Uint8Array(buffer);
+  const CHUNK = 0x8000;
+  let binary = "";
+  for (let i = 0; i < bytes.length; i += CHUNK) {
+    binary += String.fromCharCode.apply(null, bytes.subarray(i, i + CHUNK) as unknown as number[]);
+  }
+  return btoa(binary);
 }
 
 export const api = {
-  listProjects: () => request<Project[]>("/projects"),
-  createProject: (input: { name: string; slug: string; description?: string }) =>
-    request<Project>("/projects", { method: "POST", body: JSON.stringify(input) }),
+  me: () => send<Me>({ path: "/auth/me", method: "GET" }),
+
   createIssue: (input: Record<string, unknown>) =>
-    request<Issue>("/issues", { method: "POST", body: JSON.stringify(input) }),
+    send<Issue>({ path: "/issues", method: "POST", json: input }),
+
   uploadAttachment: async (params: {
     blob: Blob;
     filename: string;
@@ -31,11 +60,19 @@ export const api = {
     issueId?: string;
     sessionId?: string;
   }) => {
-    const form = new FormData();
-    form.append("file", params.blob, params.filename);
-    form.append("type", params.type);
-    if (params.issueId) form.append("issueId", params.issueId);
-    if (params.sessionId) form.append("sessionId", params.sessionId);
-    return request<Attachment>("/attachments", { method: "POST", body: form });
+    const base64 = bufferToBase64(await params.blob.arrayBuffer());
+    const fields: Record<string, string> = { type: params.type };
+    if (params.issueId)   fields["issueId"]   = params.issueId;
+    if (params.sessionId) fields["sessionId"] = params.sessionId;
+    return send<Attachment>({
+      path: "/attachments",
+      method: "POST",
+      file: {
+        base64,
+        contentType: params.blob.type || "application/octet-stream",
+        filename: params.filename,
+      },
+      fields,
+    });
   },
 };

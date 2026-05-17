@@ -126,5 +126,20 @@ export {
   CardTitle,
 } from './components/ui/card/index.js';
 
+// ── Iconography ───────────────────────────────────────────────────────────────
+export { Icon } from './components/icon/index.js';
+
+// ── Form (vee-validate + zod) ─────────────────────────────────────────────────
+export {
+  useForm,
+  toTypedSchema,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+} from './components/ui/form/index.js';
+
 // ── Utilities ─────────────────────────────────────────────────────────────────
 export { cn } from './lib/utils.js';

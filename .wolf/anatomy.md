@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-10T19:43:01.167Z
-> Files: 209 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-17T22:09:56.286Z
+> Files: 236 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -56,13 +56,13 @@
 
 ## apps/extension/src/components/capture/
 
-- `IssueComposePanel.vue` — Vue: setup (~2581 tok)
+- `IssueComposePanel.vue` — Vue: setup (~1848 tok)
 - `PostComposeModal.vue` — Vue: setup (~727 tok)
 - `RegionSelector.vue` — Vue: setup, TS, emits (~1211 tok)
 
 ## apps/extension/src/components/capture/screenshot/
 
-- `ScreenshotCapture.vue` — Vue: setup (~909 tok)
+- `ScreenshotCapture.vue` — Vue: setup (~927 tok)
 - `ScreenshotPanel.vue` — Vue: setup, TS, 1 props (~642 tok)
 
 ## apps/extension/src/components/capture/screenshot/annotation/
@@ -81,25 +81,31 @@
 
 ## apps/extension/src/entrypoints/
 
-- `background.ts` — Declares dataUrl (~1006 tok)
+- `background.ts` — API proxy (~1792 tok)
 - `content.ts` — Content script — mounts three possible UIs into the page via shadow DOM: (~2205 tok)
 
 ## apps/extension/src/entrypoints/popup/
 
-- `App.vue` — Vue: setup (~815 tok)
+- `App.vue` — Vue: setup (~822 tok)
 - `index.html` — DevProbe (~137 tok)
 - `main.ts` — Initialise theme then mount — wrapped in IIFE because top-level await is (~185 tok)
 
 ## apps/extension/src/entrypoints/popup/components/
 
+- `AccountMenu.vue` — Vue: setup (~968 tok)
 - `ActionItem.vue` — Vue: setup, TS, 4 props, emits (~454 tok)
 - `ActionList.vue` — Vue: setup, TS, emits (~503 tok)
+- `ActiveFolderChip.vue` — Vue: setup (~393 tok)
 - `PopupHeader.vue` — Vue: setup, TS, 2 props (~525 tok)
+
+## apps/extension/src/entrypoints/popup/composables/
+
+- `usePopupAccount.ts` — Popup account state — keeps the workspace identity in sync with chrome.storage (~407 tok)
 
 ## apps/extension/src/lib/
 
-- `api.ts` — Exports api (~484 tok)
-- `auth.ts` — Exports StoredAuth, getAuth, setAuth, setDefaultProject + 2 more (~717 tok)
+- `api.ts` — API client (~740 tok)
+- `auth.ts` — Exports StoredAuth, getAuth, setAuth, clearAuth, onAuthChange (~593 tok)
 - `env.ts` — Exports WEB_APP_URL, API_URL (~48 tok)
 - `extension.ts` — Extension runtime helpers. (~253 tok)
 - `metadata.ts` — Exports collectBrowserMeta, dataUrlToBlob (~1394 tok)
@@ -121,6 +127,10 @@
 - `App.vue` — Vue: setup, TS (~32 tok)
 - `main.ts` — Apply saved/system theme before first render to avoid flash (~111 tok)
 
+## apps/web/src/app/
+
+- `router.ts` — Declares router (~649 tok)
+
 ## apps/web/src/assets/
 
 - `main.css` — Styles: 9 rules, 2 layers (~532 tok)
@@ -139,21 +149,68 @@
 
 - `useTheme.ts` — Exports useTheme (~212 tok)
 
+## apps/web/src/features/auth/
+
+- `auth.store.ts` — Auth store (~1207 tok)
+
+## apps/web/src/features/dashboard/components/
+
+- `IssueFilters.vue` — Vue: setup (~944 tok)
+
+## apps/web/src/features/dashboard/composables/
+
+- `useIssues.ts` — "all" is a sentinel value used by the filter UI (shadcn Select can't have (~617 tok)
+
+## apps/web/src/features/folders/
+
+- `FoldersPage.vue` — Vue: setup (~554 tok)
+
+## apps/web/src/features/folders/components/
+
+- `CreateFolderDialog.vue` — Vue: setup (~1434 tok)
+- `FolderCard.vue` — Vue: setup (~197 tok)
+
+## apps/web/src/features/folders/composables/
+
+- `useFolders.ts` — Owns the folders list — fetch, create, in-place prepend on success. (~288 tok)
+
+## apps/web/src/features/folders/utils/
+
+- `color.ts` — Deterministic color assignment for folders + workspaces, so the same id (~267 tok)
+
+## apps/web/src/features/issues/components/
+
+- `IssueHeader.vue` — Vue: setup (~261 tok)
+
+## apps/web/src/features/settings/
+
+- `SettingsPage.vue` — Vue: setup (~695 tok)
+
+## apps/web/src/features/workspace-shell/
+
+- `DashboardLayout.vue` — Vue: setup (~1348 tok)
+
+## apps/web/src/features/workspace-shell/components/
+
+- `CreateWorkspaceDialog.vue` — Vue: setup (~662 tok)
+- `WorkspaceSwitcher.vue` — Vue: setup (~1044 tok)
+
 ## apps/web/src/layouts/
 
-- `DashboardLayout.vue` — Vue: setup, TS (~778 tok)
+- `DashboardLayout.vue` — Vue: setup (~1445 tok)
 
 ## apps/web/src/lib/
 
 - `api.ts` — Exports api (~182 tok)
 - `format.ts` — Exports timeAgo, truncate (~169 tok)
-- `mock.ts` — Exports MOCK_ISSUES, MOCK_PROJECTS (~1721 tok)
+- `mock.ts` — Exports MockFolder, MOCK_FOLDERS, MOCK_ISSUES (~2298 tok)
 - `utils.ts` — Exports cn (~49 tok)
 
 ## apps/web/src/pages/
 
-- `DashboardPage.vue` — Vue: setup, TS (~2370 tok)
+- `DashboardPage.vue` — Vue: setup (~3255 tok)
 - `ExtensionConnectPage.vue` — Vue: setup (~1353 tok)
+- `FoldersPage.vue` — Vue: setup (~1567 tok)
 - `IssuePage.vue` — Vue: setup (~1498 tok)
 - `LoginPage.vue` — Vue: setup, TS (~595 tok)
 - `NotFoundPage.vue` — Vue: setup, TS (~127 tok)
@@ -161,9 +218,30 @@
 - `SettingsPage.vue` — Vue: setup, TS (~209 tok)
 - `SignupPage.vue` — Vue: setup, TS (~716 tok)
 
+## apps/web/src/pages/auth/
+
+- `Login.vue` — Vue: setup (~268 tok)
+- `Signup.vue` — Vue: setup (~252 tok)
+
+## apps/web/src/pages/folders/
+
+- `Folder.vue` — Vue: setup (~944 tok)
+
+## apps/web/src/pages/integrations/
+
+- `Integrations.vue` — Vue: setup (~174 tok)
+
+## apps/web/src/pages/issues/
+
+- `Issue.vue` — Vue: setup (~1082 tok)
+
 ## apps/web/src/router/
 
-- `index.ts` — Declares router (~525 tok)
+- `index.ts` — Declares router (~602 tok)
+
+## apps/web/src/shared/lib/
+
+- `mock.ts` — Exports MOCK_ISSUES, MOCK_FOLDERS (~1716 tok)
 
 ## apps/web/src/stores/
 
@@ -177,20 +255,25 @@
 - `tsconfig.json` — TypeScript configuration (~52 tok)
 - `wrangler.toml` (~310 tok)
 
+## packages/api/drizzle/meta/
+
+- `_journal.json` (~19 tok)
+
 ## packages/api/src/
 
-- `index.ts` — API routes: GET (1 endpoints) (~597 tok)
+- `index.ts` — API routes: GET (1 endpoints) (~596 tok)
 
 ## packages/api/src/db/
 
 - `client.ts` — Exports Db, createDb (~87 tok)
-- `schema.ts` — Exports issueModeEnum, issueSourceEnum, issueStatusEnum, severityEnum + 19 more (~6039 tok)
+- `schema.ts` — Exports issueModeEnum, issueSourceEnum, issueStatusEnum, severityEnum + 19 more (~6222 tok)
 
 ## packages/api/src/lib/
 
 - `env.ts` — Exports Env (~67 tok)
 - `jwt.ts` — Exports JwtPayload, signJwt, verifyJwt (~258 tok)
 - `response.ts` — Exports ok, err, Errors (~262 tok)
+- `routing.ts` — Resolve the folder a captured issue belongs to by matching its page URL (~436 tok)
 
 ## packages/api/src/middleware/
 
@@ -203,8 +286,9 @@
 ## packages/api/src/routes/
 
 - `attachments.ts` — API routes: POST, GET (8 endpoints) (~872 tok)
-- `auth.ts` — API routes: POST, GET (3 endpoints) (~941 tok)
-- `issues.ts` — API routes: GET, POST (6 endpoints) (~708 tok)
+- `auth.ts` — API routes: POST, GET (9 endpoints) (~1637 tok)
+- `folders.ts` — API routes: GET, POST (4 endpoints) (~442 tok)
+- `issues.ts` — API routes: GET, POST (6 endpoints) (~910 tok)
 - `projects.ts` — API routes: GET, POST (4 endpoints) (~446 tok)
 
 ## packages/shared/
@@ -216,8 +300,8 @@
 
 - `enums.ts` — Exports IssueSource, IssueSource, IssueMode, IssueMode + 22 more (~973 tok)
 - `index.ts` (~25 tok)
-- `schemas.ts` — Zod schemas: SignupSchema, LoginSchema, CreateIssueSchema, UpdateIssueSchema + 14 more (~2634 tok)
-- `types.ts` — Exports Org, User, Membership, Project + 17 more (~1689 tok)
+- `schemas.ts` — Zod schemas: SignupSchema, LoginSchema, CreateIssueSchema, UpdateIssueSchema + 14 more (~2669 tok)
+- `types.ts` — Exports Org, User, Membership, Folder + 17 more (~1694 tok)
 
 ## packages/ui/
 

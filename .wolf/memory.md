@@ -658,3 +658,133 @@
 | 20:42 | Edited apps/extension/src/lib/theme.ts | added 2 condition(s) | ~164 |
 | 20:43 | Edited apps/extension/src/entrypoints/content.ts | added error handling | ~120 |
 | 20:43 | Session end: 26 writes across 10 files (auth.ts, ConnectPrompt.vue, App.vue, FloatingLauncher.vue, ScreenshotCapture.vue) | 7 reads | ~14167 tok |
+
+## Session: 2026-05-17 15:33
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-17 15:47
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-17 15:52
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 15:56 | Created packages/api/src/db/schema.ts | — | ~6207 |
+| 15:59 | Created packages/api/drizzle/meta/_journal.json | — | ~19 |
+| 15:59 | Edited packages/shared/src/types.ts | 17→17 lines | ~84 |
+| 15:59 | Edited packages/shared/src/types.ts | 5→5 lines | ~30 |
+| 16:00 | Edited packages/shared/src/types.ts | 5→5 lines | ~34 |
+| 16:00 | Edited packages/shared/src/types.ts | 5→5 lines | ~34 |
+| 16:00 | Edited packages/shared/src/schemas.ts | 3→3 lines | ~35 |
+| 16:00 | Edited packages/shared/src/schemas.ts | 3→3 lines | ~42 |
+| 16:00 | Edited packages/shared/src/schemas.ts | expanded (+6 lines) | ~232 |
+| 16:01 | Edited packages/shared/src/schemas.ts | 3→5 lines | ~99 |
+| 16:02 | Created packages/api/src/routes/folders.ts | — | ~1081 |
+| 16:02 | Created packages/api/src/lib/routing.ts | — | ~436 |
+| 16:03 | Created packages/api/src/routes/issues.ts | — | ~884 |
+| 16:03 | Edited packages/api/src/index.ts | 3→3 lines | ~43 |
+| 16:03 | Edited packages/api/src/index.ts | 3→3 lines | ~30 |
+| 16:04 | Created apps/extension/src/lib/auth.ts | — | ~593 |
+| 16:04 | Edited apps/extension/src/entrypoints/background.ts | 6→5 lines | ~32 |
+| 16:04 | Created apps/extension/src/lib/api.ts | — | ~482 |
+| 16:05 | Edited apps/extension/src/components/capture/IssueComposePanel.vue | 51→47 lines | ~508 |
+| 16:05 | Edited apps/extension/src/components/capture/IssueComposePanel.vue | CSS: folderId | ~72 |
+| 16:05 | Edited apps/extension/src/components/capture/IssueComposePanel.vue | listProjects() → listFolders() | ~116 |
+| 16:05 | Edited apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue | CSS: folderId | ~212 |
+| 16:06 | Edited apps/web/src/router/index.ts | 5→10 lines | ~80 |
+| 16:07 | Created apps/web/src/lib/mock.ts | — | ~2298 |
+| 16:08 | Created apps/web/src/layouts/DashboardLayout.vue | — | ~1445 |
+| 16:08 | Edited apps/web/src/router/index.ts | 10→15 lines | ~117 |
+| 16:10 | Created apps/web/src/pages/DashboardPage.vue | — | ~3255 |
+| 16:11 | Created apps/web/src/pages/FoldersPage.vue | — | ~1567 |
+| 16:31 | Edited apps/web/src/pages/DashboardPage.vue | CSS: hover, hover | ~437 |
+| 16:33 | Edited apps/web/src/pages/DashboardPage.vue | added error handling | ~145 |
+| 16:33 | Edited apps/web/src/pages/DashboardPage.vue | 3→3 lines | ~39 |
+| 16:33 | Edited apps/web/src/pages/DashboardPage.vue | expanded (+81 lines) | ~895 |
+| 16:39 | Edited apps/web/src/pages/DashboardPage.vue | removed 38 lines | ~46 |
+| 16:39 | Edited apps/web/src/pages/DashboardPage.vue | 2→2 lines | ~18 |
+| 16:40 | Edited apps/web/src/pages/DashboardPage.vue | removed 93 lines | ~81 |
+| 16:40 | Edited apps/web/src/pages/DashboardPage.vue | reduced (-11 lines) | ~32 |
+| 16:41 | Session end: 36 writes across 17 files (schema.ts, _journal.json, types.ts, schemas.ts, folders.ts) | 21 reads | ~39273 tok |
+| 22:05 | Created packages/api/src/db/schema.ts | — | ~6222 |
+| 22:05 | Edited packages/shared/src/types.ts | 23→23 lines | ~115 |
+| 22:05 | Edited packages/shared/src/types.ts | 5→5 lines | ~34 |
+| 22:05 | Edited packages/shared/src/types.ts | 5→5 lines | ~34 |
+| 22:06 | Edited packages/shared/src/schemas.ts | 3→3 lines | ~35 |
+| 22:06 | Edited packages/shared/src/schemas.ts | 3→3 lines | ~42 |
+| 22:06 | Edited packages/shared/src/schemas.ts | 15→15 lines | ~168 |
+| 22:06 | Edited packages/shared/src/schemas.ts | 2→2 lines | ~25 |
+| 22:08 | Created packages/api/src/routes/folders.ts | — | ~442 |
+| 22:08 | Edited packages/api/src/routes/issues.ts | inline fix | ~15 |
+| 22:08 | Edited packages/api/src/routes/issues.ts | added 1 condition(s) | ~160 |
+| 22:08 | Edited packages/api/src/index.ts | 3→3 lines | ~43 |
+| 22:09 | Edited packages/api/src/index.ts | 3→3 lines | ~30 |
+| 22:09 | Created apps/web/src/features/folders/composables/useFolders.ts | — | ~288 |
+| 22:10 | Created apps/web/src/features/folders/components/FolderCard.vue | — | ~197 |
+| 22:11 | Created apps/web/src/features/folders/components/CreateFolderDialog.vue | — | ~1434 |
+| 22:11 | Created apps/web/src/features/folders/FoldersPage.vue | — | ~554 |
+| 22:11 | Edited apps/web/src/app/router.ts | 5→5 lines | ~42 |
+| 22:11 | Edited apps/web/src/shared/lib/mock.ts | "proj-1" → "fld-1" | ~7 |
+| 22:12 | Edited apps/web/src/shared/lib/mock.ts | "proj-2" → "fld-2" | ~7 |
+| 22:12 | Edited apps/web/src/shared/lib/mock.ts | 4→4 lines | ~44 |
+| 22:12 | Edited apps/web/src/features/settings/SettingsPage.vue | inline fix | ~24 |
+| 22:12 | Created apps/web/src/features/workspace-shell/DashboardLayout.vue | — | ~1034 |
+| 22:13 | Created apps/extension/src/lib/auth.ts | — | ~713 |
+| 22:13 | Created apps/extension/src/lib/api.ts | — | ~806 |
+| 22:13 | Edited apps/extension/src/entrypoints/background.ts | 6→6 lines | ~45 |
+| 22:14 | Created apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts | — | ~691 |
+| 22:14 | Created apps/extension/src/entrypoints/popup/components/ActiveFolderChip.vue | — | ~393 |
+| 22:15 | Created apps/extension/src/entrypoints/popup/components/AccountMenu.vue | — | ~1446 |
+| 22:15 | Edited apps/extension/src/entrypoints/popup/App.vue | 11→11 lines | ~99 |
+| 22:16 | Edited apps/extension/src/entrypoints/popup/App.vue | CSS: ActiveFolderChip | ~63 |
+| 22:16 | Edited apps/extension/src/entrypoints/popup/App.vue | 2→2 lines | ~33 |
+| 22:16 | Edited apps/extension/src/components/capture/IssueComposePanel.vue | 64→64 lines | ~711 |
+| 22:16 | Edited apps/extension/src/components/capture/IssueComposePanel.vue | CSS: folderId | ~48 |
+| 22:16 | Edited apps/extension/src/components/capture/IssueComposePanel.vue | listProjects() → listFolders() | ~274 |
+| 22:17 | Edited apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue | CSS: folderId | ~80 |
+| 22:19 | Created apps/web/src/app/router.ts | — | ~576 |
+| 22:20 | Created apps/web/src/app/router.ts | — | ~567 |
+| 22:41 | Session end: 74 writes across 26 files (schema.ts, _journal.json, types.ts, schemas.ts, folders.ts) | 44 reads | ~67848 tok |
+| 22:45 | Session end: 74 writes across 26 files (schema.ts, _journal.json, types.ts, schemas.ts, folders.ts) | 44 reads | ~67848 tok |
+| 22:53 | Edited apps/web/src/features/dashboard/components/IssueFilters.vue | inline fix | ~15 |
+| 22:53 | Edited apps/web/src/features/dashboard/components/IssueFilters.vue | inline fix | ~16 |
+| 22:53 | Edited apps/web/src/features/dashboard/components/IssueFilters.vue | inline fix | ~16 |
+| 22:53 | Created apps/web/src/features/dashboard/composables/useIssues.ts | — | ~617 |
+| 22:54 | Edited apps/web/src/app/router.ts | 3→3 lines | ~15 |
+| 22:54 | Edited apps/web/src/app/router.ts | expanded (+10 lines) | ~247 |
+| 22:55 | Edited apps/web/src/app/router.ts | modified if() | ~27 |
+| 22:56 | Edited apps/web/src/features/issues/components/IssueHeader.vue | "/dashboard" → "/issues" | ~9 |
+| 22:56 | Edited apps/web/src/pages/issues/Issue.vue | "/dashboard" → "/issues" | ~9 |
+| 22:56 | Edited apps/web/src/pages/auth/Login.vue | inline fix | ~19 |
+| 22:56 | Edited apps/web/src/pages/auth/Signup.vue | "/dashboard" → "/issues" | ~7 |
+| 22:57 | Edited apps/extension/src/entrypoints/popup/components/AccountMenu.vue | "${WEB_APP_URL}/dashboard" → "${WEB_APP_URL}/issues" | ~10 |
+| 22:57 | Created packages/api/src/routes/auth.ts | — | ~1637 |
+| 22:58 | Created apps/web/src/features/auth/auth.store.ts | — | ~1207 |
+| 22:58 | Created apps/web/src/features/folders/utils/color.ts | — | ~267 |
+| 22:58 | Created apps/web/src/features/workspace-shell/components/WorkspaceSwitcher.vue | — | ~1044 |
+| 22:59 | Created apps/web/src/features/workspace-shell/components/CreateWorkspaceDialog.vue | — | ~662 |
+| 22:59 | Created apps/web/src/pages/integrations/Integrations.vue | — | ~174 |
+| 23:00 | Created apps/web/src/pages/folders/Folder.vue | — | ~1011 |
+| 23:00 | Created apps/web/src/pages/folders/Folder.vue | — | ~944 |
+| 23:01 | Created apps/web/src/features/workspace-shell/DashboardLayout.vue | — | ~1290 |
+| 23:03 | Edited apps/web/src/features/workspace-shell/DashboardLayout.vue | CSS: hydrated | ~90 |
+| 23:05 | Edited apps/extension/src/entrypoints/popup/App.vue | 10→10 lines | ~91 |
+| 23:06 | Edited apps/extension/src/components/capture/IssueComposePanel.vue | removed 66 lines | ~7 |
+| 23:07 | Edited apps/extension/src/components/capture/IssueComposePanel.vue | 15→10 lines | ~76 |
+| 23:07 | Edited apps/extension/src/components/capture/IssueComposePanel.vue | removed 29 lines | ~48 |
+| 23:07 | Edited apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue | 20→17 lines | ~171 |
+| 23:07 | Edited apps/extension/src/entrypoints/popup/App.vue | 10→10 lines | ~99 |
+| 23:08 | Edited apps/extension/src/entrypoints/popup/App.vue | 11→8 lines | ~61 |
+| 23:08 | Edited apps/extension/src/entrypoints/popup/App.vue | 8→4 lines | ~29 |
+| 23:08 | Edited apps/extension/src/entrypoints/popup/App.vue | 2→1 lines | ~16 |
+| 23:08 | Created apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts | — | ~407 |
+| 23:09 | Created apps/extension/src/entrypoints/popup/components/AccountMenu.vue | — | ~968 |
+| 23:09 | Created apps/extension/src/lib/auth.ts | — | ~593 |
+| 23:09 | Edited apps/extension/src/lib/api.ts | 2→2 lines | ~32 |
+| 23:09 | Edited apps/extension/src/lib/api.ts | 9→4 lines | ~38 |
+| 23:09 | Edited apps/extension/src/entrypoints/background.ts | 6→5 lines | ~32 |
+| 23:10 | Session end: 111 writes across 38 files (schema.ts, _journal.json, types.ts, schemas.ts, folders.ts) | 52 reads | ~81620 tok |

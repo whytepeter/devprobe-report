@@ -41,7 +41,7 @@ export interface Membership {
   joinedAt: Date;
 }
 
-export interface Project {
+export interface Folder {
   id: string;
   orgId: string;
   name: string;
@@ -53,7 +53,7 @@ export interface Project {
 
 export interface Environment {
   id: string;
-  projectId: string;
+  folderId: string;
   name: string;
   urlPatterns: string[];
   createdAt: Date;
@@ -62,7 +62,7 @@ export interface Environment {
 export interface Issue {
   id: string;
   orgId: string;
-  projectId: string;
+  folderId: string | null;
   createdById: string;
   source: IssueSource;
   mode: IssueMode;
@@ -96,7 +96,7 @@ export interface ExternalLink {
 export interface RecordingSession {
   id: string;
   orgId: string;
-  projectId: string;
+  folderId: string | null;
   createdById: string;
   issueId: string | null;
   source: "extension" | "submission_link";
@@ -145,7 +145,7 @@ export interface Attachment {
 export interface AnnotationSession {
   id: string;
   orgId: string;
-  projectId: string;
+  folderId: string | null;
   createdById: string;
   pageUrl: string;
   urlPath: string;

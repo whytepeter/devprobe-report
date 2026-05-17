@@ -61,6 +61,38 @@ attachmentsRouter.post("/", async (c) => {
   return ok(attachment, 201);
 });
 
+// Stream the underlying R2 object for an attachment. Used by the web app to
+// render screenshots — `<img>` tags can't carry an Authorization header so the
+// web fetches this endpoint as an authed blob and binds via URL.createObjectURL.
+//
+// Org scoping: the attachment is reached via its issue/session, both of which
+// belong to an org. We reject anything that can't be traced back to caller's org.
+attachmentsRouter.get("/:id/content", async (c) => {
+  const auth = c.get("auth");
+  const id = c.req.param("id");
+  const db = createDb(c.env.DATABASE_URL);
+
+  const attachment = await db.query.attachments.findFirst({
+    where: eq(attachments.id, id),
+    with: { issue: true, session: true },
+  });
+  if (!attachment) return Errors.notFound("Attachment");
+
+  const ownerOrgId = attachment.issue?.orgId ?? attachment.session?.orgId;
+  if (ownerOrgId !== auth.orgId) return Errors.notFound("Attachment");
+
+  const obj = await c.env.ASSETS.get(attachment.r2Key);
+  if (!obj) return Errors.notFound("File");
+
+  return new Response(obj.body, {
+    headers: {
+      "Content-Type": attachment.contentType,
+      "Content-Length": String(attachment.sizeBytes),
+      "Cache-Control": "private, max-age=3600",
+    },
+  });
+});
+
 // Request a signed URL for direct R2 upload (Phase 4 path)
 attachmentsRouter.post("/upload-url", async (c) => {
   const body = await c.req.json().catch(() => null);

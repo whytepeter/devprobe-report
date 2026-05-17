@@ -92,58 +92,6 @@
             </div>
           </div>
 
-          <!-- Project — native select (shadow DOM safe) -->
-          <div class="space-y-1.5">
-            <p
-              class="text-[10px] font-semibold uppercase tracking-[0.07em] text-muted-foreground/70"
-            >
-              Project
-            </p>
-
-            <div
-              v-if="projectsLoading"
-              class="text-[12px] text-muted-foreground italic"
-            >
-              Loading projects…
-            </div>
-
-            <div
-              v-else-if="projects.length === 0"
-              class="rounded-lg border border-dashed border-border bg-secondary/40 px-3 py-2.5 space-y-2"
-            >
-              <p class="text-[12px] leading-snug text-muted-foreground">
-                Your workspace has no projects yet. Projects are how DevProbe
-                groups issues — usually one per app or repo.
-              </p>
-              <a
-                :href="`${WEB_APP_URL}/projects`"
-                target="_blank"
-                rel="noopener"
-                class="inline-flex items-center gap-1 text-[11px] font-medium text-primary hover:underline"
-              >
-                Create one in the web app
-                <Icon name="arrow-up-right" :size="11" :stroke-width="2" />
-              </a>
-            </div>
-
-            <div v-else class="relative">
-              <select
-                v-model="form.projectId"
-                :disabled="submitting"
-                class="w-full h-8 pl-3 pr-8 rounded-lg text-[12px] font-sans appearance-none cursor-pointer bg-secondary border border-border text-foreground outline-none focus:ring-2 focus:ring-ring focus:border-ring transition-all duration-150 disabled:cursor-not-allowed disabled:opacity-70"
-              >
-                <option v-for="p in projects" :key="p.id" :value="p.id">
-                  {{ p.name }}
-                </option>
-              </select>
-              <Icon
-                name="chevron-down"
-                :size="12"
-                class="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none"
-              />
-            </div>
-          </div>
-
           <!-- Error -->
           <div
             v-if="error"
@@ -170,9 +118,10 @@
             <SelectValue />
           </SelectTrigger>
           <SelectContent :to="shadowRoot ?? undefined">
-            <SelectItem value="anyone">Anyone with the link</SelectItem>
-            <SelectItem value="project">Only people in this project</SelectItem>
-            <SelectItem value="invited">Only invited people</SelectItem>
+            <SelectItem value="public">Anyone with the link</SelectItem>
+            <SelectItem value="private"
+              >Only people in this workspace</SelectItem
+            >
           </SelectContent>
         </Select>
       </div>
@@ -204,25 +153,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from "vue";
-import Icon from "../base/Icon.vue";
+import { ref, computed } from "vue";
 import {
   Button,
+  Icon,
   Select,
   SelectContent,
+  SelectItem,
   SelectTrigger,
   SelectValue,
-  SelectItem,
 } from "@deveprobe/ui";
-import { api } from "../../lib/api.js";
-import { WEB_APP_URL } from "../../lib/env.js";
-import type { Project } from "@deveprobe/shared";
 
 export interface ComposeForm {
   title: string;
   summary: string;
   severity: string;
-  projectId: string;
   visibility: string;
 }
 
@@ -282,23 +227,9 @@ const form = ref<ComposeForm>({
   title: "",
   summary: "",
   severity: "medium",
-  projectId: "",
-  visibility: "anyone",
+  visibility: "private",
 });
-const projects = ref<Project[]>([]);
-const projectsLoading = ref(true);
 const canSubmit = computed(() => form.value.title.trim().length > 0);
-
-onMounted(async () => {
-  try {
-    projects.value = await api.listProjects();
-    if (projects.value[0]) form.value.projectId = projects.value[0].id;
-  } catch {
-    /* not connected */
-  } finally {
-    projectsLoading.value = false;
-  }
-});
 
 function onSubmit() {
   if (!canSubmit.value) return;

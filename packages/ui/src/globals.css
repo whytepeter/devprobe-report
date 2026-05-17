@@ -44,8 +44,9 @@
     --accent-foreground:      0 0% 100%;
     --destructive:            0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border:                 46 14% 86%;
-    --input:                  46 14% 86%;
+    /* Border softened — 86% was visibly grey against the warm-stone canvas */
+    --border:                 46 10% 91%;
+    --input:                  46 10% 91%;
     --ring:                   262 84% 58%;
     --radius:                 0.5rem;
 
@@ -125,8 +126,8 @@
     --accent-foreground:      0 0% 100%;
     --destructive:            0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border:                 46 14% 86%;
-    --input:                  46 14% 86%;
+    --border:                 46 10% 91%;
+    --input:                  46 10% 91%;
     --ring:                   262 84% 58%;
 
     --bg-base:       #F5F5F0;

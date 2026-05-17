@@ -66,8 +66,7 @@
 </template>
 
 <script setup lang="ts">
-import Icon              from '../base/Icon.vue';
-import { Button }        from '@deveprobe/ui';
+import { Button, Icon }        from '@deveprobe/ui';
 import IssueComposePanel from './IssueComposePanel.vue';
 import type { ComposeForm } from './IssueComposePanel.vue';
 

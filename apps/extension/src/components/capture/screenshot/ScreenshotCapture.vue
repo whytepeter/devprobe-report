@@ -67,22 +67,20 @@ async function onSubmit(form: ComposeForm) {
     submitError.value = 'Connect a workspace before submitting.';
     return;
   }
-  if (!form.projectId) {
-    submitError.value = 'Pick a project to submit this issue to.';
-    return;
-  }
-
   submitting.value = true;
   try {
     const annotatedDataUrl = panel.value?.exportPng() ?? props.screenshotDataUrl;
 
+    // No folder is sent — the API drops the issue in the workspace's root
+    // inbox and the user organises it from the dashboard later. Capture stays
+    // friction-free.
     const issue = await api.createIssue({
-      projectId:   form.projectId,
       source:      'extension',
       mode:        'screenshot',
       title:       form.title,
       summary:     form.summary || undefined,
       severity:    form.severity,
+      visibility:  form.visibility,
       pageUrl:     props.browserMeta.pageUrl,
       browserMeta: props.browserMeta,
     });

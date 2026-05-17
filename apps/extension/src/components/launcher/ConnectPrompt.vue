@@ -27,8 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import Icon from '../base/Icon.vue';
-import { Button } from '@deveprobe/ui';
+import { Button, Icon } from '@deveprobe/ui';
 import { WEB_APP_URL } from '../../lib/env.js';
 import { isExtensionAlive, safeSendMessage } from '../../lib/extension.js';
 

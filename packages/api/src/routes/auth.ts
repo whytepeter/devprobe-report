@@ -1,11 +1,12 @@
 import { Hono } from "hono";
-import { eq } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 import { nanoid } from "nanoid";
 import { createDb } from "../db/client.js";
 import { users, orgs, memberships } from "../db/schema.js";
 import { signJwt } from "../lib/jwt.js";
 import { ok, Errors } from "../lib/response.js";
+import { requireAuth } from "../middleware/auth.js";
 import { SignupSchema, LoginSchema } from "@deveprobe/shared";
 import type { Env } from "../lib/env.js";
 
@@ -104,4 +105,74 @@ authRouter.get("/me", async (c) => {
     orgId: payload.org,
     role: payload.role,
   });
+});
+
+// ─── Workspaces ──────────────────────────────────────────────────────────────
+// "Workspace" is the user-facing name for an Org. These endpoints let the
+// signed-in user list every org they belong to, switch which one their next
+// token is scoped to, and create a new one without going through full signup.
+
+authRouter.get("/workspaces", requireAuth(), async (c) => {
+  const auth = c.get("auth");
+  const db = createDb(c.env.DATABASE_URL);
+
+  const rows = await db
+    .select({
+      id: orgs.id,
+      name: orgs.name,
+      slug: orgs.slug,
+      role: memberships.role,
+    })
+    .from(memberships)
+    .innerJoin(orgs, eq(memberships.orgId, orgs.id))
+    .where(eq(memberships.userId, auth.userId));
+
+  return ok(rows.map((r) => ({ ...r, current: r.id === auth.orgId })));
+});
+
+authRouter.post("/workspaces/switch", requireAuth(), async (c) => {
+  const auth = c.get("auth");
+  const body = (await c.req.json().catch(() => null)) as { orgId?: string } | null;
+  if (!body?.orgId) return Errors.badRequest("Missing orgId");
+
+  const db = createDb(c.env.DATABASE_URL);
+
+  const membership = await db.query.memberships.findFirst({
+    where: and(eq(memberships.userId, auth.userId), eq(memberships.orgId, body.orgId)),
+  });
+  if (!membership) return Errors.forbidden();
+
+  const token = await signJwt(
+    { sub: auth.userId, org: membership.orgId, role: membership.role },
+    c.env.JWT_SECRET,
+  );
+
+  return ok({ token, orgId: membership.orgId, role: membership.role });
+});
+
+authRouter.post("/workspaces", requireAuth(), async (c) => {
+  const auth = c.get("auth");
+  const body = (await c.req.json().catch(() => null)) as { name?: string } | null;
+  const name = body?.name?.trim();
+  if (!name || name.length < 1 || name.length > 100) {
+    return Errors.badRequest("Workspace name must be 1–100 characters");
+  }
+
+  const db = createDb(c.env.DATABASE_URL);
+  const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") + "-" + nanoid(6);
+
+  const [org] = await db.insert(orgs).values({ name, slug }).returning();
+
+  await db.insert(memberships).values({
+    userId: auth.userId,
+    orgId: org!.id,
+    role: "admin",
+  });
+
+  const token = await signJwt(
+    { sub: auth.userId, org: org!.id, role: "admin" },
+    c.env.JWT_SECRET,
+  );
+
+  return ok({ token, orgId: org!.id, name: org!.name, slug: org!.slug, role: "admin" }, 201);
 });

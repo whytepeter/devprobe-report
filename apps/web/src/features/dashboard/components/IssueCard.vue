@@ -1,0 +1,109 @@
+<!--
+  IssueCard
+  ─────────
+  Grid card for the Issues page. Top is a square-ish media area with the
+  capture-mode chip overlaid; bottom is title + footer (id · author · time ·
+  severity). Footer mirrors the Linear/Sentry conventions so it scans fast.
+-->
+<template>
+  <article
+    @click="$router.push(`/issue/${issue.id}`)"
+    class="group rounded-xl border border-border bg-card overflow-hidden cursor-pointer transition-all duration-150 hover:border-primary/40 hover:shadow-md focus-visible:outline-none"
+    tabindex="0"
+    role="button"
+    @keydown.enter="$router.push(`/issue/${issue.id}`)"
+  >
+    <!-- Media area -->
+    <div class="relative aspect-[16/10] bg-muted/40 border-b border-border overflow-hidden">
+      <!-- Real thumbnail when available, else placeholder skeleton bars -->
+      <img
+        v-if="thumbnailUrl && !imageBroken"
+        :src="thumbnailUrl"
+        :alt="issue.title"
+        class="w-full h-full object-cover"
+        loading="lazy"
+        @error="imageBroken = true"
+      />
+      <div v-else class="absolute inset-0 p-6 flex flex-col gap-2.5 justify-center">
+        <div class="h-2 w-1/2 rounded bg-muted-foreground/15" />
+        <div class="h-3 w-1/3 rounded bg-primary/25" />
+        <div class="h-2 w-2/3 rounded bg-muted-foreground/10" />
+      </div>
+
+      <!-- Top-left type chip -->
+      <div class="absolute top-2.5 left-2.5">
+        <TypeChip :mode="issue.mode" />
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="px-3.5 pt-3 pb-3 space-y-2">
+      <p class="text-[13.5px] font-medium leading-snug line-clamp-1 text-foreground">
+        {{ issue.title }}
+      </p>
+
+      <div class="flex items-center gap-2 text-[11px] text-muted-foreground">
+        <span class="font-mono shrink-0">{{ shortId }}</span>
+        <span aria-hidden="true">·</span>
+        <UserAvatar :user="issue.createdBy" size="xs" />
+        <span class="truncate flex-1">{{ timeAgo(issue.createdAt) }}</span>
+        <span class="flex items-center gap-1 shrink-0">
+          <span
+            class="h-1.5 w-1.5 rounded-full"
+            :class="severityDot"
+            aria-hidden="true"
+          />
+          <span class="text-foreground/80 capitalize">{{ severityLabel }}</span>
+        </span>
+      </div>
+    </div>
+  </article>
+</template>
+
+<script setup lang="ts">
+import { computed, ref, toRef, watch } from "vue";
+import type { Issue, Attachment } from "@deveprobe/shared";
+import TypeChip from "@/features/issues/components/TypeChip.vue";
+import UserAvatar from "@/features/issues/components/UserAvatar.vue";
+import { timeAgo } from "@/shared/lib/format.js";
+import { useAttachmentUrl } from "@/features/issues/composables/useAttachmentUrl.js";
+
+type IssueCardIssue = Issue & {
+  attachments?: Attachment[];
+  createdBy?: { id: string; name: string | null; email: string | null; avatarUrl: string | null } | null;
+};
+
+const props = defineProps<{ issue: IssueCardIssue }>();
+
+const thumbnailAttachmentId = computed(() => {
+  const att = (props.issue.attachments ?? []).find(
+    (a) => a.type === "screenshot" || a.type === "thumbnail",
+  );
+  return att?.id ?? null;
+});
+
+const issueIdRef = toRef(props.issue, "id");
+const { url: thumbnailUrl } = useAttachmentUrl(() => thumbnailAttachmentId.value);
+
+// Track broken (failed-to-decode) images so we render the placeholder instead.
+// Reset whenever a new blob URL is bound.
+const imageBroken = ref(false);
+watch(thumbnailUrl, () => { imageBroken.value = false; });
+
+void issueIdRef;
+
+const SEVERITY_DOTS: Record<string, string> = {
+  critical: "bg-red-500",
+  high:     "bg-orange-500",
+  medium:   "bg-amber-400",
+  low:      "bg-emerald-500",
+};
+
+const severityDot = computed(() => SEVERITY_DOTS[props.issue.severity ?? ""] ?? "bg-neutral-400");
+const severityLabel = computed(() => props.issue.severity ?? "—");
+
+const shortId = computed(() => {
+  // Render the leading 8 chars of the uuid until we ship the human DP-128 numbering.
+  return props.issue.id.slice(0, 8);
+});
+</script>
