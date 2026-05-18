@@ -3,6 +3,8 @@
 > Chronological action log. Hooks and AI append to this file automatically.
 > Old sessions are consolidated by the daemon weekly.
 
+| 2026-05-18 | Created screen recording capture components | `apps/extension/src/components/capture/recording/types.ts`, `RecordingPanel.vue`, `RecordingCapture.vue` | New recording folder mirrors screenshot folder pattern; RecordingPanel plugs into PostComposeModal #media slot with video player + waveform timeline + event markers + playback controls | ~5500 tok |
+
 | 19:20 | Fixed browser default button styles in shadow DOM | apps/extension/src/assets/content.css | Added @tailwind base — gives full preflight (button reset etc.) inside shadow root | ~800 tok |
 | 19:20 | Shadow DOM safe Select — added `to` prop to SelectContent | packages/ui/src/components/ui/select/SelectContent.vue | SelectPortal :to forwards to shadow root, defaults to 'body' for web app | ~400 tok |
 | 19:20 | Replaced "Anyone with the link" Button with shadcn Select | apps/extension/src/components/capture/IssueComposePanel.vue | 3 options: anyone/project/invited; visibility added to ComposeForm | ~600 tok |
@@ -788,3 +790,37 @@
 | 23:09 | Edited apps/extension/src/lib/api.ts | 9→4 lines | ~38 |
 | 23:09 | Edited apps/extension/src/entrypoints/background.ts | 6→5 lines | ~32 |
 | 23:10 | Session end: 111 writes across 38 files (schema.ts, _journal.json, types.ts, schemas.ts, folders.ts) | 52 reads | ~81620 tok |
+
+## Session: 2026-05-18 11:13
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-18 11:19
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-18 11:20
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 11:25 | Created apps/extension/src/components/capture/recording/types.ts | — | ~90 |
+| 11:27 | Created apps/extension/src/components/capture/recording/RecordingPanel.vue | — | ~4131 |
+| 11:27 | Created apps/extension/src/components/capture/recording/RecordingCapture.vue | — | ~1031 |
+| 11:28 | Session end: 3 writes across 3 files (types.ts, RecordingPanel.vue, RecordingCapture.vue) | 6 reads | ~11969 tok |
+| 11:35 | Created apps/extension/src/components/capture/recording/utils.ts | — | ~191 |
+| 11:36 | Created apps/extension/src/components/capture/recording/useRecordingPlayback.ts | — | ~805 |
+| 11:36 | Created apps/extension/src/components/capture/recording/RecordingHeader.vue | — | ~541 |
+| 11:37 | Created apps/extension/src/components/capture/recording/RecordingVideo.vue | — | ~873 |
+| 11:38 | Created apps/extension/src/components/capture/recording/RecordingTimeline.vue | — | ~1094 |
+| 11:39 | Created apps/extension/src/components/capture/recording/RecordingControls.vue | — | ~980 |
+| 11:39 | Created apps/extension/src/components/capture/recording/RecordingPanel.vue | — | ~1101 |
+| 11:40 | Edited apps/extension/src/components/capture/recording/RecordingPanel.vue | expanded (+23 lines) | ~542 |
+| 11:40 | Edited apps/extension/src/components/capture/recording/RecordingPanel.vue | added 1 import(s) | ~111 |
+| 11:41 | Edited apps/extension/src/components/capture/recording/RecordingPanel.vue | added error handling | ~102 |
+| 11:42 | Created apps/extension/src/components/capture/recording/RecordingPanel.vue | — | ~951 |
+| 11:42 | Edited apps/extension/src/components/capture/recording/RecordingCapture.vue | 9→7 lines | ~62 |
+| 11:42 | Edited apps/extension/src/components/capture/recording/RecordingCapture.vue | — | ~0 |
+| 11:43 | Session end: 16 writes across 9 files (types.ts, RecordingPanel.vue, RecordingCapture.vue, utils.ts, useRecordingPlayback.ts) | 8 reads | ~22307 tok |
+| 11:48 | Session end: 16 writes across 9 files (types.ts, RecordingPanel.vue, RecordingCapture.vue, utils.ts, useRecordingPlayback.ts) | 8 reads | ~22307 tok |

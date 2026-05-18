@@ -6,7 +6,8 @@
 
 ## User Preferences
 
-- **Component extraction:** Always break UI into small reusable components. Never inline repeated patterns. Follow KISS + DRY — if a pattern is used twice, extract it.
+- **Component extraction:** Always break UI into small reusable components. Never inline repeated patterns. Follow KISS + DRY — if a pattern is used twice, extract it. Large components must be modularised — each visual region (header, player, timeline, controls) is its own file.
+- **Always modularise large component files** — user corrected this explicitly. No monolithic components.
 - **Spec review:** Always read SCREEN_RECORDING_SPEC.md before working Phase 4 and LIVE_ANNOTATION_SPEC.md before working Phase 6.
 - **Extension popup = launcher only.** The popup captures and launches flows; it never hosts forms, previews, or compose UIs. Post-capture review (screenshot compose, recording review) lives in a full-page modal injected by the content script via shadow DOM.
 - **Post-capture modal:** After screenshot capture, popup sends `OPEN_CAPTURE_MODAL` to active tab via `chrome.tabs.sendMessage`. Content script mounts a Vue CaptureModal component in shadow DOM. Popup closes immediately.

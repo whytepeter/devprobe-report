@@ -1537,6 +1537,38 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-17T22:09:48.109Z"
+    },
+    {
+      "id": "bug-096",
+      "timestamp": "2026-05-18T10:40:42.489Z",
+      "error_message": "CSS fix: sub-components",
+      "file": "apps/extension/src/components/capture/recording/RecordingPanel.vue",
+      "root_cause": "sub-components: - RecordingHeader   — status strip, duration, URL, Download/Regenerate → - RecordingVideo    — <video> element + overlays (exposes videoEl)",
+      "fix": "Changed sub-components: - RecordingHeader   — status strip, duration, URL, Download/Regenerate → - RecordingVideo    — <video> element + overlays (exposes videoEl)",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T10:40:42.489Z"
+    },
+    {
+      "id": "bug-097",
+      "timestamp": "2026-05-18T10:41:07.892Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "apps/extension/src/components/capture/recording/RecordingPanel.vue",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T10:41:07.892Z"
     }
   ]
 }

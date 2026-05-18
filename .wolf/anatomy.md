@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-17T22:09:56.286Z
-> Files: 236 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-18T10:42:59.146Z
+> Files: 245 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -59,6 +59,19 @@
 - `IssueComposePanel.vue` — Vue: setup (~1848 tok)
 - `PostComposeModal.vue` — Vue: setup (~727 tok)
 - `RegionSelector.vue` — Vue: setup, TS, emits (~1211 tok)
+
+## apps/extension/src/components/capture/recording/
+
+- `types.ts` — MarkerType union + RecordingMarker interface (~90 tok)
+- `utils.ts` — formatTime, formatDuration helpers (~120 tok)
+- `useRecordingPlayback.ts` — Composable: video playback state + controls (lazy videoEl + totalSec getters) (~350 tok)
+- `RecordingVideo.vue` — Vue: `<video>` + timestamp pill + play/pause overlay; exposes videoEl (~300 tok)
+- `RecordingTimeline.vue` — Vue: waveform scrubber, event markers, draggable playhead; emits seek/seek-to-ms (~350 tok)
+- `RecordingControls.vue` — Vue: fully controlled playback controls row; emits all actions (~280 tok)
+- `RecordingPanel.vue` — Vue: thin coordinator — composable + 3 sub-components + issue navigation (~280 tok)
+- `RecordingCapture.vue` — Vue: orchestrator — plugs RecordingPanel into PostComposeModal, handles submit + upload (~400 tok)
+- `useRecordingPlayback.ts` — All video playback state and imperative controls in one place. (~805 tok)
+- `utils.ts` — Format milliseconds as m:ss.d (e.g. 0:12.0, 1:04.5) (~191 tok)
 
 ## apps/extension/src/components/capture/screenshot/
 
