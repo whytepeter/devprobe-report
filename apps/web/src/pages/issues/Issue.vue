@@ -90,12 +90,16 @@ const issueId = computed(() => route.params["id"]?.toString() ?? "");
 
 const { issue, loading, error, errorMessage } = useIssue(issueId);
 
-// The hero already renders the first screenshot/thumbnail attachment; show
-// everything else (recordings, exports, etc.) below the description.
-const HERO_TYPES = new Set(["screenshot", "thumbnail"]);
+// The hero renders the primary capture (video for recordings, image for
+// screenshots/annotations). Skip it in the extras list.
 const extraAttachments = computed(() => {
-  const all = issue.value?.attachments ?? [];
-  const heroId = all.find((a) => HERO_TYPES.has(a.type))?.id;
+  const issueValue = issue.value;
+  if (!issueValue) return [];
+  const all = issueValue.attachments;
+  const heroType = issueValue.mode === "screen_recording" ? "video" : null;
+  const heroId =
+    (heroType && all.find((a) => a.type === heroType)?.id) ||
+    all.find((a) => a.type === "screenshot" || a.type === "thumbnail")?.id;
   return all.filter((a) => a.id !== heroId);
 });
 </script>

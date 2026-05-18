@@ -3,44 +3,45 @@
   ──────────────
   Thin coordinator for the recording review left-panel.
 
-  Delegates rendering to:
-  - RecordingVideo    — <video> element + overlays (exposes videoEl)
-  - RecordingTimeline — waveform scrubber with event markers
-  - RecordingControls — playback controls row
+  Layout (top → bottom):
+    1. Video — inside its own rounded card with a soft border
+    2. Toolbar (RecordingControls) — separate row on the light background
+    3. Trimmer (RecordingTimeline) — at the very bottom
+
+  The panel uses the modal's light card colour so the video and the form
+  read as one continuous surface.
 -->
 <template>
-  <div class="relative flex h-full w-full flex-col overflow-hidden bg-[#111] font-sans text-white select-none">
+  <div class="relative flex h-full w-full flex-col overflow-hidden bg-card font-sans text-foreground select-none">
 
-    <RecordingVideo
-      ref="videoComp"
-      :video-src="videoSrc"
-      :is-playing="isPlaying"
-      :current-time-sec="currentTimeSec"
-      :duration-ms="durationMs"
-      @toggle-play="togglePlay"
-      @time-update="onTimeUpdate"
-      @loaded-metadata="onLoadedMetadata"
-      @play="onPlay"
-      @pause="onPause"
-      @ended="onEnded"
-    />
+    <!-- Video card (inset on dark panel) -->
+    <div class="flex-1 min-h-0 px-4 pt-4 pb-2">
+      <div class="relative h-full overflow-hidden rounded-xl border border-border bg-background shadow-sm">
+        <RecordingVideo
+          ref="videoComp"
+          :video-src="videoSrc"
+          :is-playing="isPlaying"
+          :current-time-sec="currentTimeSec"
+          :duration-ms="durationMs"
+          @toggle-play="togglePlay"
+          @time-update="onTimeUpdate"
+          @loaded-metadata="onLoadedMetadata"
+          @play="onPlay"
+          @pause="onPause"
+          @ended="onEnded"
+        />
+      </div>
+    </div>
 
-    <RecordingTimeline
-      :progress="progress"
-      :duration-ms="durationMs"
-      :markers="markers ?? []"
-      @seek="seekToPercent"
-      @seek-to-ms="seekToMs"
-    />
-
+    <!-- Toolbar -->
     <RecordingControls
       :is-playing="isPlaying"
       :is-muted="isMuted"
       :playback-rate="playbackRate"
       :current-time-sec="currentTimeSec"
       :duration-ms="durationMs"
+      :trim-duration-ms="trimDurationMs"
       :issue-count="issueMarkers.length"
-      :avg-response-label="avgResponseLabel"
       @toggle-play="togglePlay"
       @skip="skip"
       @toggle-mute="toggleMute"
@@ -49,26 +50,42 @@
       @next-issue="nextIssue"
     />
 
+    <!-- Trimmer (at the bottom) -->
+    <RecordingTimeline
+      :progress="progress"
+      :duration-ms="durationMs"
+      :markers="markers ?? []"
+      :trim-start-ms="trimStartMs"
+      :trim-end-ms="trimEndMs"
+      @seek="seekToPercent"
+      @seek-to-ms="seekToMs"
+      @update:trim-start="trimStartMs = $event"
+      @update:trim-end="trimEndMs = $event"
+    />
+
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import RecordingVideo    from './RecordingVideo.vue';
-import RecordingTimeline from './RecordingTimeline.vue';
-import RecordingControls from './RecordingControls.vue';
+import RecordingTimeline from './timeline/RecordingTimeline.vue';
+import RecordingControls from './toolbar/RecordingControls.vue';
 import { useRecordingPlayback } from './useRecordingPlayback.js';
 import type { RecordingMarker, MarkerType } from './types.js';
 
 const props = withDefaults(defineProps<{
-  videoSrc?:      string;
-  durationMs:     number;
-  pageUrl?:       string;
-  markers?:       RecordingMarker[];
-  avgResponseMs?: number;
+  videoSrc?:  string;
+  durationMs: number;
+  markers?:   RecordingMarker[];
 }>(), {
   markers: () => [],
 });
+
+// ── Trim state ─────────────────────────────────────────────────────────────
+const trimStartMs    = ref(0);
+const trimEndMs      = ref(props.durationMs);
+const trimDurationMs = computed(() => Math.max(0, trimEndMs.value - trimStartMs.value));
 
 // ── Playback ───────────────────────────────────────────────────────────────
 const videoComp = ref<InstanceType<typeof RecordingVideo>>();
@@ -105,12 +122,4 @@ function prevIssue() {
   issueIndex.value = (issueIndex.value - 1 + issueMarkers.value.length) % issueMarkers.value.length;
   seekToMs(issueMarkers.value[issueIndex.value].timestampMs);
 }
-
-// ── Avg response label ─────────────────────────────────────────────────────
-const avgResponseLabel = computed(() => {
-  if (!props.avgResponseMs) return undefined;
-  return props.avgResponseMs >= 1000
-    ? (props.avgResponseMs / 1000).toFixed(1) + 's'
-    : props.avgResponseMs + 'ms';
-});
 </script>

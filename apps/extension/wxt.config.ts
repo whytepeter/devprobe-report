@@ -22,6 +22,13 @@ export default defineConfig({
       'storage',
       'scripting',
       'debugger',
+      // Needed so the background SW can mint a tab MediaStream ID without
+      // triggering Chrome's screen-picker UI (chrome.tabCapture.getMediaStreamId).
+      'tabCapture',
+      // Owns the MediaRecorder so it survives the captured tab's reloads
+      // and navigation — the page's JS context dies on reload, an offscreen
+      // document does not.
+      'offscreen',
     ],
     host_permissions: ['<all_urls>'],
     action: {

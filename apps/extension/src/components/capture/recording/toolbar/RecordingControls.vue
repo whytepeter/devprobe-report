@@ -1,27 +1,29 @@
 <!--
   RecordingControls
   ─────────────────
-  Playback controls row below the timeline.
-  Fully controlled — all state comes in as props, all actions go out as emits.
+  Toolbar row sitting between the video card and the trimmer (light theme).
+  Fully controlled — all state in via props, all actions out via emits.
 
   Layout (left → right):
-    skip-back | play/pause | skip-forward | timestamp | issue-nav | [spacer] | avg-stat | speed | volume
+    skip-back₅ | play/pause | skip-forward₅ | timestamp | issue-nav |
+    [spacer] | ✂ trim-duration | speed | volume
 -->
 <template>
-  <div class="flex shrink-0 items-center gap-1 px-3 pb-3">
+  <div class="flex shrink-0 items-center gap-1 px-4 py-2.5">
 
     <!-- Skip back 5s -->
     <button
-      class="flex h-7 w-7 items-center justify-center rounded-md text-white/45 transition-colors hover:bg-white/10 hover:text-white/80"
+      class="relative flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
       title="Skip back 5s"
       @click="emit('skip', -5)"
     >
-      <Icon name="skip-back" :size="14" />
+      <Icon name="skip-back" :size="15" />
+      <span class="absolute bottom-0.5 right-1 text-[8px] font-mono leading-none text-muted-foreground/70">5</span>
     </button>
 
     <!-- Play / Pause -->
     <button
-      class="flex h-7 w-7 items-center justify-center rounded-md text-white transition-colors hover:bg-white/10"
+      class="flex h-8 w-8 items-center justify-center rounded-md bg-foreground text-background transition-colors hover:bg-foreground/85"
       @click="emit('toggle-play')"
     >
       <Icon :name="isPlaying ? 'pause' : 'play'" :size="14" />
@@ -29,32 +31,36 @@
 
     <!-- Skip forward 5s -->
     <button
-      class="flex h-7 w-7 items-center justify-center rounded-md text-white/45 transition-colors hover:bg-white/10 hover:text-white/80"
+      class="relative flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
       title="Skip forward 5s"
       @click="emit('skip', 5)"
     >
-      <Icon name="skip-forward" :size="14" />
+      <Icon name="skip-forward" :size="15" />
+      <span class="absolute bottom-0.5 right-1 text-[8px] font-mono leading-none text-muted-foreground/70">5</span>
     </button>
 
     <!-- Timestamp -->
-    <span class="mx-1 font-mono text-[12px] text-white/55">
-      {{ formatTime(currentTimeSec) }}<span class="mx-0.5 text-white/25">|</span>{{ formatDuration(durationMs) }}
+    <span class="mx-2 font-mono text-[12px] text-foreground/70">
+      {{ formatTime(currentTimeSec) }}<span class="mx-0.5 text-muted-foreground/40">|</span>{{ formatDuration(durationMs) }}
     </span>
 
-    <!-- Issue navigation -->
-    <div v-if="issueCount > 0" class="mx-1 flex items-center gap-0.5">
+    <!-- Issue navigation pill -->
+    <div
+      v-if="issueCount > 0"
+      class="mx-1 flex items-center gap-0.5 rounded-full bg-red-500/10 px-1.5 py-0.5"
+    >
       <button
-        class="flex h-5 w-5 items-center justify-center rounded text-white/35 transition-colors hover:bg-white/10 hover:text-white/70"
+        class="flex h-5 w-5 items-center justify-center rounded text-red-400/70 transition-colors hover:bg-red-500/15 hover:text-red-300"
         @click="emit('prev-issue')"
       >
         <Icon name="chevron-left" :size="12" />
       </button>
-      <span class="flex items-center gap-1 px-1 text-[11px] text-white/55">
-        <span class="h-[5px] w-[5px] rounded-full bg-red-400" />
+      <span class="flex items-center gap-1 px-1 text-[11px] font-medium text-red-400">
+        <span class="h-[5px] w-[5px] rounded-full bg-red-500" />
         {{ issueCount }} issue{{ issueCount !== 1 ? 's' : '' }}
       </span>
       <button
-        class="flex h-5 w-5 items-center justify-center rounded text-white/35 transition-colors hover:bg-white/10 hover:text-white/70"
+        class="flex h-5 w-5 items-center justify-center rounded text-red-400/70 transition-colors hover:bg-red-500/15 hover:text-red-300"
         @click="emit('next-issue')"
       >
         <Icon name="chevron-right" :size="12" />
@@ -63,18 +69,19 @@
 
     <div class="flex-1" />
 
-    <!-- Average response time stat (optional) -->
-    <span
-      v-if="avgResponseLabel"
-      class="mr-1 flex items-center gap-1 text-[11px] text-white/35"
+    <!-- Trim duration pill -->
+    <button
+      v-if="trimDurationMs !== undefined"
+      class="mr-1 flex items-center gap-1 rounded-full bg-primary/15 px-2 py-0.5 text-[11px] font-medium text-primary transition-colors hover:bg-primary/20"
+      title="Trim duration"
     >
-      <Icon name="zap" :size="11" />
-      {{ avgResponseLabel }}
-    </span>
+      <Icon name="scissors" :size="11" />
+      {{ formatTrim(trimDurationMs) }}
+    </button>
 
     <!-- Playback speed -->
     <button
-      class="rounded px-1.5 py-0.5 font-mono text-[11px] text-white/45 transition-colors hover:bg-white/10 hover:text-white/70"
+      class="rounded-full bg-primary/15 px-2.5 py-0.5 font-mono text-[11px] font-medium text-primary transition-colors hover:bg-primary/20"
       @click="emit('cycle-speed')"
     >
       {{ playbackRate }}×
@@ -82,7 +89,7 @@
 
     <!-- Volume / mute -->
     <button
-      class="flex h-7 w-7 items-center justify-center rounded-md text-white/45 transition-colors hover:bg-white/10 hover:text-white/80"
+      class="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
       @click="emit('toggle-mute')"
     >
       <Icon :name="isMuted ? 'volume-x' : 'volume-2'" :size="14" />
@@ -93,7 +100,7 @@
 
 <script setup lang="ts">
 import { Icon } from '@deveprobe/ui';
-import { formatTime, formatDuration } from './utils.js';
+import { formatTime, formatDuration } from '../utils.js';
 
 defineProps<{
   isPlaying:       boolean;
@@ -102,7 +109,7 @@ defineProps<{
   currentTimeSec:  number;
   durationMs:      number;
   issueCount:      number;
-  avgResponseLabel?: string;
+  trimDurationMs?: number;
 }>();
 
 const emit = defineEmits<{
@@ -113,4 +120,8 @@ const emit = defineEmits<{
   'prev-issue':   [];
   'next-issue':   [];
 }>();
+
+function formatTrim(ms: number): string {
+  return (ms / 1000).toFixed(1) + 's';
+}
 </script>

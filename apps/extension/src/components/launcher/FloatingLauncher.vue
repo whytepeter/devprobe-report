@@ -73,8 +73,7 @@
             icon="record"
             label="Record"
             description="Capture a full bug report"
-            :disabled="true"
-            badge="Soon"
+            @click="onRecord"
           />
 
           <!-- Footer -->
@@ -105,6 +104,11 @@ function closeMenu()  { menuOpen.value = false; }
 function onScreenshot() {
   closeMenu();
   window.dispatchEvent(new CustomEvent('dp:start-region-select'));
+}
+
+function onRecord() {
+  closeMenu();
+  window.dispatchEvent(new CustomEvent('dp:start-recording'));
 }
 
 function onDocClick() { closeMenu(); }

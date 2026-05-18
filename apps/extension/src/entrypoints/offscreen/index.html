@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevProbe Offscreen</title>
+  </head>
+  <body>
+    <!--
+      Offscreen document — invisible. Owns the screen-capture MediaStream
+      and MediaRecorder so they survive when the captured tab reloads or
+      navigates. All control + I/O goes via chrome.runtime messages.
+    -->
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

@@ -1,71 +1,64 @@
 <!--
   IssueMedia
   ──────────
-  Hero card showing the issue's primary capture (screenshot for now; recording
-  thumbnail / pin canvas later). Type chip overlays the top-left corner.
+  Hero card showing the issue's primary capture.
+  Picks the right media type and delegates rendering:
+  - video → IssueMediaVideo
+  - screenshot/thumbnail → IssueMediaImage
+  - nothing → placeholder skeleton
 -->
 <template>
   <figure class="rounded-2xl border border-border bg-card overflow-hidden">
-    <div class="relative aspect-[16/9] bg-muted/40">
-      <div v-if="loading" class="absolute inset-0 flex items-center justify-center text-xs text-muted-foreground">
-        Loading capture…
-      </div>
+    <IssueMediaVideo
+      v-if="heroVideoId"
+      :attachment-id="heroVideoId"
+    >
+      <template #overlay>
+        <div class="absolute top-3 left-3 z-10"><TypeChip :mode="issue.mode" /></div>
+      </template>
+    </IssueMediaVideo>
 
-      <div
-        v-else-if="error"
-        class="absolute inset-0 flex items-center justify-center text-xs text-destructive px-6 text-center"
-      >
-        {{ error }}
-      </div>
+    <IssueMediaImage
+      v-else-if="heroImageId"
+      :attachment-id="heroImageId"
+      :alt="issue.title"
+    >
+      <template #overlay>
+        <div class="absolute top-3 left-3"><TypeChip :mode="issue.mode" /></div>
+      </template>
+    </IssueMediaImage>
 
-      <img
-        v-else-if="url && !imageBroken"
-        :src="url"
-        :alt="issue.title"
-        class="w-full h-full object-contain bg-background"
-        loading="lazy"
-        @error="imageBroken = true"
-      />
-
-      <div v-else-if="url && imageBroken" class="absolute inset-0 flex flex-col items-center justify-center gap-2 text-xs text-muted-foreground">
-        <Icon name="image-off" :size="22" :stroke-width="1.5" />
-        <span>Capture file is unreadable</span>
-      </div>
-
-      <div v-else class="absolute inset-0 p-10 flex flex-col gap-3 justify-center">
+    <div v-else class="relative aspect-[16/9] bg-muted/40">
+      <div class="absolute inset-0 p-10 flex flex-col gap-3 justify-center">
         <div class="h-3 w-1/3 rounded bg-muted-foreground/15" />
         <div class="h-4 w-1/2 rounded bg-primary/25" />
         <div class="h-3 w-2/3 rounded bg-muted-foreground/10" />
       </div>
-
-      <div class="absolute top-3 left-3">
-        <TypeChip :mode="issue.mode" />
-      </div>
+      <div class="absolute top-3 left-3"><TypeChip :mode="issue.mode" /></div>
     </div>
   </figure>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { computed } from "vue";
 import type { Issue, Attachment } from "@deveprobe/shared";
-import { Icon } from "@deveprobe/ui";
 import TypeChip from "@/features/issues/components/TypeChip.vue";
-import { useAttachmentUrl } from "@/features/issues/composables/useAttachmentUrl.js";
+import IssueMediaImage from "@/features/issues/components/IssueMediaImage.vue";
+import IssueMediaVideo from "@/features/issues/components/IssueMediaVideo.vue";
 
 const props = defineProps<{
-  issue: Issue;
+  issue:       Issue;
   attachments: Attachment[];
 }>();
 
-const heroAttachmentId = computed(() => {
-  const att = props.attachments.find(
-    (a) => a.type === "screenshot" || a.type === "thumbnail",
-  );
-  return att?.id ?? null;
+// Recording mode → prefer video; screenshot/annotation → prefer image.
+const heroVideoId = computed(() => {
+  if (props.issue.mode !== "screen_recording") return null;
+  return props.attachments.find((a) => a.type === "video")?.id ?? null;
 });
 
-const { url, loading, error } = useAttachmentUrl(() => heroAttachmentId.value);
-
-const imageBroken = ref(false);
-watch(url, () => { imageBroken.value = false; });
+const heroImageId = computed(() => {
+  if (heroVideoId.value) return null;
+  return props.attachments.find((a) => a.type === "screenshot" || a.type === "thumbnail")?.id ?? null;
+});
 </script>

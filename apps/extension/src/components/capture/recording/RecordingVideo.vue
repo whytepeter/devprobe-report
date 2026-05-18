@@ -1,20 +1,21 @@
 <!--
   RecordingVideo
   ──────────────
-  Video player area: <video> element, timestamp pill, and a click-to-play
-  overlay that briefly flashes the play/pause icon.
+  Video player area: <video> element, timestamp pill, and a centred play/pause
+  overlay that appears on hover.
 
-  The component owns the HTMLVideoElement ref and exposes it so the parent
-  can hand it to useRecordingPlayback via a getter.
-
-  Native video events (timeupdate, loadedmetadata, play, pause, ended) are
-  forwarded as Vue emits so the parent composable can react without needing
-  direct access to the element during setup.
+  - Timestamp pill sits in the TOP-RIGHT corner.
+  - Hover anywhere over the video reveals the play/pause control; clicking
+    toggles playback.
+  - Exposes the underlying HTMLVideoElement via defineExpose so the parent
+    composable can drive it.
 -->
 <template>
   <div
-    class="relative flex-1 min-h-0 cursor-pointer overflow-hidden bg-black"
+    class="group relative h-full w-full cursor-pointer overflow-hidden bg-black"
     @click="onAreaClick"
+    @mouseenter="hovering = true"
+    @mouseleave="hovering = false"
   >
     <video
       v-if="videoSrc"
@@ -37,29 +38,28 @@
       </div>
     </div>
 
-    <!-- Timestamp pill -->
+    <!-- Timestamp pill (top-right) -->
     <div
-      class="pointer-events-none absolute bottom-3 right-3 rounded-md bg-black/75 px-2.5 py-1 font-mono text-[13px] font-medium text-white/90"
+      class="pointer-events-none absolute top-3 right-3 rounded-md bg-black/75 px-2.5 py-1 font-mono text-[13px] font-medium text-white/90"
     >
       {{ formatTime(currentTimeSec) }}
       <span class="mx-0.5 text-white/40">/</span>
       {{ formatDuration(durationMs) }}
     </div>
 
-    <!-- Play/pause flash overlay -->
+    <!-- Hover play/pause control -->
     <Transition
       enter-active-class="transition-all duration-150 ease-out"
       enter-from-class="opacity-0 scale-90"
-      leave-active-class="transition-all duration-100 ease-in"
+      leave-active-class="transition-all duration-150 ease-in"
       leave-to-class="opacity-0 scale-90"
     >
       <div
-        v-if="showOverlay"
+        v-if="hovering"
         class="pointer-events-none absolute inset-0 flex items-center justify-center"
       >
-        <div class="flex h-14 w-14 items-center justify-center rounded-full bg-black/55 ring-1 ring-white/20">
-          <!-- Icon reflects the action just triggered: if playing→pause, if paused→play -->
-          <Icon :name="isPlaying ? 'pause' : 'play'" :size="22" />
+        <div class="flex h-14 w-14 items-center justify-center rounded-full bg-black/55 ring-1 ring-white/20 backdrop-blur-sm">
+          <Icon :name="isPlaying ? 'pause' : 'play'" :size="22" class="text-white" />
         </div>
       </div>
     </Transition>
@@ -67,7 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onUnmounted } from 'vue';
+import { ref } from 'vue';
 import { Icon } from '@deveprobe/ui';
 import { formatTime, formatDuration } from './utils.js';
 
@@ -79,28 +79,20 @@ defineProps<{
 }>();
 
 const emit = defineEmits<{
-  'toggle-play':    [];
-  'time-update':    [];
+  'toggle-play':     [];
+  'time-update':     [];
   'loaded-metadata': [];
-  'play':           [];
-  'pause':          [];
-  'ended':          [];
+  'play':            [];
+  'pause':           [];
+  'ended':           [];
 }>();
 
-const videoEl    = ref<HTMLVideoElement | null>(null);
-const showOverlay = ref(false);
-let overlayTimer: ReturnType<typeof setTimeout> | null = null;
+const videoEl  = ref<HTMLVideoElement | null>(null);
+const hovering = ref(false);
 
 function onAreaClick() {
-  showOverlay.value = true;
-  if (overlayTimer) clearTimeout(overlayTimer);
-  overlayTimer = setTimeout(() => { showOverlay.value = false; }, 600);
   emit('toggle-play');
 }
-
-onUnmounted(() => {
-  if (overlayTimer) clearTimeout(overlayTimer);
-});
 
 defineExpose({ videoEl });
 </script>

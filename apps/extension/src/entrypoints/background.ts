@@ -67,6 +67,58 @@ async function handleApiFetch(msg: ApiFetchMessage): Promise<{ ok: true; data: u
   }
 }
 
+// ── Offscreen recording host ──────────────────────────────────────────────────
+//
+// The MediaRecorder used for screen recording lives in a hidden offscreen
+// document so that reloading or navigating the captured tab DOESN'T kill the
+// recording. Background = lifecycle + message hub between popup / content
+// scripts / offscreen.
+//
+// chrome.storage keys:
+//   dp:recording = { tabId, pageUrl, startedAtEpoch }  → set while active
+//
+const OFFSCREEN_URL = "/offscreen.html";
+
+async function hasOffscreenDocument(): Promise<boolean> {
+  // getContexts is the supported way on MV3.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const contexts = await (chrome.runtime as any).getContexts?.({
+    contextTypes: ["OFFSCREEN_DOCUMENT"],
+  });
+  return !!(contexts && contexts.length);
+}
+
+async function ensureOffscreenDocument(): Promise<void> {
+  if (await hasOffscreenDocument()) return;
+  await chrome.offscreen.createDocument({
+    url: OFFSCREEN_URL,
+    // DISPLAY_MEDIA covers tab capture via getUserMedia(chromeMediaSource:'tab').
+    reasons: ["USER_MEDIA" as chrome.offscreen.Reason],
+    justification: "Owns the MediaRecorder across captured-tab reloads.",
+  });
+}
+
+async function closeOffscreenDocument(): Promise<void> {
+  if (!(await hasOffscreenDocument())) return;
+  await chrome.offscreen.closeDocument().catch(() => { /* already closed */ });
+}
+
+interface RecordingState {
+  tabId:          number;
+  pageUrl:        string;
+  startedAtEpoch: number;
+}
+
+async function setRecordingState(state: RecordingState | null) {
+  if (state) await chrome.storage.local.set({ "dp:recording": state });
+  else       await chrome.storage.local.remove("dp:recording");
+}
+
+async function getRecordingState(): Promise<RecordingState | null> {
+  const r = await chrome.storage.local.get("dp:recording");
+  return (r["dp:recording"] as RecordingState | undefined) ?? null;
+}
+
 export default defineBackground(() => {
   chrome.runtime.onInstalled.addListener(() => {
     console.log("[DevProbe] extension installed");
@@ -91,6 +143,35 @@ export default defineBackground(() => {
           case "API_FETCH": {
             const result = await handleApiFetch(msg as ApiFetchMessage);
             sendResponse(result);
+            return;
+          }
+
+          // Mint a tab MediaStream ID the content script can hand to
+          // navigator.mediaDevices.getUserMedia({ video: { mandatory: { chromeMediaSource: 'tab', chromeMediaSourceId } } }).
+          // This skips Chrome's screen-picker entirely — recording starts on
+          // the active tab the moment the user clicks Record.
+          //
+          // tabCapture.getMediaStreamId requires a user gesture in the
+          // EXTENSION context (popup click counts). The popup path forwards
+          // this message via FORWARD_TO_CONTENT → background → tabCapture.
+          case "GET_TAB_STREAM_ID": {
+            const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+            if (!tab?.id) { sendResponse({ ok: false, error: "No active tab" }); return; }
+            try {
+              const streamId = await new Promise<string>((resolve, reject) => {
+                chrome.tabCapture.getMediaStreamId(
+                  { consumerTabId: tab.id },
+                  (id) => {
+                    const err = chrome.runtime.lastError;
+                    if (err || !id) reject(new Error(err?.message || "No stream id"));
+                    else resolve(id);
+                  },
+                );
+              });
+              sendResponse({ ok: true, streamId });
+            } catch (e) {
+              sendResponse({ ok: false, error: (e as Error).message });
+            }
             return;
           }
 
@@ -128,6 +209,107 @@ export default defineBackground(() => {
             sendResponse({ ok: true });
             return;
           }
+
+          // ── Recording flow ────────────────────────────────────────────────
+          // Popup or FAB triggers this. Mints a tabCapture stream id, spawns
+          // the offscreen document (if not already up), and tells it to start.
+          case "START_RECORDING_FLOW": {
+            const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+            if (!tab?.id) { sendResponse({ ok: false, error: "No active tab" }); return; }
+
+            try {
+              const streamId = await new Promise<string>((resolve, reject) => {
+                chrome.tabCapture.getMediaStreamId(
+                  // No consumerTabId → the offscreen document can consume the stream.
+                  { targetTabId: tab.id },
+                  (id) => {
+                    const err = chrome.runtime.lastError;
+                    if (err || !id) reject(new Error(err?.message || "No stream id"));
+                    else resolve(id);
+                  },
+                );
+              });
+
+              await ensureOffscreenDocument();
+
+              const startedAtEpoch = Date.now();
+              await chrome.runtime.sendMessage({
+                type: "START_OFFSCREEN",
+                streamId,
+                startedAtEpoch,
+              });
+
+              await setRecordingState({
+                tabId:   tab.id,
+                pageUrl: tab.url ?? "",
+                startedAtEpoch,
+              });
+
+              // Tell the active tab's content script to mount the floating toolbar.
+              await chrome.tabs.sendMessage(tab.id, { type: "RECORDING_STARTED", startedAtEpoch })
+                .catch(() => { /* content script not yet up — it'll mount on init */ });
+
+              sendResponse({ ok: true });
+            } catch (e) {
+              sendResponse({ ok: false, error: (e as Error).message });
+            }
+            return;
+          }
+
+          // Toolbar / popup → background → offscreen.
+          // Commands: pause | resume | stop
+          case "RECORDING_COMMAND": {
+            const cmd = msg.command as "pause" | "resume" | "stop";
+            const offscreenMsg =
+              cmd === "pause"  ? "PAUSE_OFFSCREEN"  :
+              cmd === "resume" ? "RESUME_OFFSCREEN" :
+                                 "STOP_OFFSCREEN";
+            await chrome.runtime.sendMessage({ type: offscreenMsg }).catch(() => null);
+            sendResponse({ ok: true });
+            return;
+          }
+
+          // Returns the persisted recording state so content scripts can
+          // decide whether to mount the toolbar on init.
+          case "GET_RECORDING_STATE": {
+            const state = await getRecordingState();
+            sendResponse({ ok: true, state });
+            return;
+          }
+
+          // From offscreen: recording finished, send blob to the original tab
+          // for review-modal mounting.
+          case "OFFSCREEN_BLOB": {
+            const state = await getRecordingState();
+            await setRecordingState(null);
+            await closeOffscreenDocument();
+            if (state?.tabId) {
+              await chrome.tabs.sendMessage(state.tabId, {
+                type:           "RECORDING_FINALISED",
+                base64:         msg.base64,
+                mimeType:       msg.mimeType,
+                durationMs:     msg.durationMs,
+                startedAtEpoch: msg.startedAtEpoch,
+                stoppedAtEpoch: msg.stoppedAtEpoch,
+                pageUrl:        state.pageUrl,
+              }).catch(() => { /* tab may be closed; user can recover via draft */ });
+            }
+            sendResponse({ ok: true });
+            return;
+          }
+
+          case "OFFSCREEN_ERROR": {
+            console.warn("[DevProbe] offscreen error:", msg.message);
+            await setRecordingState(null);
+            await closeOffscreenDocument();
+            sendResponse({ ok: true });
+            return;
+          }
+
+          case "OFFSCREEN_READY":
+            // Diagnostic ping; nothing to do.
+            sendResponse({ ok: true });
+            return;
 
           case "OPEN_LAUNCHER": {
             const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });

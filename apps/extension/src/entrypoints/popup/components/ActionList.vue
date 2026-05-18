@@ -40,8 +40,7 @@
     <ActionItem
       label="Record"
       description="Capture a full bug report"
-      badge="Soon"
-      :disabled="true"
+      @click="$emit('record')"
     >
       <template #icon>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -58,5 +57,5 @@
 <script setup lang="ts">
 import ActionItem from './ActionItem.vue';
 
-defineEmits<{ screenshot: [] }>();
+defineEmits<{ screenshot: []; record: [] }>();
 </script>

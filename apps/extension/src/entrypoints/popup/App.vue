@@ -33,12 +33,27 @@
       <Button variant="ghost" size="sm" @click="launchError = ''">Dismiss</Button>
     </div>
 
+    <!-- Initial paint placeholder (one frame, prevents Connect ↔ Action flicker
+         while we read auth from chrome.storage). -->
+    <div v-else-if="!account.initialised.value" class="px-5 py-10" aria-hidden="true">
+      <div class="h-3 w-1/3 rounded bg-muted animate-pulse" />
+      <div class="mt-3 h-2 w-1/2 rounded bg-muted animate-pulse" />
+    </div>
+
     <!-- Disconnected -->
     <ConnectPrompt v-else-if="!account.auth.value" />
 
+    <!-- Recording in progress -->
+    <RecordingActiveView
+      v-else-if="recording.state.value"
+      :elapsed-ms="recording.elapsedMs.value"
+      :page-url="recording.state.value.pageUrl"
+      @stop="onStopRecording"
+    />
+
     <!-- Connected -->
     <template v-else>
-      <ActionList @screenshot="onScreenshot" />
+      <ActionList @screenshot="onScreenshot" @record="onRecord" />
     </template>
 
     <!-- Footer URL -->
@@ -51,14 +66,17 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { Button } from '@deveprobe/ui';
-import PopupHeader   from './components/PopupHeader.vue';
-import ActionList    from './components/ActionList.vue';
-import AccountMenu   from './components/AccountMenu.vue';
+import PopupHeader        from './components/PopupHeader.vue';
+import ActionList         from './components/ActionList.vue';
+import AccountMenu        from './components/AccountMenu.vue';
+import RecordingActiveView from './components/RecordingActiveView.vue';
 import ConnectPrompt from '../../components/launcher/ConnectPrompt.vue';
-import { usePopupAccount } from './composables/usePopupAccount.js';
+import { usePopupAccount }    from './composables/usePopupAccount.js';
+import { useRecordingStatus } from './composables/useRecordingStatus.js';
 import { safeSendMessage } from '../../lib/extension.js';
 
-const account = usePopupAccount();
+const account   = usePopupAccount();
+const recording = useRecordingStatus();
 const currentUrl  = ref('');
 const launching   = ref(false);
 const launchError = ref('');
@@ -88,6 +106,34 @@ async function onScreenshot() {
   } catch (e) {
     launchError.value = (e as Error).message;
     launching.value   = false;
+  }
+}
+
+async function onRecord() {
+  launchError.value = '';
+  launching.value   = true;
+  try {
+    const res = await safeSendMessage<{ ok?: boolean; error?: string }>({
+      type:    'FORWARD_TO_CONTENT',
+      payload: { type: 'START_RECORDING', auth: account.auth.value },
+    });
+    if (!res?.ok) throw new Error(res?.error ?? 'Could not start recording');
+    window.close();
+  } catch (e) {
+    launchError.value = (e as Error).message;
+    launching.value   = false;
+  }
+}
+
+async function onStopRecording() {
+  try {
+    await safeSendMessage<{ ok?: boolean }>({
+      type:    'FORWARD_TO_CONTENT',
+      payload: { type: 'STOP_RECORDING' },
+    });
+    window.close();
+  } catch (e) {
+    launchError.value = (e as Error).message;
   }
 }
 </script>

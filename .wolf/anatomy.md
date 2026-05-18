@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-18T10:42:59.146Z
-> Files: 245 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-18T21:43:25.180Z
+> Files: 269 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -9,6 +9,7 @@
 - `BUILDPLAN.md` — DevProbe — Build Plan (~2708 tok)
 - `CLAUDE.md` — OpenWolf (~231 tok)
 - `GENERAL_SPEC.md` — General Product Spec (~2598 tok)
+- `HANDOFF.md` — DevProbe — Session Handoff (~5354 tok)
 - `LIVE_ANNOTATION_SPEC.md` — Live Annotation Spec (~2250 tok)
 - `package.json` — Node.js package manifest (~167 tok)
 - `pnpm-lock.yaml` — pnpm lock file (~63618 tok)
@@ -31,7 +32,7 @@
 - `package.json` — Node.js package manifest (~254 tok)
 - `postcss.config.js` — PostCSS configuration (~24 tok)
 - `tailwind.config.ts` — Tailwind CSS configuration (~606 tok)
-- `wxt.config.ts` (~277 tok)
+- `wxt.config.ts` (~384 tok)
 
 ## apps/extension/.wxt/
 
@@ -56,26 +57,40 @@
 
 ## apps/extension/src/components/capture/
 
-- `IssueComposePanel.vue` — Vue: setup (~1848 tok)
-- `PostComposeModal.vue` — Vue: setup (~727 tok)
+- `ComposeHeading.vue` — e.g. "Recording", "Screenshot". Rendered as `New {mode}`. (~1020 tok)
+- `IssueComposePanel.vue` — Vue: setup (~2498 tok)
+- `PostComposeModal.vue` — "Recording" | "Screenshot" — heading title (~1103 tok)
 - `RegionSelector.vue` — Vue: setup, TS, emits (~1211 tok)
 
 ## apps/extension/src/components/capture/recording/
 
-- `types.ts` — MarkerType union + RecordingMarker interface (~90 tok)
-- `utils.ts` — formatTime, formatDuration helpers (~120 tok)
-- `useRecordingPlayback.ts` — Composable: video playback state + controls (lazy videoEl + totalSec getters) (~350 tok)
-- `RecordingVideo.vue` — Vue: `<video>` + timestamp pill + play/pause overlay; exposes videoEl (~300 tok)
-- `RecordingTimeline.vue` — Vue: waveform scrubber, event markers, draggable playhead; emits seek/seek-to-ms (~350 tok)
+- `RecordingCapture.vue` — Trimmer-visible markers (warnings + errors). (~2056 tok)
+- `RecordingControlBar.vue` — Vue: setup (~634 tok)
 - `RecordingControls.vue` — Vue: fully controlled playback controls row; emits all actions (~280 tok)
-- `RecordingPanel.vue` — Vue: thin coordinator — composable + 3 sub-components + issue navigation (~280 tok)
-- `RecordingCapture.vue` — Vue: orchestrator — plugs RecordingPanel into PostComposeModal, handles submit + upload (~400 tok)
+- `RecordingHeader.vue` — Vue: setup (~549 tok)
+- `RecordingMarkerTooltip.vue` — Vue: setup (~626 tok)
+- `RecordingPanel.vue` — Vue: setup (~1090 tok)
+- `RecordingTimeline.vue` — Vue: waveform scrubber, event markers, draggable playhead; emits seek/seek-to-ms (~350 tok)
+- `RecordingVideo.vue` — Vue: setup (~776 tok)
+- `types.ts` — MarkerType union + RecordingMarker interface (~90 tok)
+- `useRecordingPlayback.ts` — All video playback state and imperative controls in one place. (~953 tok)
 - `useRecordingPlayback.ts` — All video playback state and imperative controls in one place. (~805 tok)
+- `utils.ts` — Coerce non-finite (NaN, Infinity) or negative values to 0. (~263 tok)
 - `utils.ts` — Format milliseconds as m:ss.d (e.g. 0:12.0, 1:04.5) (~191 tok)
+
+## apps/extension/src/components/capture/recording/timeline/
+
+- `RecordingMarkerTooltip.vue` — Vue: setup (~626 tok)
+- `RecordingTimeline.vue` — Vue: setup (~2356 tok)
+
+## apps/extension/src/components/capture/recording/toolbar/
+
+- `RecordingControlBar.vue` — Vue: setup (~663 tok)
+- `RecordingControls.vue` — Vue: setup (~1154 tok)
 
 ## apps/extension/src/components/capture/screenshot/
 
-- `ScreenshotCapture.vue` — Vue: setup (~927 tok)
+- `ScreenshotCapture.vue` — Vue: setup (~935 tok)
 - `ScreenshotPanel.vue` — Vue: setup, TS, 1 props (~642 tok)
 
 ## apps/extension/src/components/capture/screenshot/annotation/
@@ -89,17 +104,23 @@
 ## apps/extension/src/components/launcher/
 
 - `ConnectPrompt.vue` — Vue: setup (~448 tok)
-- `FloatingLauncher.vue` — Vue: setup (~1146 tok)
+- `FloatingLauncher.vue` — Vue: setup (~1184 tok)
 - `LauncherItem.vue` — Vue: setup, TS, 5 props, emits (~641 tok)
 
 ## apps/extension/src/entrypoints/
 
-- `background.ts` — API proxy (~1792 tok)
-- `content.ts` — Content script — mounts three possible UIs into the page via shadow DOM: (~2205 tok)
+- `background.ts` — API proxy (~3916 tok)
+- `content.ts` — Content script — mounts three possible UIs into the page via shadow DOM: (~6460 tok)
+- `page-probe.content.ts` — Page probe — MAIN-world content script. (~2478 tok)
+
+## apps/extension/src/entrypoints/offscreen/
+
+- `index.html` — DevProbe Offscreen (~115 tok)
+- `main.ts` — Offscreen recording host. (~1620 tok)
 
 ## apps/extension/src/entrypoints/popup/
 
-- `App.vue` — Vue: setup (~822 tok)
+- `App.vue` — Vue: setup (~1239 tok)
 - `index.html` — DevProbe (~137 tok)
 - `main.ts` — Initialise theme then mount — wrapped in IIFE because top-level await is (~185 tok)
 
@@ -107,21 +128,28 @@
 
 - `AccountMenu.vue` — Vue: setup (~968 tok)
 - `ActionItem.vue` — Vue: setup, TS, 4 props, emits (~454 tok)
-- `ActionList.vue` — Vue: setup, TS, emits (~503 tok)
+- `ActionList.vue` — Vue: setup (~503 tok)
 - `ActiveFolderChip.vue` — Vue: setup (~393 tok)
 - `PopupHeader.vue` — Vue: setup, TS, 2 props (~525 tok)
+- `RecordingActiveView.vue` — Vue: setup (~464 tok)
 
 ## apps/extension/src/entrypoints/popup/composables/
 
-- `usePopupAccount.ts` — Popup account state — keeps the workspace identity in sync with chrome.storage (~407 tok)
+- `usePopupAccount.ts` — Popup account state. (~879 tok)
+- `useRecordingStatus.ts` — Tracks the global active-recording state surfaced by the content script. (~467 tok)
 
 ## apps/extension/src/lib/
 
-- `api.ts` — API client (~740 tok)
+- `api.ts` — API client (~1669 tok)
 - `auth.ts` — Exports StoredAuth, getAuth, setAuth, clearAuth, onAuthChange (~593 tok)
+- `capture-streams.ts` — Capture streams during a screen recording. (~1941 tok)
+- `element-blur.ts` — Element-targeted blur for screen recording. (~1419 tok)
 - `env.ts` — Exports WEB_APP_URL, API_URL (~48 tok)
 - `extension.ts` — Extension runtime helpers. (~253 tok)
 - `metadata.ts` — Exports collectBrowserMeta, dataUrlToBlob (~1394 tok)
+- `page-probe-payload.ts` — Shared message contract between the MAIN-world page probe and the isolated (~390 tok)
+- `recording-drafts.ts` — Recording drafts — local persistence for in-flight recording uploads. (~943 tok)
+- `redact.ts` — Redaction helpers — privacy-first per SCREEN_RECORDING_SPEC.md. (~1266 tok)
 - `theme.ts` — Theme helpers — shared by popup and content scripts. (~781 tok)
 
 ## apps/web/
@@ -168,6 +196,7 @@
 
 ## apps/web/src/features/dashboard/components/
 
+- `IssueCard.vue` — Vue: setup (~1450 tok)
 - `IssueFilters.vue` — Vue: setup (~944 tok)
 
 ## apps/web/src/features/dashboard/composables/
@@ -194,6 +223,9 @@
 ## apps/web/src/features/issues/components/
 
 - `IssueHeader.vue` — Vue: setup (~261 tok)
+- `IssueMedia.vue` — Vue: setup (~576 tok)
+- `IssueMediaImage.vue` — Vue: setup (~428 tok)
+- `IssueMediaVideo.vue` — Vue: setup (~285 tok)
 
 ## apps/web/src/features/settings/
 
@@ -246,7 +278,7 @@
 
 ## apps/web/src/pages/issues/
 
-- `Issue.vue` — Vue: setup (~1082 tok)
+- `Issue.vue` — Vue: setup (~1122 tok)
 
 ## apps/web/src/router/
 
@@ -301,7 +333,7 @@
 - `attachments.ts` — API routes: POST, GET (8 endpoints) (~872 tok)
 - `auth.ts` — API routes: POST, GET (9 endpoints) (~1637 tok)
 - `folders.ts` — API routes: GET, POST (4 endpoints) (~442 tok)
-- `issues.ts` — API routes: GET, POST (6 endpoints) (~910 tok)
+- `issues.ts` — API routes: GET, POST (8 endpoints) (~2045 tok)
 - `projects.ts` — API routes: GET, POST (4 endpoints) (~446 tok)
 
 ## packages/shared/

@@ -16,6 +16,7 @@
     :submitting="submitting"
     :error="submitError"
     :page-url="props.browserMeta?.pageUrl"
+    heading-mode="Screenshot"
     @submit="onSubmit"
     @cancel="emit('close')"
   >

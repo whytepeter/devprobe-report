@@ -1569,6 +1569,696 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-18T10:41:07.892Z"
+    },
+    {
+      "id": "bug-098",
+      "timestamp": "2026-05-18T11:18:32.312Z",
+      "error_message": "CSS fix: payload",
+      "file": "apps/extension/src/entrypoints/popup/App.vue",
+      "root_cause": "payload: { type: 'START_REGION_SELECT', auth: account.auth.value → { type: 'START_RECORDING', auth: account.auth.value",
+      "fix": "Changed payload: { type: 'START_REGION_SELECT', auth: account.auth.value → { type: 'START_RECORDING', auth: account.auth.value",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T11:18:32.312Z"
+    },
+    {
+      "id": "bug-099",
+      "timestamp": "2026-05-18T11:19:36.571Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "Had '../lib/theme.js'",
+      "fix": "Changed to '../components/capture/recording/RecordingCapture.",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T11:19:36.571Z"
+    },
+    {
+      "id": "bug-100",
+      "timestamp": "2026-05-18T11:20:56.589Z",
+      "error_message": "Missing error handling in function",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T11:20:56.589Z"
+    },
+    {
+      "id": "bug-101",
+      "timestamp": "2026-05-18T11:24:53.126Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 3→5 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T11:24:53.126Z"
+    },
+    {
+      "id": "bug-102",
+      "timestamp": "2026-05-18T11:25:57.979Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T11:25:57.979Z"
+    },
+    {
+      "id": "bug-103",
+      "timestamp": "2026-05-18T11:44:09.035Z",
+      "error_message": "Missing guard clause",
+      "file": "apps/web/src/pages/issues/Issue.vue",
+      "root_cause": "No early return/throw for edge case: !issueValue",
+      "fix": "Added guard clause: if (!issueValue)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T11:44:09.035Z"
+    },
+    {
+      "id": "bug-104",
+      "timestamp": "2026-05-18T11:47:30.464Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/components/capture/recording/RecordingControlBar.vue",
+      "root_cause": "4 lines replaced/restructured",
+      "fix": "Rewrote 19→10 lines (4 removed) | Also: <!-- Marker confirmation toast -->; <Transition",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-18T11:47:50.192Z"
+    },
+    {
+      "id": "bug-105",
+      "timestamp": "2026-05-18T11:49:47.181Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/lib/capture-streams.ts",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 6→4 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T11:49:47.181Z"
+    },
+    {
+      "id": "bug-106",
+      "timestamp": "2026-05-18T11:59:39.445Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/components/capture/recording/RecordingPanel.vue",
+      "root_cause": "Had './RecordingTimeline.vue'",
+      "fix": "Changed to './timeline/RecordingTimeline.vue'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T11:59:39.445Z"
+    },
+    {
+      "id": "bug-107",
+      "timestamp": "2026-05-18T12:00:09.376Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "Had '../components/capture/recording/RecordingControlB",
+      "fix": "Changed to '../components/capture/recording/toolbar/Recording",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T12:00:09.376Z"
+    },
+    {
+      "id": "bug-108",
+      "timestamp": "2026-05-18T14:28:15.124Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/components/capture/recording/toolbar/RecordingControls.vue",
+      "root_cause": "Had './utils.js'",
+      "fix": "Changed to '../utils.js'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T14:28:15.124Z"
+    },
+    {
+      "id": "bug-109",
+      "timestamp": "2026-05-18T14:29:29.140Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/components/capture/recording/timeline/RecordingMarkerTooltip.vue",
+      "root_cause": "Had './types.js'",
+      "fix": "Changed to '../types.js'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T14:29:29.140Z"
+    },
+    {
+      "id": "bug-110",
+      "timestamp": "2026-05-18T14:31:30.101Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/components/capture/recording/timeline/RecordingTimeline.vue",
+      "root_cause": "Had './types.js'",
+      "fix": "Changed to '../types.js'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T14:31:30.101Z"
+    },
+    {
+      "id": "bug-defineemits-missing-const",
+      "timestamp": "2026-05-18T16:00:00.000Z",
+      "error_message": "Minified Vue error chain (hP/Jr/q2/zt) thrown when clicking Pause or Stop in recording control bar; click handlers did nothing.",
+      "file": "apps/extension/src/components/capture/recording/toolbar/RecordingControlBar.vue",
+      "root_cause": "defineEmits<{...}>() was called without assigning the return to a const emit variable. The template referenced emit('toggle-pause') and emit('stop') — emit was undefined, so every click threw a ReferenceError that Vue surfaced through its async error handler.",
+      "fix": "Use const emit = defineEmits<{...}>(). Always assign defineEmits to a variable when the template uses emit(...).",
+      "tags": [
+        "vue",
+        "defineEmits",
+        "shadow-dom",
+        "extension",
+        "recording"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T16:00:00.000Z"
+    },
+    {
+      "id": "bug-112",
+      "timestamp": "2026-05-18T17:55:09.311Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
+      "root_cause": "Had \"inline-flex items-center gap-1 rounded-md bg-viol",
+      "fix": "Changed to \"inline-flex items-center gap-1 rounded-md bg-prim",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 3,
+      "last_seen": "2026-05-18T17:56:04.833Z"
+    },
+    {
+      "id": "bug-113",
+      "timestamp": "2026-05-18T17:56:39.206Z",
+      "error_message": "CSS fix: hover",
+      "file": "apps/extension/src/components/capture/recording/toolbar/RecordingControls.vue",
+      "root_cause": "hover: bg-violet-100\" → bg-primary/20\"",
+      "fix": "Changed hover: bg-violet-100\" → bg-primary/20\"",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T17:56:39.206Z"
+    },
+    {
+      "id": "bug-114",
+      "timestamp": "2026-05-18T18:27:36.098Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/web/src/features/dashboard/components/IssueCard.vue",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 22→41 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T18:27:36.098Z"
+    },
+    {
+      "id": "bug-115",
+      "timestamp": "2026-05-18T18:28:23.107Z",
+      "error_message": "Missing error handling in primePoster",
+      "file": "apps/web/src/features/dashboard/components/IssueCard.vue",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T18:28:23.108Z"
+    },
+    {
+      "id": "bug-116",
+      "timestamp": "2026-05-18T18:31:15.535Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
+      "root_cause": "Had \"shadowRoot ?? undefined\"",
+      "fix": "Changed to \"portalTarget ?? undefined\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T18:31:15.535Z"
+    },
+    {
+      "id": "bug-117",
+      "timestamp": "2026-05-18T18:31:39.961Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T18:31:39.961Z"
+    },
+    {
+      "id": "bug-118",
+      "timestamp": "2026-05-18T18:33:11.232Z",
+      "error_message": "CSS fix: dp",
+      "file": "apps/extension/src/components/launcher/FloatingLauncher.vue",
+      "root_cause": "dp: start-region-select')) → start-recording'))",
+      "fix": "Changed dp: start-region-select')) → start-recording'))",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T18:33:11.232Z"
+    },
+    {
+      "id": "bug-119",
+      "timestamp": "2026-05-18T18:47:36.424Z",
+      "error_message": "Type error",
+      "file": "apps/extension/src/lib/capture-streams.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T18:47:36.424Z"
+    },
+    {
+      "id": "bug-120",
+      "timestamp": "2026-05-18T18:56:47.366Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T18:56:47.366Z"
+    },
+    {
+      "id": "bug-121",
+      "timestamp": "2026-05-18T19:14:52.168Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block | Also: // Strip every blur overlay we created — they shouldn't outl; for (const el of blurOverlays) el.remove();",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-18T19:15:52.447Z"
+    },
+    {
+      "id": "bug-122",
+      "timestamp": "2026-05-18T19:18:45.958Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/entrypoints/popup/App.vue",
+      "root_cause": "5 lines replaced/restructured",
+      "fix": "Rewrote 13→16 lines (5 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T19:18:45.958Z"
+    },
+    {
+      "id": "bug-123",
+      "timestamp": "2026-05-18T19:19:24.969Z",
+      "error_message": "CSS fix: payload",
+      "file": "apps/extension/src/entrypoints/popup/App.vue",
+      "root_cause": "payload: { type: 'START_RECORDING', auth: account.auth.value → { type: 'STOP_RECORDING'",
+      "fix": "Changed payload: { type: 'START_RECORDING', auth: account.auth.value → { type: 'STOP_RECORDING'",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T19:19:24.969Z"
+    },
+    {
+      "id": "bug-124",
+      "timestamp": "2026-05-18T19:34:02.002Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "68 lines replaced/restructured",
+      "fix": "Rewrote 81→14 lines (68 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T19:34:02.002Z"
+    },
+    {
+      "id": "bug-125",
+      "timestamp": "2026-05-18T19:36:51.870Z",
+      "error_message": "Wrong reference: startBlurSelect should be startBlurPicker",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "Used \"startBlurSelect\" instead of \"startBlurPicker\"",
+      "fix": "Changed startBlurSelect → startBlurPicker",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T19:36:51.870Z"
+    },
+    {
+      "id": "bug-126",
+      "timestamp": "2026-05-18T19:44:07.651Z",
+      "error_message": "Wrong operator: || should be ===",
+      "file": "apps/extension/src/components/capture/recording/useRecordingPlayback.ts",
+      "root_cause": "Used \"||\" instead of \"===\"",
+      "fix": "Changed operator || → ===",
+      "tags": [
+        "auto-detected",
+        "operator-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T19:44:07.651Z"
+    },
+    {
+      "id": "bug-127",
+      "timestamp": "2026-05-18T19:44:39.923Z",
+      "error_message": "Missing guard clause",
+      "file": "apps/extension/src/components/capture/recording/useRecordingPlayback.ts",
+      "root_cause": "No early return/throw for edge case: !v",
+      "fix": "Added guard clause: if (!v)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T19:44:39.923Z"
+    },
+    {
+      "id": "bug-128",
+      "timestamp": "2026-05-18T19:46:35.816Z",
+      "error_message": "CSS fix: Icon",
+      "file": "apps/extension/src/components/capture/ComposeHeading.vue",
+      "root_cause": "Icon: name=\"generating ? 'sparkles' : 'refresh-cw'\" :size=\"11\" /> → name=\"aiIcon\" :size=\"11\" />",
+      "fix": "Changed Icon: name=\"generating ? 'sparkles' : 'refresh-cw'\" :size=\"11\" /> → name=\"aiIcon\" :size=\"11\" />",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T19:46:35.816Z"
+    },
+    {
+      "id": "bug-129",
+      "timestamp": "2026-05-18T19:48:00.420Z",
+      "error_message": "Missing guard clause",
+      "file": "apps/extension/src/components/capture/ComposeHeading.vue",
+      "root_cause": "No early return/throw for edge case: props.generating",
+      "fix": "Added guard clause: if (props.generating)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T19:48:00.420Z"
+    },
+    {
+      "id": "bug-130",
+      "timestamp": "2026-05-18T19:51:47.221Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/components/capture/recording/timeline/RecordingTimeline.vue",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 5→11 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T19:51:47.221Z"
+    },
+    {
+      "id": "bug-131",
+      "timestamp": "2026-05-18T20:22:50.471Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "apps/extension/src/lib/api.ts",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T20:22:50.471Z"
+    },
+    {
+      "id": "bug-132",
+      "timestamp": "2026-05-18T20:31:46.817Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "packages/api/src/routes/issues.ts",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T20:31:46.817Z"
+    },
+    {
+      "id": "bug-133",
+      "timestamp": "2026-05-18T20:32:46.501Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/extension/src/lib/api.ts",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T20:32:46.501Z"
+    },
+    {
+      "id": "bug-134",
+      "timestamp": "2026-05-18T20:35:22.735Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/lib/page-probe-payload.ts",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 10→20 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T20:35:22.735Z"
+    },
+    {
+      "id": "bug-135",
+      "timestamp": "2026-05-18T20:39:05.525Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 6→14 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T20:39:05.525Z"
+    },
+    {
+      "id": "bug-136",
+      "timestamp": "2026-05-18T20:42:03.260Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/extension/src/components/capture/recording/RecordingCapture.vue",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T20:42:03.260Z"
+    },
+    {
+      "id": "bug-137",
+      "timestamp": "2026-05-18T21:02:13.509Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "apps/extension/src/entrypoints/background.ts",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T21:02:13.509Z"
+    },
+    {
+      "id": "bug-138",
+      "timestamp": "2026-05-18T21:03:11.645Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 12→22 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T21:03:11.645Z"
+    },
+    {
+      "id": "bug-139",
+      "timestamp": "2026-05-18T21:04:30.524Z",
+      "error_message": "Missing await",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "Async call without await — returned Promise instead of value",
+      "fix": "Added await to async call",
+      "tags": [
+        "auto-detected",
+        "async-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-18T21:04:30.524Z"
+    },
+    {
+      "id": "bug-140",
+      "timestamp": "2026-05-18T21:32:58.555Z",
+      "error_message": "Missing error handling in function",
+      "file": "apps/extension/src/entrypoints/background.ts",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block | Also: // ── Recording flow ───────────────────────────────────────; // Popup or FAB triggers this. Mints a tabCapture stream id,",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-18T21:33:48.125Z"
     }
   ]
 }

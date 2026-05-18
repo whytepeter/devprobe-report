@@ -33,22 +33,28 @@ export function useRecordingPlayback(
     v.paused ? v.play() : v.pause();
   }
 
+  // The known total duration (from MediaRecorder's `performance.now()` math)
+  // is always finite. Never use `video.duration` here — MediaRecorder WebM
+  // blobs report `duration === Infinity` until played, which would propagate
+  // Infinity/NaN into `currentTimeSec` (visible as "Infinity:NaN" in the UI).
   function skip(seconds: number) {
     const v = getVideoEl();
     if (!v) return;
-    v.currentTime = Math.max(0, Math.min(v.duration || getTotalSec(), v.currentTime + seconds));
+    const cur  = Number.isFinite(v.currentTime) ? v.currentTime : 0;
+    const next = Math.max(0, Math.min(getTotalSec(), cur + seconds));
+    v.currentTime        = next;
+    currentTimeSec.value = next;
   }
 
   function seekToMs(ms: number) {
-    const t = ms / 1000;
+    const t = Math.max(0, Math.min(getTotalSec(), ms / 1000));
     currentTimeSec.value = t;
     const v = getVideoEl();
     if (v) v.currentTime = t;
   }
 
   function seekToPercent(pct: number) {
-    const dur = getVideoEl()?.duration || getTotalSec();
-    const t   = Math.max(0, Math.min(1, pct)) * dur;
+    const t = Math.max(0, Math.min(1, pct)) * getTotalSec();
     currentTimeSec.value = t;
     const v = getVideoEl();
     if (v) v.currentTime = t;
@@ -69,7 +75,9 @@ export function useRecordingPlayback(
   // ── Native video event handlers (forward from RecordingVideo) ────────────
   function onTimeUpdate() {
     const v = getVideoEl();
-    if (v) currentTimeSec.value = v.currentTime;
+    if (!v) return;
+    // Guard against Infinity/NaN from the WebM-duration bug.
+    if (Number.isFinite(v.currentTime)) currentTimeSec.value = v.currentTime;
   }
 
   function onLoadedMetadata() {

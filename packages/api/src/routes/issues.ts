@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { eq, and, desc } from "drizzle-orm";
 import { createDb } from "../db/client.js";
-import { issues, folders } from "../db/schema.js";
+import { issues, folders, recordingSessions, timelineEvents } from "../db/schema.js";
 import { ok, Errors } from "../lib/response.js";
 import { requireAuth } from "../middleware/auth.js";
 import { CreateIssueSchema } from "@deveprobe/shared";
@@ -92,4 +92,93 @@ issuesRouter.post("/", async (c) => {
   }).returning();
 
   return ok(issue, 201);
+});
+
+// ── Timeline events ─────────────────────────────────────────────────────────
+// POST /issues/:id/events
+// Bulk-inserts the console / network / error / user_action / navigation /
+// performance events captured during a screen recording. Per SCREEN_RECORDING_SPEC:
+// every event shares a single timebase (ms from recording start) so the issue
+// viewer can render synchronized panels alongside the video.
+//
+// A recording_session row is created here if one doesn't already exist for
+// this issue — until we add a separate session-initiate route, the session
+// is materialised lazily on first events submit.
+type IncomingEvent = {
+  kind:             'console' | 'network' | 'error' | 'user_action' | 'performance' | 'marker' | 'navigation';
+  timestampMs:      number;
+  startTimestampMs?: number;
+  endTimestampMs?:   number;
+  severity?:        'critical' | 'high' | 'medium' | 'low';
+  summary:          string;
+  data?:            Record<string, unknown>;
+};
+
+const ALLOWED_KINDS: ReadonlySet<IncomingEvent['kind']> = new Set([
+  'console', 'network', 'error', 'user_action', 'performance', 'marker', 'navigation',
+]);
+const ALLOWED_SEVERITY: ReadonlySet<NonNullable<IncomingEvent['severity']>> = new Set([
+  'critical', 'high', 'medium', 'low',
+]);
+
+issuesRouter.post('/:id/events', async (c) => {
+  const auth = c.get('auth');
+  const issueId = c.req.param('id');
+  const body = await c.req.json().catch(() => null) as
+    | { events?: IncomingEvent[]; pageUrl?: string; durationMs?: number; startedAt?: string; stoppedAt?: string }
+    | null;
+  if (!body?.events || !Array.isArray(body.events) || body.events.length === 0) {
+    return Errors.badRequest('events[] required');
+  }
+  if (body.events.length > 5000) return Errors.badRequest('Too many events (max 5000)');
+
+  const db = createDb(c.env.DATABASE_URL);
+
+  // Issue must exist and belong to this org.
+  const issue = await db.query.issues.findFirst({
+    where: and(eq(issues.id, issueId), eq(issues.orgId, auth.orgId)),
+  });
+  if (!issue) return Errors.notFound('Issue');
+
+  // Find or create the recording session for this issue.
+  let session = await db.query.recordingSessions.findFirst({
+    where: eq(recordingSessions.issueId, issueId),
+  });
+  if (!session) {
+    [session] = await db.insert(recordingSessions).values({
+      orgId:       auth.orgId,
+      folderId:    issue.folderId ?? null,
+      createdById: auth.userId,
+      issueId,
+      source:      issue.source ?? 'extension',
+      pageUrl:     body.pageUrl ?? issue.pageUrl ?? '',
+      status:      'submitted',
+      ...(body.durationMs !== undefined && { durationMs: body.durationMs }),
+      ...(body.startedAt && { startedAt: new Date(body.startedAt) }),
+      ...(body.stoppedAt && { stoppedAt: new Date(body.stoppedAt) }),
+    }).returning();
+  }
+
+  // Sanitise + bulk insert. Drop anything with the wrong shape — never trust
+  // the client to send well-formed enum values.
+  const rows = body.events
+    .filter((e) => e && ALLOWED_KINDS.has(e.kind) && Number.isFinite(e.timestampMs) && typeof e.summary === 'string')
+    .map((e) => ({
+      sessionId:        session!.id,
+      issueId,
+      kind:             e.kind,
+      timestampMs:      Math.max(0, Math.round(e.timestampMs)),
+      summary:          e.summary.slice(0, 500),
+      data:             (e.data && typeof e.data === 'object') ? e.data : {},
+      ...(Number.isFinite(e.startTimestampMs) && { startTimestampMs: Math.round(e.startTimestampMs!) }),
+      ...(Number.isFinite(e.endTimestampMs)   && { endTimestampMs:   Math.round(e.endTimestampMs!)   }),
+      ...(e.severity && ALLOWED_SEVERITY.has(e.severity) && { severity: e.severity }),
+    }));
+
+  if (rows.length === 0) return Errors.badRequest('No valid events');
+
+  // Drizzle's `insert(...).values(rows)` handles multi-row insert.
+  await db.insert(timelineEvents).values(rows);
+
+  return ok({ sessionId: session!.id, inserted: rows.length }, 201);
 });

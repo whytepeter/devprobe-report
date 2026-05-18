@@ -15,15 +15,34 @@
   >
     <!-- Media area -->
     <div class="relative aspect-[16/10] bg-muted/40 border-b border-border overflow-hidden">
-      <!-- Real thumbnail when available, else placeholder skeleton bars -->
+      <!-- Recording: video poster (first frame) with play badge -->
+      <template v-if="videoUrl">
+        <video
+          :src="videoUrl"
+          class="h-full w-full object-cover bg-black"
+          preload="metadata"
+          muted
+          playsinline
+          @loadedmetadata="primePoster"
+        />
+        <span class="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-black/55 ring-1 ring-white/20 backdrop-blur-sm">
+            <Icon name="play" :size="16" class="text-white" />
+          </span>
+        </span>
+      </template>
+
+      <!-- Screenshot / annotation thumbnail -->
       <img
-        v-if="thumbnailUrl && !imageBroken"
+        v-else-if="thumbnailUrl && !imageBroken"
         :src="thumbnailUrl"
         :alt="issue.title"
         class="w-full h-full object-cover"
         loading="lazy"
         @error="imageBroken = true"
       />
+
+      <!-- Placeholder skeleton -->
       <div v-else class="absolute inset-0 p-6 flex flex-col gap-2.5 justify-center">
         <div class="h-2 w-1/2 rounded bg-muted-foreground/15" />
         <div class="h-3 w-1/3 rounded bg-primary/25" />
@@ -63,6 +82,7 @@
 <script setup lang="ts">
 import { computed, ref, toRef, watch } from "vue";
 import type { Issue, Attachment } from "@deveprobe/shared";
+import { Icon } from "@deveprobe/ui";
 import TypeChip from "@/features/issues/components/TypeChip.vue";
 import UserAvatar from "@/features/issues/components/UserAvatar.vue";
 import { timeAgo } from "@/shared/lib/format.js";
@@ -75,7 +95,15 @@ type IssueCardIssue = Issue & {
 
 const props = defineProps<{ issue: IssueCardIssue }>();
 
+// Recording: prefer the video attachment so we can show its first frame.
+const videoAttachmentId = computed(() => {
+  if (props.issue.mode !== "screen_recording") return null;
+  return (props.issue.attachments ?? []).find((a) => a.type === "video")?.id ?? null;
+});
+
+// Screenshot / annotation: image attachment.
 const thumbnailAttachmentId = computed(() => {
+  if (videoAttachmentId.value) return null;
   const att = (props.issue.attachments ?? []).find(
     (a) => a.type === "screenshot" || a.type === "thumbnail",
   );
@@ -84,11 +112,19 @@ const thumbnailAttachmentId = computed(() => {
 
 const issueIdRef = toRef(props.issue, "id");
 const { url: thumbnailUrl } = useAttachmentUrl(() => thumbnailAttachmentId.value);
+const { url: videoUrl }     = useAttachmentUrl(() => videoAttachmentId.value);
 
 // Track broken (failed-to-decode) images so we render the placeholder instead.
-// Reset whenever a new blob URL is bound.
 const imageBroken = ref(false);
 watch(thumbnailUrl, () => { imageBroken.value = false; });
+
+// Force the video to render its first frame as a poster image.
+// Chrome+Safari only paint a frame after a non-zero currentTime seek; nudging
+// to 0.05s reliably surfaces the opening frame without playing.
+function primePoster(e: Event) {
+  const v = e.target as HTMLVideoElement;
+  try { v.currentTime = 0.05; } catch { /* ignore */ }
+}
 
 void issueIdRef;
 
