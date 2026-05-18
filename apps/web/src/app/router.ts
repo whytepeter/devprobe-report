@@ -6,18 +6,18 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      redirect: "/dashboard",
+      redirect: "/issues",
     },
     {
       path: "/login",
       name: "login",
-      component: () => import("@/features/auth/LoginPage.vue"),
+      component: () => import("@/pages/auth/Login.vue"),
       meta: { public: true, hideForAuthed: true },
     },
     {
       path: "/signup",
       name: "signup",
-      component: () => import("@/features/auth/SignupPage.vue"),
+      component: () => import("@/pages/auth/Signup.vue"),
       meta: { public: true, hideForAuthed: true },
     },
     {
@@ -25,37 +25,47 @@ const router = createRouter({
       component: () => import("@/features/workspace-shell/DashboardLayout.vue"),
       children: [
         {
-          path: "dashboard",
-          name: "dashboard",
-          component: () => import("@/features/dashboard/DashboardPage.vue"),
+          path: "issues",
+          name: "issues",
+          component: () => import("@/pages/issues/Issues.vue"),
         },
         {
           path: "issue/:id",
           name: "issue",
-          component: () => import("@/features/issues/IssuePage.vue"),
+          component: () => import("@/pages/issues/Issue.vue"),
         },
         {
-          path: "projects",
-          name: "projects",
-          component: () => import("@/features/projects/ProjectsPage.vue"),
+          path: "folders",
+          name: "folders",
+          component: () => import("@/pages/folders/Folders.vue"),
+        },
+        {
+          path: "folder/:id",
+          name: "folder",
+          component: () => import("@/pages/folders/Folder.vue"),
+        },
+        {
+          path: "integrations",
+          name: "integrations",
+          component: () => import("@/pages/integrations/Integrations.vue"),
         },
         {
           path: "settings",
           name: "settings",
-          component: () => import("@/features/settings/SettingsPage.vue"),
+          component: () => import("@/pages/settings/Settings.vue"),
         },
       ],
     },
     {
       path: "/extension/connect",
       name: "extension-connect",
-      component: () => import("@/features/extension-connect/ExtensionConnectPage.vue"),
+      component: () => import("@/pages/extension-connect/ExtensionConnect.vue"),
       meta: { public: true },
     },
     {
       path: "/:pathMatch(.*)*",
       name: "not-found",
-      component: () => import("@/features/not-found/NotFoundPage.vue"),
+      component: () => import("@/pages/not-found/NotFound.vue"),
       meta: { public: true },
     },
   ],
@@ -67,7 +77,7 @@ router.beforeEach((to) => {
     return { name: "login", query: { redirect: to.fullPath } };
   }
   if (to.meta["hideForAuthed"] && auth.isAuthenticated) {
-    return { name: "dashboard" };
+    return { name: "issues" };
   }
   return true;
 });

@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS "ai_outputs" (
 CREATE TABLE IF NOT EXISTS "annotation_sessions" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"org_id" uuid NOT NULL,
-	"project_id" uuid NOT NULL,
+	"folder_id" uuid,
 	"created_by_id" uuid NOT NULL,
 	"page_url" text NOT NULL,
 	"url_path" text NOT NULL,
@@ -97,16 +97,28 @@ CREATE TABLE IF NOT EXISTS "duplicate_groups" (
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "environments" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
-	"project_id" uuid NOT NULL,
+	"folder_id" uuid NOT NULL,
 	"name" varchar(100) NOT NULL,
 	"url_patterns" jsonb DEFAULT '[]'::jsonb NOT NULL,
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "folders" (
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"org_id" uuid NOT NULL,
+	"name" varchar(100) NOT NULL,
+	"slug" varchar(60) NOT NULL,
+	"description" text,
+	"capture_rules" jsonb DEFAULT '{}'::jsonb NOT NULL,
+	"archived_at" timestamp with time zone,
+	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"updated_at" timestamp with time zone DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "integration_configs" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"integration_id" uuid NOT NULL,
-	"project_id" uuid NOT NULL,
+	"folder_id" uuid NOT NULL,
 	"field_mappings" jsonb DEFAULT '{}'::jsonb NOT NULL,
 	"auto_send" boolean DEFAULT false NOT NULL,
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL
@@ -151,7 +163,7 @@ CREATE TABLE IF NOT EXISTS "issue_links" (
 CREATE TABLE IF NOT EXISTS "issues" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"org_id" uuid NOT NULL,
-	"project_id" uuid NOT NULL,
+	"folder_id" uuid,
 	"created_by_id" uuid NOT NULL,
 	"source" "issue_source" NOT NULL,
 	"mode" "issue_mode" NOT NULL,
@@ -214,22 +226,10 @@ CREATE TABLE IF NOT EXISTS "pins" (
 	"updated_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "projects" (
-	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
-	"org_id" uuid NOT NULL,
-	"name" varchar(100) NOT NULL,
-	"slug" varchar(60) NOT NULL,
-	"description" text,
-	"capture_rules" jsonb DEFAULT '{}'::jsonb NOT NULL,
-	"archived_at" timestamp with time zone,
-	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
-	"updated_at" timestamp with time zone DEFAULT now() NOT NULL
-);
---> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "recording_sessions" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"org_id" uuid NOT NULL,
-	"project_id" uuid NOT NULL,
+	"folder_id" uuid,
 	"created_by_id" uuid NOT NULL,
 	"issue_id" uuid,
 	"source" varchar(30) NOT NULL,
@@ -295,7 +295,7 @@ EXCEPTION
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- ALTER TABLE "annotation_sessions" ADD CONSTRAINT "annotation_sessions_project_id_projects_id_fk" FOREIGN KEY ("project_id") REFERENCES "public"."projects"("id") ON DELETE no action ON UPDATE no action;
+ ALTER TABLE "annotation_sessions" ADD CONSTRAINT "annotation_sessions_folder_id_folders_id_fk" FOREIGN KEY ("folder_id") REFERENCES "public"."folders"("id") ON DELETE set null ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -361,7 +361,13 @@ EXCEPTION
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- ALTER TABLE "environments" ADD CONSTRAINT "environments_project_id_projects_id_fk" FOREIGN KEY ("project_id") REFERENCES "public"."projects"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "environments" ADD CONSTRAINT "environments_folder_id_folders_id_fk" FOREIGN KEY ("folder_id") REFERENCES "public"."folders"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ ALTER TABLE "folders" ADD CONSTRAINT "folders_org_id_orgs_id_fk" FOREIGN KEY ("org_id") REFERENCES "public"."orgs"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -373,7 +379,7 @@ EXCEPTION
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- ALTER TABLE "integration_configs" ADD CONSTRAINT "integration_configs_project_id_projects_id_fk" FOREIGN KEY ("project_id") REFERENCES "public"."projects"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "integration_configs" ADD CONSTRAINT "integration_configs_folder_id_folders_id_fk" FOREIGN KEY ("folder_id") REFERENCES "public"."folders"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -409,7 +415,7 @@ EXCEPTION
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- ALTER TABLE "issues" ADD CONSTRAINT "issues_project_id_projects_id_fk" FOREIGN KEY ("project_id") REFERENCES "public"."projects"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "issues" ADD CONSTRAINT "issues_folder_id_folders_id_fk" FOREIGN KEY ("folder_id") REFERENCES "public"."folders"("id") ON DELETE set null ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -463,19 +469,13 @@ EXCEPTION
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- ALTER TABLE "projects" ADD CONSTRAINT "projects_org_id_orgs_id_fk" FOREIGN KEY ("org_id") REFERENCES "public"."orgs"("id") ON DELETE cascade ON UPDATE no action;
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
---> statement-breakpoint
-DO $$ BEGIN
  ALTER TABLE "recording_sessions" ADD CONSTRAINT "recording_sessions_org_id_orgs_id_fk" FOREIGN KEY ("org_id") REFERENCES "public"."orgs"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- ALTER TABLE "recording_sessions" ADD CONSTRAINT "recording_sessions_project_id_projects_id_fk" FOREIGN KEY ("project_id") REFERENCES "public"."projects"("id") ON DELETE no action ON UPDATE no action;
+ ALTER TABLE "recording_sessions" ADD CONSTRAINT "recording_sessions_folder_id_folders_id_fk" FOREIGN KEY ("folder_id") REFERENCES "public"."folders"("id") ON DELETE set null ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -507,15 +507,17 @@ END $$;
 CREATE INDEX IF NOT EXISTS "activity_events_issue_idx" ON "activity_events" USING btree ("issue_id");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "activity_events_created_at_idx" ON "activity_events" USING btree ("created_at");--> statement-breakpoint
 CREATE UNIQUE INDEX IF NOT EXISTS "ai_outputs_issue_idx" ON "ai_outputs" USING btree ("issue_id");--> statement-breakpoint
-CREATE INDEX IF NOT EXISTS "annotation_sessions_project_idx" ON "annotation_sessions" USING btree ("project_id");--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "annotation_sessions_folder_idx" ON "annotation_sessions" USING btree ("folder_id");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "annotation_sessions_page_url_idx" ON "annotation_sessions" USING btree ("page_url");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "attachments_issue_idx" ON "attachments" USING btree ("issue_id");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "attachments_session_idx" ON "attachments" USING btree ("session_id");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "auth_sessions_token_idx" ON "auth_sessions" USING btree ("token_hash");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "auth_sessions_user_idx" ON "auth_sessions" USING btree ("user_id");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "comments_issue_idx" ON "comments" USING btree ("issue_id");--> statement-breakpoint
-CREATE INDEX IF NOT EXISTS "environments_project_idx" ON "environments" USING btree ("project_id");--> statement-breakpoint
-CREATE UNIQUE INDEX IF NOT EXISTS "integration_configs_int_proj_idx" ON "integration_configs" USING btree ("integration_id","project_id");--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "environments_folder_idx" ON "environments" USING btree ("folder_id");--> statement-breakpoint
+CREATE UNIQUE INDEX IF NOT EXISTS "folders_org_slug_idx" ON "folders" USING btree ("org_id","slug");--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "folders_org_idx" ON "folders" USING btree ("org_id");--> statement-breakpoint
+CREATE UNIQUE INDEX IF NOT EXISTS "integration_configs_int_folder_idx" ON "integration_configs" USING btree ("integration_id","folder_id");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "integrations_org_idx" ON "integrations" USING btree ("org_id");--> statement-breakpoint
 CREATE UNIQUE INDEX IF NOT EXISTS "integrations_org_provider_idx" ON "integrations" USING btree ("org_id","provider");--> statement-breakpoint
 CREATE UNIQUE INDEX IF NOT EXISTS "invitations_token_idx" ON "invitations" USING btree ("token");--> statement-breakpoint
@@ -523,7 +525,7 @@ CREATE INDEX IF NOT EXISTS "invitations_org_email_idx" ON "invitations" USING bt
 CREATE UNIQUE INDEX IF NOT EXISTS "issue_links_token_idx" ON "issue_links" USING btree ("token");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "issue_links_issue_idx" ON "issue_links" USING btree ("issue_id");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "issues_org_idx" ON "issues" USING btree ("org_id");--> statement-breakpoint
-CREATE INDEX IF NOT EXISTS "issues_project_idx" ON "issues" USING btree ("project_id");--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "issues_folder_idx" ON "issues" USING btree ("folder_id");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "issues_status_idx" ON "issues" USING btree ("status");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "issues_assignee_idx" ON "issues" USING btree ("assignee_id");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "issues_created_at_idx" ON "issues" USING btree ("created_at");--> statement-breakpoint
@@ -533,10 +535,8 @@ CREATE INDEX IF NOT EXISTS "memberships_org_idx" ON "memberships" USING btree ("
 CREATE UNIQUE INDEX IF NOT EXISTS "orgs_slug_idx" ON "orgs" USING btree ("slug");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "pins_session_idx" ON "pins" USING btree ("session_id");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "pins_issue_idx" ON "pins" USING btree ("issue_id");--> statement-breakpoint
-CREATE UNIQUE INDEX IF NOT EXISTS "projects_org_slug_idx" ON "projects" USING btree ("org_id","slug");--> statement-breakpoint
-CREATE INDEX IF NOT EXISTS "projects_org_idx" ON "projects" USING btree ("org_id");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "recording_sessions_issue_idx" ON "recording_sessions" USING btree ("issue_id");--> statement-breakpoint
-CREATE INDEX IF NOT EXISTS "recording_sessions_project_idx" ON "recording_sessions" USING btree ("project_id");--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "recording_sessions_folder_idx" ON "recording_sessions" USING btree ("folder_id");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "timeline_events_issue_idx" ON "timeline_events" USING btree ("issue_id");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "timeline_events_session_idx" ON "timeline_events" USING btree ("session_id");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "timeline_events_kind_idx" ON "timeline_events" USING btree ("kind");--> statement-breakpoint

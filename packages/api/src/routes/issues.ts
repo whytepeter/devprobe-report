@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { eq, and, desc } from "drizzle-orm";
 import { createDb } from "../db/client.js";
-import { issues, projects } from "../db/schema.js";
+import { issues, folders } from "../db/schema.js";
 import { ok, Errors } from "../lib/response.js";
 import { requireAuth } from "../middleware/auth.js";
 import { CreateIssueSchema } from "@deveprobe/shared";
@@ -62,14 +62,20 @@ issuesRouter.post("/", async (c) => {
 
   const db = createDb(c.env.DATABASE_URL);
 
-  const project = await db.query.projects.findFirst({
-    where: and(eq(projects.id, parsed.data.projectId), eq(projects.orgId, auth.orgId)),
-  });
-  if (!project) return Errors.notFound("Project");
+  // Folder is optional — when provided, validate it belongs to this org;
+  // when omitted, the issue lives at the workspace root (no folder).
+  let folderId: string | null = null;
+  if (parsed.data.folderId) {
+    const folder = await db.query.folders.findFirst({
+      where: and(eq(folders.id, parsed.data.folderId), eq(folders.orgId, auth.orgId)),
+    });
+    if (!folder) return Errors.notFound("Folder");
+    folderId = folder.id;
+  }
 
   const [issue] = await db.insert(issues).values({
     orgId: auth.orgId,
-    projectId: parsed.data.projectId,
+    folderId,
     createdById: auth.userId,
     source: parsed.data.source,
     mode: parsed.data.mode,

@@ -2,7 +2,7 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import { authRouter } from "./routes/auth.js";
-import { projectsRouter } from "./routes/projects.js";
+import { foldersRouter } from "./routes/folders.js";
 import { issuesRouter } from "./routes/issues.js";
 import { attachmentsRouter } from "./routes/attachments.js";
 import {
@@ -32,7 +32,7 @@ app.use("*", cors({
 app.get("/health", (c) => c.json({ ok: true, ts: Date.now() }));
 
 app.route("/auth", authRouter);
-app.route("/projects", projectsRouter);
+app.route("/folders", foldersRouter);
 app.route("/issues", issuesRouter);
 app.route("/attachments", attachmentsRouter);
 

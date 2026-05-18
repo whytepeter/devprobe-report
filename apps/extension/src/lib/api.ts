@@ -1,4 +1,4 @@
-import type { Issue, Project, Attachment } from "@deveprobe/shared";
+import type { Issue, Attachment } from "@deveprobe/shared";
 import { isExtensionAlive } from "./extension.js";
 
 export interface Me {
@@ -49,11 +49,6 @@ function bufferToBase64(buffer: ArrayBuffer): string {
 
 export const api = {
   me: () => send<Me>({ path: "/auth/me", method: "GET" }),
-
-  listProjects: () => send<Project[]>({ path: "/projects", method: "GET" }),
-
-  createProject: (input: { name: string; slug: string; description?: string }) =>
-    send<Project>({ path: "/projects", method: "POST", json: input }),
 
   createIssue: (input: Record<string, unknown>) =>
     send<Issue>({ path: "/issues", method: "POST", json: input }),

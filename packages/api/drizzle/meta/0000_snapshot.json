@@ -1,5 +1,5 @@
 {
-  "id": "d2f0a7a1-6e99-4a0e-a69f-9136eb1c6c6f",
+  "id": "cd0d2502-6b7a-4833-9150-9a270a0f1f93",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -271,11 +271,11 @@
           "primaryKey": false,
           "notNull": true
         },
-        "project_id": {
-          "name": "project_id",
+        "folder_id": {
+          "name": "folder_id",
           "type": "uuid",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "created_by_id": {
           "name": "created_by_id",
@@ -338,11 +338,11 @@
         }
       },
       "indexes": {
-        "annotation_sessions_project_idx": {
-          "name": "annotation_sessions_project_idx",
+        "annotation_sessions_folder_idx": {
+          "name": "annotation_sessions_folder_idx",
           "columns": [
             {
-              "expression": "project_id",
+              "expression": "folder_id",
               "isExpression": false,
               "asc": true,
               "nulls": "last"
@@ -383,17 +383,17 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "annotation_sessions_project_id_projects_id_fk": {
-          "name": "annotation_sessions_project_id_projects_id_fk",
+        "annotation_sessions_folder_id_folders_id_fk": {
+          "name": "annotation_sessions_folder_id_folders_id_fk",
           "tableFrom": "annotation_sessions",
-          "tableTo": "projects",
+          "tableTo": "folders",
           "columnsFrom": [
-            "project_id"
+            "folder_id"
           ],
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
+          "onDelete": "set null",
           "onUpdate": "no action"
         },
         "annotation_sessions_created_by_id_users_id_fk": {
@@ -869,8 +869,8 @@
           "notNull": true,
           "default": "gen_random_uuid()"
         },
-        "project_id": {
-          "name": "project_id",
+        "folder_id": {
+          "name": "folder_id",
           "type": "uuid",
           "primaryKey": false,
           "notNull": true
@@ -897,11 +897,11 @@
         }
       },
       "indexes": {
-        "environments_project_idx": {
-          "name": "environments_project_idx",
+        "environments_folder_idx": {
+          "name": "environments_folder_idx",
           "columns": [
             {
-              "expression": "project_id",
+              "expression": "folder_id",
               "isExpression": false,
               "asc": true,
               "nulls": "last"
@@ -914,12 +914,134 @@
         }
       },
       "foreignKeys": {
-        "environments_project_id_projects_id_fk": {
-          "name": "environments_project_id_projects_id_fk",
+        "environments_folder_id_folders_id_fk": {
+          "name": "environments_folder_id_folders_id_fk",
           "tableFrom": "environments",
-          "tableTo": "projects",
+          "tableTo": "folders",
           "columnsFrom": [
-            "project_id"
+            "folder_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.folders": {
+      "name": "folders",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "org_id": {
+          "name": "org_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "varchar(60)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "capture_rules": {
+          "name": "capture_rules",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{}'::jsonb"
+        },
+        "archived_at": {
+          "name": "archived_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "folders_org_slug_idx": {
+          "name": "folders_org_slug_idx",
+          "columns": [
+            {
+              "expression": "org_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "slug",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "folders_org_idx": {
+          "name": "folders_org_idx",
+          "columns": [
+            {
+              "expression": "org_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "folders_org_id_orgs_id_fk": {
+          "name": "folders_org_id_orgs_id_fk",
+          "tableFrom": "folders",
+          "tableTo": "orgs",
+          "columnsFrom": [
+            "org_id"
           ],
           "columnsTo": [
             "id"
@@ -951,8 +1073,8 @@
           "primaryKey": false,
           "notNull": true
         },
-        "project_id": {
-          "name": "project_id",
+        "folder_id": {
+          "name": "folder_id",
           "type": "uuid",
           "primaryKey": false,
           "notNull": true
@@ -980,8 +1102,8 @@
         }
       },
       "indexes": {
-        "integration_configs_int_proj_idx": {
-          "name": "integration_configs_int_proj_idx",
+        "integration_configs_int_folder_idx": {
+          "name": "integration_configs_int_folder_idx",
           "columns": [
             {
               "expression": "integration_id",
@@ -990,7 +1112,7 @@
               "nulls": "last"
             },
             {
-              "expression": "project_id",
+              "expression": "folder_id",
               "isExpression": false,
               "asc": true,
               "nulls": "last"
@@ -1016,12 +1138,12 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "integration_configs_project_id_projects_id_fk": {
-          "name": "integration_configs_project_id_projects_id_fk",
+        "integration_configs_folder_id_folders_id_fk": {
+          "name": "integration_configs_folder_id_folders_id_fk",
           "tableFrom": "integration_configs",
-          "tableTo": "projects",
+          "tableTo": "folders",
           "columnsFrom": [
-            "project_id"
+            "folder_id"
           ],
           "columnsTo": [
             "id"
@@ -1429,11 +1551,11 @@
           "primaryKey": false,
           "notNull": true
         },
-        "project_id": {
-          "name": "project_id",
+        "folder_id": {
+          "name": "folder_id",
           "type": "uuid",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "created_by_id": {
           "name": "created_by_id",
@@ -1591,11 +1713,11 @@
           "method": "btree",
           "with": {}
         },
-        "issues_project_idx": {
-          "name": "issues_project_idx",
+        "issues_folder_idx": {
+          "name": "issues_folder_idx",
           "columns": [
             {
-              "expression": "project_id",
+              "expression": "folder_id",
               "isExpression": false,
               "asc": true,
               "nulls": "last"
@@ -1681,17 +1803,17 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "issues_project_id_projects_id_fk": {
-          "name": "issues_project_id_projects_id_fk",
+        "issues_folder_id_folders_id_fk": {
+          "name": "issues_folder_id_folders_id_fk",
           "tableFrom": "issues",
-          "tableTo": "projects",
+          "tableTo": "folders",
           "columnsFrom": [
-            "project_id"
+            "folder_id"
           ],
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
+          "onDelete": "set null",
           "onUpdate": "no action"
         },
         "issues_created_by_id_users_id_fk": {
@@ -2128,128 +2250,6 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.projects": {
-      "name": "projects",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "uuid",
-          "primaryKey": true,
-          "notNull": true,
-          "default": "gen_random_uuid()"
-        },
-        "org_id": {
-          "name": "org_id",
-          "type": "uuid",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "name": {
-          "name": "name",
-          "type": "varchar(100)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "slug": {
-          "name": "slug",
-          "type": "varchar(60)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "description": {
-          "name": "description",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "capture_rules": {
-          "name": "capture_rules",
-          "type": "jsonb",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "'{}'::jsonb"
-        },
-        "archived_at": {
-          "name": "archived_at",
-          "type": "timestamp with time zone",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp with time zone",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamp with time zone",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        }
-      },
-      "indexes": {
-        "projects_org_slug_idx": {
-          "name": "projects_org_slug_idx",
-          "columns": [
-            {
-              "expression": "org_id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            },
-            {
-              "expression": "slug",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": true,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
-        "projects_org_idx": {
-          "name": "projects_org_idx",
-          "columns": [
-            {
-              "expression": "org_id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        }
-      },
-      "foreignKeys": {
-        "projects_org_id_orgs_id_fk": {
-          "name": "projects_org_id_orgs_id_fk",
-          "tableFrom": "projects",
-          "tableTo": "orgs",
-          "columnsFrom": [
-            "org_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
     "public.recording_sessions": {
       "name": "recording_sessions",
       "schema": "",
@@ -2267,11 +2267,11 @@
           "primaryKey": false,
           "notNull": true
         },
-        "project_id": {
-          "name": "project_id",
+        "folder_id": {
+          "name": "folder_id",
           "type": "uuid",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "created_by_id": {
           "name": "created_by_id",
@@ -2373,11 +2373,11 @@
           "method": "btree",
           "with": {}
         },
-        "recording_sessions_project_idx": {
-          "name": "recording_sessions_project_idx",
+        "recording_sessions_folder_idx": {
+          "name": "recording_sessions_folder_idx",
           "columns": [
             {
-              "expression": "project_id",
+              "expression": "folder_id",
               "isExpression": false,
               "asc": true,
               "nulls": "last"
@@ -2403,17 +2403,17 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "recording_sessions_project_id_projects_id_fk": {
-          "name": "recording_sessions_project_id_projects_id_fk",
+        "recording_sessions_folder_id_folders_id_fk": {
+          "name": "recording_sessions_folder_id_folders_id_fk",
           "tableFrom": "recording_sessions",
-          "tableTo": "projects",
+          "tableTo": "folders",
           "columnsFrom": [
-            "project_id"
+            "folder_id"
           ],
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
+          "onDelete": "set null",
           "onUpdate": "no action"
         },
         "recording_sessions_created_by_id_users_id_fk": {

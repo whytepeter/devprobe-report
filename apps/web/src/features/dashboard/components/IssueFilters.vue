@@ -14,7 +14,7 @@
         <SelectValue placeholder="Type" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="">All types</SelectItem>
+        <SelectItem value="all">All types</SelectItem>
         <SelectItem value="screenshot">Screenshot</SelectItem>
         <SelectItem value="screen_recording">Recording</SelectItem>
         <SelectItem value="live_annotation">Pin</SelectItem>
@@ -27,7 +27,7 @@
         <SelectValue placeholder="Severity" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="">All severities</SelectItem>
+        <SelectItem value="all">All severities</SelectItem>
         <SelectItem value="critical">Critical</SelectItem>
         <SelectItem value="high">High</SelectItem>
         <SelectItem value="medium">Medium</SelectItem>
@@ -41,7 +41,7 @@
         <SelectValue placeholder="Status" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="">All statuses</SelectItem>
+        <SelectItem value="all">All statuses</SelectItem>
         <SelectItem value="open">Open</SelectItem>
         <SelectItem value="triaged">Triaged</SelectItem>
         <SelectItem value="in_progress">In progress</SelectItem>

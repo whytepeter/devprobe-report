@@ -1124,11 +1124,11 @@
     },
     {
       "id": "bug-070",
-      "timestamp": "2026-05-11T00:11:32.325Z",
+      "timestamp": "2026-05-17T15:00:57.914Z",
       "error_message": "Significant refactor of ",
-      "file": "apps/web/src/main.ts",
-      "root_cause": "2 lines replaced/restructured",
-      "fix": "Rewrote 14→21 lines (2 removed)",
+      "file": "packages/shared/src/schemas.ts",
+      "root_cause": "4 lines replaced/restructured",
+      "fix": "Rewrote 15→21 lines (4 removed)",
       "tags": [
         "auto-detected",
         "refactor",
@@ -1136,335 +1136,63 @@
       ],
       "related_bugs": [],
       "occurrences": 1,
-      "last_seen": "2026-05-11T00:11:32.325Z"
+      "last_seen": "2026-05-17T15:00:57.914Z"
     },
     {
       "id": "bug-071",
-      "timestamp": "2026-05-11T00:26:46.968Z",
+      "timestamp": "2026-05-17T15:03:39.721Z",
       "error_message": "Incorrect value in code",
-      "file": "packages/ui/package.json",
-      "root_cause": "Had \"^4.4.3\"",
-      "fix": "Changed to \"^3.23.8\"",
+      "file": "packages/api/src/index.ts",
+      "root_cause": "Had \"./routes/projects.js\"",
+      "fix": "Changed to \"./routes/folders.js\"",
       "tags": [
         "auto-detected",
         "wrong-value",
-        "json"
+        "ts"
       ],
       "related_bugs": [],
       "occurrences": 2,
-      "last_seen": "2026-05-11T00:26:57.199Z"
+      "last_seen": "2026-05-17T15:03:50.575Z"
     },
     {
       "id": "bug-072",
-      "timestamp": "2026-05-11T00:44:59.524Z",
-      "error_message": "CSS fix: update",
-      "file": "apps/web/src/features/projects/components/CreateProjectDialog.vue",
-      "root_cause": "update: model-value=\"onNameInput(value as string)\" → model-value=\"onNameInput($event)\"",
-      "fix": "Changed update: model-value=\"onNameInput(value as string)\" → model-value=\"onNameInput($event)\"",
-      "tags": [
-        "auto-detected",
-        "style-fix",
-        "vue"
-      ],
-      "related_bugs": [],
-      "occurrences": 2,
-      "last_seen": "2026-05-11T00:45:05.224Z"
-    },
-    {
-      "id": "bug-073",
-      "timestamp": "2026-05-11T00:45:11.440Z",
-      "error_message": "Wrong reference: Silence should be script",
-      "file": "apps/web/src/features/projects/components/CreateProjectDialog.vue",
-      "root_cause": "Used \"Silence\" instead of \"script\"",
-      "fix": "Changed Silence → script",
-      "tags": [
-        "auto-detected",
-        "wrong-reference",
-        "vue"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-11T00:45:11.440Z"
-    },
-    {
-      "id": "bug-074",
-      "timestamp": "2026-05-11T10:38:54.558Z",
-      "error_message": "Missing guard clause",
-      "file": "apps/web/src/features/projects/components/CreateProjectDialog.vue",
-      "root_cause": "No early return/throw for edge case: slugTouched.value",
-      "fix": "Added guard clause: if (slugTouched.value)",
-      "tags": [
-        "auto-detected",
-        "guard-clause",
-        "vue"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-11T10:38:54.558Z"
-    },
-    {
-      "id": "bug-075",
-      "timestamp": "2026-05-11T10:50:19.673Z",
+      "timestamp": "2026-05-17T15:06:50.066Z",
       "error_message": "Significant refactor of ",
-      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
-      "root_cause": "2 lines replaced/restructured",
-      "fix": "Rewrote 10→13 lines (2 removed)",
+      "file": "apps/web/src/router/index.ts",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 5→10 lines (3 removed)",
       "tags": [
         "auto-detected",
         "refactor",
-        "vue"
+        "ts"
       ],
       "related_bugs": [],
       "occurrences": 1,
-      "last_seen": "2026-05-11T10:50:19.673Z"
+      "last_seen": "2026-05-17T15:06:50.066Z"
     },
     {
-      "id": "bug-076",
-      "timestamp": "2026-05-11T10:54:39.417Z",
-      "error_message": "Missing error handling in function",
-      "file": "apps/extension/src/entrypoints/background.ts",
+      "id": "bug-073",
+      "timestamp": "2026-05-17T15:33:09.072Z",
+      "error_message": "Missing error handling in setLayout",
+      "file": "apps/web/src/pages/DashboardPage.vue",
       "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
       "fix": "Added try/catch block",
       "tags": [
         "auto-detected",
         "error-handling",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-11T10:54:39.417Z"
-    },
-    {
-      "id": "bug-077",
-      "timestamp": "2026-05-11T10:54:49.350Z",
-      "error_message": "Type error",
-      "file": "apps/extension/src/entrypoints/background.ts",
-      "root_cause": "Missing or incorrect type annotation",
-      "fix": "Added type assertion/annotation",
-      "tags": [
-        "auto-detected",
-        "type-fix",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-11T10:54:49.350Z"
-    },
-    {
-      "id": "bug-078",
-      "timestamp": "2026-05-11T14:37:38.062Z",
-      "error_message": "Type error",
-      "file": "apps/extension/src/lib/api.ts",
-      "root_cause": "Missing or incorrect type annotation",
-      "fix": "Added type assertion/annotation",
-      "tags": [
-        "auto-detected",
-        "type-fix",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-11T14:37:38.062Z"
-    },
-    {
-      "id": "bug-079",
-      "timestamp": "2026-05-11T14:40:38.770Z",
-      "error_message": "Null/undefined access in ",
-      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
-      "root_cause": "Property access on potentially null/undefined value",
-      "fix": "Added null safety (optional chaining or null check)",
-      "tags": [
-        "auto-detected",
-        "null-safety",
         "vue"
       ],
       "related_bugs": [],
       "occurrences": 1,
-      "last_seen": "2026-05-11T14:40:38.770Z"
+      "last_seen": "2026-05-17T15:33:09.072Z"
     },
     {
-      "id": "bug-080",
-      "timestamp": "2026-05-11T15:05:35.338Z",
-      "error_message": "Missing await",
-      "file": "apps/extension/src/lib/api.ts",
-      "root_cause": "Async call without await — returned Promise instead of value",
-      "fix": "Added await to async call",
-      "tags": [
-        "auto-detected",
-        "async-fix",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-11T15:05:35.338Z"
-    },
-    {
-      "id": "bug-081",
-      "timestamp": "2026-05-11T15:05:56.376Z",
-      "error_message": "Type error",
-      "file": "apps/extension/src/entrypoints/background.ts",
-      "root_cause": "Missing or incorrect type annotation",
-      "fix": "Added type assertion/annotation",
-      "tags": [
-        "auto-detected",
-        "type-fix",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-11T15:05:56.376Z"
-    },
-    {
-      "id": "bug-082",
-      "timestamp": "2026-05-11T15:07:01.335Z",
-      "error_message": "Null/undefined access in ",
-      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
-      "root_cause": "Property access on potentially null/undefined value",
-      "fix": "Added null safety (optional chaining or null check)",
-      "tags": [
-        "auto-detected",
-        "null-safety",
-        "vue"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-11T15:07:01.335Z"
-    },
-    {
-      "id": "bug-083",
-      "timestamp": "2026-05-11T15:27:49.608Z",
-      "error_message": "Null/undefined access in ",
-      "file": "packages/api/src/routes/attachments.ts",
-      "root_cause": "Property access on potentially null/undefined value",
-      "fix": "Added null safety (optional chaining or null check)",
-      "tags": [
-        "auto-detected",
-        "null-safety",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-11T15:27:49.608Z"
-    },
-    {
-      "id": "bug-084",
-      "timestamp": "2026-05-11T15:29:24.005Z",
-      "error_message": "Wrong reference: Issue should be IssueWithAttachments",
-      "file": "apps/web/src/features/issues/composables/useIssue.ts",
-      "root_cause": "Used \"Issue\" instead of \"IssueWithAttachments\"",
-      "fix": "Changed Issue → IssueWithAttachments",
-      "tags": [
-        "auto-detected",
-        "wrong-reference",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-11T15:29:24.005Z"
-    },
-    {
-      "id": "bug-085",
-      "timestamp": "2026-05-11T15:29:43.691Z",
-      "error_message": "Null/undefined access in ",
-      "file": "apps/web/src/features/issues/composables/useIssue.ts",
-      "root_cause": "Property access on potentially null/undefined value",
-      "fix": "Added null safety (optional chaining or null check)",
-      "tags": [
-        "auto-detected",
-        "null-safety",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-11T15:29:43.691Z"
-    },
-    {
-      "id": "bug-086",
-      "timestamp": "2026-05-11T15:44:26.725Z",
-      "error_message": "Type error",
-      "file": "packages/shared/src/schemas.ts",
-      "root_cause": "Missing or incorrect type annotation",
-      "fix": "Added type assertion/annotation",
-      "tags": [
-        "auto-detected",
-        "type-fix",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-11T15:44:26.725Z"
-    },
-    {
-      "id": "bug-087",
-      "timestamp": "2026-05-11T15:44:44.907Z",
-      "error_message": "Wrong reference: returning should be parsed",
-      "file": "packages/api/src/routes/issues.ts",
-      "root_cause": "Used \"returning\" instead of \"parsed\"",
-      "fix": "Changed returning → parsed",
-      "tags": [
-        "auto-detected",
-        "wrong-reference",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-11T15:44:44.907Z"
-    },
-    {
-      "id": "bug-088",
-      "timestamp": "2026-05-11T15:45:04.304Z",
-      "error_message": "CSS fix: visibility",
-      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
-      "root_cause": "visibility: \"anyone\", → \"private\",",
-      "fix": "Changed visibility: \"anyone\", → \"private\",",
-      "tags": [
-        "auto-detected",
-        "style-fix",
-        "vue"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-11T15:45:04.304Z"
-    },
-    {
-      "id": "bug-089",
-      "timestamp": "2026-05-11T15:45:29.674Z",
-      "error_message": "CSS fix: --border, --input",
-      "file": "packages/ui/src/globals.css",
-      "root_cause": "--border: 46 14% 86% → 46 10% 91%; --input: 46 14% 86% → 46 10% 91%",
-      "fix": "Changed --border: 46 14% 86% → 46 10% 91%; --input: 46 14% 86% → 46 10% 91%",
-      "tags": [
-        "auto-detected",
-        "style-fix",
-        "css"
-      ],
-      "related_bugs": [],
-      "occurrences": 2,
-      "last_seen": "2026-05-11T15:45:39.083Z"
-    },
-    {
-      "id": "bug-090",
-      "timestamp": "2026-05-11T16:10:24.892Z",
-      "error_message": "Type error",
-      "file": "packages/api/src/routes/issues.ts",
-      "root_cause": "Missing or incorrect type annotation",
-      "fix": "Added type assertion/annotation",
-      "tags": [
-        "auto-detected",
-        "type-fix",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-11T16:10:24.892Z"
-    },
-    {
-      "id": "bug-091",
-      "timestamp": "2026-05-11T16:13:46.049Z",
+      "id": "bug-074",
+      "timestamp": "2026-05-17T15:33:26.774Z",
       "error_message": "Incorrect value in code",
-      "file": "apps/web/src/features/workspace-shell/DashboardLayout.vue",
-      "root_cause": "Had \"Inbox\"",
-      "fix": "Changed to \"Issues\"",
+      "file": "apps/web/src/pages/DashboardPage.vue",
+      "root_cause": "Had \"w-full text-sm\"",
+      "fix": "Changed to \"layout === '",
       "tags": [
         "auto-detected",
         "wrong-value",
@@ -1472,15 +1200,79 @@
       ],
       "related_bugs": [],
       "occurrences": 1,
-      "last_seen": "2026-05-11T16:13:46.049Z"
+      "last_seen": "2026-05-17T15:33:26.774Z"
     },
     {
-      "id": "bug-092",
-      "timestamp": "2026-05-11T16:16:26.245Z",
+      "id": "bug-075",
+      "timestamp": "2026-05-17T15:39:29.301Z",
       "error_message": "Significant refactor of ",
-      "file": "apps/web/src/features/issues/composables/useIssue.ts",
-      "root_cause": "2 lines replaced/restructured",
-      "fix": "Rewrote 9→19 lines (2 removed)",
+      "file": "apps/web/src/pages/DashboardPage.vue",
+      "root_cause": "33 lines replaced/restructured",
+      "fix": "Rewrote 38→5 lines (33 removed) | Also: <!-- Card grid -->; <div | Also: // Layout preference persists across navigation so; type Layout = \"list\" | \"card\";",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 3,
+      "last_seen": "2026-05-17T15:40:24.029Z"
+    },
+    {
+      "id": "bug-076",
+      "timestamp": "2026-05-17T15:39:37.874Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/web/src/pages/DashboardPage.vue",
+      "root_cause": "Had \"layout === '",
+      "fix": "Changed to \"w-full text-sm\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T15:39:37.874Z"
+    },
+    {
+      "id": "bug-077",
+      "timestamp": "2026-05-17T21:06:30.038Z",
+      "error_message": "Wrong reference: projectId should be folderId",
+      "file": "packages/shared/src/schemas.ts",
+      "root_cause": "Used \"projectId\" instead of \"folderId\"",
+      "fix": "Changed projectId → folderId",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T21:06:30.038Z"
+    },
+    {
+      "id": "bug-078",
+      "timestamp": "2026-05-17T21:08:19.455Z",
+      "error_message": "Wrong reference: projects should be folders",
+      "file": "packages/api/src/routes/issues.ts",
+      "root_cause": "Used \"projects\" instead of \"folders\"",
+      "fix": "Changed projects → folders",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T21:08:19.455Z"
+    },
+    {
+      "id": "bug-079",
+      "timestamp": "2026-05-17T21:08:41.992Z",
+      "error_message": "Significant refactor of ",
+      "file": "packages/api/src/routes/issues.ts",
+      "root_cause": "4 lines replaced/restructured",
+      "fix": "Rewrote 9→15 lines (4 removed)",
       "tags": [
         "auto-detected",
         "refactor",
@@ -1488,7 +1280,263 @@
       ],
       "related_bugs": [],
       "occurrences": 1,
-      "last_seen": "2026-05-11T16:16:26.245Z"
+      "last_seen": "2026-05-17T21:08:41.992Z"
+    },
+    {
+      "id": "bug-080",
+      "timestamp": "2026-05-17T21:08:50.899Z",
+      "error_message": "Incorrect value in code",
+      "file": "packages/api/src/index.ts",
+      "root_cause": "Had \"./routes/projects.js\"",
+      "fix": "Changed to \"./routes/folders.js\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-17T21:09:02.554Z"
+    },
+    {
+      "id": "bug-081",
+      "timestamp": "2026-05-17T21:11:51.956Z",
+      "error_message": "Missing import: @/features/folders/FoldersPage.vue",
+      "file": "apps/web/src/app/router.ts",
+      "root_cause": "Module(s) not imported: @/features/folders/FoldersPage.vue",
+      "fix": "Added import(s) for @/features/folders/FoldersPage.vue",
+      "tags": [
+        "auto-detected",
+        "missing-import",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T21:11:51.956Z"
+    },
+    {
+      "id": "bug-082",
+      "timestamp": "2026-05-17T21:11:58.919Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/web/src/shared/lib/mock.ts",
+      "root_cause": "Had \"proj-1\"",
+      "fix": "Changed to \"fld-1\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-17T21:12:05.966Z"
+    },
+    {
+      "id": "bug-083",
+      "timestamp": "2026-05-17T21:12:20.579Z",
+      "error_message": "Wrong reference: projects should be folders",
+      "file": "apps/web/src/features/settings/SettingsPage.vue",
+      "root_cause": "Used \"projects\" instead of \"folders\"",
+      "fix": "Changed projects → folders",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T21:12:20.579Z"
+    },
+    {
+      "id": "bug-084",
+      "timestamp": "2026-05-17T21:16:06.822Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/entrypoints/popup/App.vue",
+      "root_cause": "Had './components/ActiveProjectChip.vue'",
+      "fix": "Changed to './components/ActiveFolderChip.vue'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T21:16:06.822Z"
+    },
+    {
+      "id": "bug-085",
+      "timestamp": "2026-05-17T21:54:43.721Z",
+      "error_message": "Wrong reference: dashboard should be issues",
+      "file": "apps/web/src/app/router.ts",
+      "root_cause": "Used \"dashboard\" instead of \"issues\"",
+      "fix": "Changed dashboard → issues",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T21:54:43.721Z"
+    },
+    {
+      "id": "bug-086",
+      "timestamp": "2026-05-17T21:54:59.268Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/web/src/app/router.ts",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 20→30 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T21:54:59.268Z"
+    },
+    {
+      "id": "bug-087",
+      "timestamp": "2026-05-17T21:55:07.567Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/web/src/app/router.ts",
+      "root_cause": "Had \"dashboard\"",
+      "fix": "Changed to \"issues\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T21:55:07.567Z"
+    },
+    {
+      "id": "bug-088",
+      "timestamp": "2026-05-17T21:56:22.616Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/web/src/features/issues/components/IssueHeader.vue",
+      "root_cause": "Had \"/dashboard\"",
+      "fix": "Changed to \"/issues\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T21:56:22.616Z"
+    },
+    {
+      "id": "bug-089",
+      "timestamp": "2026-05-17T21:56:40.043Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/web/src/pages/issues/Issue.vue",
+      "root_cause": "Had \"/dashboard\"",
+      "fix": "Changed to \"/issues\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T21:56:40.043Z"
+    },
+    {
+      "id": "bug-090",
+      "timestamp": "2026-05-17T21:56:49.087Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/web/src/pages/auth/Login.vue",
+      "root_cause": "Had \"/dashboard\"",
+      "fix": "Changed to \"/issues\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T21:56:49.087Z"
+    },
+    {
+      "id": "bug-091",
+      "timestamp": "2026-05-17T21:56:56.287Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/web/src/pages/auth/Signup.vue",
+      "root_cause": "Had \"/dashboard\"",
+      "fix": "Changed to \"/issues\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T21:56:56.287Z"
+    },
+    {
+      "id": "bug-092",
+      "timestamp": "2026-05-17T21:57:03.696Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/entrypoints/popup/components/AccountMenu.vue",
+      "root_cause": "Had `${WEB_APP_URL}/dashboard`",
+      "fix": "Changed to `${WEB_APP_URL}/issues`",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T21:57:03.696Z"
+    },
+    {
+      "id": "bug-093",
+      "timestamp": "2026-05-17T22:07:00.901Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/components/capture/IssueComposePanel.vue",
+      "root_cause": "6 lines replaced/restructured",
+      "fix": "Rewrote 15→10 lines (6 removed) | Also: folderId: \"\",; const folders = ref<Folder[]>([]);",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-17T22:07:12.593Z"
+    },
+    {
+      "id": "bug-094",
+      "timestamp": "2026-05-17T22:08:08.528Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/entrypoints/popup/App.vue",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 11→8 lines (3 removed) | Also: <ActiveFolderChip; :active-folder=\"account.activeFolder.value\"",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-17T22:08:16.411Z"
+    },
+    {
+      "id": "bug-095",
+      "timestamp": "2026-05-17T22:09:48.109Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/lib/api.ts",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 9→4 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T22:09:48.109Z"
     }
   ]
 }

@@ -1,8 +1,8 @@
 <!--
   AccountMenu
   ───────────
-  Popup header dropdown. Shows the connected user + workspace, lets the user
-  switch the active project, jump to the dashboard, and disconnect.
+  Popup header dropdown. Shows the connected user + workspace, jumps to the
+  dashboard, and disconnects. Folder organisation lives in the web app.
 -->
 <template>
   <DropdownMenu>
@@ -50,47 +50,6 @@
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuLabel class="text-[10px] uppercase tracking-[0.07em] text-muted-foreground/70 font-semibold">
-          Active project
-        </DropdownMenuLabel>
-
-        <div v-if="loading" class="px-2 py-1.5 text-[11px] text-muted-foreground italic">
-          Loading…
-        </div>
-
-        <div v-else-if="projects.length === 0" class="px-2 pb-1.5 space-y-1.5">
-          <p class="text-[11px] text-muted-foreground leading-snug">
-            No projects in this workspace yet.
-          </p>
-          <button
-            type="button"
-            class="text-[11px] font-medium text-primary hover:underline inline-flex items-center gap-1"
-            @click="openProjects"
-          >
-            Create one
-            <Icon name="arrow-up-right" :size="10" :stroke-width="2" />
-          </button>
-        </div>
-
-        <DropdownMenuItem
-          v-for="p in projects"
-          v-else
-          :key="p.id"
-          class="gap-2"
-          @select="onSelectProject(p.id)"
-        >
-          <Icon
-            :name="p.id === activeProjectId ? 'check' : 'circle'"
-            :size="13"
-            :stroke-width="2"
-            :class="p.id === activeProjectId ? 'text-primary' : 'text-muted-foreground/40'"
-          />
-          <span class="flex-1 truncate">{{ p.name }}</span>
-          <span class="font-mono text-[10px] text-muted-foreground shrink-0">{{ p.slug }}</span>
-        </DropdownMenuItem>
-
-        <DropdownMenuSeparator />
-
         <DropdownMenuItem @select="openDashboard">
           <Icon name="external-link" :size="13" :stroke-width="1.75" class="mr-2" />
           Open dashboard
@@ -122,18 +81,14 @@ import { WEB_APP_URL } from '../../../lib/env.js';
 import { safeSendMessage } from '../../../lib/extension.js';
 import type { Me } from '../../../lib/api.js';
 import type { StoredAuth } from '../../../lib/auth.js';
-import type { Project } from '@deveprobe/shared';
 
-const props = defineProps<{
+defineProps<{
   auth: StoredAuth | null;
   me: Me | null;
-  projects: Project[];
   loading: boolean;
-  activeProjectId: string | null;
 }>();
 
 const emit = defineEmits<{
-  select: [projectId: string];
   disconnect: [];
 }>();
 
@@ -148,16 +103,7 @@ function openConnect() {
 }
 
 function openDashboard() {
-  openTab(`${WEB_APP_URL}/dashboard`);
-}
-
-function openProjects() {
-  openTab(`${WEB_APP_URL}/projects`);
-}
-
-function onSelectProject(projectId: string) {
-  if (projectId === props.activeProjectId) return;
-  emit('select', projectId);
+  openTab(`${WEB_APP_URL}/issues`);
 }
 
 function onDisconnect() {

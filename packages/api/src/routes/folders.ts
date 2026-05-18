@@ -1,47 +1,47 @@
 import { Hono } from "hono";
 import { eq, and } from "drizzle-orm";
 import { createDb } from "../db/client.js";
-import { projects } from "../db/schema.js";
+import { folders } from "../db/schema.js";
 import { ok, Errors } from "../lib/response.js";
 import { requireAuth } from "../middleware/auth.js";
-import { CreateProjectSchema } from "@deveprobe/shared";
+import { CreateFolderSchema } from "@deveprobe/shared";
 import type { Env } from "../lib/env.js";
 
-export const projectsRouter = new Hono<{ Bindings: Env }>();
+export const foldersRouter = new Hono<{ Bindings: Env }>();
 
-projectsRouter.use("*", requireAuth());
+foldersRouter.use("*", requireAuth());
 
-projectsRouter.get("/", async (c) => {
+foldersRouter.get("/", async (c) => {
   const auth = c.get("auth");
   const db = createDb(c.env.DATABASE_URL);
 
-  const rows = await db.query.projects.findMany({
-    where: and(eq(projects.orgId, auth.orgId)),
-    orderBy: (p, { desc }) => [desc(p.createdAt)],
+  const rows = await db.query.folders.findMany({
+    where: and(eq(folders.orgId, auth.orgId)),
+    orderBy: (f, { desc }) => [desc(f.createdAt)],
   });
 
   return ok(rows);
 });
 
-projectsRouter.post("/", async (c) => {
+foldersRouter.post("/", async (c) => {
   const auth = c.get("auth");
   const body = await c.req.json().catch(() => null);
-  const parsed = CreateProjectSchema.safeParse(body);
+  const parsed = CreateFolderSchema.safeParse(body);
   if (!parsed.success) return Errors.badRequest("Invalid input", parsed.error.flatten());
 
   const db = createDb(c.env.DATABASE_URL);
 
-  const existing = await db.query.projects.findFirst({
-    where: and(eq(projects.orgId, auth.orgId), eq(projects.slug, parsed.data.slug)),
+  const existing = await db.query.folders.findFirst({
+    where: and(eq(folders.orgId, auth.orgId), eq(folders.slug, parsed.data.slug)),
   });
-  if (existing) return Errors.conflict("Project slug already exists");
+  if (existing) return Errors.conflict("Folder slug already exists");
 
-  const [project] = await db.insert(projects).values({
+  const [folder] = await db.insert(folders).values({
     orgId: auth.orgId,
     name: parsed.data.name,
     slug: parsed.data.slug,
     ...(parsed.data.description !== undefined && { description: parsed.data.description }),
   }).returning();
 
-  return ok(project, 201);
+  return ok(folder, 201);
 });

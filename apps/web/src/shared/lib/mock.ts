@@ -5,7 +5,7 @@ export const MOCK_ISSUES: Issue[] = [
   {
     id: "iss-001",
     orgId: "org-1",
-    projectId: "proj-1",
+    folderId: "fld-1",
     createdById: "user-1",
     source: IssueSource.EXTENSION,
     mode: IssueMode.SCREEN_RECORDING,
@@ -31,7 +31,7 @@ export const MOCK_ISSUES: Issue[] = [
   {
     id: "iss-002",
     orgId: "org-1",
-    projectId: "proj-1",
+    folderId: "fld-1",
     createdById: "user-2",
     source: IssueSource.EXTENSION,
     mode: IssueMode.LIVE_ANNOTATION,
@@ -57,7 +57,7 @@ export const MOCK_ISSUES: Issue[] = [
   {
     id: "iss-003",
     orgId: "org-1",
-    projectId: "proj-2",
+    folderId: "fld-2",
     createdById: "user-1",
     source: IssueSource.EXTENSION,
     mode: IssueMode.SCREENSHOT,
@@ -83,7 +83,7 @@ export const MOCK_ISSUES: Issue[] = [
   {
     id: "iss-004",
     orgId: "org-1",
-    projectId: "proj-1",
+    folderId: "fld-1",
     createdById: "user-3",
     source: IssueSource.EXTENSION,
     mode: IssueMode.SCREEN_RECORDING,
@@ -109,7 +109,7 @@ export const MOCK_ISSUES: Issue[] = [
   {
     id: "iss-005",
     orgId: "org-1",
-    projectId: "proj-2",
+    folderId: "fld-2",
     createdById: "user-2",
     source: IssueSource.EXTENSION,
     mode: IssueMode.LIVE_ANNOTATION,
@@ -135,7 +135,7 @@ export const MOCK_ISSUES: Issue[] = [
   {
     id: "iss-006",
     orgId: "org-1",
-    projectId: "proj-1",
+    folderId: "fld-1",
     createdById: "user-1",
     source: IssueSource.EXTENSION,
     mode: IssueMode.SCREEN_RECORDING,
@@ -160,7 +160,7 @@ export const MOCK_ISSUES: Issue[] = [
   },
 ];
 
-export const MOCK_PROJECTS = [
-  { id: "proj-1", name: "Web App", slug: "web-app" },
-  { id: "proj-2", name: "Marketing Site", slug: "marketing-site" },
+export const MOCK_FOLDERS = [
+  { id: "fld-1", name: "Web App", slug: "web-app" },
+  { id: "fld-2", name: "Marketing Site", slug: "marketing-site" },
 ];

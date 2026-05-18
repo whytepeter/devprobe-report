@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-17T14:34:41.314Z
-> Files: 268 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-17T22:09:56.286Z
+> Files: 236 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -56,13 +56,13 @@
 
 ## apps/extension/src/components/capture/
 
-- `IssueComposePanel.vue` — Vue: setup (~2850 tok)
+- `IssueComposePanel.vue` — Vue: setup (~1848 tok)
 - `PostComposeModal.vue` — Vue: setup (~727 tok)
 - `RegionSelector.vue` — Vue: setup, TS, emits (~1211 tok)
 
 ## apps/extension/src/components/capture/screenshot/
 
-- `ScreenshotCapture.vue` — Vue: setup (~919 tok)
+- `ScreenshotCapture.vue` — Vue: setup (~927 tok)
 - `ScreenshotPanel.vue` — Vue: setup, TS, 1 props (~642 tok)
 
 ## apps/extension/src/components/capture/screenshot/annotation/
@@ -76,36 +76,36 @@
 ## apps/extension/src/components/launcher/
 
 - `ConnectPrompt.vue` — Vue: setup (~448 tok)
-- `FloatingLauncher.vue` — Vue: setup (~1163 tok)
+- `FloatingLauncher.vue` — Vue: setup (~1146 tok)
 - `LauncherItem.vue` — Vue: setup, TS, 5 props, emits (~641 tok)
 
 ## apps/extension/src/entrypoints/
 
-- `background.ts` — API proxy (~1806 tok)
-- `content.ts` — Content script — mounts three possible UIs into the page via shadow DOM: (~2389 tok)
+- `background.ts` — API proxy (~1792 tok)
+- `content.ts` — Content script — mounts three possible UIs into the page via shadow DOM: (~2205 tok)
 
 ## apps/extension/src/entrypoints/popup/
 
-- `App.vue` — Vue: setup (~905 tok)
+- `App.vue` — Vue: setup (~822 tok)
 - `index.html` — DevProbe (~137 tok)
 - `main.ts` — Initialise theme then mount — wrapped in IIFE because top-level await is (~185 tok)
 
 ## apps/extension/src/entrypoints/popup/components/
 
-- `AccountMenu.vue` — Vue: setup (~1451 tok)
+- `AccountMenu.vue` — Vue: setup (~968 tok)
 - `ActionItem.vue` — Vue: setup, TS, 4 props, emits (~454 tok)
 - `ActionList.vue` — Vue: setup, TS, emits (~503 tok)
-- `ActiveProjectChip.vue` — Vue: setup (~396 tok)
-- `PopupHeader.vue` — Vue: setup (~380 tok)
+- `ActiveFolderChip.vue` — Vue: setup (~393 tok)
+- `PopupHeader.vue` — Vue: setup, TS, 2 props (~525 tok)
 
 ## apps/extension/src/entrypoints/popup/composables/
 
-- `usePopupAccount.ts` — Popup account state — keeps the workspace identity, project list, and (~699 tok)
+- `usePopupAccount.ts` — Popup account state — keeps the workspace identity in sync with chrome.storage (~407 tok)
 
 ## apps/extension/src/lib/
 
-- `api.ts` — API client (~808 tok)
-- `auth.ts` — Exports StoredAuth, getAuth, setAuth, setDefaultProject + 2 more (~717 tok)
+- `api.ts` — API client (~740 tok)
+- `auth.ts` — Exports StoredAuth, getAuth, setAuth, clearAuth, onAuthChange (~593 tok)
 - `env.ts` — Exports WEB_APP_URL, API_URL (~48 tok)
 - `extension.ts` — Extension runtime helpers. (~253 tok)
 - `metadata.ts` — Exports collectBrowserMeta, dataUrlToBlob (~1394 tok)
@@ -115,17 +115,21 @@
 
 - `env.d.ts` — / <reference types="vite/client" /> (~51 tok)
 - `index.html` — DevProbe (~82 tok)
-- `package.json` — Node.js package manifest (~324 tok)
+- `package.json` — Node.js package manifest (~285 tok)
 - `postcss.config.js` — PostCSS configuration (~24 tok)
 - `tailwind.config.ts` — Tailwind CSS configuration (~728 tok)
-- `tsconfig.json` — TypeScript configuration (~189 tok)
+- `tsconfig.json` — TypeScript configuration (~99 tok)
 - `tsconfig.node.json` (~66 tok)
 - `vite.config.ts` — Vite build configuration (~155 tok)
 
 ## apps/web/src/
 
 - `App.vue` — Vue: setup, TS (~32 tok)
-- `main.ts` — Apply saved/system theme before first render to avoid flash (~206 tok)
+- `main.ts` — Apply saved/system theme before first render to avoid flash (~111 tok)
+
+## apps/web/src/app/
+
+- `router.ts` — Declares router (~649 tok)
 
 ## apps/web/src/assets/
 
@@ -141,154 +145,107 @@
 
 - `Icon.vue` — Vue: setup, TS, 5 props (~199 tok)
 
-## apps/web/src/components/layout/
-
-- `AuthLayout.vue` — Vue: setup (~274 tok)
-- `PageEmpty.vue` — Vue: setup (~219 tok)
-- `PageHeader.vue` — Vue: setup (~184 tok)
-- `UserMenu.vue` — Vue: setup (~781 tok)
-
 ## apps/web/src/composables/
 
 - `useTheme.ts` — Exports useTheme (~212 tok)
 
 ## apps/web/src/features/auth/
 
-- `LoginPage.vue` — Vue: setup (~269 tok)
-- `SignupPage.vue` — Vue: setup (~253 tok)
-
-## apps/web/src/features/auth/components/
-
-- `LoginForm.vue` — Vue: setup (~625 tok)
-- `SignupForm.vue` — Vue: setup (~829 tok)
-
-## apps/web/src/features/dashboard/
-
-- `DashboardPage.vue` — Vue: setup (~558 tok)
+- `auth.store.ts` — Auth store (~1207 tok)
 
 ## apps/web/src/features/dashboard/components/
 
-- `IssueCard.vue` — Vue: setup (~1066 tok)
-- `IssueFilters.vue` — Vue: setup (~942 tok)
-- `IssueGrid.vue` — Vue: setup (~158 tok)
-- `IssueList.vue` — Vue: setup (~104 tok)
-- `IssueRow.vue` — Vue: setup (~424 tok)
-- `ViewToggle.vue` — Vue: setup (~354 tok)
+- `IssueFilters.vue` — Vue: setup (~944 tok)
 
 ## apps/web/src/features/dashboard/composables/
 
-- `useIssues.ts` — API routes: GET (1 endpoints) (~548 tok)
+- `useIssues.ts` — "all" is a sentinel value used by the filter UI (shadcn Select can't have (~617 tok)
 
-## apps/web/src/features/dashboard/utils/
+## apps/web/src/features/folders/
 
-- `host.ts` — Exports hostOf (~35 tok)
+- `FoldersPage.vue` — Vue: setup (~554 tok)
 
-## apps/web/src/features/extension-connect/
+## apps/web/src/features/folders/components/
 
-- `ExtensionConnectPage.vue` — Vue: setup (~701 tok)
+- `CreateFolderDialog.vue` — Vue: setup (~1434 tok)
+- `FolderCard.vue` — Vue: setup (~197 tok)
 
-## apps/web/src/features/extension-connect/components/
+## apps/web/src/features/folders/composables/
 
-- `ConnectStateConnected.vue` — Vue: setup (~139 tok)
-- `ConnectStateForm.vue` — Vue: setup (~568 tok)
-- `ConnectStateUnauthed.vue` — Vue: setup (~121 tok)
+- `useFolders.ts` — Owns the folders list — fetch, create, in-place prepend on success. (~288 tok)
 
-## apps/web/src/features/extension-connect/composables/
+## apps/web/src/features/folders/utils/
 
-- `useExtensionHandoff.ts` — Wraps chrome.runtime.sendMessage to perform the DEVPROBE_AUTH_HANDOFF. (~588 tok)
-
-## apps/web/src/features/extension-connect/utils/
-
-- `extension-id.ts` — Chrome extension ids are 32 lowercase letters [a-p], but we accept any (~166 tok)
-
-## apps/web/src/features/issues/
-
-- `IssuePage.vue` — Vue: setup (~1083 tok)
+- `color.ts` — Deterministic color assignment for folders + workspaces, so the same id (~267 tok)
 
 ## apps/web/src/features/issues/components/
 
-- `AttachmentImage.vue` — Vue: setup (~625 tok)
-- `IssueActivity.vue` — Vue: setup (~765 tok)
-- `IssueAttachments.vue` — Vue: setup (~399 tok)
-- `IssueDescription.vue` — Vue: setup (~192 tok)
-- `IssueHeader.vue` — Vue: setup (~262 tok)
-- `IssueHero.vue` — Vue: setup (~541 tok)
-- `IssueMedia.vue` — Vue: setup (~622 tok)
-- `IssueMeta.vue` — Vue: setup (~300 tok)
-- `TypeChip.vue` — Vue: setup (~394 tok)
-- `UserAvatar.vue` — Vue: setup (~481 tok)
-
-## apps/web/src/features/issues/composables/
-
-- `useAttachmentUrl.ts` — Fetches an attachment's binary content as an authed blob and exposes a (~351 tok)
-- `useIssue.ts` — Server hydrates createdBy + attachments inline on GET /issues/:id. (~573 tok)
-
-## apps/web/src/features/not-found/
-
-- `NotFoundPage.vue` — Vue: setup (~190 tok)
-
-## apps/web/src/features/projects/
-
-- `ProjectsPage.vue` — Vue: setup (~560 tok)
-
-## apps/web/src/features/projects/components/
-
-- `CreateProjectDialog.vue` — Vue: setup (~1440 tok)
-- `ProjectCard.vue` — Vue: setup (~199 tok)
-
-## apps/web/src/features/projects/composables/
-
-- `useProjects.ts` — Owns the projects list — fetch, create, in-place prepend on success. (~294 tok)
-
-## apps/web/src/features/projects/utils/
-
-- `slug.ts` — Lower-case, dash-separated, ascii-only. Trims leading/trailing dashes. (~85 tok)
+- `IssueHeader.vue` — Vue: setup (~261 tok)
 
 ## apps/web/src/features/settings/
 
 - `SettingsPage.vue` — Vue: setup (~695 tok)
 
-## apps/web/src/features/settings/components/
-
-- `Field.vue` — Vue: setup (~131 tok)
-
 ## apps/web/src/features/workspace-shell/
 
-- `DashboardLayout.vue` — Vue: setup (~604 tok)
+- `DashboardLayout.vue` — Vue: setup (~1348 tok)
+
+## apps/web/src/features/workspace-shell/components/
+
+- `CreateWorkspaceDialog.vue` — Vue: setup (~662 tok)
+- `WorkspaceSwitcher.vue` — Vue: setup (~1044 tok)
 
 ## apps/web/src/layouts/
 
-- `DashboardLayout.vue` — Vue: setup (~599 tok)
+- `DashboardLayout.vue` — Vue: setup (~1445 tok)
 
 ## apps/web/src/lib/
 
-- `api.ts` — Pinia-persistedstate stores the auth slice as JSON under "dp_auth". (~379 tok)
+- `api.ts` — Exports api (~182 tok)
 - `format.ts` — Exports timeAgo, truncate (~169 tok)
-- `mock.ts` — Exports MOCK_ISSUES, MOCK_PROJECTS (~1721 tok)
+- `mock.ts` — Exports MockFolder, MOCK_FOLDERS, MOCK_ISSUES (~2298 tok)
 - `utils.ts` — Exports cn (~49 tok)
 
 ## apps/web/src/pages/
 
-- `DashboardPage.vue` — Vue: setup, TS (~2370 tok)
+- `DashboardPage.vue` — Vue: setup (~3255 tok)
 - `ExtensionConnectPage.vue` — Vue: setup (~1353 tok)
+- `FoldersPage.vue` — Vue: setup (~1567 tok)
 - `IssuePage.vue` — Vue: setup (~1498 tok)
-- `LoginPage.vue` — Vue: setup (~623 tok)
+- `LoginPage.vue` — Vue: setup, TS (~595 tok)
 - `NotFoundPage.vue` — Vue: setup, TS (~127 tok)
-- `ProjectsPage.vue` — Vue: setup (~1873 tok)
+- `ProjectsPage.vue` — Vue: setup, TS (~255 tok)
 - `SettingsPage.vue` — Vue: setup, TS (~209 tok)
 - `SignupPage.vue` — Vue: setup, TS (~716 tok)
 
+## apps/web/src/pages/auth/
+
+- `Login.vue` — Vue: setup (~268 tok)
+- `Signup.vue` — Vue: setup (~252 tok)
+
+## apps/web/src/pages/folders/
+
+- `Folder.vue` — Vue: setup (~944 tok)
+
+## apps/web/src/pages/integrations/
+
+- `Integrations.vue` — Vue: setup (~174 tok)
+
+## apps/web/src/pages/issues/
+
+- `Issue.vue` — Vue: setup (~1082 tok)
+
 ## apps/web/src/router/
 
-- `index.ts` — Declares router (~548 tok)
+- `index.ts` — Declares router (~602 tok)
 
 ## apps/web/src/shared/lib/
 
-- `format.ts` — Relative time formatter. Accepts a Date, an ISO 8601 string, or an epoch (~274 tok)
+- `mock.ts` — Exports MOCK_ISSUES, MOCK_FOLDERS (~1716 tok)
 
 ## apps/web/src/stores/
 
-- `auth.ts` — Auth store (~779 tok)
+- `auth.ts` — API routes: GET, POST (3 endpoints) (~629 tok)
 
 ## packages/api/
 
@@ -296,22 +253,27 @@
 - `drizzle.config.ts` — Drizzle ORM configuration (~63 tok)
 - `package.json` — Node.js package manifest (~233 tok)
 - `tsconfig.json` — TypeScript configuration (~52 tok)
-- `wrangler.toml` (~571 tok)
+- `wrangler.toml` (~310 tok)
+
+## packages/api/drizzle/meta/
+
+- `_journal.json` (~19 tok)
 
 ## packages/api/src/
 
-- `index.ts` — API routes: GET (1 endpoints) (~597 tok)
+- `index.ts` — API routes: GET (1 endpoints) (~596 tok)
 
 ## packages/api/src/db/
 
 - `client.ts` — Exports Db, createDb (~87 tok)
-- `schema.ts` — Exports issueModeEnum, issueSourceEnum, issueStatusEnum, severityEnum + 19 more (~6116 tok)
+- `schema.ts` — Exports issueModeEnum, issueSourceEnum, issueStatusEnum, severityEnum + 19 more (~6222 tok)
 
 ## packages/api/src/lib/
 
 - `env.ts` — Exports Env (~67 tok)
 - `jwt.ts` — Exports JwtPayload, signJwt, verifyJwt (~258 tok)
 - `response.ts` — Exports ok, err, Errors (~262 tok)
+- `routing.ts` — Resolve the folder a captured issue belongs to by matching its page URL (~436 tok)
 
 ## packages/api/src/middleware/
 
@@ -323,9 +285,10 @@
 
 ## packages/api/src/routes/
 
-- `attachments.ts` — API routes: POST, GET (10 endpoints) (~1222 tok)
-- `auth.ts` — API routes: POST, GET (3 endpoints) (~941 tok)
-- `issues.ts` — API routes: GET, POST (6 endpoints) (~848 tok)
+- `attachments.ts` — API routes: POST, GET (8 endpoints) (~872 tok)
+- `auth.ts` — API routes: POST, GET (9 endpoints) (~1637 tok)
+- `folders.ts` — API routes: GET, POST (4 endpoints) (~442 tok)
+- `issues.ts` — API routes: GET, POST (6 endpoints) (~910 tok)
 - `projects.ts` — API routes: GET, POST (4 endpoints) (~446 tok)
 
 ## packages/shared/
@@ -337,25 +300,20 @@
 
 - `enums.ts` — Exports IssueSource, IssueSource, IssueMode, IssueMode + 22 more (~973 tok)
 - `index.ts` (~25 tok)
-- `schemas.ts` — Zod schemas: SignupSchema, LoginSchema, CreateIssueSchema, UpdateIssueSchema + 14 more (~2665 tok)
-- `types.ts` — Exports Org, User, Membership, Project + 17 more (~1689 tok)
+- `schemas.ts` — Zod schemas: SignupSchema, LoginSchema, CreateIssueSchema, UpdateIssueSchema + 14 more (~2669 tok)
+- `types.ts` — Exports Org, User, Membership, Folder + 17 more (~1694 tok)
 
 ## packages/ui/
 
 - `components.json` (~91 tok)
-- `package.json` — Node.js package manifest (~187 tok)
+- `package.json` — Node.js package manifest (~162 tok)
 - `tailwind.config.ts` — Tailwind CSS configuration (~506 tok)
 - `tsconfig.json` — TypeScript configuration (~48 tok)
 
 ## packages/ui/src/
 
-- `globals.css` — Styles: 1 rules, 111 vars (~1638 tok)
-- `index.ts` — ── Form & interactive ──────────────────────────────────────────────────────── (~1030 tok)
-
-## packages/ui/src/components/icon/
-
-- `Icon.vue` — Vue: setup (~335 tok)
-- `index.ts` (~14 tok)
+- `globals.css` — Styles: 1 rules, 111 vars, 1 layers (~1615 tok)
+- `index.ts` — ── Form & interactive ──────────────────────────────────────────────────────── (~921 tok)
 
 ## packages/ui/src/components/ui/avatar/
 
@@ -427,17 +385,6 @@
 - `DropdownMenuSubTrigger.vue` — Vue: setup, TS (~238 tok)
 - `DropdownMenuTrigger.vue` — Vue: setup, TS (~104 tok)
 - `index.ts` (~314 tok)
-
-## packages/ui/src/components/ui/form/
-
-- `FormControl.vue` — Vue: setup (~193 tok)
-- `FormDescription.vue` — Vue: setup (~83 tok)
-- `FormField.vue` — Vue: setup (~284 tok)
-- `FormItem.vue` — Vue: setup (~81 tok)
-- `FormLabel.vue` — Vue: setup (~158 tok)
-- `FormMessage.vue` — Vue: setup (~163 tok)
-- `index.ts` — Re-export vee-validate's Form helpers and the styled shadcn-vue Field (~168 tok)
-- `useFormField.ts` — shadcn-vue Form internals. (~241 tok)
 
 ## packages/ui/src/components/ui/input/
 

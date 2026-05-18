@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-05-03T09:04:22.146Z",
   "lifetime": {
-    "total_tokens_estimated": 1217584,
-    "total_reads": 727,
-    "total_writes": 1269,
-    "total_sessions": 21,
-    "anatomy_hits": 664,
-    "anatomy_misses": 47,
-    "repeated_reads_blocked": 87,
-    "estimated_savings_vs_bare_cli": 419574
+    "total_tokens_estimated": 1400657,
+    "total_reads": 856,
+    "total_writes": 1426,
+    "total_sessions": 19,
+    "anatomy_hits": 710,
+    "anatomy_misses": 124,
+    "repeated_reads_blocked": 122,
+    "estimated_savings_vs_bare_cli": 499281
   },
   "sessions": [
     {
@@ -10749,1104 +10749,2658 @@
       }
     },
     {
-      "id": "session-2026-05-10-2026",
-      "started": "2026-05-10T19:26:54.860Z",
-      "ended": "2026-05-11T00:07:02.754Z",
+      "id": "session-2026-05-17-1533",
+      "started": "2026-05-17T14:33:46.443Z",
+      "ended": "2026-05-17T14:38:24.553Z",
       "reads": [
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
-          "tokens_estimated": 994,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/LauncherItem.vue",
-          "tokens_estimated": 641,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/ActionList.vue",
-          "tokens_estimated": 503,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/theme.ts",
-          "tokens_estimated": 676,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 2307,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
-          "tokens_estimated": 908,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
-          "tokens_estimated": 2166,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/pages/ProjectsPage.vue",
-          "tokens_estimated": 255,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/shared/src/schemas.ts",
-          "tokens_estimated": 2634,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/pages/DashboardPage.vue",
-          "tokens_estimated": 2370,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/launch.json",
-          "tokens_estimated": 100,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 1689,
           "was_repeated": false,
           "anatomy_had_description": false
         }
       ],
-      "writes": [
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/auth.ts",
-          "tokens_estimated": 278,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/ConnectPrompt.vue",
-          "tokens_estimated": 431,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
-          "tokens_estimated": 741,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
-          "tokens_estimated": 434,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
-          "tokens_estimated": 278,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
-          "tokens_estimated": 405,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 333,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 156,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 118,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 89,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/PostComposeModal.vue",
-          "tokens_estimated": 103,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/extension.ts",
-          "tokens_estimated": 253,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/auth.ts",
-          "tokens_estimated": 135,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/auth.ts",
-          "tokens_estimated": 222,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/auth.ts",
-          "tokens_estimated": 271,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 581,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 40,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 111,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/ConnectPrompt.vue",
-          "tokens_estimated": 186,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
-          "tokens_estimated": 92,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
-          "tokens_estimated": 72,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
-          "tokens_estimated": 36,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/theme.ts",
-          "tokens_estimated": 158,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/theme.ts",
-          "tokens_estimated": 165,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/theme.ts",
-          "tokens_estimated": 164,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
-          "tokens_estimated": 120,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/pages/ProjectsPage.vue",
-          "tokens_estimated": 2007,
-          "action": "create"
-        }
-      ],
+      "writes": [],
       "totals": {
-        "input_tokens_estimated": 13554,
-        "output_tokens_estimated": 7979,
-        "reads_count": 11,
-        "writes_count": 27,
-        "repeated_reads_blocked": 0,
-        "anatomy_lookups": 11
-      }
-    },
-    {
-      "id": "session-2026-05-11-1131",
-      "started": "2026-05-11T10:31:36.636Z",
-      "ended": "2026-05-11T10:43:54.938Z",
-      "reads": [
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/projects/components/CreateProjectDialog.vue",
-          "tokens_estimated": 1428,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        }
-      ],
-      "writes": [
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/projects/components/CreateProjectDialog.vue",
-          "tokens_estimated": 61,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/projects/components/CreateProjectDialog.vue",
-          "tokens_estimated": 141,
-          "action": "edit"
-        }
-      ],
-      "totals": {
-        "input_tokens_estimated": 1428,
-        "output_tokens_estimated": 202,
+        "input_tokens_estimated": 1689,
+        "output_tokens_estimated": 0,
         "reads_count": 1,
-        "writes_count": 2,
+        "writes_count": 0,
         "repeated_reads_blocked": 0,
         "anatomy_lookups": 1
       }
     },
     {
-      "id": "session-2026-05-11-1131",
-      "started": "2026-05-11T10:31:36.636Z",
-      "ended": "2026-05-11T10:51:42.474Z",
+      "id": "session-2026-05-17-1533",
+      "started": "2026-05-17T14:33:46.443Z",
+      "ended": "2026-05-17T14:42:08.581Z",
       "reads": [
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/projects/components/CreateProjectDialog.vue",
-          "tokens_estimated": 1428,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 2581,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 1689,
           "was_repeated": false,
           "anatomy_had_description": false
         }
       ],
-      "writes": [
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/projects/components/CreateProjectDialog.vue",
-          "tokens_estimated": 61,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/projects/components/CreateProjectDialog.vue",
-          "tokens_estimated": 141,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 167,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 420,
-          "action": "edit"
-        }
-      ],
+      "writes": [],
       "totals": {
-        "input_tokens_estimated": 4009,
-        "output_tokens_estimated": 789,
-        "reads_count": 2,
-        "writes_count": 4,
+        "input_tokens_estimated": 1689,
+        "output_tokens_estimated": 0,
+        "reads_count": 1,
+        "writes_count": 0,
         "repeated_reads_blocked": 0,
-        "anatomy_lookups": 2
+        "anatomy_lookups": 1
       }
     },
     {
-      "id": "session-2026-05-11-1537",
-      "started": "2026-05-11T14:37:21.219Z",
-      "ended": "2026-05-11T14:41:45.963Z",
+      "id": "session-2026-05-17-1533",
+      "started": "2026-05-17T14:33:46.443Z",
+      "ended": "2026-05-17T14:44:42.756Z",
       "reads": [
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
-          "tokens_estimated": 525,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
-          "tokens_estimated": 815,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 1689,
           "was_repeated": false,
           "anatomy_had_description": false
         }
       ],
-      "writes": [
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
-          "tokens_estimated": 58,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
-          "tokens_estimated": 45,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts",
-          "tokens_estimated": 699,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/AccountMenu.vue",
-          "tokens_estimated": 1555,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
-          "tokens_estimated": 407,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
-          "tokens_estimated": 970,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/ActiveProjectChip.vue",
-          "tokens_estimated": 424,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 245,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 52,
-          "action": "edit"
-        }
-      ],
+      "writes": [],
       "totals": {
-        "input_tokens_estimated": 1340,
-        "output_tokens_estimated": 4455,
-        "reads_count": 2,
-        "writes_count": 9,
+        "input_tokens_estimated": 1689,
+        "output_tokens_estimated": 0,
+        "reads_count": 1,
+        "writes_count": 0,
         "repeated_reads_blocked": 0,
-        "anatomy_lookups": 2
+        "anatomy_lookups": 1
       }
     },
     {
-      "id": "session-2026-05-11-1537",
-      "started": "2026-05-11T14:37:21.219Z",
-      "ended": "2026-05-11T15:07:43.857Z",
+      "id": "session-2026-05-17-1547",
+      "started": "2026-05-17T14:47:51.452Z",
+      "ended": "2026-05-17T14:50:29.369Z",
       "reads": [
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
-          "tokens_estimated": 525,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/db/schema.ts",
+          "tokens_estimated": 6039,
           "was_repeated": false,
           "anatomy_had_description": false
         },
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
-          "tokens_estimated": 815,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        }
-      ],
-      "writes": [
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
-          "tokens_estimated": 58,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
-          "tokens_estimated": 45,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts",
-          "tokens_estimated": 699,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/AccountMenu.vue",
-          "tokens_estimated": 1555,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
-          "tokens_estimated": 407,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
-          "tokens_estimated": 970,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/ActiveProjectChip.vue",
-          "tokens_estimated": 424,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 245,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 52,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
-          "tokens_estimated": 256,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/background.ts",
-          "tokens_estimated": 351,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 264,
-          "action": "edit"
-        }
-      ],
-      "totals": {
-        "input_tokens_estimated": 1340,
-        "output_tokens_estimated": 5326,
-        "reads_count": 2,
-        "writes_count": 12,
-        "repeated_reads_blocked": 0,
-        "anatomy_lookups": 2
-      }
-    },
-    {
-      "id": "session-2026-05-11-1537",
-      "started": "2026-05-11T14:37:21.219Z",
-      "ended": "2026-05-11T15:23:06.191Z",
-      "reads": [
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
-          "tokens_estimated": 525,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 1689,
           "was_repeated": false,
           "anatomy_had_description": false
         },
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
-          "tokens_estimated": 815,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/wrangler.toml",
-          "tokens_estimated": 310,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/shared/lib/format.ts",
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/auth.ts",
           "tokens_estimated": 0,
           "was_repeated": false,
           "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/projects.ts",
+          "tokens_estimated": 446,
+          "was_repeated": false,
+          "anatomy_had_description": false
         }
       ],
-      "writes": [
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
-          "tokens_estimated": 58,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
-          "tokens_estimated": 45,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts",
-          "tokens_estimated": 699,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/AccountMenu.vue",
-          "tokens_estimated": 1555,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
-          "tokens_estimated": 407,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
-          "tokens_estimated": 970,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/ActiveProjectChip.vue",
-          "tokens_estimated": 424,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 245,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 52,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
-          "tokens_estimated": 256,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/background.ts",
-          "tokens_estimated": 351,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 264,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/wrangler.toml",
-          "tokens_estimated": 305,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/shared/lib/format.ts",
-          "tokens_estimated": 274,
-          "action": "create"
-        }
-      ],
+      "writes": [],
       "totals": {
-        "input_tokens_estimated": 1650,
-        "output_tokens_estimated": 5905,
+        "input_tokens_estimated": 8174,
+        "output_tokens_estimated": 0,
         "reads_count": 4,
-        "writes_count": 14,
+        "writes_count": 0,
         "repeated_reads_blocked": 0,
         "anatomy_lookups": 3
       }
     },
     {
-      "id": "session-2026-05-11-1537",
-      "started": "2026-05-11T14:37:21.219Z",
-      "ended": "2026-05-11T15:32:46.458Z",
+      "id": "session-2026-05-17-1547",
+      "started": "2026-05-17T14:47:51.452Z",
+      "ended": "2026-05-17T14:51:34.355Z",
       "reads": [
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
-          "tokens_estimated": 525,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
-          "tokens_estimated": 815,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/wrangler.toml",
-          "tokens_estimated": 310,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/shared/lib/format.ts",
-          "tokens_estimated": 0,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/issues.ts",
-          "tokens_estimated": 708,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/attachments.ts",
-          "tokens_estimated": 872,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/db/schema.ts",
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/db/schema.ts",
           "tokens_estimated": 6039,
           "was_repeated": false,
           "anatomy_had_description": false
         },
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssue.ts",
-          "tokens_estimated": 454,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 1689,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/auth.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/projects.ts",
+          "tokens_estimated": 446,
           "was_repeated": false,
           "anatomy_had_description": false
         }
       ],
-      "writes": [
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
-          "tokens_estimated": 58,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
-          "tokens_estimated": 45,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts",
-          "tokens_estimated": 699,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/AccountMenu.vue",
-          "tokens_estimated": 1555,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
-          "tokens_estimated": 407,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
-          "tokens_estimated": 970,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/ActiveProjectChip.vue",
-          "tokens_estimated": 424,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 245,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 52,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
-          "tokens_estimated": 256,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/background.ts",
-          "tokens_estimated": 351,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 264,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/wrangler.toml",
-          "tokens_estimated": 305,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/shared/lib/format.ts",
-          "tokens_estimated": 274,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/issues.ts",
-          "tokens_estimated": 65,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/attachments.ts",
-          "tokens_estimated": 383,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/db/schema.ts",
-          "tokens_estimated": 152,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useAttachmentUrl.ts",
-          "tokens_estimated": 351,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/AttachmentImage.vue",
-          "tokens_estimated": 539,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/IssueAttachments.vue",
-          "tokens_estimated": 427,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssue.ts",
-          "tokens_estimated": 122,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssue.ts",
-          "tokens_estimated": 16,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssue.ts",
-          "tokens_estimated": 53,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/IssuePage.vue",
-          "tokens_estimated": 145,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/IssuePage.vue",
-          "tokens_estimated": 106,
-          "action": "edit"
-        }
-      ],
+      "writes": [],
       "totals": {
-        "input_tokens_estimated": 9723,
-        "output_tokens_estimated": 8264,
-        "reads_count": 8,
-        "writes_count": 25,
+        "input_tokens_estimated": 8174,
+        "output_tokens_estimated": 0,
+        "reads_count": 4,
+        "writes_count": 0,
         "repeated_reads_blocked": 0,
-        "anatomy_lookups": 7
+        "anatomy_lookups": 3
       }
     },
     {
-      "id": "session-2026-05-11-1537",
-      "started": "2026-05-11T14:37:21.219Z",
-      "ended": "2026-05-11T16:02:46.711Z",
+      "id": "session-2026-05-17-1552",
+      "started": "2026-05-17T14:52:29.605Z",
+      "ended": "2026-05-17T15:41:33.552Z",
       "reads": [
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
-          "tokens_estimated": 525,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
-          "tokens_estimated": 815,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/wrangler.toml",
-          "tokens_estimated": 310,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/shared/lib/format.ts",
-          "tokens_estimated": 0,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/issues.ts",
-          "tokens_estimated": 717,
-          "was_repeated": true,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/attachments.ts",
-          "tokens_estimated": 872,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/db/schema.ts",
-          "tokens_estimated": 6039,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssue.ts",
-          "tokens_estimated": 454,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
-          "tokens_estimated": 691,
-          "was_repeated": false,
-          "anatomy_had_description": false
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/shared/src/schemas.ts",
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
           "tokens_estimated": 2634,
           "was_repeated": false,
           "anatomy_had_description": false
         },
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
-          "tokens_estimated": 2205,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/index.ts",
+          "tokens_estimated": 597,
           "was_repeated": false,
           "anatomy_had_description": false
         },
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
-          "tokens_estimated": 1146,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/issues.ts",
+          "tokens_estimated": 708,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/lib/mock.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/ProjectsPage.vue",
+          "tokens_estimated": 255,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/layouts/DashboardLayout.vue",
+          "tokens_estimated": 778,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 3705,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/ExtensionConnectPage.vue",
+          "tokens_estimated": 1353,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 2581,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+          "tokens_estimated": 909,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/background.ts",
+          "tokens_estimated": 1006,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 484,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/lib/api.ts",
+          "tokens_estimated": 182,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/drizzle/0000_youthful_la_nuit.sql",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/folders.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/db/client.ts",
+          "tokens_estimated": 87,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/FoldersPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/.claude/launch.json",
+          "tokens_estimated": 100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/IssuePage.vue",
+          "tokens_estimated": 1498,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/dashboard/components/ViewToggle.vue",
+          "tokens_estimated": 0,
           "was_repeated": false,
           "anatomy_had_description": false
         }
       ],
       "writes": [
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
-          "tokens_estimated": 58,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/db/schema.ts",
+          "tokens_estimated": 6207,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/drizzle/meta/_journal.json",
+          "tokens_estimated": 19,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 84,
           "action": "edit"
         },
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 30,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 34,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 34,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 35,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 42,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 232,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 99,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/folders.ts",
+          "tokens_estimated": 1081,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/lib/routing.ts",
+          "tokens_estimated": 436,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/issues.ts",
+          "tokens_estimated": 884,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/index.ts",
+          "tokens_estimated": 43,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/index.ts",
+          "tokens_estimated": 30,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/auth.ts",
+          "tokens_estimated": 593,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/background.ts",
+          "tokens_estimated": 32,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 482,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 545,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 77,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 124,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+          "tokens_estimated": 228,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/router/index.ts",
+          "tokens_estimated": 80,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/lib/mock.ts",
+          "tokens_estimated": 2298,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/layouts/DashboardLayout.vue",
+          "tokens_estimated": 1548,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/router/index.ts",
+          "tokens_estimated": 117,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 3488,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/FoldersPage.vue",
+          "tokens_estimated": 1679,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 468,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 155,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 42,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 959,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 19,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 87,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 35,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 16877,
+        "output_tokens_estimated": 22396,
+        "reads_count": 21,
+        "writes_count": 36,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 16
+      }
+    },
+    {
+      "id": "session-2026-05-17-1552",
+      "started": "2026-05-17T14:52:29.605Z",
+      "ended": "2026-05-17T21:41:46.625Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 2750,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/index.ts",
+          "tokens_estimated": 596,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/issues.ts",
+          "tokens_estimated": 884,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/lib/mock.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/ProjectsPage.vue",
+          "tokens_estimated": 255,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/layouts/DashboardLayout.vue",
+          "tokens_estimated": 778,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 3705,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/ExtensionConnectPage.vue",
+          "tokens_estimated": 1353,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 2500,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+          "tokens_estimated": 902,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/background.ts",
+          "tokens_estimated": 992,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 482,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/lib/api.ts",
+          "tokens_estimated": 182,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/drizzle/0000_youthful_la_nuit.sql",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/folders.ts",
+          "tokens_estimated": 1081,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/db/client.ts",
+          "tokens_estimated": 87,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/FoldersPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/.claude/launch.json",
+          "tokens_estimated": 100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/IssuePage.vue",
+          "tokens_estimated": 1498,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/dashboard/components/ViewToggle.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/workspace-shell/DashboardLayout.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/app/router.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/projects/ProjectsPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/projects/composables/useProjects.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/projects/components/ProjectCard.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/projects/components/CreateProjectDialog.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/projects/utils/slug.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/dashboard/DashboardPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/dashboard/composables/useIssues.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/db/schema.ts",
+          "tokens_estimated": 6207,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/shared/lib/mock.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/settings/SettingsPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/auth.ts",
+          "tokens_estimated": 593,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/components/ActiveProjectChip.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/components/AccountMenu.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 815,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 1694,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/composables/useFolders.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/components/FolderCard.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/components/CreateFolderDialog.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/FoldersPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/components/ActiveFolderChip.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/db/schema.ts",
+          "tokens_estimated": 6207,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/drizzle/meta/_journal.json",
+          "tokens_estimated": 19,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 84,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 30,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 34,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 34,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 35,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 42,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 232,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 99,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/folders.ts",
+          "tokens_estimated": 1081,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/lib/routing.ts",
+          "tokens_estimated": 436,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/issues.ts",
+          "tokens_estimated": 884,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/index.ts",
+          "tokens_estimated": 43,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/index.ts",
+          "tokens_estimated": 30,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/auth.ts",
+          "tokens_estimated": 593,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/background.ts",
+          "tokens_estimated": 32,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 482,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 545,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 77,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 124,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+          "tokens_estimated": 228,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/router/index.ts",
+          "tokens_estimated": 80,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/lib/mock.ts",
+          "tokens_estimated": 2298,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/layouts/DashboardLayout.vue",
+          "tokens_estimated": 1548,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/router/index.ts",
+          "tokens_estimated": 117,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 3488,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/FoldersPage.vue",
+          "tokens_estimated": 1679,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 468,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 155,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 42,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 959,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 19,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 87,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 35,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/db/schema.ts",
+          "tokens_estimated": 6222,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 115,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 34,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 34,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 35,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 42,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 168,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 25,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/folders.ts",
+          "tokens_estimated": 442,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/issues.ts",
+          "tokens_estimated": 15,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/issues.ts",
+          "tokens_estimated": 160,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/index.ts",
+          "tokens_estimated": 43,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/index.ts",
+          "tokens_estimated": 30,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/composables/useFolders.ts",
+          "tokens_estimated": 288,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/components/FolderCard.vue",
+          "tokens_estimated": 211,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/components/CreateFolderDialog.vue",
+          "tokens_estimated": 1537,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/FoldersPage.vue",
+          "tokens_estimated": 593,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/app/router.ts",
+          "tokens_estimated": 42,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/shared/lib/mock.ts",
+          "tokens_estimated": 7,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/shared/lib/mock.ts",
+          "tokens_estimated": 7,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/shared/lib/mock.ts",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/settings/SettingsPage.vue",
+          "tokens_estimated": 26,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/workspace-shell/DashboardLayout.vue",
+          "tokens_estimated": 1108,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/auth.ts",
+          "tokens_estimated": 713,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 806,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/background.ts",
           "tokens_estimated": 45,
           "action": "edit"
         },
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts",
-          "tokens_estimated": 699,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts",
+          "tokens_estimated": 691,
           "action": "create"
         },
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/AccountMenu.vue",
-          "tokens_estimated": 1555,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/components/ActiveFolderChip.vue",
+          "tokens_estimated": 421,
           "action": "create"
         },
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/PopupHeader.vue",
-          "tokens_estimated": 407,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/components/AccountMenu.vue",
+          "tokens_estimated": 1549,
           "action": "create"
         },
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/App.vue",
-          "tokens_estimated": 970,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/popup/components/ActiveProjectChip.vue",
-          "tokens_estimated": 424,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 245,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 52,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
-          "tokens_estimated": 256,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/background.ts",
-          "tokens_estimated": 351,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 264,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/wrangler.toml",
-          "tokens_estimated": 305,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/shared/lib/format.ts",
-          "tokens_estimated": 274,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/issues.ts",
-          "tokens_estimated": 65,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/attachments.ts",
-          "tokens_estimated": 383,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/db/schema.ts",
-          "tokens_estimated": 152,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useAttachmentUrl.ts",
-          "tokens_estimated": 351,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/AttachmentImage.vue",
-          "tokens_estimated": 539,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/IssueAttachments.vue",
-          "tokens_estimated": 427,
-          "action": "create"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssue.ts",
-          "tokens_estimated": 122,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssue.ts",
-          "tokens_estimated": 16,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssue.ts",
-          "tokens_estimated": 53,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/IssuePage.vue",
-          "tokens_estimated": 145,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/IssuePage.vue",
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/App.vue",
           "tokens_estimated": 106,
           "action": "edit"
         },
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
-          "tokens_estimated": 808,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 67,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 36,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 762,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 52,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 293,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/app/router.ts",
+          "tokens_estimated": 576,
           "action": "create"
         },
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/background.ts",
-          "tokens_estimated": 416,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/shared/src/schemas.ts",
-          "tokens_estimated": 76,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/issues.ts",
-          "tokens_estimated": 56,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 68,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/IssueComposePanel.vue",
-          "tokens_estimated": 37,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
-          "tokens_estimated": 109,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/ui/src/globals.css",
-          "tokens_estimated": 135,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/packages/ui/src/globals.css",
-          "tokens_estimated": 93,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
-          "tokens_estimated": 323,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
-          "tokens_estimated": 190,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
-          "tokens_estimated": 175,
-          "action": "edit"
-        },
-        {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
-          "tokens_estimated": 102,
-          "action": "edit"
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/app/router.ts",
+          "tokens_estimated": 567,
+          "action": "create"
         }
       ],
       "totals": {
-        "input_tokens_estimated": 16408,
-        "output_tokens_estimated": 10852,
-        "reads_count": 12,
-        "writes_count": 38,
-        "repeated_reads_blocked": 1,
-        "anatomy_lookups": 11
+        "input_tokens_estimated": 27454,
+        "output_tokens_estimated": 40394,
+        "reads_count": 44,
+        "writes_count": 74,
+        "repeated_reads_blocked": 11,
+        "anatomy_lookups": 20
       }
     },
     {
-      "id": "session-2026-05-17-1529",
-      "started": "2026-05-17T14:29:42.646Z",
-      "ended": "2026-05-17T14:50:03.696Z",
+      "id": "session-2026-05-17-1552",
+      "started": "2026-05-17T14:52:29.605Z",
+      "ended": "2026-05-17T21:45:47.849Z",
       "reads": [
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/AttachmentImage.vue",
-          "tokens_estimated": 503,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 2750,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/index.ts",
+          "tokens_estimated": 596,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/issues.ts",
+          "tokens_estimated": 884,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/lib/mock.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/ProjectsPage.vue",
+          "tokens_estimated": 255,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/layouts/DashboardLayout.vue",
+          "tokens_estimated": 778,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 3705,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/ExtensionConnectPage.vue",
+          "tokens_estimated": 1353,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 2500,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+          "tokens_estimated": 902,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/background.ts",
+          "tokens_estimated": 992,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 482,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/lib/api.ts",
+          "tokens_estimated": 182,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/drizzle/0000_youthful_la_nuit.sql",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/folders.ts",
+          "tokens_estimated": 1081,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/db/client.ts",
+          "tokens_estimated": 87,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/FoldersPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/.claude/launch.json",
+          "tokens_estimated": 100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/IssuePage.vue",
+          "tokens_estimated": 1498,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/dashboard/components/ViewToggle.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/workspace-shell/DashboardLayout.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/app/router.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/projects/ProjectsPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/projects/composables/useProjects.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/projects/components/ProjectCard.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/projects/components/CreateProjectDialog.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/projects/utils/slug.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/dashboard/DashboardPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/dashboard/composables/useIssues.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/db/schema.ts",
+          "tokens_estimated": 6207,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/shared/lib/mock.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/settings/SettingsPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/auth.ts",
+          "tokens_estimated": 593,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/components/ActiveProjectChip.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/components/AccountMenu.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 815,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 1694,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/composables/useFolders.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/components/FolderCard.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/components/CreateFolderDialog.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/FoldersPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/components/ActiveFolderChip.vue",
+          "tokens_estimated": 0,
           "was_repeated": false,
           "anatomy_had_description": false
         }
       ],
       "writes": [
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/dashboard/components/IssueCard.vue",
-          "tokens_estimated": 241,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/db/schema.ts",
+          "tokens_estimated": 6207,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/drizzle/meta/_journal.json",
+          "tokens_estimated": 19,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 84,
           "action": "edit"
         },
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/dashboard/components/IssueCard.vue",
-          "tokens_estimated": 110,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 30,
           "action": "edit"
         },
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/dashboard/components/IssueCard.vue",
-          "tokens_estimated": 103,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 34,
           "action": "edit"
         },
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/IssueMedia.vue",
-          "tokens_estimated": 223,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 34,
           "action": "edit"
         },
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/IssueMedia.vue",
-          "tokens_estimated": 215,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 35,
           "action": "edit"
         },
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/AttachmentImage.vue",
-          "tokens_estimated": 165,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 42,
           "action": "edit"
         },
         {
-          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/AttachmentImage.vue",
-          "tokens_estimated": 147,
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 232,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 99,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/folders.ts",
+          "tokens_estimated": 1081,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/lib/routing.ts",
+          "tokens_estimated": 436,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/issues.ts",
+          "tokens_estimated": 884,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/index.ts",
+          "tokens_estimated": 43,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/index.ts",
+          "tokens_estimated": 30,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/auth.ts",
+          "tokens_estimated": 593,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/background.ts",
+          "tokens_estimated": 32,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 482,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 545,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 77,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 124,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+          "tokens_estimated": 228,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/router/index.ts",
+          "tokens_estimated": 80,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/lib/mock.ts",
+          "tokens_estimated": 2298,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/layouts/DashboardLayout.vue",
+          "tokens_estimated": 1548,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/router/index.ts",
+          "tokens_estimated": 117,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 3488,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/FoldersPage.vue",
+          "tokens_estimated": 1679,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 468,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 155,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 42,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 959,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 19,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 87,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 35,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/db/schema.ts",
+          "tokens_estimated": 6222,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 115,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 34,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 34,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 35,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 42,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 168,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 25,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/folders.ts",
+          "tokens_estimated": 442,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/issues.ts",
+          "tokens_estimated": 15,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/issues.ts",
+          "tokens_estimated": 160,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/index.ts",
+          "tokens_estimated": 43,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/index.ts",
+          "tokens_estimated": 30,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/composables/useFolders.ts",
+          "tokens_estimated": 288,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/components/FolderCard.vue",
+          "tokens_estimated": 211,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/components/CreateFolderDialog.vue",
+          "tokens_estimated": 1537,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/FoldersPage.vue",
+          "tokens_estimated": 593,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/app/router.ts",
+          "tokens_estimated": 42,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/shared/lib/mock.ts",
+          "tokens_estimated": 7,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/shared/lib/mock.ts",
+          "tokens_estimated": 7,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/shared/lib/mock.ts",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/settings/SettingsPage.vue",
+          "tokens_estimated": 26,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/workspace-shell/DashboardLayout.vue",
+          "tokens_estimated": 1108,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/auth.ts",
+          "tokens_estimated": 713,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 806,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/background.ts",
+          "tokens_estimated": 45,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts",
+          "tokens_estimated": 691,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/components/ActiveFolderChip.vue",
+          "tokens_estimated": 421,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/components/AccountMenu.vue",
+          "tokens_estimated": 1549,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 106,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 67,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 36,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 762,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 52,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 293,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/app/router.ts",
+          "tokens_estimated": 576,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/app/router.ts",
+          "tokens_estimated": 567,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 27454,
+        "output_tokens_estimated": 40394,
+        "reads_count": 44,
+        "writes_count": 74,
+        "repeated_reads_blocked": 11,
+        "anatomy_lookups": 20
+      }
+    },
+    {
+      "id": "session-2026-05-17-1552",
+      "started": "2026-05-17T14:52:29.605Z",
+      "ended": "2026-05-17T22:10:53.764Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 2750,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/index.ts",
+          "tokens_estimated": 596,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/issues.ts",
+          "tokens_estimated": 884,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/lib/mock.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/ProjectsPage.vue",
+          "tokens_estimated": 255,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/layouts/DashboardLayout.vue",
+          "tokens_estimated": 778,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 3705,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/ExtensionConnectPage.vue",
+          "tokens_estimated": 1353,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 2841,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+          "tokens_estimated": 902,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/background.ts",
+          "tokens_estimated": 992,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 482,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/lib/api.ts",
+          "tokens_estimated": 182,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/drizzle/0000_youthful_la_nuit.sql",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/folders.ts",
+          "tokens_estimated": 1081,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/db/client.ts",
+          "tokens_estimated": 87,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/FoldersPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/.claude/launch.json",
+          "tokens_estimated": 100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/IssuePage.vue",
+          "tokens_estimated": 1498,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/dashboard/components/ViewToggle.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/workspace-shell/DashboardLayout.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/app/router.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/projects/ProjectsPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/projects/composables/useProjects.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/projects/components/ProjectCard.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/projects/components/CreateProjectDialog.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/projects/utils/slug.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/dashboard/DashboardPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/dashboard/composables/useIssues.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/db/schema.ts",
+          "tokens_estimated": 6207,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/shared/lib/mock.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/settings/SettingsPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/auth.ts",
+          "tokens_estimated": 593,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/components/ActiveProjectChip.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/components/AccountMenu.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 815,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 1694,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/composables/useFolders.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/components/FolderCard.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/components/CreateFolderDialog.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/FoldersPage.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/components/ActiveFolderChip.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/auth/auth.store.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/auth.ts",
+          "tokens_estimated": 941,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/dashboard/components/IssueFilters.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/issues/components/IssueHeader.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/issues/Issue.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/auth/Login.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/auth/Signup.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/issues/Issues.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/db/schema.ts",
+          "tokens_estimated": 6207,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/drizzle/meta/_journal.json",
+          "tokens_estimated": 19,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 84,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 30,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 34,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 34,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 35,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 42,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 232,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 99,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/folders.ts",
+          "tokens_estimated": 1081,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/lib/routing.ts",
+          "tokens_estimated": 436,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/issues.ts",
+          "tokens_estimated": 884,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/index.ts",
+          "tokens_estimated": 43,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/index.ts",
+          "tokens_estimated": 30,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/auth.ts",
+          "tokens_estimated": 593,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/background.ts",
+          "tokens_estimated": 32,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 482,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 545,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 77,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 124,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+          "tokens_estimated": 228,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/router/index.ts",
+          "tokens_estimated": 80,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/lib/mock.ts",
+          "tokens_estimated": 2298,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/layouts/DashboardLayout.vue",
+          "tokens_estimated": 1548,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/router/index.ts",
+          "tokens_estimated": 117,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 3488,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/FoldersPage.vue",
+          "tokens_estimated": 1679,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 468,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 155,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 42,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 959,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 19,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 87,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/DashboardPage.vue",
+          "tokens_estimated": 35,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/db/schema.ts",
+          "tokens_estimated": 6222,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 115,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 34,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/types.ts",
+          "tokens_estimated": 34,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 35,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 42,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 168,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/shared/src/schemas.ts",
+          "tokens_estimated": 25,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/folders.ts",
+          "tokens_estimated": 442,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/issues.ts",
+          "tokens_estimated": 15,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/issues.ts",
+          "tokens_estimated": 160,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/index.ts",
+          "tokens_estimated": 43,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/index.ts",
+          "tokens_estimated": 30,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/composables/useFolders.ts",
+          "tokens_estimated": 288,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/components/FolderCard.vue",
+          "tokens_estimated": 211,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/components/CreateFolderDialog.vue",
+          "tokens_estimated": 1537,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/FoldersPage.vue",
+          "tokens_estimated": 593,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/app/router.ts",
+          "tokens_estimated": 42,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/shared/lib/mock.ts",
+          "tokens_estimated": 7,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/shared/lib/mock.ts",
+          "tokens_estimated": 7,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/shared/lib/mock.ts",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/settings/SettingsPage.vue",
+          "tokens_estimated": 26,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/workspace-shell/DashboardLayout.vue",
+          "tokens_estimated": 1108,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/auth.ts",
+          "tokens_estimated": 713,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 806,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/background.ts",
+          "tokens_estimated": 45,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts",
+          "tokens_estimated": 691,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/components/ActiveFolderChip.vue",
+          "tokens_estimated": 421,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/components/AccountMenu.vue",
+          "tokens_estimated": 1549,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 106,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 67,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 36,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 762,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 52,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 293,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/app/router.ts",
+          "tokens_estimated": 576,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/app/router.ts",
+          "tokens_estimated": 567,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/dashboard/components/IssueFilters.vue",
+          "tokens_estimated": 16,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/dashboard/components/IssueFilters.vue",
+          "tokens_estimated": 17,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/dashboard/components/IssueFilters.vue",
+          "tokens_estimated": 17,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/dashboard/composables/useIssues.ts",
+          "tokens_estimated": 617,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/app/router.ts",
+          "tokens_estimated": 15,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/app/router.ts",
+          "tokens_estimated": 247,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/app/router.ts",
+          "tokens_estimated": 27,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/issues/components/IssueHeader.vue",
+          "tokens_estimated": 9,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/issues/Issue.vue",
+          "tokens_estimated": 10,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/auth/Login.vue",
+          "tokens_estimated": 20,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/auth/Signup.vue",
+          "tokens_estimated": 8,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/components/AccountMenu.vue",
+          "tokens_estimated": 10,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/packages/api/src/routes/auth.ts",
+          "tokens_estimated": 1637,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/auth/auth.store.ts",
+          "tokens_estimated": 1207,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/folders/utils/color.ts",
+          "tokens_estimated": 267,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/workspace-shell/components/WorkspaceSwitcher.vue",
+          "tokens_estimated": 1119,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/workspace-shell/components/CreateWorkspaceDialog.vue",
+          "tokens_estimated": 709,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/integrations/Integrations.vue",
+          "tokens_estimated": 186,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/folders/Folder.vue",
+          "tokens_estimated": 1083,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/pages/folders/Folder.vue",
+          "tokens_estimated": 1012,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/workspace-shell/DashboardLayout.vue",
+          "tokens_estimated": 1382,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/web/src/features/workspace-shell/DashboardLayout.vue",
+          "tokens_estimated": 96,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 97,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 7,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 81,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/IssueComposePanel.vue",
+          "tokens_estimated": 52,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/components/capture/screenshot/ScreenshotCapture.vue",
+          "tokens_estimated": 183,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 106,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 66,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/App.vue",
+          "tokens_estimated": 17,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/composables/usePopupAccount.ts",
+          "tokens_estimated": 407,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/popup/components/AccountMenu.vue",
+          "tokens_estimated": 1037,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/auth.ts",
+          "tokens_estimated": 593,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 32,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 38,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/.claude/worktrees/laughing-banach-477291/apps/extension/src/entrypoints/background.ts",
+          "tokens_estimated": 32,
           "action": "edit"
         }
       ],
       "totals": {
-        "input_tokens_estimated": 503,
-        "output_tokens_estimated": 1204,
-        "reads_count": 1,
-        "writes_count": 7,
-        "repeated_reads_blocked": 0,
-        "anatomy_lookups": 1
+        "input_tokens_estimated": 28736,
+        "output_tokens_estimated": 52884,
+        "reads_count": 52,
+        "writes_count": 111,
+        "repeated_reads_blocked": 12,
+        "anatomy_lookups": 21
       }
     }
   ],

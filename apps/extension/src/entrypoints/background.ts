@@ -163,7 +163,6 @@ export default defineBackground(() => {
         token: msg.token,
         orgId: msg.orgId,
         userId: msg.userId,
-        defaultProjectId: msg.defaultProjectId,
       });
       console.log("[DevProbe] auth received from", sender.origin);
       sendResponse({ ok: true });

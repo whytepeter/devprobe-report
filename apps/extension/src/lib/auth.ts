@@ -2,26 +2,24 @@ import { isExtensionAlive } from "./extension.js";
 
 const TOKEN_KEY = "dp_token";
 const ORG_KEY = "dp_org";
-const PROJECT_KEY = "dp_default_project";
+const USER_KEY = "dp_user";
 
 export interface StoredAuth {
   token: string;
   orgId: string;
   userId?: string;
-  defaultProjectId?: string;
 }
 
 export async function getAuth(): Promise<StoredAuth | null> {
   if (!isExtensionAlive()) return null;
   try {
-    const data = await chrome.storage.local.get([TOKEN_KEY, ORG_KEY, PROJECT_KEY, "dp_user"]);
+    const data = await chrome.storage.local.get([TOKEN_KEY, ORG_KEY, USER_KEY]);
     const token = data[TOKEN_KEY] as string | undefined;
     if (!token) return null;
     return {
       token,
       orgId: data[ORG_KEY] as string,
-      userId: data["dp_user"] as string | undefined,
-      defaultProjectId: data[PROJECT_KEY] as string | undefined,
+      userId: data[USER_KEY] as string | undefined,
     };
   } catch {
     return null;
@@ -34,23 +32,15 @@ export async function setAuth(auth: StoredAuth): Promise<void> {
     await chrome.storage.local.set({
       [TOKEN_KEY]: auth.token,
       [ORG_KEY]: auth.orgId,
-      dp_user: auth.userId,
-      [PROJECT_KEY]: auth.defaultProjectId,
+      [USER_KEY]: auth.userId,
     });
-  } catch { /* storage unavailable */ }
-}
-
-export async function setDefaultProject(projectId: string): Promise<void> {
-  if (!isExtensionAlive()) return;
-  try {
-    await chrome.storage.local.set({ [PROJECT_KEY]: projectId });
   } catch { /* storage unavailable */ }
 }
 
 export async function clearAuth(): Promise<void> {
   if (!isExtensionAlive()) return;
   try {
-    await chrome.storage.local.remove([TOKEN_KEY, ORG_KEY, PROJECT_KEY, "dp_user"]);
+    await chrome.storage.local.remove([TOKEN_KEY, ORG_KEY, USER_KEY]);
   } catch { /* storage unavailable */ }
 }
 
@@ -61,7 +51,7 @@ export function onAuthChange(cb: (auth: StoredAuth | null) => void): () => void 
   function handler(changes: Record<string, chrome.storage.StorageChange>, area: string) {
     if (!isExtensionAlive()) return;
     if (area !== "local") return;
-    if (!(TOKEN_KEY in changes) && !(ORG_KEY in changes) && !(PROJECT_KEY in changes) && !("dp_user" in changes)) return;
+    if (!(TOKEN_KEY in changes) && !(ORG_KEY in changes) && !(USER_KEY in changes)) return;
     getAuth().then(cb).catch(() => { /* context died mid-read */ });
   }
   try {

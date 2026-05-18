@@ -181,9 +181,9 @@ export const authSessions = pgTable("auth_sessions", {
   index("auth_sessions_user_idx").on(t.userId),
 ]);
 
-// ── Projects ──────────────────────────────────────────────────────────────────
+// ── Folders ───────────────────────────────────────────────────────────────────
 
-export const projects = pgTable("projects", {
+export const folders = pgTable("folders", {
   id: uuid("id").primaryKey().defaultRandom(),
   orgId: uuid("org_id").notNull().references(() => orgs.id, { onDelete: "cascade" }),
   name: varchar("name", { length: 100 }).notNull(),
@@ -194,20 +194,20 @@ export const projects = pgTable("projects", {
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 }, (t) => [
-  uniqueIndex("projects_org_slug_idx").on(t.orgId, t.slug),
-  index("projects_org_idx").on(t.orgId),
+  uniqueIndex("folders_org_slug_idx").on(t.orgId, t.slug),
+  index("folders_org_idx").on(t.orgId),
 ]);
 
 // ── Environments ──────────────────────────────────────────────────────────────
 
 export const environments = pgTable("environments", {
   id: uuid("id").primaryKey().defaultRandom(),
-  projectId: uuid("project_id").notNull().references(() => projects.id, { onDelete: "cascade" }),
+  folderId: uuid("folder_id").notNull().references(() => folders.id, { onDelete: "cascade" }),
   name: varchar("name", { length: 100 }).notNull(),
   urlPatterns: jsonb("url_patterns").notNull().default([]),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 }, (t) => [
-  index("environments_project_idx").on(t.projectId),
+  index("environments_folder_idx").on(t.folderId),
 ]);
 
 // ── Issues ────────────────────────────────────────────────────────────────────
@@ -215,7 +215,7 @@ export const environments = pgTable("environments", {
 export const issues = pgTable("issues", {
   id: uuid("id").primaryKey().defaultRandom(),
   orgId: uuid("org_id").notNull().references(() => orgs.id, { onDelete: "cascade" }),
-  projectId: uuid("project_id").notNull().references(() => projects.id, { onDelete: "cascade" }),
+  folderId: uuid("folder_id").references(() => folders.id, { onDelete: "set null" }),
   createdById: uuid("created_by_id").notNull().references(() => users.id),
   source: issueSourceEnum("source").notNull(),
   mode: issueModeEnum("mode").notNull(),
@@ -239,7 +239,7 @@ export const issues = pgTable("issues", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 }, (t) => [
   index("issues_org_idx").on(t.orgId),
-  index("issues_project_idx").on(t.projectId),
+  index("issues_folder_idx").on(t.folderId),
   index("issues_status_idx").on(t.status),
   index("issues_assignee_idx").on(t.assigneeId),
   index("issues_created_at_idx").on(t.createdAt),
@@ -268,7 +268,7 @@ export const issueLinks = pgTable("issue_links", {
 export const recordingSessions = pgTable("recording_sessions", {
   id: uuid("id").primaryKey().defaultRandom(),
   orgId: uuid("org_id").notNull().references(() => orgs.id, { onDelete: "cascade" }),
-  projectId: uuid("project_id").notNull().references(() => projects.id),
+  folderId: uuid("folder_id").references(() => folders.id, { onDelete: "set null" }),
   createdById: uuid("created_by_id").notNull().references(() => users.id),
   issueId: uuid("issue_id").references(() => issues.id),
   source: varchar("source", { length: 30 }).notNull(),
@@ -284,7 +284,7 @@ export const recordingSessions = pgTable("recording_sessions", {
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 }, (t) => [
   index("recording_sessions_issue_idx").on(t.issueId),
-  index("recording_sessions_project_idx").on(t.projectId),
+  index("recording_sessions_folder_idx").on(t.folderId),
 ]);
 
 // ── Timeline events ───────────────────────────────────────────────────────────
@@ -334,7 +334,7 @@ export const attachments = pgTable("attachments", {
 export const annotationSessions = pgTable("annotation_sessions", {
   id: uuid("id").primaryKey().defaultRandom(),
   orgId: uuid("org_id").notNull().references(() => orgs.id, { onDelete: "cascade" }),
-  projectId: uuid("project_id").notNull().references(() => projects.id),
+  folderId: uuid("folder_id").references(() => folders.id, { onDelete: "set null" }),
   createdById: uuid("created_by_id").notNull().references(() => users.id),
   pageUrl: text("page_url").notNull(),
   urlPath: text("url_path").notNull(),
@@ -345,7 +345,7 @@ export const annotationSessions = pgTable("annotation_sessions", {
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 }, (t) => [
-  index("annotation_sessions_project_idx").on(t.projectId),
+  index("annotation_sessions_folder_idx").on(t.folderId),
   index("annotation_sessions_page_url_idx").on(t.pageUrl),
 ]);
 
@@ -453,17 +453,17 @@ export const integrations = pgTable("integrations", {
   uniqueIndex("integrations_org_provider_idx").on(t.orgId, t.provider),
 ]);
 
-// ── Integration configs (per project) ────────────────────────────────────────
+// ── Integration configs (per folder) ─────────────────────────────────────────
 
 export const integrationConfigs = pgTable("integration_configs", {
   id: uuid("id").primaryKey().defaultRandom(),
   integrationId: uuid("integration_id").notNull().references(() => integrations.id, { onDelete: "cascade" }),
-  projectId: uuid("project_id").notNull().references(() => projects.id, { onDelete: "cascade" }),
+  folderId: uuid("folder_id").notNull().references(() => folders.id, { onDelete: "cascade" }),
   fieldMappings: jsonb("field_mappings").notNull().default({}),
   autoSend: boolean("auto_send").notNull().default(false),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 }, (t) => [
-  uniqueIndex("integration_configs_int_proj_idx").on(t.integrationId, t.projectId),
+  uniqueIndex("integration_configs_int_folder_idx").on(t.integrationId, t.folderId),
 ]);
 
 // ── Invitations ───────────────────────────────────────────────────────────────
@@ -487,7 +487,7 @@ export const invitations = pgTable("invitations", {
 
 export const orgsRelations = relations(orgs, ({ many }) => ({
   memberships: many(memberships),
-  projects: many(projects),
+  folders: many(folders),
   issues: many(issues),
 }));
 
@@ -497,8 +497,18 @@ export const usersRelations = relations(users, ({ many }) => ({
   comments: many(comments),
 }));
 
+export const foldersRelations = relations(folders, ({ one, many }) => ({
+  org: one(orgs, { fields: [folders.orgId], references: [orgs.id] }),
+  environments: many(environments),
+  issues: many(issues),
+}));
+
+export const environmentsRelations = relations(environments, ({ one }) => ({
+  folder: one(folders, { fields: [environments.folderId], references: [folders.id] }),
+}));
+
 export const issuesRelations = relations(issues, ({ one, many }) => ({
-  project: one(projects, { fields: [issues.projectId], references: [projects.id] }),
+  folder: one(folders, { fields: [issues.folderId], references: [folders.id] }),
   createdBy: one(users, { fields: [issues.createdById], references: [users.id] }),
   assignee: one(users, { fields: [issues.assigneeId], references: [users.id] }),
   timelineEvents: many(timelineEvents),

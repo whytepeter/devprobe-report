@@ -92,71 +92,6 @@
             </div>
           </div>
 
-          <!-- Project — native select (shadow DOM safe) -->
-          <div class="space-y-1.5">
-            <p
-              class="text-[10px] font-semibold uppercase tracking-[0.07em] text-muted-foreground/70"
-            >
-              Project
-            </p>
-
-            <div
-              v-if="projectsLoading"
-              class="text-[12px] text-muted-foreground italic"
-            >
-              Loading projects…
-            </div>
-
-            <div
-              v-else-if="projectsLoadError"
-              class="rounded-lg border border-destructive/30 bg-destructive/10 px-3 py-2.5 space-y-1"
-            >
-              <p class="text-[12px] font-medium text-destructive">
-                Couldn't load projects
-              </p>
-              <p class="text-[11px] leading-snug text-destructive/80 break-all">
-                {{ projectsLoadError }}
-              </p>
-            </div>
-
-            <div
-              v-else-if="projects.length === 0"
-              class="rounded-lg border border-dashed border-border bg-secondary/40 px-3 py-2.5 space-y-2"
-            >
-              <p class="text-[12px] leading-snug text-muted-foreground">
-                Your workspace has no projects yet. Projects are how DevProbe
-                groups issues — usually one per app or repo.
-              </p>
-              <a
-                :href="`${WEB_APP_URL}/projects`"
-                target="_blank"
-                rel="noopener"
-                class="inline-flex items-center gap-1 text-[11px] font-medium text-primary hover:underline"
-              >
-                Create one in the web app
-                <Icon name="arrow-up-right" :size="11" :stroke-width="2" />
-              </a>
-            </div>
-
-            <Select v-else v-model="form.projectId" :disabled="submitting">
-              <SelectTrigger
-                :disabled="submitting"
-                class="w-full text-xs text-foreground font-normal gap-2 px-2.5 disabled:cursor-not-allowed"
-              >
-                <Icon name="folder-open" :size="12" :stroke-width="1.75" class="shrink-0 text-muted-foreground" />
-                <SelectValue placeholder="Pick a project" />
-              </SelectTrigger>
-              <SelectContent :to="shadowRoot ?? undefined">
-                <SelectItem v-for="p in projects" :key="p.id" :value="p.id">
-                  <span class="flex items-baseline gap-2">
-                    <span>{{ p.name }}</span>
-                    <span class="font-mono text-[10px] text-muted-foreground">{{ p.slug }}</span>
-                  </span>
-                </SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
           <!-- Error -->
           <div
             v-if="error"
@@ -184,7 +119,9 @@
           </SelectTrigger>
           <SelectContent :to="shadowRoot ?? undefined">
             <SelectItem value="public">Anyone with the link</SelectItem>
-            <SelectItem value="private">Only people in this workspace</SelectItem>
+            <SelectItem value="private"
+              >Only people in this workspace</SelectItem
+            >
           </SelectContent>
         </Select>
       </div>
@@ -216,18 +153,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from "vue";
-import { Button, Icon, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@deveprobe/ui";
-import { api } from "../../lib/api.js";
-import { WEB_APP_URL } from "../../lib/env.js";
-import { getAuth } from "../../lib/auth.js";
-import type { Project } from "@deveprobe/shared";
+import { ref, computed } from "vue";
+import {
+  Button,
+  Icon,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@deveprobe/ui";
 
 export interface ComposeForm {
   title: string;
   summary: string;
   severity: string;
-  projectId: string;
   visibility: string;
 }
 
@@ -287,31 +227,9 @@ const form = ref<ComposeForm>({
   title: "",
   summary: "",
   severity: "medium",
-  projectId: "",
   visibility: "private",
 });
-const projects = ref<Project[]>([]);
-const projectsLoading = ref(true);
-const projectsLoadError = ref("");
 const canSubmit = computed(() => form.value.title.trim().length > 0);
-
-onMounted(async () => {
-  try {
-    const [list, auth] = await Promise.all([api.listProjects(), getAuth()]);
-    projects.value = list;
-    // Prefer the active project the user picked in the popup; fall back to the first.
-    const preferred = auth?.defaultProjectId && list.some((p) => p.id === auth.defaultProjectId)
-      ? auth.defaultProjectId
-      : list[0]?.id;
-    if (preferred) form.value.projectId = preferred;
-  } catch (e) {
-    // Surface the real reason so an empty list isn't indistinguishable from a network/auth failure.
-    projectsLoadError.value = (e as Error).message || "Couldn't load projects.";
-    console.warn("[DevProbe] listProjects failed:", e);
-  } finally {
-    projectsLoading.value = false;
-  }
-});
 
 function onSubmit() {
   if (!canSubmit.value) return;

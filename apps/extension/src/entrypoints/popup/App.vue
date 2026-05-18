@@ -2,11 +2,11 @@
   Extension popup
   ───────────────
   Capture actions are gated behind a connected workspace. Without auth the
-  popup shows a single connect prompt; with auth, the action list plus an
-  active-project chip strip.
+  popup shows a single connect prompt; with auth, the action list. Folder
+  organisation happens in the web dashboard, not here — capture is one click.
 
-  The right side of the header hosts an AccountMenu (user identity, project
-  switcher, dashboard link, disconnect).
+  The right side of the header hosts an AccountMenu (user identity, dashboard
+  link, disconnect).
 -->
 <template>
   <div class="w-[360px] bg-card text-foreground font-sans">
@@ -15,10 +15,7 @@
         <AccountMenu
           :auth="account.auth.value"
           :me="account.me.value"
-          :projects="account.projects.value"
           :loading="account.loading.value"
-          :active-project-id="account.activeProjectId.value"
-          @select="account.selectProject"
           @disconnect="account.disconnect"
         />
       </template>
@@ -42,10 +39,6 @@
     <!-- Connected -->
     <template v-else>
       <ActionList @screenshot="onScreenshot" />
-      <ActiveProjectChip
-        :active-project="account.activeProject.value"
-        :loading="account.loading.value"
-      />
     </template>
 
     <!-- Footer URL -->
@@ -61,7 +54,6 @@ import { Button } from '@deveprobe/ui';
 import PopupHeader   from './components/PopupHeader.vue';
 import ActionList    from './components/ActionList.vue';
 import AccountMenu   from './components/AccountMenu.vue';
-import ActiveProjectChip from './components/ActiveProjectChip.vue';
 import ConnectPrompt from '../../components/launcher/ConnectPrompt.vue';
 import { usePopupAccount } from './composables/usePopupAccount.js';
 import { safeSendMessage } from '../../lib/extension.js';

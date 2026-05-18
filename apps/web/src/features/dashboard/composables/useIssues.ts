@@ -2,11 +2,13 @@ import { ref, computed, reactive } from "vue";
 import { api } from "@/shared/lib/api.js";
 import type { Issue, IssueMode, IssueStatus, Severity } from "@deveprobe/shared";
 
+// "all" is a sentinel value used by the filter UI (shadcn Select can't have
+// an empty-string item value), and is treated as "no filter" everywhere.
 export interface IssueFilters {
   q: string;
-  status: IssueStatus | "";
-  severity: Severity | "";
-  mode: IssueMode | "";
+  status: IssueStatus | "all";
+  severity: Severity | "all";
+  mode: IssueMode | "all";
 }
 
 export function useIssues() {
@@ -16,20 +18,24 @@ export function useIssues() {
 
   const filters = reactive<IssueFilters>({
     q: "",
-    status: "",
-    severity: "",
-    mode: "",
+    status: "all",
+    severity: "all",
+    mode: "all",
   });
 
   const hasFilters = computed(
-    () => filters.q !== "" || filters.status !== "" || filters.severity !== "" || filters.mode !== "",
+    () =>
+      filters.q !== "" ||
+      filters.status !== "all" ||
+      filters.severity !== "all" ||
+      filters.mode !== "all",
   );
 
   const filtered = computed(() =>
     issues.value.filter((i) => {
-      if (filters.status && i.status !== filters.status) return false;
-      if (filters.severity && i.severity !== filters.severity) return false;
-      if (filters.mode && i.mode !== filters.mode) return false;
+      if (filters.status !== "all" && i.status !== filters.status) return false;
+      if (filters.severity !== "all" && i.severity !== filters.severity) return false;
+      if (filters.mode !== "all" && i.mode !== filters.mode) return false;
       if (filters.q) {
         const needle = filters.q.toLowerCase();
         return (
@@ -46,9 +52,9 @@ export function useIssues() {
 
   function clearFilters() {
     filters.q = "";
-    filters.status = "";
-    filters.severity = "";
-    filters.mode = "";
+    filters.status = "all";
+    filters.severity = "all";
+    filters.mode = "all";
   }
 
   async function load() {

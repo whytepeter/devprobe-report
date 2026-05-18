@@ -34,7 +34,7 @@ export type LoginInput = z.infer<typeof LoginSchema>;
 // ── Issue ─────────────────────────────────────────────────────────────────────
 
 export const CreateIssueSchema = z.object({
-  projectId: z.string().uuid(),
+  folderId: z.string().uuid().nullish(),
   title: z.string().min(1).max(500),
   summary: z.string().optional(),
   source: z.enum(Object.values(IssueSource) as [IssueSource, ...IssueSource[]]),
@@ -65,7 +65,7 @@ export type UpdateIssueInput = z.infer<typeof UpdateIssueSchema>;
 // ── Recording Session ─────────────────────────────────────────────────────────
 
 export const CreateRecordingSessionSchema = z.object({
-  projectId: z.string().uuid(),
+  folderId: z.string().uuid().nullish(),
   source: z.enum(["extension", "submission_link"]),
   pageUrl: z.string().url(),
   environment: z.string().max(100).optional(),
@@ -183,17 +183,17 @@ export const RequestUploadUrlSchema = z.object({
 });
 export type RequestUploadUrlInput = z.infer<typeof RequestUploadUrlSchema>;
 
-// ── Project ───────────────────────────────────────────────────────────────────
+// ── Folder ────────────────────────────────────────────────────────────────────
 
-export const CreateProjectSchema = z.object({
+export const CreateFolderSchema = z.object({
   name: z.string().min(1).max(100),
   slug: z.string().min(1).max(60).regex(/^[a-z0-9-]+$/),
   description: z.string().max(500).optional(),
 });
-export type CreateProjectInput = z.infer<typeof CreateProjectSchema>;
+export type CreateFolderInput = z.infer<typeof CreateFolderSchema>;
 
 export const CreateEnvironmentSchema = z.object({
-  projectId: z.string().uuid(),
+  folderId: z.string().uuid(),
   name: z.string().min(1).max(100),
   urlPatterns: z.array(z.string()).default([]),
 });
@@ -217,7 +217,7 @@ export const PaginationSchema = z.object({
 export type Pagination = z.infer<typeof PaginationSchema>;
 
 export const IssueFiltersSchema = z.object({
-  projectId: z.string().uuid().optional(),
+  folderId: z.string().uuid().optional(),
   status: z.enum(Object.values(IssueStatus) as [IssueStatus, ...IssueStatus[]]).optional(),
   severity: z.enum(Object.values(Severity) as [Severity, ...Severity[]]).optional(),
   assigneeId: z.string().uuid().optional(),

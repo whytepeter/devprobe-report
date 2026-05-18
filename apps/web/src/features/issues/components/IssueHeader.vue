@@ -1,7 +1,7 @@
 <template>
   <header class="h-14 flex items-center gap-3 px-6 border-b border-border flex-shrink-0 bg-background">
     <Button variant="ghost" size="icon-sm" class="shrink-0" as-child>
-      <RouterLink to="/dashboard">
+      <RouterLink to="/issues">
         <Icon name="arrow-left" :size="16" :stroke-width="1.5" />
       </RouterLink>
     </Button>
