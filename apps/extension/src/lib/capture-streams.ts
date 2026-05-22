@@ -10,12 +10,16 @@
  *   - Navigations (popstate + pushState/replaceState via page-probe)
  *
  * `stop()` returns two arrays:
- *   - events  → the full event stream (uploaded to the API)
- *   - markers → the subset shown as warning/error dots on the trimmer
+ *   - events  → the FULL event stream (uploaded to the API and rendered as
+ *                correlated panels on /issue/[id] — console, network,
+ *                user actions, navigations, errors, etc. ALL included.)
+ *   - markers → the subset shown as dots on the recording-compose trimmer.
+ *               Only `error` and `warning` types are pushed here.
  *
- * Display rule (per the user): only console.warn / console.error / errors /
- * network failures / slow requests / GraphQL errors appear on the trimmer.
- * Everything else is saved but not visualised in the compose modal.
+ * Display rule:
+ *   • Trimmer markers   → errors + warnings only (console + network).
+ *     Network failures → 'error'.  Slow requests → 'warning'.
+ *   • Issue page panels → everything that's stored in `events`.
  *
  * All events share a single timebase: `performance.now() - startedAt`.
  */
@@ -31,12 +35,12 @@ export interface CaptureStreams {
   stop: () => { markers: RecordingMarker[]; events: UploadedTimelineEvent[] };
 }
 
-export function startCaptureStreams(startedAt: number): CaptureStreams {
+export function startCaptureStreams(startedAtEpoch: number): CaptureStreams {
   const markers: RecordingMarker[] = [];
   const events:  UploadedTimelineEvent[] = [];
   let n = 0;
 
-  const tsMs = () => Math.round(performance.now() - startedAt);
+  const tsMs = () => Math.max(0, Date.now() - startedAtEpoch);
 
   /** Push to the trimmer's marker view (warnings + errors only). */
   const pushMarker = (type: MarkerType, label?: string) =>
@@ -84,9 +88,10 @@ export function startCaptureStreams(startedAt: number): CaptureStreams {
   document.addEventListener('click', onClick, true);
 
   // ── Navigations (popstate; pushState/replaceState come via page-probe) ────
+  // Stored for the issue details timeline panels, but NOT marked on the
+  // trimmer — only errors/warnings get markers.
   const onPopstate = () => {
     const summary = `Nav: ${location.pathname}`;
-    pushMarker('navigation', summary);
     pushEvent({ kind: 'navigation', summary, data: { via: 'popstate' } });
   };
   window.addEventListener('popstate', onPopstate);
@@ -123,13 +128,15 @@ export function startCaptureStreams(startedAt: number): CaptureStreams {
         },
       });
 
-      // Marker view: only warnings / errors / slow.
+      // Marker view: collapse network signals into the two user-facing tiers:
+      //   • failures (status≥400 / network error / GraphQL errors) → 'error'
+      //   • slow requests                                          → 'warning'
       if (ev.graphqlErrors?.length) {
         for (const msg of ev.graphqlErrors) pushMarker('error', `GraphQL: ${msg}`);
       } else if (ev.status >= 400 || (!ev.ok && ev.status === 0)) {
-        pushMarker('network_fail', `${ev.method} ${shortUrl} → ${ev.status || 'network error'}`);
+        pushMarker('error', `${ev.method} ${shortUrl} → ${ev.status || 'network error'}`);
       } else if (ev.durationMs > SLOW_REQUEST_MS) {
-        pushMarker('network_slow', `${ev.method} ${shortUrl} (${Math.round(ev.durationMs)}ms)`);
+        pushMarker('warning', `${ev.method} ${shortUrl} (${Math.round(ev.durationMs)}ms)`);
       }
       return;
     }
@@ -149,8 +156,8 @@ export function startCaptureStreams(startedAt: number): CaptureStreams {
     }
 
     if (ev.kind === 'navigation') {
+      // Stored only — no trimmer marker (errors/warnings only on the timeline).
       const summary = `Nav: ${ev.url}`;
-      pushMarker('navigation', summary);
       pushEvent({ kind: 'navigation', summary, data: { via: ev.via } });
       return;
     }

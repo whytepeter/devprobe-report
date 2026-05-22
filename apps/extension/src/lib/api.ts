@@ -105,13 +105,8 @@ export const api = {
   },
 
   /**
-   * Upload an attachment with automatic retry-with-backoff.
-   *
-   * Today this is a single POST through the background worker. The SCREEN_RECORDING_SPEC
-   * calls for "resumable or chunked upload" — true R2 multipart support is queued
-   * for the Phase 4 backend pass. Until then we at least retry transient failures
-   * up to `maxRetries` times before surfacing the error to the user, who can then
-   * trigger a manual retry from the saved local draft.
+   * Upload an attachment as a single POST (screenshots / small files).
+   * For large recordings prefer `uploadAttachmentMultipart`.
    *
    * @param onPhase Optional callback so the UI can render "Encoding…" → "Uploading…"
    *               → "Finalising…" instead of an opaque spinner.
@@ -133,10 +128,9 @@ export const api = {
 
     const maxRetries = params.maxRetries ?? 2;
     let attempt = 0;
-    // 1s, 2s, 4s exponential backoff between attempts.
     while (true) {
       try {
-        params.onPhase?.(attempt === 0 ? "uploading" : "uploading");
+        params.onPhase?.("uploading");
         const result = await send<Attachment>({
           path: "/attachments",
           method: "POST",
@@ -155,5 +149,109 @@ export const api = {
         attempt++;
       }
     }
+  },
+
+  /**
+   * Chunked R2 multipart upload for large recordings.
+   *
+   * Splits the blob into 5 MiB chunks, routes each through the background SW
+   * (to preserve the chrome-extension:// origin), and reports byte-level
+   * progress via `onProgress(0–100)`.
+   *
+   * On any failure the in-progress multipart upload is aborted so R2 doesn't
+   * accumulate orphaned parts. The error is re-thrown so the caller can surface
+   * it and keep the local draft alive for a manual retry.
+   *
+   * Phase mapping for the caller's progress label:
+   *   initiate → "encoding"  (small, fast)
+   *   parts    → "uploading" + onProgress %
+   *   complete → "finalising"
+   */
+  uploadAttachmentMultipart: async (params: {
+    blob: Blob;
+    filename: string;
+    type: "screenshot" | "video" | "thumbnail" | "clip" | "export";
+    issueId?: string;
+    sessionId?: string;
+    chunkSize?: number;   // bytes per part; default 5 MiB (R2 minimum)
+    onPhase?: (phase: "encoding" | "uploading" | "finalising") => void;
+    onProgress?: (pct: number) => void;
+  }): Promise<Attachment> => {
+    const CHUNK = params.chunkSize ?? 5 * 1024 * 1024; // 5 MiB
+
+    // ── 1. Initiate ─────────────────────────────────────────────────────────
+    params.onPhase?.("encoding");
+    const { attachmentId, uploadId } = await send<{
+      attachmentId: string;
+      uploadId: string;
+      r2Key: string;
+    }>({
+      path: "/attachments/multipart/initiate",
+      method: "POST",
+      json: {
+        type:        params.type,
+        filename:    params.filename,
+        contentType: params.blob.type || "video/webm",
+        sizeBytes:   params.blob.size,
+        ...(params.issueId   && { issueId:   params.issueId }),
+        ...(params.sessionId && { sessionId: params.sessionId }),
+      },
+    });
+
+    // ── 2. Upload parts ──────────────────────────────────────────────────────
+    params.onPhase?.("uploading");
+    const buffer     = await params.blob.arrayBuffer();
+    const totalParts = Math.ceil(buffer.byteLength / CHUNK);
+    const parts: { partNumber: number; etag: string }[] = [];
+    let uploadedBytes = 0;
+
+    try {
+      for (let i = 0; i < totalParts; i++) {
+        const partNumber = i + 1;
+        const start      = i * CHUNK;
+        const end        = Math.min(start + CHUNK, buffer.byteLength);
+        const chunk      = buffer.slice(start, end);
+        const base64     = bufferToBase64(chunk);
+
+        let attempt = 0;
+        while (true) {
+          try {
+            const part = await send<{ partNumber: number; etag: string }>({
+              path: "/attachments/multipart/part",
+              method: "POST",
+              json: { attachmentId, uploadId, partNumber, data: base64 },
+            });
+            parts.push({ partNumber: part.partNumber, etag: part.etag });
+            break;
+          } catch (e) {
+            if (attempt >= 2) throw e;
+            await new Promise((r) => setTimeout(r, 1000 * Math.pow(2, attempt)));
+            attempt++;
+          }
+        }
+
+        uploadedBytes += end - start;
+        params.onProgress?.(Math.round((uploadedBytes / buffer.byteLength) * 100));
+      }
+    } catch (partErr) {
+      // Abort the multipart upload so R2 doesn't bill for orphaned parts.
+      await send<{ aborted: boolean }>({
+        path:   `/attachments/multipart/${attachmentId}`,
+        method: "DELETE",
+        json:   { uploadId },
+      }).catch(() => { /* best effort */ });
+      throw partErr;
+    }
+
+    // ── 3. Complete ──────────────────────────────────────────────────────────
+    params.onPhase?.("finalising");
+    const attachment = await send<Attachment>({
+      path: "/attachments/multipart/complete",
+      method: "POST",
+      json: { attachmentId, uploadId, parts, sizeBytes: params.blob.size },
+    });
+
+    params.onProgress?.(100);
+    return attachment;
   },
 };

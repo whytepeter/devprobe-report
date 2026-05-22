@@ -4,27 +4,25 @@
 -->
 <template>
   <div class="pointer-events-auto">
-    <!-- FAB -->
+    <!-- FAB
+         IMPORTANT: do NOT use `var(--accent)` / `var(--border)` directly —
+         those tokens are raw HSL components meant for `hsl(var(--token))`
+         (shadcn pattern). Use the hex variants. -->
     <button
       type="button"
-      @click.stop="toggleMenu"
       :aria-label="menuOpen ? 'Close DevProbe' : 'Open DevProbe'"
-      style="pointer-events: auto;"
-      :class="[
-        'fixed bottom-5 right-5 z-[2147483647]',
-        'flex h-11 w-11 items-center justify-center rounded-full',
-        'border-0 cursor-pointer transition-all duration-150',
-        'focus-visible:outline-none active:scale-[0.95]',
-        menuOpen
-          ? 'bg-[var(--accent)] text-white shadow-[0_6px_24px_rgba(124,58,237,0.45)]'
-          : 'bg-[var(--bg-elevated)] text-[var(--text-primary)] border border-[var(--border)] shadow-[0_4px_20px_rgba(0,0,0,0.14)] hover:border-[var(--border-strong)] hover:shadow-[0_6px_28px_rgba(0,0,0,0.18)]',
-      ]"
+      :style="fabStyle"
+      class="fixed bottom-5 right-5 z-[2147483647]
+             flex h-11 w-11 items-center justify-center rounded-full
+             border cursor-pointer transition-[background-color,box-shadow,transform,border-color] duration-150
+             focus-visible:outline-none active:scale-[0.95]"
+      @click.stop="toggleMenu"
     >
       <Transition
         enter-active-class="transition-[opacity,transform] duration-100"
-        enter-from-class="opacity-0 rotate-45 scale-75"
+        enter-from-class="opacity-0 scale-75"
         leave-active-class="transition-[opacity,transform] duration-100"
-        leave-to-class="opacity-0 rotate-45 scale-75"
+        leave-to-class="opacity-0 scale-75"
         mode="out-in"
       >
         <Icon v-if="menuOpen" key="close" name="x"       :size="16" :stroke-width="2.5"/>
@@ -44,7 +42,7 @@
         @click.stop
         style="pointer-events: auto;"
         class="fixed bottom-[72px] right-5 z-[2147483647] w-[248px] origin-bottom-right
-               rounded-2xl border border-[var(--border)] bg-[var(--bg-elevated)] p-1.5
+               rounded-2xl border border-[rgba(0,0,0,0.06)] bg-[var(--bg-elevated)] p-1.5
                shadow-[0_16px_48px_rgba(0,0,0,0.14),0_2px_8px_rgba(0,0,0,0.08)]"
       >
         <!-- Disconnected: connect prompt -->
@@ -77,7 +75,7 @@
           />
 
           <!-- Footer -->
-          <div class="mt-1.5 border-t border-[var(--border)] pt-1.5 px-2.5 pb-1">
+          <div class="mt-1.5 border-t border-[rgba(0,0,0,0.06)] pt-1.5 px-2.5 pb-1">
             <p class="text-[10px] text-[var(--text-muted)]">
               DevProbe · <span class="text-[var(--accent)] font-medium">v0.1</span>
             </p>
@@ -89,7 +87,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { computed, ref, onMounted, onUnmounted } from 'vue';
 import { Icon } from '@deveprobe/ui';
 import LauncherItem  from './LauncherItem.vue';
 import ConnectPrompt from './ConnectPrompt.vue';
@@ -97,6 +95,25 @@ import { getAuth, onAuthChange, type StoredAuth } from '../../lib/auth.js';
 
 const menuOpen = ref(false);
 const auth     = ref<StoredAuth | null>(null);
+
+// FAB styling — kept in JS so we can compose the two states from the theme
+// tokens without fighting Tailwind's arbitrary-value parser.
+const fabStyle = computed<Record<string, string>>(() => {
+  if (menuOpen.value) {
+    return {
+      backgroundColor: 'var(--accent-hex)',
+      color:           '#fff',
+      borderColor:     'transparent',
+      boxShadow:       '0 4px 16px rgba(124,58,237,0.28)',
+    };
+  }
+  return {
+    backgroundColor: 'var(--bg-elevated)',
+    color:           'var(--text-primary)',
+    borderColor:     'rgba(0,0,0,0.06)',
+    boxShadow:       '0 2px 8px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08)',
+  };
+});
 
 function toggleMenu() { menuOpen.value = !menuOpen.value; }
 function closeMenu()  { menuOpen.value = false; }

@@ -14,18 +14,19 @@
   },
   "dependencies": {
     "@deveprobe/shared": "workspace:*",
-    "hono": "^4.5.3",
-    "drizzle-orm": "^0.36.4",
     "@neondatabase/serverless": "^0.10.4",
     "bcryptjs": "^2.4.3",
+    "drizzle-orm": "^0.36.4",
+    "hono": "^4.5.3",
     "jose": "^5.9.3",
-    "nanoid": "^5.0.7"
+    "nanoid": "^5.0.7",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20241022.0",
+    "@types/bcryptjs": "^2.4.6",
     "drizzle-kit": "^0.28.1",
-    "wrangler": "^3.78.7",
     "typescript": "^5.5.3",
-    "@types/bcryptjs": "^2.4.6"
+    "wrangler": "^3.78.7"
   }
 }

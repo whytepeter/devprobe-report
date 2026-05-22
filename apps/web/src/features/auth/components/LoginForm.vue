@@ -41,7 +41,7 @@
 
     <p v-if="submitError" class="text-xs text-destructive">{{ submitError }}</p>
 
-    <Button type="submit" class="w-full" :disabled="submitting">
+    <Button type="submit" class="w-full" :loading="submitting">
       {{ submitting ? "Signing in…" : "Sign in" }}
     </Button>
   </form>

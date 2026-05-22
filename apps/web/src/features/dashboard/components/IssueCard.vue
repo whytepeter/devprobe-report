@@ -7,12 +7,39 @@
 -->
 <template>
   <article
-    @click="$router.push(`/issue/${issue.id}`)"
-    class="group rounded-xl border border-border bg-card overflow-hidden cursor-pointer transition-all duration-150 hover:border-primary/40 hover:shadow-md focus-visible:outline-none"
+    :class="[
+      'group relative rounded-xl border bg-card overflow-hidden cursor-pointer transition-all duration-150 focus-visible:outline-none',
+      isSelected
+        ? 'border-primary ring-2 ring-primary/20'
+        : 'border-border hover:border-primary/40 hover:shadow-md',
+    ]"
     tabindex="0"
     role="button"
+    draggable="true"
+    :aria-selected="isSelected"
+    @click="onCardClick"
     @keydown.enter="$router.push(`/issue/${issue.id}`)"
+    @dragstart="onDragStart"
+    @dragend="onDragEnd"
   >
+    <!-- Hover/selected: selection checkbox.
+         z-20 sits above the type chip; pointer-events-auto on the button so
+         clicks don't bubble to the card navigate. -->
+    <button
+      type="button"
+      :class="[
+        'absolute top-2.5 right-2.5 z-20 flex h-5 w-5 items-center justify-center rounded-md border transition-all',
+        isSelected
+          ? 'border-primary bg-primary text-primary-foreground opacity-100'
+          : 'border-border bg-card/90 backdrop-blur-sm text-transparent opacity-0 group-hover:opacity-100 group-focus-within:opacity-100',
+      ]"
+      :aria-label="isSelected ? 'Unselect issue' : 'Select issue'"
+      :aria-pressed="isSelected"
+      @click.stop="selection.toggle(issue.id)"
+    >
+      <Icon v-if="isSelected" name="check" :size="12" :stroke-width="3" />
+    </button>
+
     <!-- Media area -->
     <div class="relative aspect-[16/10] bg-muted/40 border-b border-border overflow-hidden">
       <!-- Recording: video poster (first frame) with play badge -->
@@ -81,12 +108,14 @@
 
 <script setup lang="ts">
 import { computed, ref, toRef, watch } from "vue";
+import { useRouter } from "vue-router";
 import type { Issue, Attachment } from "@deveprobe/shared";
 import { Icon } from "@deveprobe/ui";
 import TypeChip from "@/features/issues/components/TypeChip.vue";
 import UserAvatar from "@/features/issues/components/UserAvatar.vue";
 import { timeAgo } from "@/shared/lib/format.js";
 import { useAttachmentUrl } from "@/features/issues/composables/useAttachmentUrl.js";
+import { useIssueSelection } from "@/features/dashboard/composables/useIssueSelection.js";
 
 type IssueCardIssue = Issue & {
   attachments?: Attachment[];
@@ -142,4 +171,39 @@ const shortId = computed(() => {
   // Render the leading 8 chars of the uuid until we ship the human DP-128 numbering.
   return props.issue.id.slice(0, 8);
 });
+
+// ── Selection ──────────────────────────────────────────────────────────────
+const selection = useIssueSelection();
+const isSelected = computed(() => selection.isSelected(props.issue.id));
+
+// Card-level click: when any cards are selected, plain clicks should TOGGLE
+// the card's own selection (matches Linear/Notion multi-select feel). Only
+// navigate to the issue when nothing is selected.
+const router = useRouter();
+function onCardClick() {
+  if (selection.hasSelection.value) {
+    selection.toggle(props.issue.id);
+    return;
+  }
+  router.push(`/issue/${props.issue.id}`);
+}
+
+// ── Drag-to-folder ─────────────────────────────────────────────────────────
+// Drop targets (folder sidebar items) read `text/x-devprobe-issue` to
+// disambiguate from generic dragged content like text selections.
+// Multi-select drag: drop all selected issues at once if this issue is among
+// the selected set; otherwise drag just this one.
+const DRAG_MIME = "text/x-devprobe-issue";
+
+function onDragStart(e: DragEvent) {
+  if (!e.dataTransfer) return;
+  const ids = isSelected.value && selection.count.value > 1
+    ? selection.selectedIds.value
+    : [props.issue.id];
+  e.dataTransfer.effectAllowed = "move";
+  e.dataTransfer.setData(DRAG_MIME, JSON.stringify(ids));
+  // Plain-text fallback (some drop UIs sniff text/plain to filter dragenter).
+  e.dataTransfer.setData("text/plain", ids.join(","));
+}
+function onDragEnd(_e: DragEvent) { /* nothing — drop target owns the mutation */ }
 </script>

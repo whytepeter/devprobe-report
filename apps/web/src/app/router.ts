@@ -32,7 +32,7 @@ const router = createRouter({
         {
           path: "issue/:id",
           name: "issue",
-          component: () => import("@/pages/issues/Issue.vue"),
+          component: () => import("@/features/issues/IssuePage.vue"),
         },
         {
           path: "folders",

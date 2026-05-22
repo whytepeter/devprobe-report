@@ -82,7 +82,7 @@
           <Button type="button" variant="ghost" :disabled="submitting" @click="emit('update:open', false)">
             Cancel
           </Button>
-          <Button type="submit" :disabled="submitting">
+          <Button type="submit" :loading="submitting">
             {{ submitting ? "Creating…" : "Create folder" }}
           </Button>
         </DialogFooter>

@@ -1,10 +1,20 @@
 import { Hono } from "hono";
-import { eq, and, desc } from "drizzle-orm";
+import { eq, and, desc, inArray } from "drizzle-orm";
+import { z } from "zod";
 import { createDb } from "../db/client.js";
 import { issues, folders, recordingSessions, timelineEvents } from "../db/schema.js";
 import { ok, Errors } from "../lib/response.js";
 import { requireAuth } from "../middleware/auth.js";
-import { CreateIssueSchema } from "@deveprobe/shared";
+import { CreateIssueSchema, UpdateIssueSchema, IssueStatus } from "@deveprobe/shared";
+
+// API-internal: shape of POST /issues/bulk. Not exported via @deveprobe/shared
+// because no client other than this API's own route consumer cares about the
+// exact validation rules (clients call the endpoint, server rejects bad shapes).
+const BulkIssueActionSchema = z.discriminatedUnion("action", [
+  z.object({ action: z.literal("delete"),         ids: z.array(z.string().uuid()).min(1).max(200) }),
+  z.object({ action: z.literal("move-to-folder"), ids: z.array(z.string().uuid()).min(1).max(200), folderId: z.string().uuid().nullable() }),
+  z.object({ action: z.literal("set-status"),     ids: z.array(z.string().uuid()).min(1).max(200), status: z.enum(Object.values(IssueStatus) as [IssueStatus, ...IssueStatus[]]) }),
+]);
 import type { Env } from "../lib/env.js";
 
 export const issuesRouter = new Hono<{ Bindings: Env }>();
@@ -92,6 +102,133 @@ issuesRouter.post("/", async (c) => {
   }).returning();
 
   return ok(issue, 201);
+});
+
+// ── PATCH /issues/:id ────────────────────────────────────────────────────────
+// Update mutable fields on an issue (status, severity, assignee, folder,
+// labels, etc.). Used by the issue details card, the drag-to-folder flow on
+// the issues list, and the inline title/description edits on the issue page.
+issuesRouter.patch("/:id", async (c) => {
+  const auth = c.get("auth");
+  const id   = c.req.param("id");
+  const body = await c.req.json().catch(() => null);
+  const parsed = UpdateIssueSchema.safeParse(body);
+  if (!parsed.success) return Errors.badRequest("Invalid input", parsed.error.flatten());
+
+  const db = createDb(c.env.DATABASE_URL);
+
+  // Ownership check — issue must belong to caller's org.
+  const issue = await db.query.issues.findFirst({
+    where: and(eq(issues.id, id), eq(issues.orgId, auth.orgId)),
+  });
+  if (!issue) return Errors.notFound("Issue");
+
+  // If a folder is targeted, verify it's in the same org. `null` clears it.
+  if (parsed.data.folderId) {
+    const folder = await db.query.folders.findFirst({
+      where: and(eq(folders.id, parsed.data.folderId), eq(folders.orgId, auth.orgId)),
+    });
+    if (!folder) return Errors.notFound("Folder");
+  }
+
+  const [updated] = await db.update(issues)
+    .set({ ...parsed.data, updatedAt: new Date() })
+    .where(eq(issues.id, id))
+    .returning();
+
+  return ok(updated);
+});
+
+// ── DELETE /issues/:id ───────────────────────────────────────────────────────
+// Hard-deletes an issue. Cascades remove attachments, timeline events,
+// comments, activity, and the recording session(s) via FK ON DELETE CASCADE
+// defined in the schema. The R2 blobs themselves are NOT deleted here — they
+// stay until the next purge sweep so accidental delete can be partially
+// recovered for a short window (parked task).
+issuesRouter.delete("/:id", async (c) => {
+  const auth = c.get("auth");
+  const id   = c.req.param("id");
+  const db   = createDb(c.env.DATABASE_URL);
+
+  const issue = await db.query.issues.findFirst({
+    where: and(eq(issues.id, id), eq(issues.orgId, auth.orgId)),
+  });
+  if (!issue) return Errors.notFound("Issue");
+
+  await db.delete(issues).where(eq(issues.id, id));
+  return ok({ deleted: true });
+});
+
+// ── POST /issues/bulk ────────────────────────────────────────────────────────
+// One call, many issues. Used by the bulk-actions toolbar on the Issues tab
+// for "delete N", "move to folder", "mark resolved", etc. Server-side org
+// check is per-id — any id that doesn't belong to the caller's org is
+// silently skipped so a leaked id list can't be used to probe other orgs.
+issuesRouter.post("/bulk", async (c) => {
+  const auth = c.get("auth");
+  const body = await c.req.json().catch(() => null);
+  const parsed = BulkIssueActionSchema.safeParse(body);
+  if (!parsed.success) return Errors.badRequest("Invalid input", parsed.error.flatten());
+
+  const db = createDb(c.env.DATABASE_URL);
+
+  // Filter to issues that actually belong to this org. Anything else is dropped.
+  const owned = await db.query.issues.findMany({
+    where: and(inArray(issues.id, parsed.data.ids), eq(issues.orgId, auth.orgId)),
+    columns: { id: true },
+  });
+  const ownedIds = owned.map((i) => i.id);
+  if (ownedIds.length === 0) return ok({ affected: 0 });
+
+  switch (parsed.data.action) {
+    case "delete":
+      await db.delete(issues).where(inArray(issues.id, ownedIds));
+      break;
+    case "move-to-folder": {
+      // Folder must be in caller's org (or null to clear).
+      if (parsed.data.folderId) {
+        const folder = await db.query.folders.findFirst({
+          where: and(eq(folders.id, parsed.data.folderId), eq(folders.orgId, auth.orgId)),
+        });
+        if (!folder) return Errors.notFound("Folder");
+      }
+      await db.update(issues)
+        .set({ folderId: parsed.data.folderId, updatedAt: new Date() })
+        .where(inArray(issues.id, ownedIds));
+      break;
+    }
+    case "set-status":
+      // Status values are validated by the DB enum — invalid strings fail loudly.
+      await db.update(issues)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .set({ status: parsed.data.status as any, updatedAt: new Date() })
+        .where(inArray(issues.id, ownedIds));
+      break;
+  }
+
+  return ok({ affected: ownedIds.length });
+});
+
+// ── GET /issues/:id/events ────────────────────────────────────────────────────
+// Returns all timeline events for an issue ordered by timestampMs.
+// Used by the web app's correlated-panels view on the issue detail page.
+issuesRouter.get('/:id/events', async (c) => {
+  const auth = c.get('auth');
+  const issueId = c.req.param('id');
+  const db = createDb(c.env.DATABASE_URL);
+
+  const issue = await db.query.issues.findFirst({
+    where: and(eq(issues.id, issueId), eq(issues.orgId, auth.orgId)),
+  });
+  if (!issue) return Errors.notFound('Issue');
+
+  const events = await db.query.timelineEvents.findMany({
+    where: eq(timelineEvents.issueId, issueId),
+    orderBy: [timelineEvents.timestampMs],
+    limit: 5000,
+  });
+
+  return ok(events);
 });
 
 // ── Timeline events ─────────────────────────────────────────────────────────

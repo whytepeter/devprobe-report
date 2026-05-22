@@ -36,9 +36,9 @@
         />
       </div>
 
-      <!-- Event markers -->
+      <!-- Event markers — only signal-bearing ones (console + network errors / warnings) -->
       <div
-        v-for="marker in markers"
+        v-for="marker in visibleMarkers"
         :key="marker.id"
         class="absolute top-1/2 z-10 -translate-y-1/2 -translate-x-1/2 h-2 w-2 cursor-pointer rounded-full border-[1.5px] border-card transition-transform hover:scale-125"
         :class="markerBg(marker.type)"
@@ -182,8 +182,20 @@ function formatShort(ms: number): string {
   return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 }
 
+// Only render error- and warning-level markers (console + network). Network
+// failures are upgraded to `error` and slow requests to `warning` at the
+// capture-streams layer, so this set stays tight to those two types.
+const SIGNAL_TYPES: ReadonlySet<MarkerType> = new Set([
+  'error',
+  'warning',
+]);
+
+const visibleMarkers = computed(() =>
+  props.markers.filter((m) => SIGNAL_TYPES.has(m.type)),
+);
+
 const hoveredMarker = computed(() =>
-  props.markers.find((m) => m.id === hoveredMarkerId.value) ?? null,
+  visibleMarkers.value.find((m) => m.id === hoveredMarkerId.value) ?? null,
 );
 
 // ── Scrub interactions ─────────────────────────────────────────────────────

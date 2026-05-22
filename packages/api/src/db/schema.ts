@@ -83,6 +83,13 @@ export const attachmentTypeEnum = pgEnum("attachment_type", [
   "export",
 ]);
 
+export const attachmentStatusEnum = pgEnum("attachment_status", [
+  "pending",    // row created, multipart upload not yet started
+  "uploading",  // parts are being uploaded
+  "complete",   // multipart upload finalised (or direct upload done)
+  "failed",     // multipart upload aborted / error
+]);
+
 export const annotationIssueTypeEnum = pgEnum("annotation_issue_type", [
   "visual_bug",
   "layout_issue",
@@ -318,6 +325,8 @@ export const attachments = pgTable("attachments", {
   pinId: uuid("pin_id"),
   type: attachmentTypeEnum("type").notNull(),
   r2Key: text("r2_key").notNull(),
+  r2UploadId: text("r2_upload_id"),           // R2 multipart upload ID; null for direct uploads
+  status: attachmentStatusEnum("status").notNull().default("complete"),
   contentType: varchar("content_type", { length: 100 }).notNull(),
   sizeBytes: integer("size_bytes").notNull(),
   durationMs: integer("duration_ms"),

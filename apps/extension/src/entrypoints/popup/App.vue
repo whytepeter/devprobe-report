@@ -114,8 +114,7 @@ async function onRecord() {
   launching.value   = true;
   try {
     const res = await safeSendMessage<{ ok?: boolean; error?: string }>({
-      type:    'FORWARD_TO_CONTENT',
-      payload: { type: 'START_RECORDING', auth: account.auth.value },
+      type: 'START_RECORDING_FLOW',
     });
     if (!res?.ok) throw new Error(res?.error ?? 'Could not start recording');
     window.close();
@@ -128,8 +127,8 @@ async function onRecord() {
 async function onStopRecording() {
   try {
     await safeSendMessage<{ ok?: boolean }>({
-      type:    'FORWARD_TO_CONTENT',
-      payload: { type: 'STOP_RECORDING' },
+      type:    'RECORDING_COMMAND',
+      command: 'stop',
     });
     window.close();
   } catch (e) {

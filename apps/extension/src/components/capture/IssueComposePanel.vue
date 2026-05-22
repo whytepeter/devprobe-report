@@ -11,9 +11,10 @@
   - Footer      — visibility select + "Create issue & copy link" primary
 -->
 <template>
-  <div ref="rootEl" class="flex h-full flex-col bg-card">
-    <!-- Body -->
-    <div class="relative flex-1 min-h-0 overflow-y-auto">
+  <div ref="rootEl" class="flex flex-col bg-card md:h-full">
+    <!-- Body — only the form panel scrolls on desktop; on mobile the OUTER
+         modal body scrolls so the whole compose feels like one continuous page. -->
+    <div class="relative md:flex-1 md:min-h-0 md:overflow-y-auto">
       <slot v-if="screen === 'success'" name="success" />
 
       <form
@@ -35,13 +36,17 @@
           />
         </div>
 
-        <!-- DESCRIPTION -->
-        <div class="flex flex-1 flex-col min-h-0 px-5 pt-3 pb-2 space-y-1.5">
+        <!-- DESCRIPTION
+             min-h on the textarea so it always has visible height on mobile
+             (no flex-height parent to fill); on desktop the flex chain
+             expands it to fill the remaining form area. -->
+        <div class="flex flex-col md:flex-1 md:min-h-0 px-5 pt-3 pb-2 space-y-1.5">
           <p class="shrink-0 text-[10px] font-bold uppercase tracking-[0.08em] text-muted-foreground/80">Description</p>
           <textarea
             v-model="form.summary"
             :disabled="submitting"
-            class="block w-full flex-1 min-h-0 bg-transparent border-0 outline-none p-0 appearance-none shadow-none resize-none leading-[1.6] text-[13px] text-foreground/80 placeholder:text-muted-foreground/50 focus:ring-0 font-sans disabled:cursor-not-allowed"
+            rows="3"
+            class="block w-full min-h-[90px] md:min-h-0 md:flex-1 bg-transparent border-0 outline-none p-0 appearance-none shadow-none resize-none leading-[1.6] text-[13px] text-foreground/80 placeholder:text-muted-foreground/50 focus:ring-0 font-sans disabled:cursor-not-allowed"
             placeholder="What happened…"
           />
         </div>
@@ -97,7 +102,7 @@
               class="w-20 rounded-md border border-primary/30 bg-background px-2 py-1 font-mono text-[11px] text-foreground outline-none focus:border-primary"
               placeholder="tag"
               @keydown.enter.prevent="commitTag"
-              @keydown.escape="cancelAddTag"
+              @keydown.escape="cancelTag"
               @blur="commitTag"
             />
             <button
@@ -124,42 +129,49 @@
       </form>
     </div>
 
-    <!-- Footer -->
-    <div v-if="screen !== 'success'" class="shrink-0 border-t border-border">
-      <!-- Visibility -->
-      <div class="px-4 pt-3 pb-2">
-        <Select v-model="form.visibility" :disabled="submitting">
-          <SelectTrigger :disabled="submitting">
-            <Icon name="link" :size="13" class="shrink-0 text-muted-foreground" />
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent :to="portalTarget ?? undefined">
-            <SelectItem value="public">Anyone with the link</SelectItem>
-            <SelectItem value="private">Only people in this workspace</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+    <!-- Footer
+         Mobile (<md): pinned to the bottom of the modal body via position:sticky
+         while the rest of the form scrolls behind it. Two-column (Select +
+         Submit) to stay compact.
+         Desktop (≥md): static at the bottom of the form panel (which has its
+         own internal scroll). Stacked — Select on top, full-width Submit below. -->
+    <div
+      v-if="screen !== 'success'"
+      class="border-t border-border p-3 bg-card sticky bottom-0 z-10 md:static md:shrink-0"
+    >
+      <div class="flex flex-row md:flex-col gap-2 md:gap-3">
+        <!-- Visibility -->
+        <div class="min-w-0 flex-1 md:flex-none md:w-full">
+          <Select v-model="form.visibility" :disabled="submitting">
+            <SelectTrigger :disabled="submitting" class="w-full">
+              <Icon name="link" :size="13" class="shrink-0 text-muted-foreground" />
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent :to="portalTarget ?? undefined">
+              <SelectItem value="public">Public link</SelectItem>
+              <SelectItem value="private">Workspace only</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
 
-      <!-- Submit -->
-      <div class="px-4 pb-4">
+        <!-- Submit -->
         <Button
           variant="default"
-          class="w-full gap-1.5"
-          :disabled="!canSubmit || submitting"
+          class="flex-1 min-w-0 md:w-full md:flex-none gap-1.5"
+          :loading="submitting"
+          :disabled="!canSubmit"
           @click="onSubmit"
         >
-          <span
-            v-if="submitting"
-            class="h-3 w-3 rounded-full border-[1.5px] border-primary-foreground border-t-transparent animate-spin"
-          />
           <Icon
-            v-else
+            v-if="!submitting"
             name="check"
             :size="13"
             :stroke-width="2.5"
             class="shrink-0"
           />
-          {{ submitting ? "Creating…" : "Create issue & copy link" }}
+          <span class="truncate">
+            {{ submitting ? (submitLabel ?? "Creating…") : "Create issue & copy link" }}
+          </span>
         </Button>
       </div>
     </div>
@@ -167,7 +179,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, nextTick } from "vue";
+import { ref, computed } from "vue";
+import { useTagsField } from "./useTagsField.js";
 import {
   Button,
   Icon,
@@ -187,9 +200,11 @@ export interface ComposeForm {
 }
 
 defineProps<{
-  submitting?: boolean;
-  error?:      string;
-  screen?:     "compose" | "success";
+  submitting?:  boolean;
+  /** Override the in-progress label (e.g. "Uploading 42%"). Defaults to "Creating…". */
+  submitLabel?: string;
+  error?:       string;
+  screen?:      "compose" | "success";
 }>();
 
 const emit = defineEmits<{
@@ -230,39 +245,39 @@ const form = ref<ComposeForm>({
 });
 const canSubmit = computed(() => form.value.title.trim().length > 0);
 
-// ── Tag management ─────────────────────────────────────────────────────────
-const addingTag  = ref(false);
-const newTag     = ref("");
-const tagInputEl = ref<HTMLInputElement | null>(null);
-
-async function startAddTag() {
-  addingTag.value = true;
-  newTag.value    = "";
-  await nextTick();
-  tagInputEl.value?.focus();
-}
-
-function commitTag() {
-  const t = newTag.value.trim().replace(/^#/, "").toLowerCase();
-  if (t && !form.value.tags.includes(t)) {
-    form.value.tags.push(t);
-  }
-  addingTag.value = false;
-  newTag.value    = "";
-}
-
-function cancelAddTag() {
-  addingTag.value = false;
-  newTag.value    = "";
-}
-
-function removeTag(tag: string) {
-  form.value.tags = form.value.tags.filter((t) => t !== tag);
-}
+// ── Tag management (logic in useTagsField) ─────────────────────────────────
+const tagsField = useTagsField(computed({
+  get: () => form.value.tags,
+  set: (v) => { form.value.tags = v; },
+}));
+const { inputEl: tagInputEl, adding: addingTag, draft: newTag } = tagsField;
+const startAddTag = tagsField.start;
+const commitTag   = tagsField.commit;
+const cancelTag   = tagsField.cancel;
+const removeTag   = tagsField.remove;
 
 // ── Submit ─────────────────────────────────────────────────────────────────
 function onSubmit() {
   if (!canSubmit.value) return;
   emit("submit", { ...form.value, title: form.value.title.trim() });
 }
+
+// ── Imperative form helpers ────────────────────────────────────────────────
+// Exposed so PostComposeModal can apply AI-generated fields without lifting
+// form state out of this component.
+function applyFields(partial: Partial<ComposeForm>) {
+  if (partial.title      !== undefined) form.value.title      = partial.title;
+  if (partial.summary    !== undefined) form.value.summary    = partial.summary;
+  if (partial.severity   !== undefined) form.value.severity   = partial.severity;
+  if (partial.visibility !== undefined) form.value.visibility = partial.visibility;
+  if (partial.tags       !== undefined) {
+    // de-dupe + normalise (matches commitTag)
+    const seen = new Set<string>();
+    form.value.tags = partial.tags
+      .map((t) => t.trim().replace(/^#/, "").toLowerCase())
+      .filter((t) => t && !seen.has(t) && (seen.add(t), true));
+  }
+}
+
+defineExpose({ applyFields });
 </script>

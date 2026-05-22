@@ -130,6 +130,28 @@ authRouter.get("/workspaces", requireAuth(), async (c) => {
   return ok(rows.map((r) => ({ ...r, current: r.id === auth.orgId })));
 });
 
+// ── GET /auth/workspace/members ──────────────────────────────────────────────
+// Members of the caller's active workspace. Used by the Issue details card's
+// Assignee dropdown. Scoped to `auth.orgId` — no cross-workspace leakage.
+authRouter.get("/workspace/members", requireAuth(), async (c) => {
+  const auth = c.get("auth");
+  const db = createDb(c.env.DATABASE_URL);
+
+  const rows = await db
+    .select({
+      id:        users.id,
+      name:      users.name,
+      email:     users.email,
+      avatarUrl: users.avatarUrl,
+      role:      memberships.role,
+    })
+    .from(memberships)
+    .innerJoin(users, eq(memberships.userId, users.id))
+    .where(eq(memberships.orgId, auth.orgId));
+
+  return ok(rows);
+});
+
 authRouter.post("/workspaces/switch", requireAuth(), async (c) => {
   const auth = c.get("auth");
   const body = (await c.req.json().catch(() => null)) as { orgId?: string } | null;

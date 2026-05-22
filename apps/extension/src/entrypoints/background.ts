@@ -79,6 +79,20 @@ async function handleApiFetch(msg: ApiFetchMessage): Promise<{ ok: true; data: u
 //
 const OFFSCREEN_URL = "/offscreen.html";
 
+// `chrome.offscreen.createDocument()` resolves when the document STARTS
+// loading — its onMessage listener isn't yet registered. Sending
+// `START_OFFSCREEN` immediately gets "Receiving end does not exist" and the
+// whole START_RECORDING_FLOW await chain rejects, so the floating toolbar
+// never mounts on the FIRST click. The offscreen script broadcasts
+// `OFFSCREEN_READY` once its listener is wired — we gate on it here.
+let resolveOffscreenReady: (() => void) | null = null;
+let offscreenReady: Promise<void> = Promise.resolve();
+
+function markOffscreenReady() {
+  resolveOffscreenReady?.();
+  resolveOffscreenReady = null;
+}
+
 async function hasOffscreenDocument(): Promise<boolean> {
   // getContexts is the supported way on MV3.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -90,12 +104,23 @@ async function hasOffscreenDocument(): Promise<boolean> {
 
 async function ensureOffscreenDocument(): Promise<void> {
   if (await hasOffscreenDocument()) return;
+
+  // Arm the ready promise BEFORE createDocument so the broadcast can't beat us.
+  offscreenReady = new Promise<void>((resolve) => { resolveOffscreenReady = resolve; });
+
   await chrome.offscreen.createDocument({
     url: OFFSCREEN_URL,
     // DISPLAY_MEDIA covers tab capture via getUserMedia(chromeMediaSource:'tab').
     reasons: ["USER_MEDIA" as chrome.offscreen.Reason],
     justification: "Owns the MediaRecorder across captured-tab reloads.",
   });
+
+  // Wait up to 3s for OFFSCREEN_READY; if it never arrives we fall through —
+  // the upcoming sendMessage will surface the real error.
+  await Promise.race([
+    offscreenReady,
+    new Promise<void>((r) => setTimeout(r, 3000)),
+  ]);
 }
 
 async function closeOffscreenDocument(): Promise<void> {
@@ -107,6 +132,14 @@ interface RecordingState {
   tabId:          number;
   pageUrl:        string;
   startedAtEpoch: number;
+  /**
+   * 'active'      — MediaRecorder is running.
+   * 'interrupted' — tab reloaded/navigated; offscreen has parked the current
+   *                 segment and is waiting for a Resume click on the new page
+   *                 (which provides the user gesture needed to mint a fresh
+   *                 chrome.tabCapture stream).
+   */
+  status:         'active' | 'interrupted';
 }
 
 async function setRecordingState(state: RecordingState | null) {
@@ -243,6 +276,7 @@ export default defineBackground(() => {
                 tabId:   tab.id,
                 pageUrl: tab.url ?? "",
                 startedAtEpoch,
+                status:  'active',
               });
 
               // Tell the active tab's content script to mount the floating toolbar.
@@ -277,8 +311,69 @@ export default defineBackground(() => {
             return;
           }
 
-          // From offscreen: recording finished, send blob to the original tab
-          // for review-modal mounting.
+          // From offscreen: the tabCapture track ended. Determine if this was
+          // a real stop (user clicked the native "Stop sharing", or tab gone)
+          // vs. a reload/navigation that we should recover from.
+          case "OFFSCREEN_TRACK_ENDED": {
+            const state = await getRecordingState();
+            if (!state) { sendResponse({ action: 'finalise' }); return; }
+
+            // Is the recording tab still alive? If yes → it's a reload/nav.
+            const tab = await chrome.tabs.get(state.tabId).catch(() => null);
+            if (!tab) { sendResponse({ action: 'finalise' }); return; }
+
+            await setRecordingState({ ...state, status: 'interrupted' });
+            sendResponse({ action: 'pause' });
+            return;
+          }
+
+          // Content script (on new page) → resume recording after a reload.
+          // The click that triggered this provides the user gesture chrome
+          // requires for chrome.tabCapture.getMediaStreamId.
+          case "RESUME_RECORDING_FLOW": {
+            const state = await getRecordingState();
+            if (!state || state.status !== 'interrupted') {
+              sendResponse({ ok: false, error: "No interrupted recording to resume" });
+              return;
+            }
+            const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+            if (!tab?.id) { sendResponse({ ok: false, error: "No active tab" }); return; }
+
+            try {
+              const streamId = await new Promise<string>((resolve, reject) => {
+                chrome.tabCapture.getMediaStreamId(
+                  { targetTabId: tab.id },
+                  (id) => {
+                    const err = chrome.runtime.lastError;
+                    if (err || !id) reject(new Error(err?.message || "No stream id"));
+                    else resolve(id);
+                  },
+                );
+              });
+
+              await ensureOffscreenDocument();
+              await chrome.runtime.sendMessage({
+                type: "START_OFFSCREEN",
+                streamId,
+                startedAtEpoch: state.startedAtEpoch,
+              });
+
+              await setRecordingState({ ...state, status: 'active', tabId: tab.id });
+              await chrome.tabs.sendMessage(tab.id, {
+                type: "RECORDING_STARTED",
+                startedAtEpoch: state.startedAtEpoch,
+              }).catch(() => null);
+
+              sendResponse({ ok: true });
+            } catch (e) {
+              sendResponse({ ok: false, error: (e as Error).message });
+            }
+            return;
+          }
+
+          // From offscreen: recording finished, send segments to the original
+          // tab for review-modal mounting. `segments` is in chronological
+          // order; each entry is a self-contained WebM blob.
           case "OFFSCREEN_BLOB": {
             const state = await getRecordingState();
             await setRecordingState(null);
@@ -286,13 +381,11 @@ export default defineBackground(() => {
             if (state?.tabId) {
               await chrome.tabs.sendMessage(state.tabId, {
                 type:           "RECORDING_FINALISED",
-                base64:         msg.base64,
-                mimeType:       msg.mimeType,
-                durationMs:     msg.durationMs,
-                startedAtEpoch: msg.startedAtEpoch,
+                segments:       msg.segments,
+                startedAtEpoch: state.startedAtEpoch,
                 stoppedAtEpoch: msg.stoppedAtEpoch,
                 pageUrl:        state.pageUrl,
-              }).catch(() => { /* tab may be closed; user can recover via draft */ });
+              }).catch(() => { /* tab may be closed; recover via draft later */ });
             }
             sendResponse({ ok: true });
             return;
@@ -307,7 +400,9 @@ export default defineBackground(() => {
           }
 
           case "OFFSCREEN_READY":
-            // Diagnostic ping; nothing to do.
+            // Released by ensureOffscreenDocument() — unblocks START_OFFSCREEN
+            // on the FIRST click, before this fix the toolbar wouldn't mount.
+            markOffscreenReady();
             sendResponse({ ok: true });
             return;
 

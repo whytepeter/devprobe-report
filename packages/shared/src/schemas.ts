@@ -52,11 +52,13 @@ export type CreateIssueInput = z.infer<typeof CreateIssueSchema>;
 
 export const UpdateIssueSchema = z.object({
   title: z.string().min(1).max(500).optional(),
-  summary: z.string().optional(),
+  summary: z.string().nullable().optional(),
   status: z.enum(Object.values(IssueStatus) as [IssueStatus, ...IssueStatus[]]).optional(),
   severity: z.enum(Object.values(Severity) as [Severity, ...Severity[]]).optional(),
   priority: z.enum(Object.values(Priority) as [Priority, ...Priority[]]).optional(),
   assigneeId: z.string().uuid().nullable().optional(),
+  /** `null` clears the folder (issue lives at workspace root). */
+  folderId: z.string().uuid().nullable().optional(),
   labels: z.array(z.string()).optional(),
   visibility: z.enum(Object.values(IssueVisibility) as [IssueVisibility, ...IssueVisibility[]]).optional(),
 });

@@ -13,6 +13,7 @@
   "dependencies": {
     "@deveprobe/shared": "workspace:*",
     "@deveprobe/ui": "workspace:*",
+    "@tanstack/vue-query": "^5.100.11",
     "@vee-validate/zod": "^4.15.1",
     "@vueuse/core": "^11.1.0",
     "axios": "^1.7.7",

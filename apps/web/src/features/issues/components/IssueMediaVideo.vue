@@ -19,6 +19,7 @@
 
     <video
       v-else-if="url"
+      ref="videoEl"
       :src="url"
       controls
       preload="metadata"
@@ -30,11 +31,24 @@
 </template>
 
 <script setup lang="ts">
-import { toRef } from "vue";
+import { ref, toRef } from "vue";
 import { useAttachmentUrl } from "@/features/issues/composables/useAttachmentUrl.js";
 
 const props = defineProps<{ attachmentId: string }>();
 
 const id = toRef(props, "attachmentId");
 const { url, loading, error } = useAttachmentUrl(() => id.value);
+
+const videoEl = ref<HTMLVideoElement | null>(null);
+
+/** Seek the video to a recording timestamp in milliseconds. */
+function seekTo(ms: number) {
+  const el = videoEl.value;
+  if (!el) return;
+  el.currentTime = Math.max(0, ms / 1000);
+  // If paused, play from the seeked position
+  if (el.paused) el.play().catch(() => null);
+}
+
+defineExpose({ seekTo });
 </script>

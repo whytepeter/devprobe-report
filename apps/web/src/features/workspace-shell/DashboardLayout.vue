@@ -64,8 +64,14 @@
             v-else
             :key="folder.id"
             :to="`/folder/${folder.id}`"
-            class="flex items-center gap-2.5 px-3 py-1.5 rounded-md text-[13px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            :class="[
+              'flex items-center gap-2.5 px-3 py-1.5 rounded-md text-[13px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground',
+              dragOverFolderId === folder.id && 'ring-2 ring-primary/50 bg-primary/10 text-foreground',
+            ]"
             activeClass="bg-muted text-foreground font-medium"
+            @dragover.prevent="onFolderDragOver($event, folder.id)"
+            @dragleave="onFolderDragLeave(folder.id)"
+            @drop.prevent="onFolderDrop($event, folder.id)"
           >
             <Icon name="folder" :size="14" :stroke-width="1.75" :class="folderColor(folder.id)" />
             <span class="truncate">{{ folder.name }}</span>
@@ -99,6 +105,8 @@ import { useFolders } from "@/features/folders/composables/useFolders.js";
 import { folderColor } from "@/features/folders/utils/color.js";
 import CreateFolderDialog from "@/features/folders/components/CreateFolderDialog.vue";
 import { useIssues } from "@/features/dashboard/composables/useIssues.js";
+import { useBulkUpdateIssues } from "@/features/issues/composables/useIssueMutations.js";
+import { useIssueSelection } from "@/features/dashboard/composables/useIssueSelection.js";
 
 const auth = useAuthStore();
 const { folders, loading: foldersLoading, load: loadFolders, create: createFolder } = useFolders();
@@ -123,5 +131,39 @@ const nav = computed(() => [
 
 async function onFolderCreated() {
   await loadFolders();
+}
+
+// ── Drag-and-drop: issues → folders ─────────────────────────────────────────
+// Cards set `text/x-devprobe-issue` on dragstart with a JSON-encoded array
+// of issue ids (single or multi-select). We mutate via the bulk endpoint so
+// one or many issues use the same path.
+const DRAG_MIME = "text/x-devprobe-issue";
+const dragOverFolderId = ref<string | null>(null);
+const bulkUpdate = useBulkUpdateIssues();
+const selection  = useIssueSelection();
+
+function onFolderDragOver(e: DragEvent, folderId: string) {
+  // Accept the drop only if the drag carries our payload (lets selecting
+  // text inside the sidebar not light up the folder).
+  if (!e.dataTransfer?.types.includes(DRAG_MIME)) return;
+  e.dataTransfer.dropEffect = "move";
+  dragOverFolderId.value = folderId;
+}
+function onFolderDragLeave(folderId: string) {
+  if (dragOverFolderId.value === folderId) dragOverFolderId.value = null;
+}
+async function onFolderDrop(e: DragEvent, folderId: string) {
+  dragOverFolderId.value = null;
+  const raw = e.dataTransfer?.getData(DRAG_MIME);
+  if (!raw) return;
+  let ids: string[];
+  try { ids = JSON.parse(raw) as string[]; }
+  catch { return; }
+  if (!Array.isArray(ids) || ids.length === 0) return;
+
+  await bulkUpdate.mutateAsync({ action: "move-to-folder", ids, folderId });
+  // If the dropped set matched the active selection, clear it — those
+  // issues are now visually re-homed and re-selecting is a fresh intent.
+  if (ids.some((id) => selection.isSelected(id))) selection.clear();
 }
 </script>

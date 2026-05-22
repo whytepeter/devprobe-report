@@ -10,8 +10,9 @@ import { ref, onMounted, onUnmounted } from 'vue';
 const KEY = 'dp:recording';
 
 export interface RecordingState {
-  startedAt: number;
-  pageUrl:   string;
+  startedAtEpoch: number;
+  pageUrl:        string;
+  tabId:          number;
 }
 
 export function useRecordingStatus() {
@@ -22,7 +23,7 @@ export function useRecordingStatus() {
 
   function applyState(value: RecordingState | null) {
     state.value = value;
-    elapsedMs.value = value ? Math.max(0, Date.now() - value.startedAt) : 0;
+    elapsedMs.value = value ? Math.max(0, Date.now() - value.startedAtEpoch) : 0;
   }
 
   function onStorage(changes: Record<string, chrome.storage.StorageChange>, area: string) {
@@ -39,7 +40,7 @@ export function useRecordingStatus() {
     try { chrome.storage.onChanged.addListener(onStorage); } catch { /* ignore */ }
 
     tick = setInterval(() => {
-      if (state.value) elapsedMs.value = Date.now() - state.value.startedAt;
+      if (state.value) elapsedMs.value = Math.max(0, Date.now() - state.value.startedAtEpoch);
     }, 500);
   });
 

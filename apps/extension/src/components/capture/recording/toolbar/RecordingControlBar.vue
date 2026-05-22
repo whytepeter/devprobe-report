@@ -39,10 +39,14 @@
         <Icon :name="state === 'paused' ? 'play' : 'pause'" :size="13" />
       </button>
 
-      <!-- Blur a region -->
+      <!-- Blur a region (sticky — stays active until clicked again or Esc) -->
       <button
-        class="flex h-7 w-7 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/10 hover:text-white"
-        title="Blur a region"
+        class="flex h-7 w-7 items-center justify-center rounded-full transition-colors"
+        :class="blurActive
+          ? 'bg-violet-500 text-white hover:bg-violet-600 shadow-[0_0_0_2px_rgba(139,92,246,0.25)]'
+          : 'text-white/70 hover:bg-white/10 hover:text-white'"
+        :title="blurActive ? 'Stop blurring (or press Esc)' : 'Blur elements'"
+        :aria-pressed="blurActive"
         @click="emit('add-blur')"
       >
         <Icon name="eye-off" :size="13" />
@@ -65,8 +69,10 @@
 import { Icon } from '@deveprobe/ui';
 
 defineProps<{
-  state:     'recording' | 'paused';
-  elapsedMs: number;
+  state:       'recording' | 'paused';
+  elapsedMs:   number;
+  /** True while sticky element-blur pick mode is on. */
+  blurActive?: boolean;
 }>();
 
 const emit = defineEmits<{

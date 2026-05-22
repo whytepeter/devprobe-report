@@ -34,6 +34,8 @@
 <!-- Mistakes made and corrected. Each entry prevents the same mistake recurring. -->
 <!-- Format: [YYYY-MM-DD] Description of what went wrong and what to do instead. -->
 
+- [2026-05-20] **NEVER create a git worktree for this project — always work directly on the `dev` branch.** The user has corrected this multiple times. Skip `EnterWorktree` / `isolation: "worktree"` entirely. If a session starts inside a stale worktree, do the work where you are but DO NOT create new ones.
+- [2026-05-20] **Always update `apps/web/src/app/router.ts` when adding/renaming an issue page component.** The router uses `pages/issues/Issue.vue`, not `features/issues/IssuePage.vue`. Refactoring `IssuePage.vue` without re-pointing the route means the new UI is never rendered. Either repoint the route or write into `Issue.vue` directly.
 - [2026-05-03] **Never register chrome.runtime.onMessage AFTER an await in a content script main().** Messages sent during async init are silently dropped. Register all listeners as the very first synchronous operations in main().
 - [2026-05-03] **Never use manual attachShadow() for Vue components injected by WXT content scripts.** Vue scoped CSS gets injected into `<head>`, not the shadow root — components render completely unstyled. Always use createShadowRootUi() so WXT injects content.css into the shadow root correctly.
 - [2026-05-03] **WXT shadow host must be styled after mount.** After createShadowRootUi().mount(), call styleHost(ui) to set `position:fixed;top:0;left:0;width:0;height:0;overflow:visible;pointer-events:none` on the host element. Without this, the custom element is a block in the page flow and pushes content.

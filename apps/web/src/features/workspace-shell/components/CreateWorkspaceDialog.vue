@@ -27,7 +27,7 @@
           <Button type="button" variant="ghost" :disabled="submitting" @click="emit('update:open', false)">
             Cancel
           </Button>
-          <Button type="submit" :disabled="submitting || !name.trim()">
+          <Button type="submit" :loading="submitting" :disabled="!name.trim()">
             {{ submitting ? "Creating…" : "Create workspace" }}
           </Button>
         </DialogFooter>
