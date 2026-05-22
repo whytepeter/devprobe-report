@@ -128,6 +128,24 @@ async function closeOffscreenDocument(): Promise<void> {
   await chrome.offscreen.closeDocument().catch(() => { /* already closed */ });
 }
 
+/**
+ * Inject the page-probe MAIN-world content script into the recording tab.
+ * Idempotent — calling twice on the same tab is harmless because the probe
+ * guards its own wrappers with `typeof === 'function'` checks.
+ *
+ * We use chrome.scripting.executeScript instead of a static content script
+ * matches[] declaration so the probe runs ONLY during active recordings —
+ * not on every site the user visits (privacy + cleaner stack traces).
+ */
+async function injectPageProbe(tabId: number): Promise<void> {
+  await chrome.scripting.executeScript({
+    target: { tabId, allFrames: false },
+    files:  ["/content-scripts/page-probe.js"],
+    world:  "MAIN",
+    injectImmediately: true,
+  });
+}
+
 interface RecordingState {
   tabId:          number;
   pageUrl:        string;
@@ -279,6 +297,14 @@ export default defineBackground(() => {
                 status:  'active',
               });
 
+              // Inject page-probe NOW (MAIN-world) so console / fetch / XHR /
+              // history wrapping starts here — and ONLY here. The probe is no
+              // longer auto-registered at install time (privacy: it would
+              // otherwise wrap console.error on every site the user visits).
+              await injectPageProbe(tab.id).catch((e) => {
+                console.warn('[DevProbe] page-probe inject failed:', (e as Error).message);
+              });
+
               // Tell the active tab's content script to mount the floating toolbar.
               await chrome.tabs.sendMessage(tab.id, { type: "RECORDING_STARTED", startedAtEpoch })
                 .catch(() => { /* content script not yet up — it'll mount on init */ });
@@ -359,6 +385,15 @@ export default defineBackground(() => {
               });
 
               await setRecordingState({ ...state, status: 'active', tabId: tab.id });
+
+              // Re-inject the page-probe — the previous page's MAIN-world
+              // wrapper died with the document. (Sync via DOM-paint-frame
+              // means by the time the user sees RECORDING_STARTED, the
+              // probe is already listening.)
+              await injectPageProbe(tab.id).catch((e) => {
+                console.warn('[DevProbe] page-probe inject failed:', (e as Error).message);
+              });
+
               await chrome.tabs.sendMessage(tab.id, {
                 type: "RECORDING_STARTED",
                 startedAtEpoch: state.startedAtEpoch,

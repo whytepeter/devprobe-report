@@ -47,6 +47,41 @@ issuesRouter.get("/", async (c) => {
   return ok(rows);
 });
 
+// ── GET /issues/pins?pageUrl=… ──────────────────────────────────────────────
+// Lightweight list of live-annotation issues that match a page URL. Powers
+// the extension's annotation overlay: when the user opens annotation on a
+// page, the existing pins re-appear immediately.
+//
+// IMPORTANT: registered BEFORE `/:id` so Hono matches the literal path
+// first. Otherwise "pins" would be interpreted as a uuid and 404.
+issuesRouter.get("/pins", async (c) => {
+  const auth = c.get("auth");
+  const pageUrl = c.req.query("pageUrl");
+  if (!pageUrl) return Errors.badRequest("pageUrl required");
+
+  const db = createDb(c.env.DATABASE_URL);
+  const rows = await db.query.issues.findMany({
+    where: and(
+      eq(issues.orgId, auth.orgId),
+      eq(issues.mode, "live_annotation"),
+      eq(issues.pageUrl, pageUrl),
+    ),
+    columns: {
+      id:           true,
+      title:        true,
+      summary:      true,
+      severity:     true,
+      status:       true,
+      browserMeta:  true,  // anchor + issueType live here for v1
+      createdAt:    true,
+      createdById:  true,
+    },
+    orderBy: [desc(issues.createdAt)],
+  });
+
+  return ok(rows);
+});
+
 issuesRouter.get("/:id", async (c) => {
   const auth = c.get("auth");
   const db = createDb(c.env.DATABASE_URL);

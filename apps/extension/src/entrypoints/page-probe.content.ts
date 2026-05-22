@@ -56,6 +56,15 @@ function redactConsoleArg(arg: unknown): string {
 }
 
 export default defineContentScript({
+  // Registered AT RUNTIME by the background SW when a recording starts —
+  // NOT auto-injected. Without this, `console.error` would be wrapped on
+  // every site the user visits (privacy violation + makes us appear in
+  // every site's error stack traces, e.g. next-auth's CLIENT_FETCH_ERROR).
+  //
+  // The cost of lazy injection: console/network calls made BEFORE the
+  // recording starts on this page aren't captured. That's the desired
+  // behaviour — recording timeline starts at recording-start, not page-load.
+  registration: 'runtime',
   matches: ['<all_urls>'],
   runAt:   'document_start',
   world:   'MAIN',

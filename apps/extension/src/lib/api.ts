@@ -47,6 +47,22 @@ function bufferToBase64(buffer: ArrayBuffer): string {
   return btoa(binary);
 }
 
+/**
+ * Row shape returned by GET /issues/pins — only the fields the overlay
+ * actually needs to re-render existing pins on a page. `browserMeta` carries
+ * the anchor we wrote on creation (see capture/annotation/AnnotationOverlay).
+ */
+export interface AnnotationPinRow {
+  id:          string;
+  title:       string;
+  summary:     string | null;
+  severity:    "low" | "medium" | "high" | "critical" | null;
+  status:      string;
+  browserMeta: Record<string, unknown> | null;
+  createdAt:   string;
+  createdById: string;
+}
+
 /** Recording timeline event sent to /issues/:id/events. */
 export interface UploadedTimelineEvent {
   kind:              "console" | "network" | "error" | "user_action" | "performance" | "marker" | "navigation";
@@ -63,6 +79,17 @@ export const api = {
 
   createIssue: (input: Record<string, unknown>) =>
     send<Issue>({ path: "/issues", method: "POST", json: input }),
+
+  /**
+   * Fetch all live-annotation issues for a given page URL — used by the
+   * annotation overlay to re-render existing pins when the user revisits
+   * the same page.
+   */
+  getAnnotationPins: (pageUrl: string) =>
+    send<AnnotationPinRow[]>({
+      path:   `/issues/pins?pageUrl=${encodeURIComponent(pageUrl)}`,
+      method: "GET",
+    }),
 
   /**
    * Bulk-upload recording timeline events (console, network, errors, user

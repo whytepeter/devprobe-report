@@ -24,8 +24,7 @@
     <ActionItem
       label="Annotate"
       description="Pin issues on the page"
-      badge="Soon"
-      :disabled="true"
+      @click="$emit('annotate')"
     >
       <template #icon>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -57,5 +56,5 @@
 <script setup lang="ts">
 import ActionItem from './ActionItem.vue';
 
-defineEmits<{ screenshot: []; record: [] }>();
+defineEmits<{ screenshot: []; record: []; annotate: [] }>();
 </script>

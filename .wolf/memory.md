@@ -993,3 +993,161 @@
 | 22:33 | Edited apps/extension/src/entrypoints/background.ts | added error handling | ~1174 |
 | 22:43 | Created HANDOFF.md | — | ~5711 |
 | 23:10 | Session end: 51 writes across 21 files (content.ts, capture-streams.ts, utils.ts, useRecordingPlayback.ts, ComposeHeading.vue) | 16 reads | ~59713 tok |
+| 00:10 | Read HANDOFF.md for session context | — | ~5700 |
+| 00:15 | Refactored content.ts: stripped inline MediaRecorder (~200 lines deleted), added mountControlBar(), handleRecordingFinalised(), RECORDING_STARTED/RECORDING_FINALISED listeners, reload-recovery via GET_RECORDING_STATE | content.ts | ~4800 |
+| 00:16 | Fixed capture-streams.ts: startedAt→startedAtEpoch, tsMs() now uses Date.now() for cross-page accuracy | capture-streams.ts | ~300 |
+| 00:17 | Fixed popup App.vue: onRecord()→START_RECORDING_FLOW, onStopRecording()→RECORDING_COMMAND stop (no more routing through content script) | popup/App.vue | ~200 |
+| 00:18 | Fixed useRecordingStatus.ts: RecordingState.startedAt→startedAtEpoch to match background storage format | useRecordingStatus.ts | ~150 |
+| 00:19 | Added 5-min auto-stop setTimeout to offscreen/main.ts | offscreen/main.ts | ~100 |
+| 00:20 | Extension build: clean (✔ Built in 80s, no errors) | — | ~800 |
+
+## Session: 2026-05-19 12:03
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 00:25 | Deleted dead apps/web/src/features/projects/ (CreateProjectSchema/Project/CreateProjectInput removed from shared, folder unreferenced) | — | ~200 |
+| 00:26 | Fixed SelectContent.vue to prop: string|Element → string|HTMLElement (matches reka-ui SelectPortal type) | SelectContent.vue | ~50 |
+| 00:27 | Fixed use-toast.ts TS2589 deep type instantiation via @ts-ignore + explicit next:ToasterToast[] intermediate | use-toast.ts | ~100 |
+| 00:28 | Web app build: ✓ clean (2506 modules, 3.49s) | — | ~100 |
+| 00:40 | Added GET /issues/:id/events API route (issues.ts) — returns all timeline events ordered by timestampMs | issues.ts | ~300 |
+| 00:41 | Created useIssueEvents.ts composable — fetches events, groups by kind (console/network/error/user_action/navigation) | useIssueEvents.ts | ~400 |
+| 00:42 | Created IssueTimeline.vue — tabbed panel w/ tab bar, event list, empty/loading/error states | IssueTimeline.vue | ~900 |
+| 00:43 | Created TimelineRow.vue — event row w/ mm:ss seek chip, badge slot, truncated summary | TimelineRow.vue | ~300 |
+| 00:43 | Created ConsoleBadge.vue, NetworkBadge.vue, SeverityPill.vue — inline mini-badges for timeline tabs | 3 files | ~300 |
+| 00:44 | Updated IssueMediaVideo.vue — added videoEl ref + seekTo(ms) + defineExpose | IssueMediaVideo.vue | ~100 |
+| 00:44 | Updated IssueMedia.vue — added videoPlayerRef + seekTo forwarded to IssueMediaVideo + defineExpose | IssueMedia.vue | ~100 |
+| 00:45 | Updated IssuePage.vue — wired mediaRef template ref + IssueTimeline panel (recording-only) + seekTo callback | IssuePage.vue | ~200 |
+| 00:46 | vue-tsc typecheck: 0 errors. Extension build: ✔ 5.4s. Web build: ✔ 3.1s. | — | ~100 |
+| 09:15 | R2 multipart upload: schema (attachment_status enum, r2UploadId + status cols), 4 API routes (initiate/part/complete/abort), uploadAttachmentMultipart() in api.ts, phase-aware submitLabel in RecordingCapture | packages/api/src/db/schema.ts, packages/api/src/routes/attachments.ts, apps/extension/src/lib/api.ts, apps/extension/src/components/capture/recording/RecordingCapture.vue, IssueComposePanel.vue, PostComposeModal.vue | all 3 builds pass ✔ | ~3800 |
+
+## Session: 2026-05-20 19:42
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-21 15:03
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 15:06 | Created apps/web/src/features/issues/components/IssueDetailHeader.vue | — | ~1991 |
+| 15:07 | Created apps/web/src/features/issues/components/RecordingView.vue | — | ~510 |
+| 15:08 | Created apps/web/src/features/issues/IssuePage.vue | — | ~2023 |
+| 15:09 | Edited apps/web/src/features/issues/components/IssueDetailHeader.vue | inline fix | ~23 |
+| 15:10 | Edited apps/web/src/features/issues/IssuePage.vue | inline fix | ~22 |
+| 15:10 | Edited apps/web/src/features/issues/components/IssueTitleBlock.vue | 18→18 lines | ~238 |
+| 15:11 | Session end: 6 writes across 4 files (IssueDetailHeader.vue, RecordingView.vue, IssuePage.vue, IssueTitleBlock.vue) | 1 reads | ~5150 tok |
+| 16:03 | Created apps/web/src/features/issues/components/recording/usePlayback.ts | — | ~1442 |
+| 16:14 | Edited apps/web/src/features/issues/components/IssueDetailHeader.vue | 30→35 lines | ~522 |
+| 16:14 | Edited apps/web/src/features/issues/components/IssueDetailHeader.vue | expanded (+17 lines) | ~310 |
+| 16:15 | Edited apps/web/src/main.ts | expanded (+23 lines) | ~479 |
+| 16:16 | Created apps/web/src/features/issues/composables/useIssue.ts | — | ~921 |
+| 16:17 | Created apps/web/src/features/issues/composables/useIssueEvents.ts | — | ~646 |
+| 16:18 | Created apps/web/src/features/issues/components/recording/RecordingVideoTimeline.vue | — | ~1043 |
+| 16:19 | Created apps/web/src/features/issues/components/recording/RecordingVideoControls.vue | — | ~739 |
+| 16:20 | Created apps/web/src/features/issues/components/recording/RecordingVideoPlayer.vue | — | ~1396 |
+| 16:20 | Created apps/web/src/features/issues/components/RecordingView.vue | — | ~524 |
+| 16:21 | Edited apps/web/src/features/issues/IssuePage.vue | 8→9 lines | ~99 |
+| 16:23 | Edited apps/web/src/features/issues/components/recording/RecordingVideoPlayer.vue | inline fix | ~10 |
+| 16:24 | Edited apps/web/src/features/issues/components/recording/RecordingVideoPlayer.vue | toRef() → getter() | ~60 |
+| 16:26 | Session end: 19 writes across 11 files (IssueDetailHeader.vue, RecordingView.vue, IssuePage.vue, IssueTitleBlock.vue, usePlayback.ts) | 4 reads | ~14490 tok |
+| 17:20 | Edited packages/shared/src/schemas.ts | 10→12 lines | ~208 |
+| 17:21 | Edited packages/api/src/routes/issues.ts | added 1 import(s) | ~130 |
+| 17:22 | Edited packages/api/src/routes/issues.ts | added 9 condition(s) | ~1379 |
+| 17:24 | Edited packages/api/src/routes/auth.ts | expanded (+22 lines) | ~227 |
+| 19:30 | Edited packages/shared/src/schemas.ts | expanded (+10 lines) | ~241 |
+| 19:31 | Edited packages/api/src/routes/issues.ts | 6→5 lines | ~94 |
+| 19:31 | Edited packages/api/src/routes/issues.ts | reduced (-6 lines) | ~52 |
+| 09:38 | Created apps/web/src/features/issues/composables/useIssueMutations.ts | — | ~796 |
+| 09:39 | Edited packages/shared/src/schemas.ts | removed 11 lines | ~19 |
+| 09:41 | Edited packages/api/src/routes/issues.ts | expanded (+10 lines) | ~308 |
+| 09:41 | Edited apps/web/src/features/issues/composables/useIssueMutations.ts | expanded (+10 lines) | ~188 |
+| 09:41 | Created apps/web/src/features/issues/composables/useWorkspaceMembers.ts | — | ~304 |
+| 09:43 | Session end: 31 writes across 16 files (IssueDetailHeader.vue, RecordingView.vue, IssuePage.vue, IssueTitleBlock.vue, usePlayback.ts) | 7 reads | ~24787 tok |
+| 09:44 | Created apps/web/src/features/dashboard/composables/useIssueSelection.ts | — | ~452 |
+| 09:45 | Created apps/web/src/features/dashboard/components/IssueCardSkeleton.vue | — | ~401 |
+| 09:45 | Created apps/web/src/features/issues/components/IssuePageSkeleton.vue | — | ~765 |
+| 09:46 | Created apps/web/src/features/dashboard/components/IssuesBulkBar.vue | — | ~1491 |
+| 09:46 | Edited apps/web/src/features/dashboard/components/IssueCard.vue | expanded (+27 lines) | ~423 |
+| 09:46 | Edited apps/web/src/features/dashboard/components/IssueCard.vue | added 2 import(s) | ~147 |
+| 09:47 | Edited apps/web/src/features/dashboard/components/IssueCard.vue | added 2 condition(s) | ~438 |
+| 09:47 | Edited apps/web/src/features/workspace-shell/DashboardLayout.vue | expanded (+6 lines) | ~236 |
+| 09:48 | Edited apps/web/src/features/workspace-shell/DashboardLayout.vue | added 2 import(s) | ~227 |
+| 09:48 | Edited apps/web/src/features/workspace-shell/DashboardLayout.vue | added error handling | ~416 |
+| 09:48 | Created apps/web/src/pages/issues/Issues.vue | — | ~749 |
+| 09:49 | Edited apps/web/src/features/issues/IssuePage.vue | 5→3 lines | ~36 |
+| 09:49 | Edited apps/web/src/features/issues/IssuePage.vue | added 1 import(s) | ~67 |
+| 09:50 | Created apps/web/src/features/issues/components/IssueDetailsCard.vue | — | ~2621 |
+| 09:50 | Edited apps/web/src/features/issues/IssuePage.vue | 5→2 lines | ~37 |
+| 09:51 | Edited apps/web/src/features/issues/IssuePage.vue | added 2 condition(s) | ~200 |
+| 09:51 | Edited apps/web/src/features/issues/IssuePage.vue | added 1 import(s) | ~97 |
+| 09:52 | Edited apps/web/src/features/issues/components/IssueDetailsCard.vue | inline fix | ~9 |
+| 09:52 | Edited apps/web/src/features/issues/components/IssueDetailsCard.vue | inline fix | ~9 |
+| 09:52 | Edited apps/web/src/features/issues/components/IssueDetailsCard.vue | inline fix | ~9 |
+| 09:52 | Edited apps/web/src/features/dashboard/components/IssuesBulkBar.vue | inline fix | ~12 |
+| 09:53 | Edited apps/web/src/features/dashboard/components/IssuesBulkBar.vue | inline fix | ~11 |
+| 09:54 | Session end: 53 writes across 24 files (IssueDetailHeader.vue, RecordingView.vue, IssuePage.vue, IssueTitleBlock.vue, usePlayback.ts) | 10 reads | ~37041 tok |
+| 14:40 | Session end: 53 writes across 24 files (IssueDetailHeader.vue, RecordingView.vue, IssuePage.vue, IssueTitleBlock.vue, usePlayback.ts) | 10 reads | ~37041 tok |
+| 15:11 | Edited apps/web/src/pages/issues/Issues.vue | grid() → columns() | ~105 |
+| 15:12 | Session end: 54 writes across 24 files (IssueDetailHeader.vue, RecordingView.vue, IssuePage.vue, IssueTitleBlock.vue, usePlayback.ts) | 11 reads | ~37153 tok |
+| 15:16 | Edited apps/web/src/features/issues/components/IssueDetailsCard.vue | added nullish coalescing | ~135 |
+| 15:17 | Edited apps/web/src/features/issues/components/IssueDetailsCard.vue | expanded (+10 lines) | ~199 |
+| 15:20 | Edited apps/web/src/features/issues/components/UserAvatar.vue | CSS: dark | ~86 |
+| 15:20 | Edited apps/web/src/features/issues/components/UserAvatar.vue | 10→13 lines | ~103 |
+| 15:27 | Session end: 58 writes across 25 files (IssueDetailHeader.vue, RecordingView.vue, IssuePage.vue, IssueTitleBlock.vue, usePlayback.ts) | 13 reads | ~37784 tok |
+| 15:44 | Created apps/extension/src/lib/anchor.ts | — | ~1875 |
+| 15:44 | Created apps/extension/src/components/capture/annotation/AnnotationPin.vue | — | ~502 |
+| 15:45 | Created apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue | — | ~2285 |
+| 15:46 | Created apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | — | ~3049 |
+| 15:48 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | 7→5 lines | ~79 |
+| 15:48 | Edited apps/extension/src/entrypoints/content.ts | expanded (+11 lines) | ~170 |
+| 15:49 | Edited apps/extension/src/entrypoints/content.ts | added 1 import(s) | ~77 |
+| 15:50 | Edited apps/extension/src/entrypoints/content.ts | 3→4 lines | ~96 |
+| 15:50 | Edited apps/extension/src/entrypoints/content.ts | modified syncLauncherVisibility() | ~90 |
+| 15:51 | Edited apps/extension/src/entrypoints/content.ts | added 1 condition(s) | ~408 |
+| 15:52 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | 7→6 lines | ~47 |
+| 15:52 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | modified onRecord() | ~56 |
+| 15:53 | Session end: 70 writes across 31 files (IssueDetailHeader.vue, RecordingView.vue, IssuePage.vue, IssueTitleBlock.vue, usePlayback.ts) | 15 reads | ~55764 tok |
+| 18:49 | Session end: 70 writes across 31 files (IssueDetailHeader.vue, RecordingView.vue, IssuePage.vue, IssueTitleBlock.vue, usePlayback.ts) | 15 reads | ~55764 tok |
+| 18:57 | Session end: 70 writes across 31 files (IssueDetailHeader.vue, RecordingView.vue, IssuePage.vue, IssueTitleBlock.vue, usePlayback.ts) | 15 reads | ~55764 tok |
+| 18:58 | Session end: 70 writes across 31 files (IssueDetailHeader.vue, RecordingView.vue, IssuePage.vue, IssueTitleBlock.vue, usePlayback.ts) | 15 reads | ~55764 tok |
+| 19:00 | Session end: 70 writes across 31 files (IssueDetailHeader.vue, RecordingView.vue, IssuePage.vue, IssueTitleBlock.vue, usePlayback.ts) | 15 reads | ~55764 tok |
+| 19:02 | Session end: 70 writes across 31 files (IssueDetailHeader.vue, RecordingView.vue, IssuePage.vue, IssueTitleBlock.vue, usePlayback.ts) | 15 reads | ~55764 tok |
+| 19:06 | Edited apps/extension/src/entrypoints/page-probe.content.ts | expanded (+9 lines) | ~189 |
+| 19:06 | Edited apps/extension/src/entrypoints/background.ts | expanded (+8 lines) | ~285 |
+| 19:07 | Edited apps/extension/src/entrypoints/background.ts | expanded (+9 lines) | ~204 |
+| 19:07 | Edited apps/extension/src/entrypoints/background.ts | modified closeOffscreenDocument() | ~253 |
+| 19:08 | Session end: 74 writes across 33 files (IssueDetailHeader.vue, RecordingView.vue, IssuePage.vue, IssueTitleBlock.vue, usePlayback.ts) | 17 reads | ~63089 tok |
+| 19:12 | Edited apps/extension/src/entrypoints/popup/components/ActionList.vue | 15→14 lines | ~136 |
+| 19:12 | Edited apps/extension/src/entrypoints/popup/components/ActionList.vue | inline fix | ~16 |
+| 19:12 | Edited apps/extension/src/entrypoints/popup/App.vue | inline fix | ~24 |
+| 19:13 | Edited apps/extension/src/entrypoints/popup/App.vue | CSS: payload | ~304 |
+| 19:13 | Edited apps/extension/src/entrypoints/content.ts | expanded (+10 lines) | ~178 |
+| 19:14 | Session end: 79 writes across 35 files (IssueDetailHeader.vue, RecordingView.vue, IssuePage.vue, IssueTitleBlock.vue, usePlayback.ts) | 19 reads | ~65899 tok |
+| 19:21 | Edited packages/api/src/routes/issues.ts | added 1 condition(s) | ~375 |
+| 19:22 | Edited apps/extension/src/lib/api.ts | expanded (+11 lines) | ~134 |
+| 19:22 | Edited apps/extension/src/lib/api.ts | expanded (+16 lines) | ~169 |
+| 19:23 | Created apps/extension/src/components/capture/annotation/AnnotationToolbar.vue | — | ~832 |
+| 19:23 | Created apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue | — | ~1181 |
+| 19:25 | Created apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | — | ~3752 |
+| 19:25 | Edited apps/extension/src/components/capture/annotation/AnnotationPin.vue | 6→6 lines | ~90 |
+| 19:27 | Session end: 86 writes across 38 files (IssueDetailHeader.vue, RecordingView.vue, IssuePage.vue, IssueTitleBlock.vue, usePlayback.ts) | 19 reads | ~74520 tok |
+| 19:30 | Created apps/extension/src/lib/annotation-state.ts | — | ~716 |
+| 19:30 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | 10→6 lines | ~92 |
+| 19:31 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | 3→2 lines | ~32 |
+| 19:31 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | added 1 import(s) | ~122 |
+| 19:31 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | added 3 condition(s) | ~327 |
+| 19:32 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | CSS: status | ~84 |
+| 19:32 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | CSS: status | ~96 |
+| 19:33 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | CSS: pointer-events | ~127 |
+| 19:33 | Edited apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue | 7→7 lines | ~49 |
+| 19:34 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | CSS: immediate | ~260 |
+
+## Session: 2026-05-22 19:35
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-22 19:35
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|

@@ -53,7 +53,7 @@
 
     <!-- Connected -->
     <template v-else>
-      <ActionList @screenshot="onScreenshot" @record="onRecord" />
+      <ActionList @screenshot="onScreenshot" @record="onRecord" @annotate="onAnnotate" />
     </template>
 
     <!-- Footer URL -->
@@ -117,6 +117,26 @@ async function onRecord() {
       type: 'START_RECORDING_FLOW',
     });
     if (!res?.ok) throw new Error(res?.error ?? 'Could not start recording');
+    window.close();
+  } catch (e) {
+    launchError.value = (e as Error).message;
+    launching.value   = false;
+  }
+}
+
+async function onAnnotate() {
+  // Annotation mounts in the active tab's content script — same FORWARD_TO_CONTENT
+  // pattern as Screenshot. Background pings the tab; if no content script is
+  // listening yet (extension just installed / first nav), it injects the
+  // content bundle then delivers the payload.
+  launchError.value = '';
+  launching.value   = true;
+  try {
+    const res = await safeSendMessage<{ ok?: boolean; error?: string }>({
+      type:    'FORWARD_TO_CONTENT',
+      payload: { type: 'START_ANNOTATION' },
+    });
+    if (!res?.ok) throw new Error(res?.error ?? 'Could not start annotation');
     window.close();
   } catch (e) {
     launchError.value = (e as Error).message;

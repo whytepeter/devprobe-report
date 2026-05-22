@@ -78,8 +78,13 @@ const state = ref<State>({
 
 function dispatch(action: Action) {
   switch (action.type) {
-    case actionTypes.ADD_TOAST:
-      state.value.toasts = [action.toast, ...state.value.toasts].slice(0, TOAST_LIMIT)
+    case actionTypes.ADD_TOAST: {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore — TS2589: ToastProps generic depth exceeds TS limit; runtime is correct
+      const next: ToasterToast[] = [action.toast, ...state.value.toasts]
+      state.value.toasts = next.slice(0, TOAST_LIMIT)
+      break
+    }
       break
 
     case actionTypes.UPDATE_TOAST:

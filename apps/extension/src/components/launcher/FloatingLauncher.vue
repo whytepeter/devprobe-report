@@ -64,8 +64,7 @@
             icon="annotate"
             label="Annotate"
             description="Pin issues on the page"
-            :disabled="true"
-            badge="Soon"
+            @click="onAnnotate"
           />
           <LauncherItem
             icon="record"
@@ -126,6 +125,11 @@ function onScreenshot() {
 function onRecord() {
   closeMenu();
   window.dispatchEvent(new CustomEvent('dp:start-recording'));
+}
+
+function onAnnotate() {
+  closeMenu();
+  window.dispatchEvent(new CustomEvent('dp:start-annotation'));
 }
 
 function onDocClick() { closeMenu(); }

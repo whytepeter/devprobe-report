@@ -23,6 +23,7 @@ import FloatingLauncher    from '../components/launcher/FloatingLauncher.vue';
 import RegionSelector      from '../components/capture/RegionSelector.vue';
 import ScreenshotCapture   from '../components/capture/screenshot/ScreenshotCapture.vue';
 import RecordingCapture    from '../components/capture/recording/RecordingCapture.vue';
+import AnnotationOverlay   from '../components/capture/annotation/AnnotationOverlay.vue';
 import RecordingControlBar from '../components/capture/recording/toolbar/RecordingControlBar.vue';
 import RecordingResumeBanner from '../components/capture/recording/toolbar/RecordingResumeBanner.vue';
 import { getTheme, applyThemeClass, onThemeChange } from '../lib/theme.js';
@@ -56,6 +57,7 @@ export default defineContentScript({
     let regionUi:     Awaited<ReturnType<typeof createShadowRootUi>> | null = null;
     let captureUi:    Awaited<ReturnType<typeof createShadowRootUi>> | null = null;
     let recordingUi:  Awaited<ReturnType<typeof createShadowRootUi>> | null = null;
+    let annotationUi: Awaited<ReturnType<typeof createShadowRootUi>> | null = null;
     let controlBarUi: Awaited<ReturnType<typeof createShadowRootUi>> | null = null;
     let resumeUi:     Awaited<ReturnType<typeof createShadowRootUi>> | null = null;
     let captureStreams: CaptureStreams | null = null;
@@ -77,7 +79,7 @@ export default defineContentScript({
     // toolbar, or review modal. Call after every mount/remove of those UIs.
     function syncLauncherVisibility() {
       const anyCapture =
-        !!regionUi || !!captureUi || !!controlBarUi || !!recordingUi || !!resumeUi;
+        !!regionUi || !!captureUi || !!controlBarUi || !!recordingUi || !!resumeUi || !!annotationUi;
       const host = document.querySelector('dp-launcher') as HTMLElement | null;
       if (host) host.style.display = anyCapture ? 'none' : '';
     }
@@ -87,6 +89,16 @@ export default defineContentScript({
       switch (msg?.type) {
         case 'START_REGION_SELECT':
           startRegionSelect(msg.auth ?? null);
+          break;
+
+        case 'START_ANNOTATION':
+          // Popup → background → content. Use the same lazy auth lookup so
+          // we don't require the popup to ship a token in the payload.
+          void (async () => {
+            const { getAuth } = await import('../lib/auth.js');
+            const auth = await getAuth();
+            await startAnnotation(auth);
+          })();
           break;
 
         case 'OPEN_CAPTURE_MODAL':
@@ -119,6 +131,17 @@ export default defineContentScript({
     // FAB → recording: tell background to run the offscreen recording flow
     window.addEventListener('dp:start-recording', () => {
       chrome.runtime.sendMessage({ type: 'START_RECORDING_FLOW' }).catch(() => null);
+    });
+
+    // FAB → annotation: mount the live-annotation overlay.
+    window.addEventListener('dp:start-annotation', async () => {
+      try {
+        const { getAuth } = await import('../lib/auth.js');
+        const auth = await getAuth();
+        await startAnnotation(auth);
+      } catch {
+        // Extension was reloaded — orphaned content script
+      }
     });
 
     // ── Floating launcher (permanent) ────────────────────────────────────────
@@ -199,6 +222,43 @@ export default defineContentScript({
     function unmountRegion() {
       regionUi?.remove();
       regionUi = null;
+      syncLauncherVisibility();
+    }
+
+    // ── Annotation overlay ────────────────────────────────────────────────────
+    // Idempotent: re-clicking "Annotate" while the overlay is up is a no-op.
+    // We collect browser meta the same way the screenshot flow does so the
+    // anchor + viewport snapshot land consistently on the issue.
+    async function startAnnotation(auth: StoredAuth | null) {
+      if (annotationUi) return; // already up
+
+      const meta = collectBrowserMetaFromPage();
+
+      annotationUi = await createShadowRootUi(ctx, {
+        name:     'dp-annotation',
+        position: 'modal',
+        onMount(container) {
+          const host = (container.getRootNode() as ShadowRoot).host as HTMLElement;
+          host.style.zIndex = '2147483647';
+          initTheme(container);
+          const app = createApp(AnnotationOverlay, {
+            browserMeta: meta,
+            auth,
+            onClose: () => {
+              annotationUi?.remove();
+              annotationUi = null;
+              syncLauncherVisibility();
+            },
+          });
+          app.mount(container);
+          return app;
+        },
+        onRemove(app, container) {
+          themeTargets.delete(container as HTMLElement);
+          app?.unmount();
+        },
+      });
+      annotationUi.mount();
       syncLauncherVisibility();
     }
 

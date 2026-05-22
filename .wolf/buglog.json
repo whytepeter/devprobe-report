@@ -2259,6 +2259,591 @@
       "related_bugs": [],
       "occurrences": 2,
       "last_seen": "2026-05-18T21:33:48.125Z"
+    },
+    {
+      "id": "bug-096",
+      "timestamp": "2026-05-19T00:18:00.000Z",
+      "error_message": "Toolbar disappears on captured-tab reload; popup Stop button broken after offscreen refactor",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "content.ts still owned the inline MediaRecorder lifecycle (startRecording, acquireTabStream, togglePause, stopRecording, recorder.onstop). Reload destroyed the JS context that held the recorder, losing the toolbar and the stop button target.",
+      "fix": "Stripped all inline recording code. Added mountControlBar(startedAtEpoch) that mounts toolbar and sends RECORDING_COMMAND to background. Added handleRecordingFinalised() that decodes base64 blob and opens review modal. Added reload recovery via GET_RECORDING_STATE on init. Popup onRecord() sends START_RECORDING_FLOW; onStopRecording() sends RECORDING_COMMAND stop — both direct to background.",
+      "tags": [
+        "offscreen",
+        "recording",
+        "content-script",
+        "toolbar",
+        "reload",
+        "message-passing"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-19T00:18:00.000Z"
+    },
+    {
+      "id": "bug-097",
+      "timestamp": "2026-05-19T00:16:00.000Z",
+      "error_message": "Timeline event timestamps wrong after page reload mid-recording (performance.now() resets to 0 on new page)",
+      "file": "apps/extension/src/lib/capture-streams.ts",
+      "root_cause": "startCaptureStreams used performance.now() - startedAt. After a page reload performance.now() resets, so timestamps from the new page start near 0.",
+      "fix": "Changed param to startedAtEpoch (Date.now() value from background), tsMs() now uses Math.max(0, Date.now() - startedAtEpoch).",
+      "tags": [
+        "capture-streams",
+        "timebase",
+        "recording",
+        "reload"
+      ],
+      "related_bugs": [
+        "bug-096"
+      ],
+      "occurrences": 1,
+      "last_seen": "2026-05-19T00:16:00.000Z"
+    },
+    {
+      "id": "bug-098",
+      "timestamp": "2026-05-19T00:18:00.000Z",
+      "error_message": "Popup elapsed timer shows NaN — useRecordingStatus reads startedAt but background writes startedAtEpoch",
+      "file": "apps/extension/src/entrypoints/popup/composables/useRecordingStatus.ts",
+      "root_cause": "RecordingState interface had startedAt: number but background.ts writes { tabId, pageUrl, startedAtEpoch }. Property name mismatch caused Date.now() - undefined = NaN.",
+      "fix": "Updated RecordingState to { startedAtEpoch, pageUrl, tabId } to match background storage format. Updated applyState and tick to use startedAtEpoch.",
+      "tags": [
+        "popup",
+        "recording-status",
+        "storage",
+        "type-mismatch"
+      ],
+      "related_bugs": [
+        "bug-096"
+      ],
+      "occurrences": 1,
+      "last_seen": "2026-05-19T00:18:00.000Z"
+    },
+    {
+      "id": "bug-144",
+      "timestamp": "2026-05-21T14:09:08.230Z",
+      "error_message": "Wrong reference: activeWorkspace should be currentWorkspace",
+      "file": "apps/web/src/features/issues/components/IssueDetailHeader.vue",
+      "root_cause": "Used \"activeWorkspace\" instead of \"currentWorkspace\"",
+      "fix": "Changed activeWorkspace → currentWorkspace",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-21T14:09:08.230Z"
+    },
+    {
+      "id": "bug-145",
+      "timestamp": "2026-05-21T14:10:30.530Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/web/src/features/issues/IssuePage.vue",
+      "root_cause": "Had \"max-w-3xl mx-auto px-6 py-6 space-y-6\"",
+      "fix": "Changed to \"max-w-4xl mx-auto px-8 py-8 space-y-8\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-21T14:10:30.530Z"
+    },
+    {
+      "id": "bug-146",
+      "timestamp": "2026-05-21T14:10:56.461Z",
+      "error_message": "CSS fix: md",
+      "file": "apps/web/src/features/issues/components/IssueTitleBlock.vue",
+      "root_cause": "md: text-3xl font-semibold leading-tight tracking-tight text-foreground outline-none focus:bg-accent/30 focus:rounded-md focus:px-2 focus:-mx-2 transition-[background-color] duration-150\" → text-4xl font-semibold leading-[1.15] tracking-tight text-foreground outline-none focus:bg-accent/30 focus:rounded-md focus:px-2 focus:-mx-2 transition-[background-color] duration-150\"",
+      "fix": "Changed md: text-3xl font-semibold leading-tight tracking-tight text-foreground outline-none focus:bg-accent/30 focus:rounded-md focus:px-2 focus:-mx-2 transition-[background-color] duration-150\" → text-4xl font-semibold leading-[1.15] tracking-tight text-foreground outline-none focus:bg-accent/30 focus:rounded-md focus:px-2 focus:-mx-2 transition-[background-color] duration-150\"",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-21T14:10:56.461Z"
+    },
+    {
+      "id": "bug-147",
+      "timestamp": "2026-05-21T15:14:45.750Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/web/src/features/issues/components/IssueDetailHeader.vue",
+      "root_cause": "9 lines replaced/restructured",
+      "fix": "Rewrote 10→27 lines (9 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-21T15:14:45.750Z"
+    },
+    {
+      "id": "bug-148",
+      "timestamp": "2026-05-21T16:22:15.502Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "packages/api/src/routes/issues.ts",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-21T16:22:15.502Z"
+    },
+    {
+      "id": "bug-149",
+      "timestamp": "2026-05-21T16:24:00.275Z",
+      "error_message": "Missing await",
+      "file": "packages/api/src/routes/auth.ts",
+      "root_cause": "Async call without await — returned Promise instead of value",
+      "fix": "Added await to async call",
+      "tags": [
+        "auto-detected",
+        "async-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-21T16:24:00.275Z"
+    },
+    {
+      "id": "bug-150",
+      "timestamp": "2026-05-21T18:30:45.703Z",
+      "error_message": "Type error",
+      "file": "packages/shared/src/schemas.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-21T18:30:45.703Z"
+    },
+    {
+      "id": "bug-151",
+      "timestamp": "2026-05-21T18:31:55.565Z",
+      "error_message": "Significant refactor of ",
+      "file": "packages/api/src/routes/issues.ts",
+      "root_cause": "6 lines replaced/restructured",
+      "fix": "Rewrote 10→4 lines (6 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-21T18:31:55.565Z"
+    },
+    {
+      "id": "bug-152",
+      "timestamp": "2026-05-22T08:41:01.694Z",
+      "error_message": "Type error",
+      "file": "packages/api/src/routes/issues.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T08:41:01.694Z"
+    },
+    {
+      "id": "bug-153",
+      "timestamp": "2026-05-22T08:46:40.300Z",
+      "error_message": "CSS fix: hover",
+      "file": "apps/web/src/features/dashboard/components/IssueCard.vue",
+      "root_cause": "hover: border-primary/40 hover:shadow-md focus-visible:outline-none\" → border-primary/40 hover:shadow-md',",
+      "fix": "Changed hover: border-primary/40 hover:shadow-md focus-visible:outline-none\" → border-primary/40 hover:shadow-md',",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T08:46:40.300Z"
+    },
+    {
+      "id": "bug-154",
+      "timestamp": "2026-05-22T08:47:16.764Z",
+      "error_message": "Missing guard clause",
+      "file": "apps/web/src/features/dashboard/components/IssueCard.vue",
+      "root_cause": "No early return/throw for edge case: selection.hasSelection.value",
+      "fix": "Added guard clause: if (selection.hasSelection.value)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T08:47:16.764Z"
+    },
+    {
+      "id": "bug-155",
+      "timestamp": "2026-05-22T08:47:49.350Z",
+      "error_message": "CSS fix: hover",
+      "file": "apps/web/src/features/workspace-shell/DashboardLayout.vue",
+      "root_cause": "hover: bg-muted hover:text-foreground\" → bg-muted hover:text-foreground',",
+      "fix": "Changed hover: bg-muted hover:text-foreground\" → bg-muted hover:text-foreground',",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T08:47:49.350Z"
+    },
+    {
+      "id": "bug-156",
+      "timestamp": "2026-05-22T08:48:29.981Z",
+      "error_message": "Missing error handling in function",
+      "file": "apps/web/src/features/workspace-shell/DashboardLayout.vue",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T08:48:29.981Z"
+    },
+    {
+      "id": "bug-157",
+      "timestamp": "2026-05-22T08:49:18.629Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/web/src/features/issues/IssuePage.vue",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 5→3 lines (3 removed) | Also: import { useIssue }       from \"@/features/issues/; import { useIssueEvents } from \"@/features/issues/",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-22T08:51:27.708Z"
+    },
+    {
+      "id": "bug-158",
+      "timestamp": "2026-05-22T08:49:31.222Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/web/src/features/issues/IssuePage.vue",
+      "root_cause": "Had \"@/features/workspace-shell/components/PageEmpty.v",
+      "fix": "Changed to \"@/features/issues/components/IssuePageSkeleton.vu",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T08:49:31.222Z"
+    },
+    {
+      "id": "bug-159",
+      "timestamp": "2026-05-22T08:50:49.920Z",
+      "error_message": "CSS fix: IssueDetailsCard",
+      "file": "apps/web/src/features/issues/IssuePage.vue",
+      "root_cause": "IssueDetailsCard: issue=\"issue\" → issue=\"issue\" />",
+      "fix": "Changed IssueDetailsCard: issue=\"issue\" → issue=\"issue\" />",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T08:50:49.920Z"
+    },
+    {
+      "id": "bug-160",
+      "timestamp": "2026-05-22T08:51:17.437Z",
+      "error_message": "Missing guard clause",
+      "file": "apps/web/src/features/issues/IssuePage.vue",
+      "root_cause": "No early return/throw for edge case: !issue.value || next === issue.value.title",
+      "fix": "Added guard clause: if (!issue.value || next === issue.value.tit)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T08:51:17.437Z"
+    },
+    {
+      "id": "bug-161",
+      "timestamp": "2026-05-22T08:52:05.091Z",
+      "error_message": "Wrong reference: string should be unknown",
+      "file": "apps/web/src/features/issues/components/IssueDetailsCard.vue",
+      "root_cause": "Used \"string\" instead of \"unknown\"",
+      "fix": "Changed string → unknown",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 3,
+      "last_seen": "2026-05-22T08:52:34.666Z"
+    },
+    {
+      "id": "bug-162",
+      "timestamp": "2026-05-22T08:52:52.677Z",
+      "error_message": "Wrong reference: string should be unknown",
+      "file": "apps/web/src/features/dashboard/components/IssuesBulkBar.vue",
+      "root_cause": "Used \"string\" instead of \"unknown\"",
+      "fix": "Changed string → unknown",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-22T08:53:03.760Z"
+    },
+    {
+      "id": "bug-163",
+      "timestamp": "2026-05-22T14:11:16.668Z",
+      "error_message": "CSS fix: sm",
+      "file": "apps/web/src/pages/issues/Issues.vue",
+      "root_cause": "sm: grid-cols-2 lg:grid-cols-3 gap-4 px-6 py-4\" → grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-6 py-5\"",
+      "fix": "Changed sm: grid-cols-2 lg:grid-cols-3 gap-4 px-6 py-4\" → grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-6 py-5\"",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T14:11:16.668Z"
+    },
+    {
+      "id": "bug-164",
+      "timestamp": "2026-05-22T14:16:55.237Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/web/src/features/issues/components/IssueDetailsCard.vue",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T14:16:55.237Z"
+    },
+    {
+      "id": "bug-165",
+      "timestamp": "2026-05-22T14:20:13.812Z",
+      "error_message": "CSS fix: Avatar",
+      "file": "apps/web/src/features/issues/components/UserAvatar.vue",
+      "root_cause": "Avatar: class=\"sizeClass\"> → class=\"[sizeClass, 'ring-1 ring-black/[0.06] dark:ring-white/[0.08] shadow-sm']\">",
+      "fix": "Changed Avatar: class=\"sizeClass\"> → class=\"[sizeClass, 'ring-1 ring-black/[0.06] dark:ring-white/[0.08] shadow-sm']\">",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T14:20:13.812Z"
+    },
+    {
+      "id": "bug-166",
+      "timestamp": "2026-05-22T14:20:38.180Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/web/src/features/issues/components/UserAvatar.vue",
+      "root_cause": "8 lines replaced/restructured",
+      "fix": "Rewrote 10→13 lines (8 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T14:20:38.180Z"
+    },
+    {
+      "id": "bug-167",
+      "timestamp": "2026-05-22T14:48:52.194Z",
+      "error_message": "Missing await",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "Async call without await — returned Promise instead of value",
+      "fix": "Added await to async call",
+      "tags": [
+        "auto-detected",
+        "async-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T14:48:52.194Z"
+    },
+    {
+      "id": "bug-168",
+      "timestamp": "2026-05-22T14:51:47.668Z",
+      "error_message": "Missing guard clause",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "No early return/throw for edge case: annotationUi",
+      "fix": "Added guard clause: if (annotationUi)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T14:51:47.668Z"
+    },
+    {
+      "id": "bug-169",
+      "timestamp": "2026-05-22T14:52:30.739Z",
+      "error_message": "CSS fix: dp",
+      "file": "apps/extension/src/components/launcher/FloatingLauncher.vue",
+      "root_cause": "dp: start-recording')) → start-annotation'))",
+      "fix": "Changed dp: start-recording')) → start-annotation'))",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T14:52:30.739Z"
+    },
+    {
+      "id": "bug-170",
+      "timestamp": "2026-05-22T18:06:58.597Z",
+      "error_message": "Type error",
+      "file": "apps/extension/src/entrypoints/background.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation | Also: // Re-inject the page-probe — the previous page's MAIN-world; // wrapper died with the document. (Sync via DOM-paint-frame",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-22T18:07:17.696Z"
+    },
+    {
+      "id": "bug-171",
+      "timestamp": "2026-05-22T18:13:03.056Z",
+      "error_message": "CSS fix: type",
+      "file": "apps/extension/src/entrypoints/popup/App.vue",
+      "root_cause": "type: 'START_RECORDING_FLOW', → 'FORWARD_TO_CONTENT',",
+      "fix": "Changed type: 'START_RECORDING_FLOW', → 'FORWARD_TO_CONTENT',",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T18:13:03.056Z"
+    },
+    {
+      "id": "bug-172",
+      "timestamp": "2026-05-22T18:13:41.725Z",
+      "error_message": "Missing await",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "Async call without await — returned Promise instead of value",
+      "fix": "Added await to async call",
+      "tags": [
+        "auto-detected",
+        "async-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T18:13:41.725Z"
+    },
+    {
+      "id": "bug-173",
+      "timestamp": "2026-05-22T18:21:45.571Z",
+      "error_message": "Missing guard clause",
+      "file": "packages/api/src/routes/issues.ts",
+      "root_cause": "No early return/throw for edge case: !pageUrl",
+      "fix": "Added guard clause: if (!pageUrl)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T18:21:45.571Z"
+    },
+    {
+      "id": "bug-174",
+      "timestamp": "2026-05-22T18:22:42.075Z",
+      "error_message": "Type error",
+      "file": "apps/extension/src/lib/api.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T18:22:42.075Z"
+    },
+    {
+      "id": "bug-175",
+      "timestamp": "2026-05-22T18:31:08.068Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+      "root_cause": "Had './AnnotationToolbar.vue'",
+      "fix": "Changed to './AnnotationPin.vue'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T18:31:08.068Z"
+    },
+    {
+      "id": "bug-176",
+      "timestamp": "2026-05-22T18:33:32.533Z",
+      "error_message": "CSS fix: layer",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+      "root_cause": "layer: covers the page only while picking. --> → covers the page only while picking AND no",
+      "fix": "Changed layer: covers the page only while picking. --> → covers the page only while picking AND no",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-22T18:33:32.533Z"
     }
   ]
 }

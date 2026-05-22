@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-18T21:43:25.180Z
-> Files: 269 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-22T18:34:13.829Z
+> Files: 301 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -62,6 +62,14 @@
 - `PostComposeModal.vue` — "Recording" | "Screenshot" — heading title (~1103 tok)
 - `RegionSelector.vue` — Vue: setup, TS, emits (~1211 tok)
 
+## apps/extension/src/components/capture/annotation/
+
+- `AnnotationOverlay.vue` — Build a renderable ExistingPin from a server row. Returns null if anchor missing. (~4202 tok)
+- `AnnotationPin.vue` — "draft" = composer still open; "submitted" = issue persisted. (~507 tok)
+- `AnnotationPinComposer.vue` — Issue type values mirror the `annotation_issue_type` DB enum exactly. (~2290 tok)
+- `AnnotationPinDetail.vue` — Vue: setup (~1181 tok)
+- `AnnotationToolbar.vue` — Vue: setup (~832 tok)
+
 ## apps/extension/src/components/capture/recording/
 
 - `RecordingCapture.vue` — Trimmer-visible markers (warnings + errors). (~2056 tok)
@@ -104,14 +112,14 @@
 ## apps/extension/src/components/launcher/
 
 - `ConnectPrompt.vue` — Vue: setup (~448 tok)
-- `FloatingLauncher.vue` — Vue: setup (~1184 tok)
+- `FloatingLauncher.vue` — Vue: setup (~1352 tok)
 - `LauncherItem.vue` — Vue: setup, TS, 5 props, emits (~641 tok)
 
 ## apps/extension/src/entrypoints/
 
-- `background.ts` — API proxy (~3916 tok)
-- `content.ts` — Content script — mounts three possible UIs into the page via shadow DOM: (~6460 tok)
-- `page-probe.content.ts` — Page probe — MAIN-world content script. (~2478 tok)
+- `background.ts` — API proxy (~5586 tok)
+- `content.ts` — Content script — mounts UIs into the page via shadow DOM: (~7053 tok)
+- `page-probe.content.ts` — Page probe — MAIN-world content script. (~2634 tok)
 
 ## apps/extension/src/entrypoints/offscreen/
 
@@ -120,7 +128,7 @@
 
 ## apps/extension/src/entrypoints/popup/
 
-- `App.vue` — Vue: setup (~1239 tok)
+- `App.vue` — Vue: setup (~1417 tok)
 - `index.html` — DevProbe (~137 tok)
 - `main.ts` — Initialise theme then mount — wrapped in IIFE because top-level await is (~185 tok)
 
@@ -128,7 +136,7 @@
 
 - `AccountMenu.vue` — Vue: setup (~968 tok)
 - `ActionItem.vue` — Vue: setup, TS, 4 props, emits (~454 tok)
-- `ActionList.vue` — Vue: setup (~503 tok)
+- `ActionList.vue` — Vue: setup (~505 tok)
 - `ActiveFolderChip.vue` — Vue: setup (~393 tok)
 - `PopupHeader.vue` — Vue: setup, TS, 2 props (~525 tok)
 - `RecordingActiveView.vue` — Vue: setup (~464 tok)
@@ -140,7 +148,9 @@
 
 ## apps/extension/src/lib/
 
-- `api.ts` — API client (~1669 tok)
+- `anchor.ts` — Element anchoring for live annotation. (~1875 tok)
+- `annotation-state.ts` — annotation-state (~716 tok)
+- `api.ts` — API client (~2900 tok)
 - `auth.ts` — Exports StoredAuth, getAuth, setAuth, clearAuth, onAuthChange (~593 tok)
 - `capture-streams.ts` — Capture streams during a screen recording. (~1941 tok)
 - `element-blur.ts` — Element-targeted blur for screen recording. (~1419 tok)
@@ -166,7 +176,7 @@
 ## apps/web/src/
 
 - `App.vue` — Vue: setup, TS (~32 tok)
-- `main.ts` — Apply saved/system theme before first render to avoid flash (~111 tok)
+- `main.ts` — Apply saved/system theme before first render to avoid flash (~479 tok)
 
 ## apps/web/src/app/
 
@@ -196,12 +206,15 @@
 
 ## apps/web/src/features/dashboard/components/
 
-- `IssueCard.vue` — Vue: setup (~1450 tok)
+- `IssueCard.vue` — Vue: setup (~2152 tok)
+- `IssueCardSkeleton.vue` — Vue component (~401 tok)
 - `IssueFilters.vue` — Vue: setup (~944 tok)
+- `IssuesBulkBar.vue` — Vue: setup (~1481 tok)
 
 ## apps/web/src/features/dashboard/composables/
 
 - `useIssues.ts` — "all" is a sentinel value used by the filter UI (shadcn Select can't have (~617 tok)
+- `useIssueSelection.ts` — useIssueSelection (~452 tok)
 
 ## apps/web/src/features/folders/
 
@@ -220,12 +233,42 @@
 
 - `color.ts` — Deterministic color assignment for folders + workspaces, so the same id (~267 tok)
 
+## apps/web/src/features/issues/
+
+- `IssuePage.vue` — Vue: setup (~2063 tok)
+
 ## apps/web/src/features/issues/components/
 
+- `ConsoleBadge.vue` — Level badge for console events (error/warn/info/debug/log) (~150 tok)
+- `IssueDetailHeader.vue` — Full issue id — used to derive the visible short id (DP-XXX style). (~2197 tok)
+- `IssueDetailsCard.vue` — Vue: setup (~2819 tok)
 - `IssueHeader.vue` — Vue: setup (~261 tok)
-- `IssueMedia.vue` — Vue: setup (~576 tok)
+- `IssueMedia.vue` — Vue: setup, exposes seekTo(ms) via videoPlayerRef chain (~650 tok)
 - `IssueMediaImage.vue` — Vue: setup (~428 tok)
-- `IssueMediaVideo.vue` — Vue: setup (~285 tok)
+- `IssueMediaVideo.vue` — Vue: setup, exposes seekTo(ms) via videoEl ref (~350 tok)
+- `IssuePageSkeleton.vue` — Vue component (~765 tok)
+- `IssueTimeline.vue` — Tabbed timeline panel (Console/Network/Errors/User Actions/Navigation) with click-to-seek (~900 tok)
+- `IssueTitleBlock.vue` — Vue: setup (~792 tok)
+- `NetworkBadge.vue` — Method + HTTP status badge for network events (~200 tok)
+- `RecordingView.vue` — Vue: setup (~524 tok)
+- `SeverityPill.vue` — Severity pill for error events (critical/high/medium/low) (~150 tok)
+- `TimelineRow.vue` — Single timeline event row with timestamp seek chip (~300 tok)
+- `UserAvatar.vue` — Vue: setup (~556 tok)
+
+## apps/web/src/features/issues/components/recording/
+
+- `RecordingVideoControls.vue` — `mm:ss` / `h:mm:ss` for long recordings. (~739 tok)
+- `RecordingVideoPlayer.vue` — Attachment id for the hero video — fetched via the authed blob endpoint. (~1416 tok)
+- `RecordingVideoTimeline.vue` — 0..1 — playback progress. (~1043 tok)
+- `usePlayback.ts` — usePlayback (~1442 tok)
+
+## apps/web/src/features/issues/composables/
+
+- `useAttachmentUrl.ts` — Fetches a signed attachment URL (~100 tok)
+- `useIssue.ts` — useIssue (~921 tok)
+- `useIssueEvents.ts` — useIssueEvents (~646 tok)
+- `useIssueMutations.ts` — useIssueMutations (~917 tok)
+- `useWorkspaceMembers.ts` — useWorkspaceMembers (~304 tok)
 
 ## apps/web/src/features/settings/
 
@@ -233,7 +276,7 @@
 
 ## apps/web/src/features/workspace-shell/
 
-- `DashboardLayout.vue` — Vue: setup (~1348 tok)
+- `DashboardLayout.vue` — Vue: setup (~1882 tok)
 
 ## apps/web/src/features/workspace-shell/components/
 
@@ -279,6 +322,7 @@
 ## apps/web/src/pages/issues/
 
 - `Issue.vue` — Vue: setup (~1122 tok)
+- `Issues.vue` — Vue: setup (~778 tok)
 
 ## apps/web/src/router/
 
@@ -331,9 +375,9 @@
 ## packages/api/src/routes/
 
 - `attachments.ts` — API routes: POST, GET (8 endpoints) (~872 tok)
-- `auth.ts` — API routes: POST, GET (9 endpoints) (~1637 tok)
+- `auth.ts` — API routes: POST, GET (11 endpoints) (~1844 tok)
 - `folders.ts` — API routes: GET, POST (4 endpoints) (~442 tok)
-- `issues.ts` — API routes: GET, POST (8 endpoints) (~2045 tok)
+- `issues.ts` — API-internal: shape of POST /issues/bulk. Not exported via @deveprobe/shared (~4047 tok)
 - `projects.ts` — API routes: GET, POST (4 endpoints) (~446 tok)
 
 ## packages/shared/
@@ -345,7 +389,7 @@
 
 - `enums.ts` — Exports IssueSource, IssueSource, IssueMode, IssueMode + 22 more (~973 tok)
 - `index.ts` (~25 tok)
-- `schemas.ts` — Zod schemas: SignupSchema, LoginSchema, CreateIssueSchema, UpdateIssueSchema + 14 more (~2669 tok)
+- `schemas.ts` — `null` clears the folder (issue lives at workspace root). (~2706 tok)
 - `types.ts` — Exports Org, User, Membership, Folder + 17 more (~1694 tok)
 
 ## packages/ui/
