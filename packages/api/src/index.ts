@@ -5,6 +5,7 @@ import { authRouter } from "./routes/auth.js";
 import { foldersRouter } from "./routes/folders.js";
 import { issuesRouter } from "./routes/issues.js";
 import { attachmentsRouter } from "./routes/attachments.js";
+import { annotationRouter } from "./routes/annotation.js";
 import {
   handleAiQueue,
   handleIntegrationQueue,
@@ -35,6 +36,7 @@ app.route("/auth", authRouter);
 app.route("/folders", foldersRouter);
 app.route("/issues", issuesRouter);
 app.route("/attachments", attachmentsRouter);
+app.route("/annotation", annotationRouter);
 
 // Phase 4+ routes mount here
 // app.route("/recording-sessions", recordingSessionsRouter);

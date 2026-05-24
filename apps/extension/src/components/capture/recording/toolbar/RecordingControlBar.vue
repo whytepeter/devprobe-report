@@ -1,19 +1,14 @@
 <!--
   RecordingControlBar
   ───────────────────
-  Floating control rendered DURING screen recording (not review).
-
-  Pinned to the bottom centre of the viewport. Shows:
-  - Pulsing recording dot
-  - Live timer (mm:ss)
-  - Pause / resume
-  - Blur a region of the page
-  - Stop
+  The recording toolbar PILL (timer + pause/resume + blur + stop). Position-
+  agnostic: the FloatingLauncher renders it at the (draggable) FAB position
+  while a recording is active — the launcher TRANSFORMS into this toolbar.
 
   All actions are emitted; the content-script owns the MediaRecorder.
 -->
 <template>
-  <div class="fixed bottom-6 left-1/2 z-[2147483646] -translate-x-1/2 font-sans pointer-events-auto">
+  <div class="font-sans">
     <div
       class="flex items-center gap-1.5 rounded-full bg-[#111]/85 backdrop-blur-md px-2.5 py-1.5 text-white shadow-[0_10px_40px_rgba(0,0,0,0.35),0_0_0_1px_rgba(255,255,255,0.08)]"
     >

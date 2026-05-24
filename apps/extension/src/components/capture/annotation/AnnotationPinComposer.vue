@@ -50,15 +50,91 @@
 
       <!-- Body -->
       <div class="space-y-3 p-3">
-        <textarea
-          ref="commentEl"
-          v-model="comment"
-          rows="3"
-          maxlength="2000"
-          placeholder="What's wrong here?"
-          class="block w-full resize-none rounded-md border border-border bg-background px-2.5 py-2 text-[13px] leading-snug placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-ring"
-          @keydown.meta.enter.prevent="onSubmit"
-          @keydown.ctrl.enter.prevent="onSubmit"
+        <!-- Mini markdown editor: toolbar + textarea + image chips. -->
+        <div class="relative rounded-md border border-border bg-background focus-within:ring-1 focus-within:ring-ring">
+          <!-- Toolbar -->
+          <div class="flex items-center gap-0.5 border-b border-border px-1.5 py-1">
+            <button type="button" class="dp-md-btn" title="Bold (⌘B)" @click="wrapSelection('**', '**')">
+              <Icon name="bold" :size="13" :stroke-width="2.25" />
+            </button>
+            <button type="button" class="dp-md-btn" title="Italic" @click="wrapSelection('_', '_')">
+              <Icon name="italic" :size="13" :stroke-width="2" />
+            </button>
+            <button type="button" class="dp-md-btn" :class="linkOpen && 'bg-muted text-foreground'" title="Insert link" @click="openLinkPopover">
+              <Icon name="link" :size="13" :stroke-width="2" />
+            </button>
+            <button type="button" class="dp-md-btn" title="Attach image" @click="imageInput?.click()">
+              <Icon name="image" :size="13" :stroke-width="2" />
+            </button>
+            <span class="ml-auto pr-1 text-[9px] uppercase tracking-wide text-muted-foreground/60">Markdown</span>
+          </div>
+
+          <!-- Link popover (replaces native window.prompt) -->
+          <div
+            v-if="linkOpen"
+            class="absolute left-2 right-2 top-9 z-20 rounded-lg border border-border bg-popover p-2 shadow-[0_12px_32px_rgba(0,0,0,0.18)]"
+          >
+            <div class="space-y-1.5">
+              <input
+                v-model="linkText"
+                type="text"
+                placeholder="Text"
+                class="block w-full rounded-md border border-border bg-background px-2 py-1 text-[12px] focus:outline-none focus:ring-1 focus:ring-ring"
+                @keydown.enter.prevent="confirmLink"
+                @keydown.escape.stop="cancelLink"
+              />
+              <input
+                ref="linkUrlEl"
+                v-model="linkUrl"
+                type="url"
+                placeholder="https://…"
+                class="block w-full rounded-md border border-border bg-background px-2 py-1 text-[12px] focus:outline-none focus:ring-1 focus:ring-ring"
+                @keydown.enter.prevent="confirmLink"
+                @keydown.escape.stop="cancelLink"
+              />
+            </div>
+            <div class="mt-2 flex items-center justify-end gap-1.5">
+              <Button variant="ghost" size="xs" @click="cancelLink">Cancel</Button>
+              <Button variant="default" size="xs" :disabled="!linkUrl.trim()" @click="confirmLink">Add link</Button>
+            </div>
+          </div>
+
+          <textarea
+            ref="commentEl"
+            v-model="comment"
+            rows="3"
+            maxlength="2000"
+            placeholder="What's wrong here? **Markdown** supported."
+            class="block w-full resize-none border-0 bg-transparent px-2.5 py-2 text-[13px] leading-snug placeholder:text-muted-foreground/60 focus:outline-none focus:ring-0"
+            @keydown.meta.enter.prevent="onSubmit"
+            @keydown.ctrl.enter.prevent="onSubmit"
+            @keydown.meta.b.prevent="wrapSelection('**', '**')"
+          />
+
+          <!-- Attached-image chips -->
+          <div v-if="images.length" class="flex flex-wrap gap-1.5 border-t border-border px-2 py-1.5">
+            <span
+              v-for="(img, i) in images"
+              :key="i"
+              class="inline-flex items-center gap-1 rounded-md bg-muted px-1.5 py-0.5 text-[10px] text-foreground/80"
+            >
+              <Icon name="image" :size="10" :stroke-width="2" class="text-muted-foreground" />
+              <span class="max-w-[120px] truncate">{{ img.name }}</span>
+              <button type="button" class="text-muted-foreground hover:text-foreground" @click="removeImage(i)">
+                <Icon name="x" :size="9" :stroke-width="2.5" />
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <!-- Hidden file input for image attach -->
+        <input
+          ref="imageInput"
+          type="file"
+          accept="image/*"
+          multiple
+          class="hidden"
+          @change="onImagesPicked"
         />
 
         <!-- Severity row -->
@@ -84,20 +160,14 @@
         <!-- Issue type select -->
         <div class="space-y-1">
           <label class="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">Type</label>
-          <div class="relative">
-            <select
-              v-model="issueType"
-              class="block w-full appearance-none rounded-md border border-border bg-background px-2.5 py-1.5 pr-8 text-[12.5px] focus:outline-none focus:ring-1 focus:ring-ring"
-            >
-              <option v-for="t in ISSUE_TYPES" :key="t.value" :value="t.value">{{ t.label }}</option>
-            </select>
-            <Icon
-              name="chevron-down"
-              :size="12"
-              :stroke-width="2"
-              class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground"
-            />
-          </div>
+          <Select :model-value="issueType" @update:model-value="onTypeChange">
+            <SelectTrigger class="h-8 w-full text-[12.5px]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent :to="portalTarget ?? undefined">
+              <SelectItem v-for="t in ISSUE_TYPES" :key="t.value" :value="t.value">{{ t.label }}</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <!-- Error -->
@@ -133,7 +203,15 @@
 
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref } from 'vue';
-import { Button, Icon } from '@deveprobe/ui';
+import {
+  Button,
+  Icon,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@deveprobe/ui';
 import type { Severity } from '@deveprobe/shared';
 
 /** Issue type values mirror the `annotation_issue_type` DB enum exactly. */
@@ -151,6 +229,8 @@ export interface PinDraft {
   comment:   string;
   severity:  Severity;
   issueType: AnnotationIssueType;
+  /** Images attached in the composer — uploaded to the issue on submit. */
+  images:    File[];
 }
 
 const props = defineProps<{
@@ -173,8 +253,81 @@ const emit = defineEmits<{
 const comment   = ref('');
 const severity  = ref<Severity>('medium');
 const issueType = ref<AnnotationIssueType>('visual_bug');
+const images    = ref<File[]>([]);
 
-const canSubmit = computed(() => comment.value.trim().length > 0 && !props.submitting);
+const canSubmit = computed(
+  () => (comment.value.trim().length > 0 || images.value.length > 0) && !props.submitting,
+);
+
+// ── Markdown editor helpers ──────────────────────────────────────────────────
+const imageInput = ref<HTMLInputElement | null>(null);
+
+// Portal target for the type Select — the composer's own root (declared below
+// for positioning), so the dropdown shares its stacking context (renders on
+// top) and inherits theme vars.
+const portalTarget = computed<HTMLElement | null>(() => rootEl.value);
+
+/** Wrap the current textarea selection with before/after markers (or insert). */
+function wrapSelection(before: string, after: string) {
+  const el = commentEl.value;
+  if (!el) return;
+  const start = el.selectionStart ?? comment.value.length;
+  const end   = el.selectionEnd   ?? comment.value.length;
+  const sel   = comment.value.slice(start, end) || 'text';
+  comment.value = comment.value.slice(0, start) + before + sel + after + comment.value.slice(end);
+  // Restore selection around the wrapped text.
+  void nextTick(() => {
+    el.focus();
+    el.selectionStart = start + before.length;
+    el.selectionEnd   = start + before.length + sel.length;
+  });
+}
+
+function onTypeChange(v: unknown) {
+  if (typeof v === 'string') issueType.value = v as AnnotationIssueType;
+}
+
+// ── Link popover (replaces window.prompt) ────────────────────────────────────
+const linkOpen   = ref(false);
+const linkText   = ref('');
+const linkUrl    = ref('');
+const linkUrlEl  = ref<HTMLInputElement | null>(null);
+let   linkSel    = { start: 0, end: 0 };
+
+function openLinkPopover() {
+  const el = commentEl.value;
+  linkSel = {
+    start: el?.selectionStart ?? comment.value.length,
+    end:   el?.selectionEnd   ?? comment.value.length,
+  };
+  linkText.value = comment.value.slice(linkSel.start, linkSel.end);
+  linkUrl.value  = '';
+  linkOpen.value = true;
+  void nextTick(() => linkUrlEl.value?.focus());
+}
+function confirmLink() {
+  const url = linkUrl.value.trim();
+  if (!url) { linkOpen.value = false; return; }
+  const label = (linkText.value.trim() || 'link');
+  comment.value =
+    comment.value.slice(0, linkSel.start) + `[${label}](${url})` + comment.value.slice(linkSel.end);
+  linkOpen.value = false;
+  void nextTick(() => commentEl.value?.focus());
+}
+function cancelLink() { linkOpen.value = false; }
+
+function onImagesPicked(e: Event) {
+  const files = (e.target as HTMLInputElement).files;
+  if (!files) return;
+  for (const f of Array.from(files)) {
+    if (f.type.startsWith('image/')) images.value.push(f);
+  }
+  // Reset so the same file can be re-picked after removal.
+  (e.target as HTMLInputElement).value = '';
+}
+function removeImage(i: number) {
+  images.value.splice(i, 1);
+}
 
 const SEVERITIES: { value: Severity; label: string; dot: string }[] = [
   { value: 'low',      label: 'Low',      dot: 'bg-neutral-400' },
@@ -201,7 +354,9 @@ const rootEl = ref<HTMLDivElement | null>(null);
 
 const popoverStyle = computed<Record<string, string>>(() => {
   const POPOVER_HEIGHT_ESTIMATE = 280; // good enough for the flip decision
-  const viewportBottom = window.scrollY + window.innerHeight;
+  // pageX/pageY are VIEWPORT coords (overlay root is fixed), so compare
+  // against the viewport height directly.
+  const viewportBottom = window.innerHeight;
   const wouldOverflow = props.pageY + 24 + POPOVER_HEIGHT_ESTIMATE > viewportBottom;
   if (wouldOverflow) {
     // Flip above the pin.
@@ -232,6 +387,26 @@ function onSubmit() {
     comment:   comment.value.trim(),
     severity:  severity.value,
     issueType: issueType.value,
+    images:    images.value.slice(),
   });
 }
 </script>
+
+<style scoped>
+/* Markdown toolbar buttons — small icon buttons. Defined locally because the
+   shadow root doesn't inherit the page stylesheet. */
+.dp-md-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 0.375rem;
+  color: hsl(var(--muted-foreground));
+  transition: background-color 0.12s, color 0.12s;
+}
+.dp-md-btn:hover {
+  background: hsl(var(--muted));
+  color: hsl(var(--foreground));
+}
+</style>

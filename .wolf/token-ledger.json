@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-05-03T09:04:22.146Z",
   "lifetime": {
-    "total_tokens_estimated": 2675448,
-    "total_reads": 1277,
-    "total_writes": 3027,
-    "total_sessions": 27,
-    "anatomy_hits": 1035,
-    "anatomy_misses": 220,
-    "repeated_reads_blocked": 259,
-    "estimated_savings_vs_bare_cli": 1141031
+    "total_tokens_estimated": 3080744,
+    "total_reads": 1348,
+    "total_writes": 3565,
+    "total_sessions": 34,
+    "anatomy_hits": 1102,
+    "anatomy_misses": 224,
+    "repeated_reads_blocked": 348,
+    "estimated_savings_vs_bare_cli": 1722781
   },
   "sessions": [
     {
@@ -24475,6 +24475,3359 @@
         "writes_count": 86,
         "repeated_reads_blocked": 5,
         "anatomy_lookups": 15
+      }
+    },
+    {
+      "id": "session-2026-05-23-1038",
+      "started": "2026-05-23T09:38:25.531Z",
+      "ended": "2026-05-23T09:43:27.261Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 1352,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 507,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 180,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 2402,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 780,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 79,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 213,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 188,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 517,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 349,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 151,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 290,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 1859,
+        "output_tokens_estimated": 5149,
+        "reads_count": 2,
+        "writes_count": 10,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      }
+    },
+    {
+      "id": "session-2026-05-23-1038",
+      "started": "2026-05-23T09:38:25.531Z",
+      "ended": "2026-05-23T09:51:40.048Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 1352,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 507,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 4652,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 180,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 2402,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 780,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 79,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 213,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 188,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 517,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 349,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 151,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 290,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 144,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 106,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 617,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 25,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 58,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 199,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 402,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 110,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 83,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 6511,
+        "output_tokens_estimated": 6893,
+        "reads_count": 3,
+        "writes_count": 19,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 3
+      }
+    },
+    {
+      "id": "session-2026-05-23-1038",
+      "started": "2026-05-23T09:38:25.531Z",
+      "ended": "2026-05-23T09:54:50.655Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 1352,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 507,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 4652,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 7075,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 180,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 2402,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 780,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 79,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 213,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 188,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 517,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 349,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 151,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 290,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 144,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 106,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 617,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 25,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 58,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 199,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 402,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 110,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 274,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 244,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 359,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 187,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 13586,
+        "output_tokens_estimated": 7957,
+        "reads_count": 4,
+        "writes_count": 23,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 4
+      }
+    },
+    {
+      "id": "session-2026-05-23-1038",
+      "started": "2026-05-23T09:38:25.531Z",
+      "ended": "2026-05-23T10:06:55.335Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 1352,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 507,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 5514,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 7075,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 1763,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 180,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 2402,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 780,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 79,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 213,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 188,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 517,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 349,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 151,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 290,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 144,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 106,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 617,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 25,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 58,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 199,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 402,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 110,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 274,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 244,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 359,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 187,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 2339,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 481,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 90,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 634,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 275,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 90,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 46,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 53,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 138,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 190,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinList.vue",
+          "tokens_estimated": 1154,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 40,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 93,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 505,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 122,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 57,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 44,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 16211,
+        "output_tokens_estimated": 14394,
+        "reads_count": 5,
+        "writes_count": 41,
+        "repeated_reads_blocked": 3,
+        "anatomy_lookups": 5
+      }
+    },
+    {
+      "id": "session-2026-05-23-1038",
+      "started": "2026-05-23T09:38:25.531Z",
+      "ended": "2026-05-23T10:24:04.479Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 1352,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 507,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 6642,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 7075,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 1763,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/LauncherItem.vue",
+          "tokens_estimated": 641,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 3412,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 180,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 2402,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 780,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 79,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 213,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 188,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 517,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 349,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 151,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 290,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 144,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 106,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 617,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 25,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 58,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 199,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 402,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 110,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 274,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 244,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 359,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 187,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 2339,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 481,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 90,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 634,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 275,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 90,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 46,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 53,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 138,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 190,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinList.vue",
+          "tokens_estimated": 1154,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 40,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 93,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 505,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 122,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 57,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/LauncherItem.vue",
+          "tokens_estimated": 320,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/LauncherItem.vue",
+          "tokens_estimated": 56,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 128,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 382,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 770,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 138,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 96,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 762,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 260,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 264,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 800,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 59,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 584,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 204,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 260,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 21392,
+        "output_tokens_estimated": 19477,
+        "reads_count": 7,
+        "writes_count": 56,
+        "repeated_reads_blocked": 9,
+        "anatomy_lookups": 7
+      }
+    },
+    {
+      "id": "session-2026-05-23-1038",
+      "started": "2026-05-23T09:38:25.531Z",
+      "ended": "2026-05-23T10:27:35.648Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 1352,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 507,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 6642,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 7075,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 1763,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/LauncherItem.vue",
+          "tokens_estimated": 641,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 3412,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 180,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 2402,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 780,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 79,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 213,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 188,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 517,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 349,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 151,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 290,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 144,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 106,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 617,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 25,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 58,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 199,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 402,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 110,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 274,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 244,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 359,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 187,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 2339,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 481,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 90,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 634,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 275,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 90,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 46,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 53,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 138,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 190,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinList.vue",
+          "tokens_estimated": 1154,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 40,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 93,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 505,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 122,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 57,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/LauncherItem.vue",
+          "tokens_estimated": 320,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/LauncherItem.vue",
+          "tokens_estimated": 56,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 128,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 382,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 770,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 138,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 96,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 762,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 260,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 264,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 800,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 59,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 584,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 204,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 260,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 467,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 841,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 110,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 21392,
+        "output_tokens_estimated": 20895,
+        "reads_count": 7,
+        "writes_count": 59,
+        "repeated_reads_blocked": 9,
+        "anatomy_lookups": 7
+      }
+    },
+    {
+      "id": "session-2026-05-23-1038",
+      "started": "2026-05-23T09:38:25.531Z",
+      "ended": "2026-05-23T11:04:29.445Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 1352,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 507,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 6642,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 7075,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 1763,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/LauncherItem.vue",
+          "tokens_estimated": 641,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 3412,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 816,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 180,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 2402,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 780,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 79,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 213,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 188,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 517,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 349,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 151,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 290,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 144,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 106,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 617,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 25,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 58,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 199,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 402,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 110,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 274,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 244,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 359,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 187,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 2339,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 481,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 90,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 634,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 275,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 90,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 46,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 53,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 138,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 190,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinList.vue",
+          "tokens_estimated": 1154,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 40,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 93,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 505,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 122,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 57,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/LauncherItem.vue",
+          "tokens_estimated": 320,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/LauncherItem.vue",
+          "tokens_estimated": 56,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 128,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 382,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 770,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 138,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 96,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 762,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 260,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 264,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 800,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 59,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 584,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 204,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 260,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 467,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 841,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 110,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 151,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 67,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 632,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 767,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 174,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 74,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 874,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 64,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 37,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 162,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 1250,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 158,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 48,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 100,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 22208,
+        "output_tokens_estimated": 25492,
+        "reads_count": 8,
+        "writes_count": 74,
+        "repeated_reads_blocked": 9,
+        "anatomy_lookups": 8
+      }
+    },
+    {
+      "id": "session-2026-05-23-1038",
+      "started": "2026-05-23T09:38:25.531Z",
+      "ended": "2026-05-23T11:34:58.115Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 1352,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 507,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 7508,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 7075,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 1763,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/LauncherItem.vue",
+          "tokens_estimated": 641,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 3412,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 816,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/db/schema.ts",
+          "tokens_estimated": 6222,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/index.ts",
+          "tokens_estimated": 596,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 180,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 2402,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 780,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 79,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 213,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 188,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 517,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 349,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 151,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 290,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 144,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 106,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 617,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 25,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 58,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 199,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 402,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 110,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 274,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 244,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 359,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 187,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 2339,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 481,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 90,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 634,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 275,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 90,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 46,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 53,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 138,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 190,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinList.vue",
+          "tokens_estimated": 1154,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 40,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 93,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 505,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 122,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 57,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/LauncherItem.vue",
+          "tokens_estimated": 320,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/LauncherItem.vue",
+          "tokens_estimated": 56,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 128,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 382,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 770,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 138,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 96,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 762,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 260,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 264,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 800,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 59,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 584,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 204,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 260,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 467,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 841,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 110,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 151,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 67,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 632,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 767,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 174,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 74,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 874,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 64,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 37,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 162,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 1250,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 158,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 48,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 100,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/annotation.ts",
+          "tokens_estimated": 2575,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/index.ts",
+          "tokens_estimated": 42,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/index.ts",
+          "tokens_estimated": 35,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 565,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 130,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 398,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 55,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 138,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 262,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 211,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 160,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 570,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 181,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 638,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 433,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 53,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 29892,
+        "output_tokens_estimated": 31938,
+        "reads_count": 10,
+        "writes_count": 90,
+        "repeated_reads_blocked": 18,
+        "anatomy_lookups": 10
+      }
+    },
+    {
+      "id": "session-2026-05-23-1038",
+      "started": "2026-05-23T09:38:25.531Z",
+      "ended": "2026-05-23T11:35:57.034Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 1352,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 507,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 7508,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 7075,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 1763,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/LauncherItem.vue",
+          "tokens_estimated": 641,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 3412,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 816,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/db/schema.ts",
+          "tokens_estimated": 6222,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/index.ts",
+          "tokens_estimated": 596,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 180,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 2402,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 780,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 79,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 213,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 188,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 517,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 349,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 151,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 290,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 144,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 106,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 617,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 25,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 58,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 199,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 402,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 110,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 274,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 244,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 359,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 187,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 2339,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 481,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 90,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 634,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 275,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 90,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+          "tokens_estimated": 46,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 53,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 138,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 190,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinList.vue",
+          "tokens_estimated": 1154,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 40,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 93,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 505,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 122,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 57,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/LauncherItem.vue",
+          "tokens_estimated": 320,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/LauncherItem.vue",
+          "tokens_estimated": 56,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 128,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 382,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 770,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 138,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 96,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 762,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 260,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 264,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 800,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 59,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 584,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 204,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 260,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 467,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 841,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 110,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+          "tokens_estimated": 151,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 67,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 632,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 767,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 174,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+          "tokens_estimated": 74,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/annotation-state.ts",
+          "tokens_estimated": 874,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 64,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 37,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 162,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 1250,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 158,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 48,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 100,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/annotation.ts",
+          "tokens_estimated": 2575,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/index.ts",
+          "tokens_estimated": 42,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/index.ts",
+          "tokens_estimated": 35,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 565,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/api.ts",
+          "tokens_estimated": 130,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 398,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 55,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 138,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 262,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 211,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 160,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 570,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 181,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 638,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 433,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 53,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 76,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 29892,
+        "output_tokens_estimated": 32014,
+        "reads_count": 10,
+        "writes_count": 91,
+        "repeated_reads_blocked": 18,
+        "anatomy_lookups": 10
+      }
+    },
+    {
+      "id": "session-2026-05-24-1216",
+      "started": "2026-05-24T11:16:31.224Z",
+      "ended": "2026-05-24T11:24:22.024Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/PinView.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/annotation.ts",
+          "tokens_estimated": 406,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssuePins.ts",
+          "tokens_estimated": 455,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/lib/inline-markdown.ts",
+          "tokens_estimated": 612,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/IssuePinList.vue",
+          "tokens_estimated": 1071,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/PinView.vue",
+          "tokens_estimated": 792,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 714,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 452,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 4502,
+        "reads_count": 1,
+        "writes_count": 7,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 0
+      }
+    },
+    {
+      "id": "session-2026-05-24-1216",
+      "started": "2026-05-24T11:16:31.224Z",
+      "ended": "2026-05-24T11:36:55.168Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/PinView.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/recording/toolbar/RecordingControlBar.vue",
+          "tokens_estimated": 663,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 7026,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 5451,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/annotation.ts",
+          "tokens_estimated": 406,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssuePins.ts",
+          "tokens_estimated": 455,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/lib/inline-markdown.ts",
+          "tokens_estimated": 612,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/IssuePinList.vue",
+          "tokens_estimated": 1071,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/PinView.vue",
+          "tokens_estimated": 792,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 714,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 452,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/recording-state.ts",
+          "tokens_estimated": 687,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/recording/toolbar/RecordingControlBar.vue",
+          "tokens_estimated": 167,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 323,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 271,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 126,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 38,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 13,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 18,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 118,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 26,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 819,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 87,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 13140,
+        "output_tokens_estimated": 7195,
+        "reads_count": 4,
+        "writes_count": 19,
+        "repeated_reads_blocked": 7,
+        "anatomy_lookups": 3
+      }
+    },
+    {
+      "id": "session-2026-05-24-1216",
+      "started": "2026-05-24T11:16:31.224Z",
+      "ended": "2026-05-24T11:43:37.636Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/PinView.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/recording/toolbar/RecordingControlBar.vue",
+          "tokens_estimated": 663,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 7026,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 5451,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/annotation.ts",
+          "tokens_estimated": 406,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssuePins.ts",
+          "tokens_estimated": 455,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/lib/inline-markdown.ts",
+          "tokens_estimated": 612,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/IssuePinList.vue",
+          "tokens_estimated": 1071,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/PinView.vue",
+          "tokens_estimated": 792,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 714,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 452,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/recording-state.ts",
+          "tokens_estimated": 687,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/recording/toolbar/RecordingControlBar.vue",
+          "tokens_estimated": 167,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 323,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 271,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 126,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 38,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 13,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 18,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 118,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 26,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 819,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 87,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 62,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 22,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 196,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 129,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 194,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 13140,
+        "output_tokens_estimated": 7798,
+        "reads_count": 4,
+        "writes_count": 24,
+        "repeated_reads_blocked": 7,
+        "anatomy_lookups": 3
+      }
+    },
+    {
+      "id": "session-2026-05-24-1216",
+      "started": "2026-05-24T11:16:31.224Z",
+      "ended": "2026-05-24T11:46:02.321Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/PinView.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/recording/toolbar/RecordingControlBar.vue",
+          "tokens_estimated": 663,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 7026,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 5451,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/HANDOFF.md",
+          "tokens_estimated": 5354,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/packages/api/src/routes/annotation.ts",
+          "tokens_estimated": 406,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/composables/useIssuePins.ts",
+          "tokens_estimated": 455,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/lib/inline-markdown.ts",
+          "tokens_estimated": 612,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/IssuePinList.vue",
+          "tokens_estimated": 1071,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/web/src/features/issues/components/PinView.vue",
+          "tokens_estimated": 792,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 714,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+          "tokens_estimated": 452,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/lib/recording-state.ts",
+          "tokens_estimated": 687,
+          "action": "create"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/capture/recording/toolbar/RecordingControlBar.vue",
+          "tokens_estimated": 167,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 323,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 271,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 126,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 38,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 13,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 18,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 118,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 26,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 819,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts",
+          "tokens_estimated": 87,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 62,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 22,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 196,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 129,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/components/launcher/FloatingLauncher.vue",
+          "tokens_estimated": 194,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/HANDOFF.md",
+          "tokens_estimated": 3241,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 18494,
+        "output_tokens_estimated": 11039,
+        "reads_count": 5,
+        "writes_count": 25,
+        "repeated_reads_blocked": 7,
+        "anatomy_lookups": 4
+      }
+    },
+    {
+      "id": "session-2026-05-24-1257",
+      "started": "2026-05-24T11:57:28.246Z",
+      "ended": "2026-05-24T11:58:11.716Z",
+      "reads": [
+        {
+          "file": "/Users/apple/Documents/code/deveprobe-report/HANDOFF.md",
+          "tokens_estimated": 2836,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 2836,
+        "output_tokens_estimated": 0,
+        "reads_count": 1,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 1
       }
     }
   ],

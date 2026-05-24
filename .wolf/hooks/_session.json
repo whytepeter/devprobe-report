@@ -1,11 +1,11 @@
 {
-  "session_id": "session-2026-05-22-1935",
-  "started": "2026-05-22T18:35:48.211Z",
+  "session_id": "session-2026-05-24-1257",
+  "started": "2026-05-24T11:57:28.246Z",
   "files_read": {
-    "/Users/apple/Documents/code/deveprobe-report/apps/extension/src/entrypoints/content.ts": {
+    "/Users/apple/Documents/code/deveprobe-report/HANDOFF.md": {
       "count": 1,
-      "tokens": 7053,
-      "first_read": "2026-05-22T18:36:41.531Z"
+      "tokens": 2836,
+      "first_read": "2026-05-24T11:57:37.630Z"
     }
   },
   "files_written": [],
@@ -14,5 +14,5 @@
   "anatomy_misses": 0,
   "repeated_reads_warned": 0,
   "cerebrum_warnings": 0,
-  "stop_count": 0
+  "stop_count": 1
 }

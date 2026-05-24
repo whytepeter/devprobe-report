@@ -1151,3 +1151,167 @@
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
+
+## Session: 2026-05-22 20:40
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-23 10:38
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 10:39 | Edited apps/extension/src/entrypoints/content.ts | modified syncLauncherVisibility() | ~180 |
+| 10:39 | Created apps/extension/src/components/launcher/FloatingLauncher.vue | — | ~2242 |
+| 10:40 | Created apps/extension/src/components/capture/annotation/AnnotationPin.vue | — | ~728 |
+| 10:40 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | 10→11 lines | ~74 |
+| 10:40 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | added 1 condition(s) | ~199 |
+| 10:41 | Edited apps/extension/src/lib/api.ts | expanded (+7 lines) | ~188 |
+| 10:41 | Edited apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue | expanded (+26 lines) | ~483 |
+| 10:41 | Edited apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue | added 1 condition(s) | ~326 |
+| 10:42 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | 12→15 lines | ~141 |
+| 10:42 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | added error handling | ~271 |
+| 10:43 | Session end: 10 writes across 6 files (content.ts, FloatingLauncher.vue, AnnotationPin.vue, AnnotationOverlay.vue, api.ts) | 2 reads | ~7008 tok |
+| 10:48 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | CSS: anchor | ~134 |
+| 10:48 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | 14→15 lines | ~99 |
+| 10:48 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | added 2 condition(s) | ~576 |
+| 10:49 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | inline fix | ~24 |
+| 10:49 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | modified viewportPos() | ~54 |
+| 10:49 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | expanded (+11 lines) | ~186 |
+| 10:50 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | 41→42 lines | ~375 |
+| 10:50 | Edited apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue | 4→6 lines | ~103 |
+| 10:50 | Edited apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue | 4→5 lines | ~78 |
+| 10:51 | Session end: 19 writes across 7 files (content.ts, FloatingLauncher.vue, AnnotationPin.vue, AnnotationOverlay.vue, api.ts) | 3 reads | ~13404 tok |
+| 10:53 | Edited apps/extension/src/entrypoints/content.ts | modified onMount() | ~274 |
+| 10:53 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | expanded (+9 lines) | ~228 |
+| 10:53 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | CSS: burst, attentionTimer | ~335 |
+| 10:53 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | added 1 condition(s) | ~174 |
+| 10:54 | Session end: 23 writes across 7 files (content.ts, FloatingLauncher.vue, AnnotationPin.vue, AnnotationOverlay.vue, api.ts) | 4 reads | ~21543 tok |
+| 10:59 | Created apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue | — | ~2183 |
+| 10:59 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | modified viewportPos() | ~449 |
+| 10:59 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | 11→12 lines | ~80 |
+| 11:00 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | 6→8 lines | ~84 |
+| 11:01 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | added error handling | ~592 |
+| 11:01 | Edited apps/extension/src/components/capture/annotation/AnnotationPin.vue | CSS: badge | ~256 |
+| 11:01 | Edited apps/extension/src/components/capture/annotation/AnnotationPin.vue | 5→7 lines | ~84 |
+| 11:01 | Edited apps/extension/src/components/capture/annotation/AnnotationPin.vue | 3→5 lines | ~43 |
+| 11:02 | Edited apps/extension/src/lib/annotation-state.ts | 3→4 lines | ~53 |
+| 11:02 | Edited apps/extension/src/lib/annotation-state.ts | modified setActive() | ~138 |
+| 11:03 | Edited apps/extension/src/lib/annotation-state.ts | modified useAnnotationState() | ~190 |
+| 11:03 | Created apps/extension/src/components/capture/annotation/AnnotationPinList.vue | — | ~1077 |
+| 11:04 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | added 1 import(s) | ~37 |
+| 11:04 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | expanded (+8 lines) | ~87 |
+| 11:05 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | added nullish coalescing | ~471 |
+| 11:05 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | expanded (+8 lines) | ~114 |
+| 11:05 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | 3→4 lines | ~53 |
+| 11:06 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | modified onDoneAnnotation() | ~42 |
+| 11:06 | Session end: 41 writes across 9 files (content.ts, FloatingLauncher.vue, AnnotationPin.vue, AnnotationOverlay.vue, api.ts) | 5 reads | ~30605 tok |
+| 11:14 | Edited apps/extension/src/components/launcher/LauncherItem.vue | expanded (+12 lines) | ~298 |
+| 11:14 | Edited apps/extension/src/components/launcher/LauncherItem.vue | 7→7 lines | ~52 |
+| 11:15 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | 15→15 lines | ~119 |
+| 11:16 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | modified reindexPins() | ~357 |
+| 11:17 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | added 5 condition(s) | ~719 |
+| 11:17 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | 13→14 lines | ~129 |
+| 11:18 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | CSS: stop, pointerEvents | ~90 |
+| 11:18 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | added error handling | ~711 |
+| 11:18 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | CSS: left, top | ~243 |
+| 11:19 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | added error handling | ~247 |
+| 11:21 | Edited apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue | added optional chaining | ~747 |
+| 11:22 | Edited apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue | CSS: images | ~55 |
+| 11:22 | Edited apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue | added optional chaining | ~545 |
+| 11:23 | Edited apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue | modified onSubmit() | ~191 |
+| 11:23 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | added nullish coalescing | ~243 |
+| 11:24 | Session end: 56 writes across 10 files (content.ts, FloatingLauncher.vue, AnnotationPin.vue, AnnotationOverlay.vue, api.ts) | 7 reads | ~40869 tok |
+| 11:25 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | CSS: hover, active | ~436 |
+| 11:26 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | CSS: hoverTimer | ~785 |
+| 11:27 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | added 1 condition(s) | ~103 |
+| 11:27 | Session end: 59 writes across 10 files (content.ts, FloatingLauncher.vue, AnnotationPin.vue, AnnotationOverlay.vue, api.ts) | 7 reads | ~42287 tok |
+| 11:34 | Edited apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue | modified root() | ~141 |
+| 11:34 | Edited apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue | expanded (+8 lines) | ~62 |
+| 11:35 | Edited apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue | added 1 condition(s) | ~590 |
+| 11:35 | Edited apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue | expanded (+30 lines) | ~716 |
+| 11:35 | Edited apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue | added nullish coalescing | ~163 |
+| 11:36 | Edited apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue | 4→4 lines | ~70 |
+| 11:37 | Created apps/extension/src/lib/annotation-state.ts | — | ~874 |
+| 11:37 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | 9→4 lines | ~60 |
+| 11:37 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | 2→2 lines | ~35 |
+| 11:38 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | CSS: overlay | ~152 |
+| 12:02 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | expanded (+57 lines) | ~1167 |
+| 12:02 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | CSS: showing | ~148 |
+| 12:02 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | CSS: id | ~45 |
+| 12:03 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | modified toggleMenu() | ~36 |
+| 12:03 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | modified if() | ~93 |
+| 12:04 | Session end: 74 writes across 10 files (content.ts, FloatingLauncher.vue, AnnotationPin.vue, AnnotationOverlay.vue, api.ts) | 8 reads | ~47700 tok |
+| 12:25 | Created packages/api/src/routes/annotation.ts | — | ~2575 |
+| 12:26 | Edited packages/api/src/index.ts | added 1 import(s) | ~42 |
+| 12:26 | Edited packages/api/src/index.ts | 3→4 lines | ~35 |
+| 12:27 | Edited apps/extension/src/lib/api.ts | expanded (+31 lines) | ~565 |
+| 12:27 | Edited apps/extension/src/lib/api.ts | creation() → row() | ~130 |
+| 12:28 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | CSS: states, issueId, comment | ~371 |
+| 12:29 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | CSS: comment | ~51 |
+| 12:29 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | getAnnotationPins() → getPagePins() | ~129 |
+| 12:30 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | added optional chaining | ~245 |
+| 12:30 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | updateIssue() → updatePin() | ~197 |
+| 12:31 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | updateIssue() → updatePin() | ~149 |
+| 12:31 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | modified for() | ~532 |
+| 12:32 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | 17→17 lines | ~169 |
+| 12:33 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | added error handling | ~595 |
+| 12:33 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | expanded (+26 lines) | ~404 |
+| 12:34 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | added 1 import(s) | ~50 |
+| 12:34 | Session end: 90 writes across 12 files (content.ts, FloatingLauncher.vue, AnnotationPin.vue, AnnotationOverlay.vue, api.ts) | 10 reads | ~61830 tok |
+| 12:35 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | modified onJumpToPin() | ~71 |
+| 12:35 | Session end: 91 writes across 12 files (content.ts, FloatingLauncher.vue, AnnotationPin.vue, AnnotationOverlay.vue, api.ts) | 10 reads | ~61906 tok |
+
+## Session: 2026-05-23 12:57
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-23 13:53
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-23 17:26
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-24 12:16
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 12:17 | Edited packages/api/src/routes/annotation.ts | modified orderBy() | ~406 |
+| 12:20 | Created apps/web/src/features/issues/composables/useIssuePins.ts | — | ~455 |
+| 12:20 | Created apps/web/src/features/issues/lib/inline-markdown.ts | — | ~612 |
+| 12:21 | Created apps/web/src/features/issues/components/IssuePinList.vue | — | ~1000 |
+| 12:22 | Created apps/web/src/features/issues/components/PinView.vue | — | ~740 |
+| 12:22 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | added error handling | ~667 |
+| 12:23 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | added 1 condition(s) | ~422 |
+| 12:24 | Session end: 7 writes across 6 files (annotation.ts, useIssuePins.ts, inline-markdown.ts, IssuePinList.vue, PinView.vue) | 1 reads | ~4502 tok |
+| 12:26 | Created apps/extension/src/lib/recording-state.ts | — | ~687 |
+| 12:27 | Edited apps/extension/src/components/capture/recording/toolbar/RecordingControlBar.vue | CSS: agnostic | ~156 |
+| 12:28 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | CSS: RecordingControlBar | ~302 |
+| 12:30 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | expanded (+10 lines) | ~253 |
+| 12:31 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | expanded (+7 lines) | ~118 |
+| 12:31 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | 4→4 lines | ~35 |
+| 12:33 | Edited apps/extension/src/entrypoints/content.ts | inline fix | ~13 |
+| 12:33 | Edited apps/extension/src/entrypoints/content.ts | "../components/capture/rec" → "../lib/recording-state.js" | ~18 |
+| 12:33 | Edited apps/extension/src/entrypoints/content.ts | 1→6 lines | ~118 |
+| 12:34 | Edited apps/extension/src/entrypoints/content.ts | 2→2 lines | ~26 |
+| 12:35 | Edited apps/extension/src/entrypoints/content.ts | added 4 condition(s) | ~819 |
+| 12:36 | Edited apps/extension/src/entrypoints/content.ts | 4→4 lines | ~87 |
+| 12:36 | Session end: 19 writes across 10 files (annotation.ts, useIssuePins.ts, inline-markdown.ts, IssuePinList.vue, PinView.vue) | 4 reads | ~20335 tok |
+| 12:40 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | 8→9 lines | ~58 |
+| 12:41 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | inline fix | ~21 |
+| 12:41 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | added 2 condition(s) | ~183 |
+| 12:41 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | CSS: pill | ~120 |
+| 12:42 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | added 1 condition(s) | ~181 |
+| 12:43 | Session end: 24 writes across 10 files (annotation.ts, useIssuePins.ts, inline-markdown.ts, IssuePinList.vue, PinView.vue) | 4 reads | ~20938 tok |
+| 12:45 | Created HANDOFF.md | — | ~3025 |
+| 12:46 | Session end: 25 writes across 11 files (annotation.ts, useIssuePins.ts, inline-markdown.ts, IssuePinList.vue, PinView.vue) | 5 reads | ~29533 tok |
+
+## Session: 2026-05-24 12:57
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|

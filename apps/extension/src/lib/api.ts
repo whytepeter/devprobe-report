@@ -48,19 +48,20 @@ function bufferToBase64(buffer: ArrayBuffer): string {
 }
 
 /**
- * Row shape returned by GET /issues/pins — only the fields the overlay
- * actually needs to re-render existing pins on a page. `browserMeta` carries
- * the anchor we wrote on creation (see capture/annotation/AnnotationOverlay).
+ * A pin row (from the grouped annotation model). Each pin belongs to a
+ * session and a grouping issue; the overlay renders these on the page.
  */
 export interface AnnotationPinRow {
-  id:          string;
-  title:       string;
-  summary:     string | null;
-  severity:    "low" | "medium" | "high" | "critical" | null;
-  status:      string;
-  browserMeta: Record<string, unknown> | null;
-  createdAt:   string;
-  createdById: string;
+  id:        string;
+  sessionId: string;
+  issueId:   string | null;
+  index:     number;
+  anchor:    Record<string, unknown>;
+  comment:   string;
+  severity:  "low" | "medium" | "high" | "critical";
+  issueType: string;
+  status:    string;
+  createdAt: string;
 }
 
 /** Recording timeline event sent to /issues/:id/events. */
@@ -81,14 +82,52 @@ export const api = {
     send<Issue>({ path: "/issues", method: "POST", json: input }),
 
   /**
-   * Fetch all live-annotation issues for a given page URL — used by the
-   * annotation overlay to re-render existing pins when the user revisits
-   * the same page.
+   * Patch an issue. Used by the annotation overlay's pin-detail popover so a
+   * reviewer can change a pin's status inline (which re-colours the marker).
    */
-  getAnnotationPins: (pageUrl: string) =>
+  updateIssue: (id: string, patch: Record<string, unknown>) =>
+    send<Issue>({ path: `/issues/${id}`, method: "PATCH", json: patch }),
+
+  // ── Live annotation (GROUPED: session → issue → pins) ────────────────────
+  /**
+   * Create a pin. Omit sessionId/issueId on the FIRST pin of a sitting — the
+   * server lazily creates the session + grouping issue and returns their ids,
+   * which the overlay then reuses for every subsequent pin.
+   */
+  createPin: (input: {
+    sessionId?: string;
+    issueId?:   string;
+    pageUrl:    string;
+    anchor:     Record<string, unknown>;
+    offsetX:    number;
+    offsetY:    number;
+    comment:    string;
+    severity:   string;
+    issueType:  string;
+  }) =>
+    send<{ pin: AnnotationPinRow; sessionId: string; issueId: string }>({
+      path: "/annotation/pins", method: "POST", json: input,
+    }),
+
+  /** Update a pin (status / comment / severity / anchor). */
+  updatePin: (id: string, patch: Record<string, unknown>) =>
+    send<AnnotationPinRow>({ path: `/annotation/pins/${id}`, method: "PATCH", json: patch }),
+
+  /** Delete a pin. */
+  deletePin: (id: string) =>
+    send<{ deleted: boolean }>({ path: `/annotation/pins/${id}`, method: "DELETE" }),
+
+  /** All pins on a page (across sessions), for the overlay's re-render. */
+  getPagePins: (pageUrl: string) =>
     send<AnnotationPinRow[]>({
-      path:   `/issues/pins?pageUrl=${encodeURIComponent(pageUrl)}`,
-      method: "GET",
+      path: `/annotation/pins?pageUrl=${encodeURIComponent(pageUrl)}`, method: "GET",
+    }),
+
+  /** Finalise a session: set the grouping issue's title (+ optional summary). */
+  submitSession: (sessionId: string, title: string, summary?: string) =>
+    send<{ submitted: boolean; issueId: string | null }>({
+      path: `/annotation/sessions/${sessionId}/submit`, method: "POST",
+      json: { title, ...(summary !== undefined && { summary }) },
     }),
 
   /**

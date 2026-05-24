@@ -31,6 +31,18 @@
         <rect x="2" y="6" width="14" height="12" rx="2"/>
         <path d="M16 10 l6-3 v10 l-6-3"/>
       </svg>
+      <svg v-else-if="icon === 'check'" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-[15px] h-[15px]">
+        <path d="M20 6 L9 17 l-5 -5"/>
+      </svg>
+      <svg v-else-if="icon === 'close'" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-[15px] h-[15px]">
+        <path d="M18 6 L6 18 M6 6 l12 12"/>
+      </svg>
+      <svg v-else-if="icon === 'list'" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="w-[15px] h-[15px]">
+        <path d="M8 6 h13 M8 12 h13 M8 18 h13 M3 6 h.01 M3 12 h.01 M3 18 h.01"/>
+      </svg>
     </span>
 
     <span class="flex flex-col gap-0.5 flex-1 min-w-0">
@@ -47,7 +59,7 @@
 import { Badge } from '@deveprobe/ui';
 
 defineProps<{
-  icon:        'screenshot' | 'annotate' | 'record';
+  icon:        'screenshot' | 'annotate' | 'record' | 'check' | 'close' | 'list';
   label:       string;
   description: string;
   disabled?:   boolean;

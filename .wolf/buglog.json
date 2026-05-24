@@ -2844,6 +2844,550 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-22T18:33:32.533Z"
+    },
+    {
+      "id": "bug-177",
+      "timestamp": "2026-05-23T09:40:58.016Z",
+      "error_message": "Missing guard clause",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+      "root_cause": "No early return/throw for edge case: pin.kind === 'existing'",
+      "fix": "Added guard clause: if (pin.kind === 'existing')",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T09:40:58.016Z"
+    },
+    {
+      "id": "bug-178",
+      "timestamp": "2026-05-23T09:41:57.299Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationPinDetail.vue",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 15→37 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T09:41:57.299Z"
+    },
+    {
+      "id": "bug-179",
+      "timestamp": "2026-05-23T09:42:39.998Z",
+      "error_message": "Missing error handling in openInDashboard",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T09:42:39.998Z"
+    },
+    {
+      "id": "bug-180",
+      "timestamp": "2026-05-23T09:48:45.768Z",
+      "error_message": "Missing guard clause",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+      "root_cause": "No early return/throw for edge case: rafPending",
+      "fix": "Added guard clause: if (rafPending)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T09:48:45.768Z"
+    },
+    {
+      "id": "bug-181",
+      "timestamp": "2026-05-23T09:49:45.250Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T09:49:45.250Z"
+    },
+    {
+      "id": "bug-182",
+      "timestamp": "2026-05-23T09:53:31.921Z",
+      "error_message": "CSS fix: focus-visible",
+      "file": "apps/extension/src/components/launcher/FloatingLauncher.vue",
+      "root_cause": "focus-visible: outline-none active:scale-[0.95]\" → outline-none active:scale-[0.95]',",
+      "fix": "Changed focus-visible: outline-none active:scale-[0.95]\" → outline-none active:scale-[0.95]',",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T09:53:31.921Z"
+    },
+    {
+      "id": "bug-183",
+      "timestamp": "2026-05-23T09:53:59.690Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "apps/extension/src/components/launcher/FloatingLauncher.vue",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T09:53:59.690Z"
+    },
+    {
+      "id": "bug-184",
+      "timestamp": "2026-05-23T09:59:36.442Z",
+      "error_message": "CSS fix: x",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+      "root_cause": "x: 0, y: 0 → 0, y: 0, stale: false",
+      "fix": "Changed x: 0, y: 0 → 0, y: 0, stale: false",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T09:59:36.442Z"
+    },
+    {
+      "id": "bug-185",
+      "timestamp": "2026-05-23T10:01:04.529Z",
+      "error_message": "Missing error handling in onPlaceClick",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T10:01:04.529Z"
+    },
+    {
+      "id": "bug-186",
+      "timestamp": "2026-05-23T10:01:22.776Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationPin.vue",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 14→23 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T10:01:22.776Z"
+    },
+    {
+      "id": "bug-187",
+      "timestamp": "2026-05-23T10:05:00.231Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T10:05:00.231Z"
+    },
+    {
+      "id": "bug-188",
+      "timestamp": "2026-05-23T10:14:51.852Z",
+      "error_message": "CSS fix: icon",
+      "file": "apps/extension/src/components/launcher/LauncherItem.vue",
+      "root_cause": "icon: 'screenshot' | 'annotate' | 'record' → 'screenshot' | 'annotate' | 'record' | 'check' | 'close' | 'list'",
+      "fix": "Changed icon: 'screenshot' | 'annotate' | 'record' → 'screenshot' | 'annotate' | 'record' | 'check' | 'close' | 'list'",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T10:14:51.852Z"
+    },
+    {
+      "id": "bug-189",
+      "timestamp": "2026-05-23T10:16:29.298Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+      "root_cause": "5 lines replaced/restructured",
+      "fix": "Rewrote 12→36 lines (5 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T10:16:29.298Z"
+    },
+    {
+      "id": "bug-190",
+      "timestamp": "2026-05-23T10:17:50.148Z",
+      "error_message": "CSS fix: focus-visible",
+      "file": "apps/extension/src/components/launcher/FloatingLauncher.vue",
+      "root_cause": "focus-visible: outline-none active:scale-[0.95]', → outline-none',",
+      "fix": "Changed focus-visible: outline-none active:scale-[0.95]', → outline-none',",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T10:17:50.148Z"
+    },
+    {
+      "id": "bug-191",
+      "timestamp": "2026-05-23T10:18:33.302Z",
+      "error_message": "Missing error handling in defaultPos",
+      "file": "apps/extension/src/components/launcher/FloatingLauncher.vue",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block | Also: // Restore saved FAB position (or default to bottom-right), ; // current viewport.",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-23T10:19:24.388Z"
+    },
+    {
+      "id": "bug-192",
+      "timestamp": "2026-05-23T10:21:28.082Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check) | Also: const images    = ref<File[]>([]);; const canSubmit = computed(",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-23T10:22:56.311Z"
+    },
+    {
+      "id": "bug-193",
+      "timestamp": "2026-05-23T10:23:31.966Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T10:23:31.966Z"
+    },
+    {
+      "id": "bug-194",
+      "timestamp": "2026-05-23T10:25:54.122Z",
+      "error_message": "CSS fix: focus-visible",
+      "file": "apps/extension/src/components/launcher/FloatingLauncher.vue",
+      "root_cause": "focus-visible: outline-none', → outline-none active:scale-[0.95]',",
+      "fix": "Changed focus-visible: outline-none', → outline-none active:scale-[0.95]',",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T10:25:54.122Z"
+    },
+    {
+      "id": "bug-195",
+      "timestamp": "2026-05-23T10:26:55.628Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/components/launcher/FloatingLauncher.vue",
+      "root_cause": "18 lines replaced/restructured",
+      "fix": "Rewrote 58→72 lines (18 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T10:26:55.628Z"
+    },
+    {
+      "id": "bug-196",
+      "timestamp": "2026-05-23T10:35:23.748Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+      "root_cause": "9 lines replaced/restructured",
+      "fix": "Rewrote 30→56 lines (9 removed) | Also: <div class=\"rounded-md border border-border bg-bac; <button type=\"button\" class=\"dp-md-btn\" title=\"Ins",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-23T10:35:38.216Z"
+    },
+    {
+      "id": "bug-197",
+      "timestamp": "2026-05-23T10:35:48.080Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T10:35:48.080Z"
+    },
+    {
+      "id": "bug-198",
+      "timestamp": "2026-05-23T10:37:55.505Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+      "root_cause": "Had './AnnotationPinList.vue'",
+      "fix": "Changed to '../../../lib/annotation-state.js'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T10:37:55.505Z"
+    },
+    {
+      "id": "bug-199",
+      "timestamp": "2026-05-23T11:02:16.610Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/components/launcher/FloatingLauncher.vue",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 40→97 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T11:02:16.610Z"
+    },
+    {
+      "id": "bug-200",
+      "timestamp": "2026-05-23T11:02:36.243Z",
+      "error_message": "Missing guard clause",
+      "file": "apps/extension/src/components/launcher/FloatingLauncher.vue",
+      "root_cause": "No early return/throw for edge case: !q",
+      "fix": "Added guard clause: if (!q)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T11:02:36.243Z"
+    },
+    {
+      "id": "bug-201",
+      "timestamp": "2026-05-23T11:27:20.966Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/extension/src/lib/api.ts",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T11:27:20.966Z"
+    },
+    {
+      "id": "bug-202",
+      "timestamp": "2026-05-23T11:29:04.928Z",
+      "error_message": "CSS fix: title",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+      "root_cause": "title: r.pin.kind === 'existing' ? r.pin.title : r.pin.draft.comment, → r.pin.kind === 'existing' ? r.pin.comment : r.pin.draft.comment,",
+      "fix": "Changed title: r.pin.kind === 'existing' ? r.pin.title : r.pin.draft.comment, → r.pin.kind === 'existing' ? r.pin.comment : r.pin.draft.comment,",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-23T11:31:41.339Z"
+    },
+    {
+      "id": "bug-203",
+      "timestamp": "2026-05-23T11:30:28.130Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T11:30:28.130Z"
+    },
+    {
+      "id": "bug-204",
+      "timestamp": "2026-05-23T11:33:11.981Z",
+      "error_message": "Missing error handling in onDone",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-23T11:33:11.981Z"
+    },
+    {
+      "id": "bug-205",
+      "timestamp": "2026-05-24T11:22:46.245Z",
+      "error_message": "Missing error handling in function",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-24T11:22:46.245Z"
+    },
+    {
+      "id": "bug-206",
+      "timestamp": "2026-05-24T11:31:23.455Z",
+      "error_message": "CSS fix: left, top",
+      "file": "apps/extension/src/components/launcher/FloatingLauncher.vue",
+      "root_cause": "left: `${fabPos.value.left - 28 → `${fabPos.value.left; top: `${fabPos.value.top + (FAB_SIZE - 28) / 2 → `${fabPos.value.top",
+      "fix": "Changed left: `${fabPos.value.left - 28 → `${fabPos.value.left; top: `${fabPos.value.top + (FAB_SIZE - 28) / 2 → `${fabPos.value.top",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-24T11:31:23.455Z"
+    },
+    {
+      "id": "bug-207",
+      "timestamp": "2026-05-24T11:33:28.378Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "Had '../components/capture/recording/toolbar/Recording",
+      "fix": "Changed to '../lib/recording-state.js'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-24T11:33:28.378Z"
+    },
+    {
+      "id": "bug-208",
+      "timestamp": "2026-05-24T11:35:22.464Z",
+      "error_message": "Missing guard clause",
+      "file": "apps/extension/src/entrypoints/content.ts",
+      "root_cause": "No early return/throw for edge case: rec.state.value === 'recording'",
+      "fix": "Added guard clause: if (rec.state.value === 'recording')",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-24T11:35:22.464Z"
+    },
+    {
+      "id": "bug-209",
+      "timestamp": "2026-05-24T11:41:18.682Z",
+      "error_message": "Missing guard clause",
+      "file": "apps/extension/src/components/launcher/FloatingLauncher.vue",
+      "root_cause": "No early return/throw for edge case: !active",
+      "fix": "Added guard clause: if (!active)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-24T11:42:55.779Z"
+    },
+    {
+      "id": "bug-210",
+      "timestamp": "2026-05-24T11:41:37.653Z",
+      "error_message": "CSS fix: left",
+      "file": "apps/extension/src/components/launcher/FloatingLauncher.vue",
+      "root_cause": "left: `${fabPos.value.left → `${left",
+      "fix": "Changed left: `${fabPos.value.left → `${left",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-24T11:41:37.653Z"
     }
   ]
 }

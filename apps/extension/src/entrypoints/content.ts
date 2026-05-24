@@ -18,13 +18,13 @@
  * awaits so they can never miss a message sent during async initialisation.
  */
 import '../assets/content.css';
-import { createApp, ref, h } from 'vue';
+import { createApp, ref, watch } from 'vue';
 import FloatingLauncher    from '../components/launcher/FloatingLauncher.vue';
 import RegionSelector      from '../components/capture/RegionSelector.vue';
 import ScreenshotCapture   from '../components/capture/screenshot/ScreenshotCapture.vue';
 import RecordingCapture    from '../components/capture/recording/RecordingCapture.vue';
 import AnnotationOverlay   from '../components/capture/annotation/AnnotationOverlay.vue';
-import RecordingControlBar from '../components/capture/recording/toolbar/RecordingControlBar.vue';
+import { useRecordingState } from '../lib/recording-state.js';
 import RecordingResumeBanner from '../components/capture/recording/toolbar/RecordingResumeBanner.vue';
 import { getTheme, applyThemeClass, onThemeChange } from '../lib/theme.js';
 import { startCaptureStreams, type CaptureStreams } from '../lib/capture-streams.js';
@@ -58,7 +58,12 @@ export default defineContentScript({
     let captureUi:    Awaited<ReturnType<typeof createShadowRootUi>> | null = null;
     let recordingUi:  Awaited<ReturnType<typeof createShadowRootUi>> | null = null;
     let annotationUi: Awaited<ReturnType<typeof createShadowRootUi>> | null = null;
-    let controlBarUi: Awaited<ReturnType<typeof createShadowRootUi>> | null = null;
+    // Recording controls now live in the FloatingLauncher (it transforms into
+    // the toolbar). The content script owns the recorder lifecycle via these
+    // module-scoped handles instead of a separate shadow UI.
+    let recTick:        ReturnType<typeof setInterval> | null = null;
+    let recElementBlur: ReturnType<typeof createElementBlur> | null = null;
+    let recUnwatchers:  Array<() => void> = [];
     let resumeUi:     Awaited<ReturnType<typeof createShadowRootUi>> | null = null;
     let captureStreams: CaptureStreams | null = null;
 
@@ -74,14 +79,16 @@ export default defineContentScript({
       for (const el of themeTargets) applyThemeClass(el, theme);
     });
 
-    // Hide the FloatingLauncher (FAB) whenever any capture surface is mounted —
-    // it would otherwise overlap the region selector, capture modal, recording
-    // toolbar, or review modal. Call after every mount/remove of those UIs.
+    // Hide the FloatingLauncher (FAB) whenever a BLOCKING capture surface is
+    // mounted — region selector, capture modal, recording toolbar, or review
+    // modal. Annotation is deliberately EXCLUDED: during annotation the
+    // launcher IS the toolbar (pin count + "+ Pin" / Done controls), so it
+    // must stay visible.
     function syncLauncherVisibility() {
-      const anyCapture =
-        !!regionUi || !!captureUi || !!controlBarUi || !!recordingUi || !!resumeUi || !!annotationUi;
+      const anyBlocking =
+        !!regionUi || !!captureUi || !!recordingUi || !!resumeUi;
       const host = document.querySelector('dp-launcher') as HTMLElement | null;
-      if (host) host.style.display = anyCapture ? 'none' : '';
+      if (host) host.style.display = anyBlocking ? 'none' : '';
     }
 
     // ── Listeners registered FIRST (before any awaits) ──────────────────────
@@ -239,7 +246,13 @@ export default defineContentScript({
         position: 'modal',
         onMount(container) {
           const host = (container.getRootNode() as ShadowRoot).host as HTMLElement;
-          host.style.zIndex = '2147483647';
+          // ONE BELOW the launcher (2147483647) so the FAB — which IS the
+          // annotation toolbar now — stays clickable on top of the overlay.
+          host.style.zIndex = '2147483646';
+          // Host is inert; the overlay's inner pins / composer / capture-layer
+          // opt back in with pointer-events:auto. Without this the modal host
+          // would swallow every click and the page (+ FAB) would be dead.
+          host.style.pointerEvents = 'none';
           initTheme(container);
           const app = createApp(AnnotationOverlay, {
             browserMeta: meta,
@@ -334,89 +347,70 @@ export default defineContentScript({
       syncLauncherVisibility();
     }
 
-    // ── Recording control bar ─────────────────────────────────────────────────
-    // Thin client: toolbar sends commands to background → offscreen owns the recorder.
-    // Per-page capture-streams restarts on each page load (events from previous pages
-    // are lost in v1; the offscreen blob carries the complete video).
+    // ── Recording controls (driven through the FloatingLauncher) ──────────────
+    // The launcher transforms into the recording toolbar. The content script
+    // owns the recorder lifecycle: capture-streams, the live timer, element
+    // blur, and the command bridge to the offscreen document. It publishes
+    // state to `recording-state` and watches the launcher's intents.
     async function mountControlBar(startedAtEpoch: number) {
-      // Tear down any leftover bar from a previous recording on this page
-      controlBarUi?.remove(); controlBarUi = null;
+      tearDownRecordingControls();        // clean slate (covers reload re-mounts)
       captureStreams?.stop(); captureStreams = null;
 
-      // Epoch-based timebase so timestamps are accurate across page reloads
+      // Epoch-based timebase so timestamps are accurate across page reloads.
       captureStreams = startCaptureStreams(startedAtEpoch);
 
-      const stateRef   = ref<'recording' | 'paused'>('recording');
-      const elapsedRef = ref(Math.max(0, Date.now() - startedAtEpoch));
-      const tick = setInterval(() => {
-        if (stateRef.value === 'recording') {
-          elapsedRef.value = Math.max(0, Date.now() - startedAtEpoch);
+      const rec = useRecordingState();
+      rec.setActive(true);
+      rec.setState('recording');
+      rec.setElapsed(Math.max(0, Date.now() - startedAtEpoch));
+      rec.setBlurActive(false);
+
+      // Live timer.
+      recTick = setInterval(() => {
+        if (rec.state.value === 'recording') {
+          rec.setElapsed(Math.max(0, Date.now() - startedAtEpoch));
         }
       }, 200);
 
-      controlBarUi = await createShadowRootUi(ctx, {
-        name:     'dp-recording-control',
-        position: 'inline',
-        anchor:   'body',
-        onMount(container) {
-          const host = (container.getRootNode() as ShadowRoot).host as HTMLElement;
-          host.style.position      = 'fixed';
-          host.style.inset         = '0';
-          host.style.pointerEvents = 'none';
-          host.style.zIndex        = '2147483646';
-          initTheme(container);
+      recElementBlur = createElementBlur();
 
-          const elementBlur = createElementBlur();
-          const blurActiveRef = ref(false);
-
-          const app = createApp({
-            setup() {
-              return () =>
-                h(RecordingControlBar, {
-                  state:         stateRef.value,
-                  elapsedMs:     elapsedRef.value,
-                  blurActive:    blurActiveRef.value,
-                  onTogglePause: async () => {
-                    const cmd = stateRef.value === 'recording' ? 'pause' : 'resume';
-                    await chrome.runtime.sendMessage({ type: 'RECORDING_COMMAND', command: cmd });
-                    stateRef.value = cmd === 'pause' ? 'paused' : 'recording';
-                  },
-                  // Sticky toggle: pick mode stays on across multiple blurs.
-                  // Click the eye-off icon again (or press Escape) to exit.
-                  onAddBlur: () => {
-                    if (elementBlur.isActive()) {
-                      elementBlur.stop();
-                      return;
-                    }
-                    // The toolbar's shadow host — events originating inside it
-                    // should pass through so the user can click this same
-                    // button again to exit pick mode.
-                    const ctrlHost = document.querySelector('dp-recording-control');
-                    elementBlur.start({
-                      ignoreEl:  ctrlHost,
-                      onPicked:  () => { /* stay in pick mode */ },
-                      onStopped: () => { blurActiveRef.value = false; },
-                    });
-                    blurActiveRef.value = true;
-                  },
-                  onStop: () => {
-                    chrome.runtime.sendMessage({ type: 'RECORDING_COMMAND', command: 'stop' }).catch(() => null);
-                  },
-                });
-            },
+      // Launcher → content-script intents.
+      recUnwatchers = [
+        // Pause / resume.
+        watch(() => rec.togglePauseRequested.value, async (v, prev) => {
+          if (v === prev) return;
+          const cmd = rec.state.value === 'recording' ? 'pause' : 'resume';
+          await chrome.runtime.sendMessage({ type: 'RECORDING_COMMAND', command: cmd }).catch(() => null);
+          rec.setState(cmd === 'pause' ? 'paused' : 'recording');
+        }),
+        // Stop.
+        watch(() => rec.stopRequested.value, (v, prev) => {
+          if (v === prev) return;
+          chrome.runtime.sendMessage({ type: 'RECORDING_COMMAND', command: 'stop' }).catch(() => null);
+        }),
+        // Sticky element-blur toggle. ignoreEl = the launcher host so clicks on
+        // the toolbar (to toggle blur off again) aren't swallowed by pick mode.
+        watch(() => rec.blurRequested.value, (v, prev) => {
+          if (v === prev || !recElementBlur) return;
+          if (recElementBlur.isActive()) { recElementBlur.stop(); return; }
+          const launcherHost = document.querySelector('dp-launcher');
+          recElementBlur.start({
+            ignoreEl:  launcherHost,
+            onStopped: () => rec.setBlurActive(false),
           });
-          app.mount(container);
-          return { app, elementBlur };
-        },
-        onRemove({ app, elementBlur }, container) {
-          clearInterval(tick);
-          elementBlur.restoreAll();
-          themeTargets.delete(container as HTMLElement);
-          app?.unmount();
-        },
-      });
-      controlBarUi.mount();
+          rec.setBlurActive(true);
+        }),
+      ];
+
       syncLauncherVisibility();
+    }
+
+    /** Stop the timer + watchers + blur, and flip the launcher back to the FAB. */
+    function tearDownRecordingControls() {
+      if (recTick) { clearInterval(recTick); recTick = null; }
+      recElementBlur?.restoreAll(); recElementBlur = null;
+      recUnwatchers.forEach((u) => u()); recUnwatchers = [];
+      useRecordingState().setActive(false);
     }
 
     // ── Resume banner (interrupted recording on a reloaded page) ──────────────
@@ -477,7 +471,7 @@ export default defineContentScript({
       // Collect events captured on this page, then tear down toolbar/banner
       const { markers, events } = captureStreams?.stop() ?? { markers: [] as RecordingMarker[], events: [] as UploadedTimelineEvent[] };
       captureStreams = null;
-      controlBarUi?.remove(); controlBarUi = null;
+      tearDownRecordingControls();        // flips the launcher back from toolbar → FAB
       resumeUi?.remove();     resumeUi     = null;
       // Don't re-show the FAB yet — the review modal is about to mount.
       // syncLauncherVisibility() runs in openRecordingModal + its onClose.

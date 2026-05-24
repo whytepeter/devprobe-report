@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-22T18:34:13.829Z
-> Files: 301 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-24T11:45:47.114Z
+> Files: 308 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -9,7 +9,7 @@
 - `BUILDPLAN.md` — DevProbe — Build Plan (~2708 tok)
 - `CLAUDE.md` — OpenWolf (~231 tok)
 - `GENERAL_SPEC.md` — General Product Spec (~2598 tok)
-- `HANDOFF.md` — DevProbe — Session Handoff (~5354 tok)
+- `HANDOFF.md` — DevProbe — Handoff (~2836 tok)
 - `LIVE_ANNOTATION_SPEC.md` — Live Annotation Spec (~2250 tok)
 - `package.json` — Node.js package manifest (~167 tok)
 - `pnpm-lock.yaml` — pnpm lock file (~63618 tok)
@@ -64,10 +64,11 @@
 
 ## apps/extension/src/components/capture/annotation/
 
-- `AnnotationOverlay.vue` — Build a renderable ExistingPin from a server row. Returns null if anchor missing. (~4202 tok)
-- `AnnotationPin.vue` — "draft" = composer still open; "submitted" = issue persisted. (~507 tok)
-- `AnnotationPinComposer.vue` — Issue type values mirror the `annotation_issue_type` DB enum exactly. (~2290 tok)
-- `AnnotationPinDetail.vue` — Vue: setup (~1181 tok)
+- `AnnotationOverlay.vue` — Document coords (fallback when the anchored element can't be re-resolved). (~8437 tok)
+- `AnnotationPin.vue` — "draft" = composer still open; "submitted" = issue persisted. (~894 tok)
+- `AnnotationPinComposer.vue` — Issue type values mirror the `annotation_issue_type` DB enum exactly. (~4155 tok)
+- `AnnotationPinDetail.vue` — True while the parent's PATCH is in flight. (~2142 tok)
+- `AnnotationPinList.vue` — Vue: setup (~1077 tok)
 - `AnnotationToolbar.vue` — Vue: setup (~832 tok)
 
 ## apps/extension/src/components/capture/recording/
@@ -93,7 +94,7 @@
 
 ## apps/extension/src/components/capture/recording/toolbar/
 
-- `RecordingControlBar.vue` — Vue: setup (~663 tok)
+- `RecordingControlBar.vue` — True while sticky element-blur pick mode is on. (~739 tok)
 - `RecordingControls.vue` — Vue: setup (~1154 tok)
 
 ## apps/extension/src/components/capture/screenshot/
@@ -112,13 +113,13 @@
 ## apps/extension/src/components/launcher/
 
 - `ConnectPrompt.vue` — Vue: setup (~448 tok)
-- `FloatingLauncher.vue` — Vue: setup (~1352 tok)
-- `LauncherItem.vue` — Vue: setup, TS, 5 props, emits (~641 tok)
+- `FloatingLauncher.vue` — Vue: setup (~5652 tok)
+- `LauncherItem.vue` — Vue: setup (~860 tok)
 
 ## apps/extension/src/entrypoints/
 
 - `background.ts` — API proxy (~5586 tok)
-- `content.ts` — Content script — mounts UIs into the page via shadow DOM: (~7053 tok)
+- `content.ts` — Content script — mounts UIs into the page via shadow DOM: (~7036 tok)
 - `page-probe.content.ts` — Page probe — MAIN-world content script. (~2634 tok)
 
 ## apps/extension/src/entrypoints/offscreen/
@@ -149,8 +150,8 @@
 ## apps/extension/src/lib/
 
 - `anchor.ts` — Element anchoring for live annotation. (~1875 tok)
-- `annotation-state.ts` — annotation-state (~716 tok)
-- `api.ts` — API client (~2900 tok)
+- `annotation-state.ts` — annotation-state (~874 tok)
+- `api.ts` — API client (~3344 tok)
 - `auth.ts` — Exports StoredAuth, getAuth, setAuth, clearAuth, onAuthChange (~593 tok)
 - `capture-streams.ts` — Capture streams during a screen recording. (~1941 tok)
 - `element-blur.ts` — Element-targeted blur for screen recording. (~1419 tok)
@@ -159,6 +160,7 @@
 - `metadata.ts` — Exports collectBrowserMeta, dataUrlToBlob (~1394 tok)
 - `page-probe-payload.ts` — Shared message contract between the MAIN-world page probe and the isolated (~390 tok)
 - `recording-drafts.ts` — Recording drafts — local persistence for in-flight recording uploads. (~943 tok)
+- `recording-state.ts` — recording-state (~687 tok)
 - `redact.ts` — Redaction helpers — privacy-first per SCREEN_RECORDING_SPEC.md. (~1266 tok)
 - `theme.ts` — Theme helpers — shared by popup and content scripts. (~781 tok)
 
@@ -247,9 +249,11 @@
 - `IssueMediaImage.vue` — Vue: setup (~428 tok)
 - `IssueMediaVideo.vue` — Vue: setup, exposes seekTo(ms) via videoEl ref (~350 tok)
 - `IssuePageSkeleton.vue` — Vue component (~765 tok)
+- `IssuePinList.vue` — Vue: setup (~1000 tok)
 - `IssueTimeline.vue` — Tabbed timeline panel (Console/Network/Errors/User Actions/Navigation) with click-to-seek (~900 tok)
 - `IssueTitleBlock.vue` — Vue: setup (~792 tok)
 - `NetworkBadge.vue` — Method + HTTP status badge for network events (~200 tok)
+- `PinView.vue` — Vue: setup (~740 tok)
 - `RecordingView.vue` — Vue: setup (~524 tok)
 - `SeverityPill.vue` — Severity pill for error events (critical/high/medium/low) (~150 tok)
 - `TimelineRow.vue` — Single timeline event row with timestamp seek chip (~300 tok)
@@ -268,7 +272,12 @@
 - `useIssue.ts` — useIssue (~921 tok)
 - `useIssueEvents.ts` — useIssueEvents (~646 tok)
 - `useIssueMutations.ts` — useIssueMutations (~917 tok)
+- `useIssuePins.ts` — useIssuePins (~455 tok)
 - `useWorkspaceMembers.ts` — useWorkspaceMembers (~304 tok)
+
+## apps/web/src/features/issues/lib/
+
+- `inline-markdown.ts` — inline-markdown (~612 tok)
 
 ## apps/web/src/features/settings/
 
@@ -350,7 +359,7 @@
 
 ## packages/api/src/
 
-- `index.ts` — API routes: GET (1 endpoints) (~596 tok)
+- `index.ts` — API routes: GET (1 endpoints) (~625 tok)
 
 ## packages/api/src/db/
 
@@ -374,6 +383,7 @@
 
 ## packages/api/src/routes/
 
+- `annotation.ts` — Live-annotation API — GROUPED model. (~2659 tok)
 - `attachments.ts` — API routes: POST, GET (8 endpoints) (~872 tok)
 - `auth.ts` — API routes: POST, GET (11 endpoints) (~1844 tok)
 - `folders.ts` — API routes: GET, POST (4 endpoints) (~442 tok)
