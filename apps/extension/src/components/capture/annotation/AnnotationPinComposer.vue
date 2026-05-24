@@ -3,25 +3,15 @@
   ─────────────────────
   Inline popover anchored next to a freshly-dropped pin.
 
-  Fields (v1):
+  Fields:
     • Comment    (required, textarea, auto-focused)
     • Severity   (low / medium / high / critical, default medium)
-    • Issue type (visual_bug / layout_issue / copy_issue / broken_behavior /
-                  missing_element / accessibility / performance / other)
-
-  Parked for v2 (deliberately not in this composer to keep submission fast):
-    • Assignee   — needs the workspace members query
-    • Labels     — needs an inline chip input
-    • Screenshot markup — separate tool
-    • Short clip — separate flow
+    • Issue type (visual_bug / layout_issue / …)
+    • Assignee   (optional — workspace member dropdown)
+    • Labels     (optional — free-text chip input, comma / Enter to add)
 
   Submit emits a PinDraft to the parent; the parent handles the API call
-  (create-issue + upload-screenshot crop) and unmounts the composer when the
-  pin transitions to "submitted".
-
-  Positioning: parent passes pageX/pageY (document coords). We render the
-  popover ~24px below the pin, but flip above when there isn't room (last
-  16px of viewport).
+  and unmounts the composer when the pin transitions to "submitted".
 -->
 <template>
   <div
@@ -69,7 +59,7 @@
             <span class="ml-auto pr-1 text-[9px] uppercase tracking-wide text-muted-foreground/60">Markdown</span>
           </div>
 
-          <!-- Link popover (replaces native window.prompt) -->
+          <!-- Link popover -->
           <div
             v-if="linkOpen"
             class="absolute left-2 right-2 top-9 z-20 rounded-lg border border-border bg-popover p-2 shadow-[0_12px_32px_rgba(0,0,0,0.18)]"
@@ -127,7 +117,7 @@
           </div>
         </div>
 
-        <!-- Hidden file input for image attach -->
+        <!-- Hidden file input -->
         <input
           ref="imageInput"
           type="file"
@@ -168,6 +158,82 @@
               <SelectItem v-for="t in ISSUE_TYPES" :key="t.value" :value="t.value">{{ t.label }}</SelectItem>
             </SelectContent>
           </Select>
+        </div>
+
+        <!-- Assignee -->
+        <div v-if="members.length" class="space-y-1">
+          <label class="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">Assignee</label>
+          <div class="relative">
+            <button
+              type="button"
+              class="flex w-full items-center gap-2 rounded-md border border-border bg-background px-2.5 py-1.5 text-[12.5px] hover:bg-muted transition-colors"
+              @click.stop="assigneeOpen = !assigneeOpen"
+            >
+              <template v-if="selectedMember">
+                <span class="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-primary/20 text-[9px] font-bold text-primary">
+                  {{ initials(selectedMember.name) }}
+                </span>
+                <span class="truncate">{{ selectedMember.name }}</span>
+              </template>
+              <span v-else class="text-muted-foreground">Unassigned</span>
+              <Icon name="chevron-down" :size="12" :stroke-width="2" class="ml-auto shrink-0 text-muted-foreground" />
+            </button>
+
+            <div
+              v-if="assigneeOpen"
+              class="absolute left-0 right-0 top-full z-20 mt-1 max-h-[160px] overflow-y-auto rounded-lg border border-border bg-popover shadow-[0_8px_24px_rgba(0,0,0,0.14)]"
+            >
+              <button
+                type="button"
+                class="flex w-full items-center gap-2 px-2.5 py-1.5 text-[12px] hover:bg-muted transition-colors"
+                @click="selectAssignee(null)"
+              >
+                <span class="text-muted-foreground">Unassigned</span>
+              </button>
+              <button
+                v-for="m in members"
+                :key="m.id"
+                type="button"
+                class="flex w-full items-center gap-2 px-2.5 py-1.5 text-[12px] hover:bg-muted transition-colors"
+                @click="selectAssignee(m.id)"
+              >
+                <span class="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-primary/20 text-[9px] font-bold text-primary">
+                  {{ initials(m.name) }}
+                </span>
+                <span class="truncate">{{ m.name }}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Labels -->
+        <div class="space-y-1">
+          <label class="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">Labels</label>
+          <div
+            class="flex min-h-[36px] flex-wrap gap-1 rounded-md border border-border bg-background px-2 py-1.5 focus-within:ring-1 focus-within:ring-ring cursor-text"
+            @click="labelInputEl?.focus()"
+          >
+            <span
+              v-for="label in labels"
+              :key="label"
+              class="inline-flex items-center gap-1 rounded bg-muted px-1.5 py-0.5 text-[11px] text-foreground/80"
+            >
+              {{ label }}
+              <button type="button" class="text-muted-foreground hover:text-foreground" @click.stop="removeLabel(label)">
+                <Icon name="x" :size="9" :stroke-width="2.5" />
+              </button>
+            </span>
+            <input
+              ref="labelInputEl"
+              v-model="labelDraft"
+              type="text"
+              placeholder="Add label…"
+              class="min-w-[80px] flex-1 border-0 bg-transparent text-[12px] placeholder:text-muted-foreground/60 focus:outline-none focus:ring-0"
+              @keydown.enter.prevent="addLabel"
+              @keydown.188.prevent="addLabel"
+              @keydown.backspace="onLabelBackspace"
+            />
+          </div>
         </div>
 
         <!-- Error -->
@@ -213,6 +279,7 @@ import {
   SelectValue,
 } from '@deveprobe/ui';
 import type { Severity } from '@deveprobe/shared';
+import type { WorkspaceMember } from '../../../lib/api.js';
 
 /** Issue type values mirror the `annotation_issue_type` DB enum exactly. */
 export type AnnotationIssueType =
@@ -226,22 +293,21 @@ export type AnnotationIssueType =
   | 'other';
 
 export interface PinDraft {
-  comment:   string;
-  severity:  Severity;
-  issueType: AnnotationIssueType;
-  /** Images attached in the composer — uploaded to the issue on submit. */
-  images:    File[];
+  comment:    string;
+  severity:   Severity;
+  issueType:  AnnotationIssueType;
+  images:     File[];
+  assigneeId: string | null;
+  labels:     string[];
 }
 
 const props = defineProps<{
   index:      number;
-  /** Document-relative coordinates of the pin marker. */
   pageX:      number;
   pageY:      number;
-  /** Set by parent while the API call is in flight. */
   submitting: boolean;
-  /** Optional error string surfaced from the parent's API call. */
   error?:     string;
+  members:    WorkspaceMember[];
 }>();
 
 const emit = defineEmits<{
@@ -250,24 +316,54 @@ const emit = defineEmits<{
 }>();
 
 // ── Form state ──────────────────────────────────────────────────────────────
-const comment   = ref('');
-const severity  = ref<Severity>('medium');
-const issueType = ref<AnnotationIssueType>('visual_bug');
-const images    = ref<File[]>([]);
+const comment    = ref('');
+const severity   = ref<Severity>('medium');
+const issueType  = ref<AnnotationIssueType>('visual_bug');
+const images     = ref<File[]>([]);
+const assigneeId = ref<string | null>(null);
+const labels     = ref<string[]>([]);
+const labelDraft = ref('');
 
 const canSubmit = computed(
   () => (comment.value.trim().length > 0 || images.value.length > 0) && !props.submitting,
 );
 
-// ── Markdown editor helpers ──────────────────────────────────────────────────
-const imageInput = ref<HTMLInputElement | null>(null);
+// ── Assignee ─────────────────────────────────────────────────────────────────
+const assigneeOpen = ref(false);
+const selectedMember = computed(() =>
+  assigneeId.value ? props.members.find((m) => m.id === assigneeId.value) ?? null : null,
+);
+function selectAssignee(id: string | null) {
+  assigneeId.value = id;
+  assigneeOpen.value = false;
+}
+function initials(name: string): string {
+  return name.split(' ').map((w) => w[0] ?? '').slice(0, 2).join('').toUpperCase();
+}
 
-// Portal target for the type Select — the composer's own root (declared below
-// for positioning), so the dropdown shares its stacking context (renders on
-// top) and inherits theme vars.
+// ── Labels ───────────────────────────────────────────────────────────────────
+const labelInputEl = ref<HTMLInputElement | null>(null);
+
+function addLabel() {
+  const v = labelDraft.value.replace(/,$/, '').trim();
+  if (v && !labels.value.includes(v) && labels.value.length < 10) {
+    labels.value.push(v);
+  }
+  labelDraft.value = '';
+}
+function removeLabel(label: string) {
+  labels.value = labels.value.filter((l) => l !== label);
+}
+function onLabelBackspace() {
+  if (!labelDraft.value && labels.value.length > 0) {
+    labels.value.pop();
+  }
+}
+
+// ── Markdown editor helpers ──────────────────────────────────────────────────
+const imageInput  = ref<HTMLInputElement | null>(null);
 const portalTarget = computed<HTMLElement | null>(() => rootEl.value);
 
-/** Wrap the current textarea selection with before/after markers (or insert). */
 function wrapSelection(before: string, after: string) {
   const el = commentEl.value;
   if (!el) return;
@@ -275,7 +371,6 @@ function wrapSelection(before: string, after: string) {
   const end   = el.selectionEnd   ?? comment.value.length;
   const sel   = comment.value.slice(start, end) || 'text';
   comment.value = comment.value.slice(0, start) + before + sel + after + comment.value.slice(end);
-  // Restore selection around the wrapped text.
   void nextTick(() => {
     el.focus();
     el.selectionStart = start + before.length;
@@ -287,12 +382,12 @@ function onTypeChange(v: unknown) {
   if (typeof v === 'string') issueType.value = v as AnnotationIssueType;
 }
 
-// ── Link popover (replaces window.prompt) ────────────────────────────────────
-const linkOpen   = ref(false);
-const linkText   = ref('');
-const linkUrl    = ref('');
-const linkUrlEl  = ref<HTMLInputElement | null>(null);
-let   linkSel    = { start: 0, end: 0 };
+// ── Link popover ─────────────────────────────────────────────────────────────
+const linkOpen  = ref(false);
+const linkText  = ref('');
+const linkUrl   = ref('');
+const linkUrlEl = ref<HTMLInputElement | null>(null);
+let   linkSel   = { start: 0, end: 0 };
 
 function openLinkPopover() {
   const el = commentEl.value;
@@ -322,12 +417,9 @@ function onImagesPicked(e: Event) {
   for (const f of Array.from(files)) {
     if (f.type.startsWith('image/')) images.value.push(f);
   }
-  // Reset so the same file can be re-picked after removal.
   (e.target as HTMLInputElement).value = '';
 }
-function removeImage(i: number) {
-  images.value.splice(i, 1);
-}
+function removeImage(i: number) { images.value.splice(i, 1); }
 
 const SEVERITIES: { value: Severity; label: string; dot: string }[] = [
   { value: 'low',      label: 'Low',      dot: 'bg-neutral-400' },
@@ -347,19 +439,14 @@ const ISSUE_TYPES: { value: AnnotationIssueType; label: string }[] = [
   { value: 'other',           label: 'Other' },
 ];
 
-// ── Positioning ─────────────────────────────────────────────────────────────
-// Default position: ~24px below the pin centre. Flip above when the popover
-// would otherwise hang past the visible viewport bottom.
+// ── Positioning ──────────────────────────────────────────────────────────────
 const rootEl = ref<HTMLDivElement | null>(null);
 
 const popoverStyle = computed<Record<string, string>>(() => {
-  const POPOVER_HEIGHT_ESTIMATE = 280; // good enough for the flip decision
-  // pageX/pageY are VIEWPORT coords (overlay root is fixed), so compare
-  // against the viewport height directly.
+  const POPOVER_HEIGHT_ESTIMATE = 380;
   const viewportBottom = window.innerHeight;
   const wouldOverflow = props.pageY + 24 + POPOVER_HEIGHT_ESTIMATE > viewportBottom;
   if (wouldOverflow) {
-    // Flip above the pin.
     return {
       left: `${props.pageX}px`,
       top:  `${props.pageY - 24}px`,
@@ -373,7 +460,7 @@ const popoverStyle = computed<Record<string, string>>(() => {
   };
 });
 
-// ── Focus + submit ──────────────────────────────────────────────────────────
+// ── Focus + submit ───────────────────────────────────────────────────────────
 const commentEl = ref<HTMLTextAreaElement | null>(null);
 
 onMounted(async () => {
@@ -383,18 +470,19 @@ onMounted(async () => {
 
 function onSubmit() {
   if (!canSubmit.value) return;
+  if (labelDraft.value.trim()) addLabel();
   emit('submit', {
-    comment:   comment.value.trim(),
-    severity:  severity.value,
-    issueType: issueType.value,
-    images:    images.value.slice(),
+    comment:    comment.value.trim(),
+    severity:   severity.value,
+    issueType:  issueType.value,
+    images:     images.value.slice(),
+    assigneeId: assigneeId.value,
+    labels:     labels.value.slice(),
   });
 }
 </script>
 
 <style scoped>
-/* Markdown toolbar buttons — small icon buttons. Defined locally because the
-   shadow root doesn't inherit the page stylesheet. */
 .dp-md-btn {
   display: inline-flex;
   align-items: center;

@@ -10,6 +10,14 @@ export interface Me {
   role: string;
 }
 
+export interface WorkspaceMember {
+  id:        string;
+  name:      string;
+  email:     string;
+  avatarUrl: string | null;
+  role:      string;
+}
+
 /**
  * API client
  * ──────────
@@ -52,16 +60,18 @@ function bufferToBase64(buffer: ArrayBuffer): string {
  * session and a grouping issue; the overlay renders these on the page.
  */
 export interface AnnotationPinRow {
-  id:        string;
-  sessionId: string;
-  issueId:   string | null;
-  index:     number;
-  anchor:    Record<string, unknown>;
-  comment:   string;
-  severity:  "low" | "medium" | "high" | "critical";
-  issueType: string;
-  status:    string;
-  createdAt: string;
+  id:         string;
+  sessionId:  string;
+  issueId:    string | null;
+  index:      number;
+  anchor:     Record<string, unknown>;
+  comment:    string;
+  severity:   "low" | "medium" | "high" | "critical";
+  issueType:  string;
+  status:     string;
+  assigneeId: string | null;
+  labels:     string[];
+  createdAt:  string;
 }
 
 /** Recording timeline event sent to /issues/:id/events. */
@@ -77,6 +87,9 @@ export interface UploadedTimelineEvent {
 
 export const api = {
   me: () => send<Me>({ path: "/auth/me", method: "GET" }),
+
+  getWorkspaceMembers: () =>
+    send<WorkspaceMember[]>({ path: "/auth/workspace/members", method: "GET" }),
 
   createIssue: (input: Record<string, unknown>) =>
     send<Issue>({ path: "/issues", method: "POST", json: input }),
@@ -95,15 +108,17 @@ export const api = {
    * which the overlay then reuses for every subsequent pin.
    */
   createPin: (input: {
-    sessionId?: string;
-    issueId?:   string;
-    pageUrl:    string;
-    anchor:     Record<string, unknown>;
-    offsetX:    number;
-    offsetY:    number;
-    comment:    string;
-    severity:   string;
-    issueType:  string;
+    sessionId?:  string;
+    issueId?:    string;
+    pageUrl:     string;
+    anchor:      Record<string, unknown>;
+    offsetX:     number;
+    offsetY:     number;
+    comment:     string;
+    severity:    string;
+    issueType:   string;
+    assigneeId?: string | null;
+    labels?:     string[];
   }) =>
     send<{ pin: AnnotationPinRow; sessionId: string; issueId: string }>({
       path: "/annotation/pins", method: "POST", json: input,

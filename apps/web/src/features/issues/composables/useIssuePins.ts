@@ -15,16 +15,18 @@ import { useQuery } from "@tanstack/vue-query";
 import { api } from "@/shared/lib/api.js";
 
 export interface IssuePin {
-  id:        string;
-  sessionId: string;
-  issueId:   string | null;
-  index:     number;
-  anchor:    Record<string, unknown>;
-  comment:   string;
-  severity:  "low" | "medium" | "high" | "critical";
-  issueType: string;
-  status:    string;
-  createdAt: string;
+  id:         string;
+  sessionId:  string;
+  issueId:    string | null;
+  index:      number;
+  anchor:     Record<string, unknown>;
+  comment:    string;
+  severity:   "low" | "medium" | "high" | "critical";
+  issueType:  string;
+  status:     string;
+  assigneeId: string | null;
+  labels:     string[];
+  createdAt:  string;
 }
 
 export const issuePinsKey = (id: string) => ["issue", id, "pins"] as const;

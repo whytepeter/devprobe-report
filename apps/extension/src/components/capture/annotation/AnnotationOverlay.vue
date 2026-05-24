@@ -80,6 +80,7 @@
       :page-y="composerPos.y"
       :submitting="composingPin.submitting"
       :error="composingPin.error"
+      :members="members"
       @submit="onComposerSubmit"
       @cancel="onComposerCancel"
     />
@@ -125,7 +126,24 @@
           class="mt-1 block w-full rounded-md border border-border bg-background px-2.5 py-2 text-[13px] focus:outline-none focus:ring-1 focus:ring-ring"
           @keydown.enter.prevent="confirmFinish"
         />
-        <div class="mt-4 flex items-center justify-end gap-2">
+
+        <!-- Duplicate warning: prior-session pins exist on this URL -->
+        <div
+          v-if="priorPinsCount > 0"
+          class="mt-3 flex items-start gap-2 rounded-md border border-amber-500/30 bg-amber-50/70 px-2.5 py-2 text-[11px] text-amber-700 dark:bg-amber-500/10 dark:text-amber-300"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-px h-3 w-3 shrink-0"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span>
+            <strong>{{ priorPinsCount }} pin{{ priorPinsCount === 1 ? '' : 's' }}</strong> from a previous session already exist on this page and will not be affected.
+          </span>
+        </div>
+
+        <!-- Visibility note -->
+        <p class="mt-2 text-[10px] text-muted-foreground">
+          This review will be visible to all workspace members.
+        </p>
+
+        <div class="mt-3 flex items-center justify-end gap-2">
           <Button variant="ghost" size="sm" :disabled="finishBusy" @click="cancelFinish">Keep editing</Button>
           <Button variant="default" size="sm" :loading="finishBusy" @click="confirmFinish">Submit review</Button>
         </div>
@@ -145,7 +163,7 @@ import AnnotationPinComposer, {
 import AnnotationPinDetail from './AnnotationPinDetail.vue';
 import type { PinListRow } from '../../../lib/annotation-state.js';
 import { describeAnchor, resolveAnchor, type PinAnchor } from '../../../lib/anchor.js';
-import { api, type AnnotationPinRow } from '../../../lib/api.js';
+import { api, type AnnotationPinRow, type WorkspaceMember } from '../../../lib/api.js';
 import { safeSendMessage } from '../../../lib/extension.js';
 import { WEB_APP_URL } from '../../../lib/env.js';
 import { useAnnotationState } from '../../../lib/annotation-state.js';
@@ -199,6 +217,9 @@ watch(() => state.exitRequested.value, (v, prev) => {
 // their ids for the rest of the sitting.
 const sessionId = ref<string | null>(null);
 const issueId   = ref<string | null>(null);
+
+// Workspace members for the assignee dropdown. Fetched once on mount.
+const members = ref<WorkspaceMember[]>([]);
 
 // Two on-screen states:
 //   • existing — persisted pin (server row), clickable → detail
@@ -385,14 +406,23 @@ state.setActive(true);
 
 onMounted(async () => {
   if (!props.auth?.token || !props.browserMeta.pageUrl) return;
-  try {
-    const rows = await api.getPagePins(props.browserMeta.pageUrl);
-    existingPins.value = rows
+
+  // Fetch existing pins + workspace members in parallel (both non-fatal).
+  const [pinsResult, membersResult] = await Promise.allSettled([
+    api.getPagePins(props.browserMeta.pageUrl),
+    api.getWorkspaceMembers(),
+  ]);
+
+  if (pinsResult.status === 'fulfilled') {
+    existingPins.value = pinsResult.value
       .map((row, i) => rowToExistingPin(row, i + 1))
       .filter((p): p is ExistingPin => p !== null);
-  } catch (e) {
-    // Non-fatal — the user can still drop new pins even if the fetch fails.
-    console.warn('[DevProbe] failed to load existing pins:', (e as Error).message);
+  } else {
+    console.warn('[DevProbe] failed to load existing pins:', pinsResult.reason);
+  }
+
+  if (membersResult.status === 'fulfilled') {
+    members.value = membersResult.value;
   }
 });
 
@@ -690,15 +720,17 @@ async function onComposerSubmit(draft: PinDraft) {
     // Save the pin into the CURRENT session (creating the session + grouping
     // issue lazily on the first pin). All pins this sitting share one issue.
     const res = await api.createPin({
-      sessionId: sessionId.value ?? undefined,
-      issueId:   issueId.value ?? undefined,
-      pageUrl:   props.browserMeta.pageUrl,
-      anchor:    pin.anchor as unknown as Record<string, unknown>,
-      offsetX:   pin.anchor.offset.xPct,
-      offsetY:   pin.anchor.offset.yPct,
-      comment:   draft.comment,
-      severity:  draft.severity,
-      issueType: draft.issueType,
+      sessionId:  sessionId.value ?? undefined,
+      issueId:    issueId.value ?? undefined,
+      pageUrl:    props.browserMeta.pageUrl,
+      anchor:     pin.anchor as unknown as Record<string, unknown>,
+      offsetX:    pin.anchor.offset.xPct,
+      offsetY:    pin.anchor.offset.yPct,
+      comment:    draft.comment,
+      severity:   draft.severity,
+      issueType:  draft.issueType,
+      assigneeId: draft.assigneeId ?? undefined,
+      labels:     draft.labels.length ? draft.labels : undefined,
     });
     // Cache the session + issue for the rest of the sitting.
     sessionId.value = res.sessionId;
@@ -784,6 +816,12 @@ const finishBusy  = ref(false);
 const sessionPinCount = computed(() =>
   // Pins added THIS sitting (existing pins that belong to our session's issue).
   existingPins.value.filter((p) => p.issueId === issueId.value).length,
+);
+
+// Pins from PRIOR sessions on this same URL (fetched on mount, before this
+// session was created). Shown as a duplicate warning in the finish dialog.
+const priorPinsCount = computed(() =>
+  existingPins.value.filter((p) => p.issueId !== issueId.value).length,
 );
 
 function onDone() {

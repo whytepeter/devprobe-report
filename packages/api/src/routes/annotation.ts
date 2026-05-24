@@ -32,18 +32,20 @@ const AnchorSchema = z.record(z.unknown()); // PinAnchor blob — validated clie
 
 const CreatePinSchema = z.object({
   // Omit session/issue on the FIRST pin → server creates them.
-  sessionId: z.string().uuid().optional(),
-  issueId:   z.string().uuid().optional(),
-  pageUrl:   z.string().url(),
-  anchor:    AnchorSchema,
-  offsetX:   z.number(),
-  offsetY:   z.number(),
-  comment:   z.string().min(1).max(2000),
-  severity:  z.enum(["low", "medium", "high", "critical"]).default("medium"),
-  issueType: z.enum([
+  sessionId:  z.string().uuid().optional(),
+  issueId:    z.string().uuid().optional(),
+  pageUrl:    z.string().url(),
+  anchor:     AnchorSchema,
+  offsetX:    z.number(),
+  offsetY:    z.number(),
+  comment:    z.string().min(1).max(2000),
+  severity:   z.enum(["low", "medium", "high", "critical"]).default("medium"),
+  issueType:  z.enum([
     "visual_bug", "layout_issue", "copy_issue", "broken_behavior",
     "missing_element", "accessibility", "performance", "other",
   ]),
+  assigneeId: z.string().uuid().nullable().optional(),
+  labels:     z.array(z.string().max(50)).max(10).optional(),
 });
 
 // ── POST /annotation/pins ────────────────────────────────────────────────────
@@ -114,6 +116,8 @@ annotationRouter.post("/pins", async (c) => {
     severity:    d.severity,
     status:      "open",
     createdById: auth.userId,
+    ...(d.assigneeId !== undefined && { assigneeId: d.assigneeId }),
+    ...(d.labels     !== undefined && { labels:     d.labels     }),
   }).returning();
 
   // Keep the session's denormalised pin count fresh.
@@ -194,16 +198,18 @@ annotationRouter.get("/pins", async (c) => {
 
   const query = db
     .select({
-      id:        pins.id,
-      sessionId: pins.sessionId,
-      issueId:   pins.issueId,
-      index:     pins.index,
-      anchor:    pins.anchor,
-      comment:   pins.comment,
-      severity:  pins.severity,
-      issueType: pins.issueType,
-      status:    pins.status,
-      createdAt: pins.createdAt,
+      id:         pins.id,
+      sessionId:  pins.sessionId,
+      issueId:    pins.issueId,
+      index:      pins.index,
+      anchor:     pins.anchor,
+      comment:    pins.comment,
+      severity:   pins.severity,
+      issueType:  pins.issueType,
+      status:     pins.status,
+      assigneeId: pins.assigneeId,
+      labels:     pins.labels,
+      createdAt:  pins.createdAt,
     })
     .from(pins)
     .innerJoin(annotationSessions, eq(pins.sessionId, annotationSessions.id))

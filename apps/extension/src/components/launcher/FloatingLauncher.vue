@@ -243,6 +243,27 @@
             @click="onRecord"
           />
 
+          <!-- Developer overlay: existing pins on this page -->
+          <div
+            v-if="pageExistingCount && pageExistingCount > 0"
+            class="mt-1.5 border-t border-[rgba(0,0,0,0.06)] pt-1.5"
+          >
+            <button
+              type="button"
+              class="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-left transition-colors hover:bg-secondary"
+              @click="onViewExistingPins"
+            >
+              <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-amber-600">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="h-2.5 w-2.5"><circle cx="12" cy="12" r="4"/></svg>
+              </span>
+              <span class="min-w-0 flex-1">
+                <span class="block text-[12px] font-medium text-[var(--text-primary)]">View existing pins</span>
+                <span class="text-[10px] text-[var(--text-muted)]">{{ pageExistingCount }} pin{{ pageExistingCount === 1 ? '' : 's' }} on this page</span>
+              </span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3 shrink-0 text-[var(--text-muted)]"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+
           <!-- Footer -->
           <div class="mt-1.5 border-t border-[rgba(0,0,0,0.06)] pt-1.5 px-2.5 pb-1">
             <p class="text-[10px] text-[var(--text-muted)]">
@@ -262,11 +283,17 @@ import LauncherItem  from './LauncherItem.vue';
 import ConnectPrompt from './ConnectPrompt.vue';
 import RecordingControlBar from '../capture/recording/toolbar/RecordingControlBar.vue';
 import { getAuth, onAuthChange, type StoredAuth } from '../../lib/auth.js';
+import { api } from '../../lib/api.js';
 import { useAnnotationState } from '../../lib/annotation-state.js';
 import { useRecordingState } from '../../lib/recording-state.js';
 
 const menuOpen = ref(false);
 const auth     = ref<StoredAuth | null>(null);
+
+// Developer overlay: count of existing pins for this URL — declared here,
+// watch added below after annotationActive is available.
+const pageExistingCount  = ref<number | null>(null);
+let   existingCountFetched = false;
 
 // Recording state — when active, the launcher renders the toolbar pill in
 // place of the FAB (the content script drives the MediaRecorder + state).
@@ -398,6 +425,17 @@ const filteredPinRows = computed(() => {
   return pinRows.value.filter((r) => r.title.toLowerCase().includes(q));
 });
 
+// Developer overlay: lazily fetch existing pins for this URL on the first
+// time the default menu opens (not already annotating).
+watch(menuOpen, async (open) => {
+  if (!open || annotationActive.value || existingCountFetched || !auth.value) return;
+  existingCountFetched = true;
+  try {
+    const rows = await api.getPagePins(location.href);
+    pageExistingCount.value = rows.length;
+  } catch { /* non-fatal */ }
+});
+
 // Attention burst: when annotation switches ON, ping the FAB for a few
 // seconds so the user notices the controls have moved here.
 const justActivated = ref(false);
@@ -464,6 +502,11 @@ function onRecord() {
   window.dispatchEvent(new CustomEvent('dp:start-recording'));
 }
 function onAnnotate() {
+  closeMenu();
+  window.dispatchEvent(new CustomEvent('dp:start-annotation'));
+}
+function onViewExistingPins() {
+  // Enter annotation in VIEW mode to browse existing pins on the page.
   closeMenu();
   window.dispatchEvent(new CustomEvent('dp:start-annotation'));
 }
