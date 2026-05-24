@@ -6,6 +6,7 @@
 
 ## User Preferences
 
+- **RULE — Modular by default:** When creating a feature or any file that is large or can be broken into complementary components, ALWAYS split it into modular pieces from the start. Do not write a monolithic file and refactor later — design it modular up front. Each cohesive unit (visual region, composable, route handler, helper) gets its own file; the top-level file orchestrates. Applies to components, composables, API routes, libs — not just UI. (User reinforced this 2026-05-24.)
 - **Component extraction:** Always break UI into small reusable components. Never inline repeated patterns. Follow KISS + DRY — if a pattern is used twice, extract it. Large components must be modularised — each visual region (header, player, timeline, controls) is its own file.
 - **Always modularise large component files** — user corrected this explicitly. No monolithic components.
 - **Spec review:** Always read SCREEN_RECORDING_SPEC.md before working Phase 4 and LIVE_ANNOTATION_SPEC.md before working Phase 6.

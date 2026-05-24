@@ -1315,3 +1315,121 @@
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
+| 13:18 | Created apps/web/src/features/issues/components/PinView.vue | — | ~1613 |
+| 13:18 | Created apps/web/src/features/issues/components/IssuePinList.vue | — | ~1418 |
+| 13:18 | Edited packages/api/src/routes/annotation.ts | 15→17 lines | ~201 |
+| 13:18 | Edited packages/api/src/routes/annotation.ts | 13→15 lines | ~140 |
+| 13:19 | Edited packages/api/src/routes/annotation.ts | 13→15 lines | ~121 |
+| 13:19 | Edited apps/extension/src/lib/api.ts | expanded (+8 lines) | ~81 |
+| 13:19 | Edited apps/extension/src/lib/api.ts | 1→4 lines | ~49 |
+| 13:19 | Edited apps/extension/src/lib/api.ts | 12→14 lines | ~105 |
+| 13:20 | Created apps/extension/src/components/capture/annotation/AnnotationPinComposer.vue | — | ~5085 |
+| 13:20 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | inline fix | ~24 |
+| 13:20 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | 2→5 lines | ~55 |
+| 13:21 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | added 2 condition(s) | ~186 |
+| 13:21 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | 10→11 lines | ~86 |
+| 13:21 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | CSS: assigneeId, labels, labels | ~148 |
+| 13:21 | Edited apps/extension/src/lib/api.ts | 11→13 lines | ~95 |
+| 13:21 | Edited apps/web/src/features/issues/composables/useIssuePins.ts | 12→14 lines | ~103 |
+| 13:21 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | expanded (+6 lines) | ~123 |
+| 13:21 | Edited apps/extension/src/components/capture/annotation/AnnotationOverlay.vue | CSS: warning, dark, dark | ~469 |
+| 13:22 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | added 1 import(s) | ~67 |
+| 13:22 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | added error handling | ~161 |
+| 13:22 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | reduced (-9 lines) | ~59 |
+| 13:23 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | added error handling | ~149 |
+| 13:23 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | CSS: overlay, hover | ~427 |
+| 13:23 | Edited apps/extension/src/components/launcher/FloatingLauncher.vue | modified onAnnotate() | ~78 |
+
+## Session: 2026-05-24
+
+| Time  | Action | File(s) | Outcome | ~Tokens |
+|-------|--------|---------|---------|---------|
+| session | Committed + pushed annotation branch (live-annotation GROUPED model) | all annotation/* files | clean commit c48733c | ~500 |
+| session | Gap 7: pins overlaid on cover image | PinView.vue, IssuePinList.vue | numbered markers at anchor % coords; click scrolls+highlights list row | ~1200 |
+| session | Gap 1: assignee + labels in composer | AnnotationPinComposer.vue, AnnotationOverlay.vue, api.ts (ext), annotation.ts (api), useIssuePins.ts | member dropdown + chip input, parallel fetch on mount, API schema updated | ~2500 |
+| session | Gap 6: duplicate + visibility warning | AnnotationOverlay.vue | priorPinsCount amber warning + workspace note in finish dialog | ~300 |
+| session | Gap 2: developer overlay | FloatingLauncher.vue, api.ts | lazy fetch on first menu open, "N pins on this page" entry | ~400 |
+| session | Committed + pushed all gaps | annotation branch | clean build; 83e3b16 | ~200 |
+| 13:37 | Session end: 24 writes across 8 files (PinView.vue, IssuePinList.vue, annotation.ts, api.ts, AnnotationPinComposer.vue) | 12 reads | ~50012 tok |
+| 13:38 | Created ../../../.claude/projects/-Users-apple-Documents-code-deveprobe-report/memory/feedback_modular_by_default.md | — | ~263 |
+| 13:38 | Created ../../../.claude/projects/-Users-apple-Documents-code-deveprobe-report/memory/MEMORY.md | — | ~51 |
+| 13:38 | Session end: 26 writes across 10 files (PinView.vue, IssuePinList.vue, annotation.ts, api.ts, AnnotationPinComposer.vue) | 13 reads | ~50349 tok |
+| 13:53 | Edited apps/extension/src/lib/page-probe-payload.ts | 20→24 lines | ~288 |
+| 13:53 | Edited apps/extension/src/entrypoints/page-probe.content.ts | modified catch() | ~314 |
+| 13:53 | Edited apps/extension/src/entrypoints/page-probe.content.ts | modified redactNumericPII() | ~397 |
+| 13:53 | Edited apps/extension/src/entrypoints/page-probe.content.ts | added optional chaining | ~242 |
+| 13:53 | Edited apps/extension/src/lib/capture-streams.ts | modified if() | ~415 |
+| 13:54 | Edited apps/extension/src/lib/capture-streams.ts | modified if() | ~90 |
+| 13:54 | Edited apps/extension/src/lib/capture-streams.ts | added optional chaining | ~361 |
+| 13:54 | Edited apps/extension/src/lib/capture-streams.ts | added 5 condition(s) | ~805 |
+| 13:54 | Edited apps/extension/src/lib/capture-streams.ts | modified stop() | ~174 |
+| 13:54 | Edited apps/web/src/features/issues/components/recording/tabs/actions/ActionRow.vue | added 3 condition(s) | ~219 |
+| 13:56 | Created apps/web/src/features/issues/components/recording/tabs/network/format.ts | — | ~321 |
+| 13:56 | Created apps/web/src/features/issues/components/recording/tabs/network/NetworkDetail.vue | — | ~949 |
+| 13:56 | Created apps/web/src/features/issues/components/recording/tabs/network/NetworkRow.vue | — | ~1410 |
+| 13:56 | Edited apps/web/src/features/issues/components/recording/tabs/network/NetworkTab.vue | 9→10 lines | ~109 |
+| 13:57 | Created apps/web/src/features/issues/components/recording/tabs/console/useConsoleGrouping.ts | — | ~369 |
+| 13:57 | Edited apps/web/src/features/issues/components/recording/tabs/console/ConsoleTab.vue | expanded (+6 lines) | ~295 |
+| 13:57 | Created apps/web/src/features/issues/components/recording/tabs/console/ConsoleRow.vue | — | ~1143 |
+
+## Session: 2026-05-24 14:00
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-24 14:35
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-24 16:00
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-24 16:00
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-24 16:20
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-24 16:39
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-24 18:03
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 18:14 | Created ../../../.claude/plans/melodic-brewing-kernighan.md | — | ~3410 |
+| 18:18 | Session end: 1 writes across 1 files (melodic-brewing-kernighan.md) | 21 reads | ~28418 tok |
+| 18:22 | Created ../pinlayer/specs/README.md | — | ~552 |
+| 18:22 | Created ../pinlayer/specs/GENERAL_SPEC.md | — | ~1843 |
+| 18:22 | Created ../pinlayer/specs/DESIGN_SYSTEM_SPEC.md | — | ~1907 |
+| 18:23 | Created ../pinlayer/specs/WEB_APP_SPEC.md | — | ~2612 |
+| 18:24 | Created ../pinlayer/specs/EXTENSION_SPEC.md | — | ~1466 |
+| 18:24 | Created ../pinlayer/specs/BACKEND_SPEC.md | — | ~1810 |
+| 18:25 | Created ../pinlayer/specs/INTEGRATIONS_SPEC.md | — | ~1095 |
+| 18:26 | Session end: 8 writes across 8 files (melodic-brewing-kernighan.md, README.md, GENERAL_SPEC.md, DESIGN_SYSTEM_SPEC.md, WEB_APP_SPEC.md) | 31 reads | ~40510 tok |
+| 18:27 | Created ../../../.claude/plans/melodic-brewing-kernighan.md | — | ~2640 |
+| 18:28 | Created ../pinlayer/specs/BACKEND_SPEC.md | — | ~1807 |
+| 18:28 | Session end: 10 writes across 8 files (melodic-brewing-kernighan.md, README.md, GENERAL_SPEC.md, DESIGN_SYSTEM_SPEC.md, WEB_APP_SPEC.md) | 31 reads | ~45275 tok |
+| 18:29 | Created ../pinlayer/HANDOFF.md | — | ~1663 |
+| 18:29 | Session end: 11 writes across 9 files (melodic-brewing-kernighan.md, README.md, GENERAL_SPEC.md, DESIGN_SYSTEM_SPEC.md, WEB_APP_SPEC.md) | 31 reads | ~47057 tok |
+| 18:30 | Edited ../pinlayer/HANDOFF.md | 4→3 lines | ~50 |
+| 18:31 | Edited ../pinlayer/HANDOFF.md | 4→4 lines | ~68 |
+| 18:31 | Session end: 13 writes across 9 files (melodic-brewing-kernighan.md, README.md, GENERAL_SPEC.md, DESIGN_SYSTEM_SPEC.md, WEB_APP_SPEC.md) | 31 reads | ~47183 tok |
+| 18:31 | Edited ../pinlayer/specs/EXTENSION_SPEC.md | expanded (+33 lines) | ~640 |
+| 18:31 | Edited ../pinlayer/HANDOFF.md | 2→7 lines | ~149 |
+| 18:32 | Session end: 15 writes across 9 files (melodic-brewing-kernighan.md, README.md, GENERAL_SPEC.md, DESIGN_SYSTEM_SPEC.md, WEB_APP_SPEC.md) | 31 reads | ~48028 tok |
+
+## Session: 2026-05-24 18:32
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 18:37 | Edited .gitignore | 2→6 lines | ~16 |

@@ -3388,6 +3388,134 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-24T11:41:37.653Z"
+    },
+    {
+      "id": "bug-211",
+      "timestamp": "2026-05-24T12:18:58.232Z",
+      "error_message": "Null/undefined access in ",
+      "file": "packages/api/src/routes/annotation.ts",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-24T12:18:58.232Z"
+    },
+    {
+      "id": "bug-212",
+      "timestamp": "2026-05-24T12:21:00.236Z",
+      "error_message": "CSS fix: pins",
+      "file": "apps/extension/src/components/capture/annotation/AnnotationOverlay.vue",
+      "root_cause": "pins: ', (e as Error).message) → ', pinsResult.reason)",
+      "fix": "Changed pins: ', (e as Error).message) → ', pinsResult.reason)",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-24T12:21:00.236Z"
+    },
+    {
+      "id": "bug-213",
+      "timestamp": "2026-05-24T12:22:34.122Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "apps/extension/src/components/launcher/FloatingLauncher.vue",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block | Also: // Developer overlay: lazily fetch existing pins for this UR; // time the default menu opens (not already annotating).",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-24T12:23:01.232Z"
+    },
+    {
+      "id": "bug-214",
+      "timestamp": "2026-05-24T12:22:51.478Z",
+      "error_message": "CSS fix: overlay",
+      "file": "apps/extension/src/components/launcher/FloatingLauncher.vue",
+      "root_cause": "overlay: count of existing pins for this URL (fetched lazily on → count of existing pins for this URL — declared here,",
+      "fix": "Changed overlay: count of existing pins for this URL (fetched lazily on → count of existing pins for this URL — declared here,",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-24T12:22:51.478Z"
+    },
+    {
+      "id": "bug-215",
+      "timestamp": "2026-05-24T12:53:25.292Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/extension/src/entrypoints/page-probe.content.ts",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check) | Also: const lenHeader = this.getResponseHeader('content-length');; const sizeBytes = lenHeader != null && Number.isFinite(+lenH | Also: // Capture the stack from the first Error arg (redacted, cap; const errArg = args.find((a) => a instanceof Error) as Error",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 3,
+      "last_seen": "2026-05-24T12:53:42.180Z"
+    },
+    {
+      "id": "bug-216",
+      "timestamp": "2026-05-24T12:53:52.501Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/extension/src/lib/capture-streams.ts",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 25→36 lines (2 removed) | Also: // ── User clicks ────────────────────────────────; // Saved but NOT shown on the trimmer (per user di",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-24T12:54:24.317Z"
+    },
+    {
+      "id": "bug-217",
+      "timestamp": "2026-05-24T12:54:09.979Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/extension/src/lib/capture-streams.ts",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-24T12:54:09.979Z"
+    },
+    {
+      "id": "bug-218",
+      "timestamp": "2026-05-24T12:57:27.099Z",
+      "error_message": "CSS fix: ConsoleRow",
+      "file": "apps/web/src/features/issues/components/recording/tabs/console/ConsoleTab.vue",
+      "root_cause": "ConsoleRow: event=\"event\" @seek=\"emit('seek', $event)\" /> → event=\"row.event\"",
+      "fix": "Changed ConsoleRow: event=\"event\" @seek=\"emit('seek', $event)\" /> → event=\"row.event\"",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-24T12:57:27.099Z"
     }
   ]
 }

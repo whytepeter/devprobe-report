@@ -18,12 +18,16 @@ export type PageProbeEvent =
       status:         number;
       durationMs:     number;
       ok:             boolean;
+      resourceType:   'fetch' | 'xhr';
+      contentType?:   string;        // response content-type (powers resource buckets)
+      sizeBytes?:     number;        // response size from content-length when present
       graphqlErrors?: string[];      // present when JSON body has top-level `errors`
     }
   | {
       kind:    'console';
       level:   'log' | 'info' | 'warn' | 'error' | 'debug';
       message: string;               // already redacted (numeric PII masked)
+      stack?:  string;               // present when an arg was an Error (redacted)
     }
   | {
       kind: 'navigation';

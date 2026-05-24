@@ -24,14 +24,18 @@
 
     <div class="flex-1 overflow-y-auto">
       <p
-        v-if="filter.filtered.value.length === 0"
+        v-if="grouped.length === 0"
         class="px-4 py-6 text-center text-xs text-muted-foreground"
       >
         No console events match the current filters.
       </p>
       <ul v-else class="divide-y divide-border/40">
-        <li v-for="event in filter.filtered.value" :key="event.id">
-          <ConsoleRow :event="event" @seek="emit('seek', $event)" />
+        <li v-for="row in grouped" :key="row.event.id">
+          <ConsoleRow
+            :event="row.event"
+            :repeat-count="row.repeatCount"
+            @seek="emit('seek', $event)"
+          />
         </li>
       </ul>
     </div>
@@ -43,11 +47,13 @@ import { toRef } from "vue";
 import ConsoleFilters from "./ConsoleFilters.vue";
 import ConsoleRow from "./ConsoleRow.vue";
 import { useConsoleFilter } from "./useConsoleFilter.js";
+import { useConsoleGrouping } from "./useConsoleGrouping.js";
 import type { TimelineEvent } from "@deveprobe/shared";
 
 const props = defineProps<{ events: TimelineEvent[] }>();
 
 const emit = defineEmits<{ seek: [ms: number] }>();
 
-const filter = useConsoleFilter(toRef(() => props.events));
+const filter  = useConsoleFilter(toRef(() => props.events));
+const grouped = useConsoleGrouping(filter.filtered);
 </script>

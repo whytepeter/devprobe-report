@@ -1,11 +1,34 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-24T11:45:47.114Z
-> Files: 308 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-24T17:37:41.163Z
+> Files: 327 tracked | Anatomy hits: 0 | Misses: 0
+
+## ../../../.claude/plans/
+
+- `melodic-brewing-kernighan.md` — pinLayer — Implementation Plan (~2475 tok)
+
+## ../../../.claude/projects/-Users-apple-Documents-code-deveprobe-report/memory/
+
+- `feedback_modular_by_default.md` (~266 tok)
+- `MEMORY.md` — Memory Index (~48 tok)
+
+## ../pinlayer/
+
+- `HANDOFF.md` — pinLayer — Handoff (~1650 tok)
+
+## ../pinlayer/specs/
+
+- `BACKEND_SPEC.md` — Backend Spec (`packages/api`) (~1694 tok)
+- `DESIGN_SYSTEM_SPEC.md` — Design System Spec (~1788 tok)
+- `EXTENSION_SPEC.md` — Extension Spec (`apps/extension`) (~1927 tok)
+- `GENERAL_SPEC.md` — General Spec (~1728 tok)
+- `INTEGRATIONS_SPEC.md` — Integrations Spec (~1027 tok)
+- `README.md` — Project documentation (~518 tok)
+- `WEB_APP_SPEC.md` — Web App Spec (`apps/app`) (~2449 tok)
 
 ## ./
 
-- `.gitignore` — Git ignore rules (~33 tok)
+- `.gitignore` — Git ignore rules (~45 tok)
 - `BUILDPLAN.md` — DevProbe — Build Plan (~2708 tok)
 - `CLAUDE.md` — OpenWolf (~231 tok)
 - `GENERAL_SPEC.md` — General Product Spec (~2598 tok)
@@ -64,9 +87,9 @@
 
 ## apps/extension/src/components/capture/annotation/
 
-- `AnnotationOverlay.vue` — Document coords (fallback when the anchored element can't be re-resolved). (~8437 tok)
+- `AnnotationOverlay.vue` — Document coords (fallback when the anchored element can't be re-resolved). (~8922 tok)
 - `AnnotationPin.vue` — "draft" = composer still open; "submitted" = issue persisted. (~894 tok)
-- `AnnotationPinComposer.vue` — Issue type values mirror the `annotation_issue_type` DB enum exactly. (~4155 tok)
+- `AnnotationPinComposer.vue` — Vue: setup (~5085 tok)
 - `AnnotationPinDetail.vue` — True while the parent's PATCH is in flight. (~2142 tok)
 - `AnnotationPinList.vue` — Vue: setup (~1077 tok)
 - `AnnotationToolbar.vue` — Vue: setup (~832 tok)
@@ -113,14 +136,14 @@
 ## apps/extension/src/components/launcher/
 
 - `ConnectPrompt.vue` — Vue: setup (~448 tok)
-- `FloatingLauncher.vue` — Vue: setup (~5652 tok)
+- `FloatingLauncher.vue` — Vue: setup (~6234 tok)
 - `LauncherItem.vue` — Vue: setup (~860 tok)
 
 ## apps/extension/src/entrypoints/
 
 - `background.ts` — API proxy (~5586 tok)
 - `content.ts` — Content script — mounts UIs into the page via shadow DOM: (~7036 tok)
-- `page-probe.content.ts` — Page probe — MAIN-world content script. (~2634 tok)
+- `page-probe.content.ts` — Page probe — MAIN-world content script. (~2898 tok)
 
 ## apps/extension/src/entrypoints/offscreen/
 
@@ -151,14 +174,14 @@
 
 - `anchor.ts` — Element anchoring for live annotation. (~1875 tok)
 - `annotation-state.ts` — annotation-state (~874 tok)
-- `api.ts` — API client (~3344 tok)
+- `api.ts` — API client (~3456 tok)
 - `auth.ts` — Exports StoredAuth, getAuth, setAuth, clearAuth, onAuthChange (~593 tok)
-- `capture-streams.ts` — Capture streams during a screen recording. (~1941 tok)
+- `capture-streams.ts` — Capture streams during a screen recording. (~3063 tok)
 - `element-blur.ts` — Element-targeted blur for screen recording. (~1419 tok)
 - `env.ts` — Exports WEB_APP_URL, API_URL (~48 tok)
 - `extension.ts` — Extension runtime helpers. (~253 tok)
 - `metadata.ts` — Exports collectBrowserMeta, dataUrlToBlob (~1394 tok)
-- `page-probe-payload.ts` — Shared message contract between the MAIN-world page probe and the isolated (~390 tok)
+- `page-probe-payload.ts` — Shared message contract between the MAIN-world page probe and the isolated (~475 tok)
 - `recording-drafts.ts` — Recording drafts — local persistence for in-flight recording uploads. (~943 tok)
 - `recording-state.ts` — recording-state (~687 tok)
 - `redact.ts` — Redaction helpers — privacy-first per SCREEN_RECORDING_SPEC.md. (~1266 tok)
@@ -249,11 +272,11 @@
 - `IssueMediaImage.vue` — Vue: setup (~428 tok)
 - `IssueMediaVideo.vue` — Vue: setup, exposes seekTo(ms) via videoEl ref (~350 tok)
 - `IssuePageSkeleton.vue` — Vue component (~765 tok)
-- `IssuePinList.vue` — Vue: setup (~1000 tok)
+- `IssuePinList.vue` — Vue: setup (~1418 tok)
 - `IssueTimeline.vue` — Tabbed timeline panel (Console/Network/Errors/User Actions/Navigation) with click-to-seek (~900 tok)
 - `IssueTitleBlock.vue` — Vue: setup (~792 tok)
 - `NetworkBadge.vue` — Method + HTTP status badge for network events (~200 tok)
-- `PinView.vue` — Vue: setup (~740 tok)
+- `PinView.vue` — Vue: setup (~1613 tok)
 - `RecordingView.vue` — Vue: setup (~524 tok)
 - `SeverityPill.vue` — Severity pill for error events (critical/high/medium/low) (~150 tok)
 - `TimelineRow.vue` — Single timeline event row with timestamp seek chip (~300 tok)
@@ -266,13 +289,30 @@
 - `RecordingVideoTimeline.vue` — 0..1 — playback progress. (~1043 tok)
 - `usePlayback.ts` — usePlayback (~1442 tok)
 
+## apps/web/src/features/issues/components/recording/tabs/actions/
+
+- `ActionRow.vue` — Vue: setup (~653 tok)
+
+## apps/web/src/features/issues/components/recording/tabs/console/
+
+- `ConsoleRow.vue` — mm:ss formatted timestamp. (~1143 tok)
+- `ConsoleTab.vue` — Vue: setup (~507 tok)
+- `useConsoleGrouping.ts` — useConsoleGrouping (~369 tok)
+
+## apps/web/src/features/issues/components/recording/tabs/network/
+
+- `format.ts` — Formatters for the Network tab — byte sizes + request durations. (~321 tok)
+- `NetworkDetail.vue` — Vue: setup (~949 tok)
+- `NetworkRow.vue` — Vue: setup (~1410 tok)
+- `NetworkTab.vue` — Vue: setup (~791 tok)
+
 ## apps/web/src/features/issues/composables/
 
 - `useAttachmentUrl.ts` — Fetches a signed attachment URL (~100 tok)
 - `useIssue.ts` — useIssue (~921 tok)
 - `useIssueEvents.ts` — useIssueEvents (~646 tok)
 - `useIssueMutations.ts` — useIssueMutations (~917 tok)
-- `useIssuePins.ts` — useIssuePins (~455 tok)
+- `useIssuePins.ts` — useIssuePins (~473 tok)
 - `useWorkspaceMembers.ts` — useWorkspaceMembers (~304 tok)
 
 ## apps/web/src/features/issues/lib/
@@ -383,7 +423,7 @@
 
 ## packages/api/src/routes/
 
-- `annotation.ts` — Live-annotation API — GROUPED model. (~2659 tok)
+- `annotation.ts` — Live-annotation API — GROUPED model. (~2756 tok)
 - `attachments.ts` — API routes: POST, GET (8 endpoints) (~872 tok)
 - `auth.ts` — API routes: POST, GET (11 endpoints) (~1844 tok)
 - `folders.ts` — API routes: GET, POST (4 endpoints) (~442 tok)

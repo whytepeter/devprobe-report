@@ -45,18 +45,22 @@ const time = computed(() => {
 const glyphName = computed(() => {
   if (isNavigation.value) return "globe";
   const s = props.event.summary;
-  if (/^Clicked/.test(s))   return "arrow-right";
-  if (/^Typed/.test(s))     return "edit-3";
-  if (/^Focused/.test(s))   return "circle";
-  if (/^Scrolled/.test(s))  return "chevron-down";
+  if (/^Clicked/.test(s))    return "arrow-right";
+  if (/^Typed/.test(s))      return "edit-3";
+  if (/^Changed/.test(s))    return "edit-3";
+  if (/^Submitted/.test(s))  return "send";
+  if (/^Focused/.test(s))    return "circle";
+  if (/^Scrolled/.test(s))   return "chevron-down";
   return "arrow-right";
 });
 
 const glyphColor = computed(() => {
   if (isNavigation.value) return "text-teal-500";
-  if (/^Typed/.test(props.event.summary))    return "text-amber-500";
-  if (/^Focused/.test(props.event.summary))  return "text-foreground/40";
-  if (/^Scrolled/.test(props.event.summary)) return "text-muted-foreground";
+  const s = props.event.summary;
+  if (/^Typed/.test(s) || /^Changed/.test(s)) return "text-amber-500";
+  if (/^Submitted/.test(s))  return "text-emerald-500";
+  if (/^Focused/.test(s))    return "text-foreground/40";
+  if (/^Scrolled/.test(s))   return "text-muted-foreground";
   return "text-violet-500";
 });
 </script>

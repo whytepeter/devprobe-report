@@ -5,38 +5,66 @@
   on the right. Error-level rows get a red wash + left accent so they pop
   in a long log.
 
-  Click anywhere in the row → seek the player to this event's timestamp.
+  Click the row → seek the player to this event's timestamp.
+  Rows that carry a captured stack trace (console.error / JS errors) get a
+  chevron that expands the trace inline (its toggle stops propagation so it
+  doesn't also seek).
 -->
 <template>
-  <button
-    type="button"
+  <div
     :class="[
-      'grid w-full grid-cols-[56px_22px_1fr] items-start gap-2 px-3 py-1.5 text-left text-[13px] leading-snug transition-colors',
       isError
-        ? 'bg-rose-50/60 hover:bg-rose-100/70 border-l-2 border-l-rose-400 dark:bg-rose-500/10 dark:hover:bg-rose-500/15'
-        : 'hover:bg-muted/60',
+        ? 'bg-rose-50/60 border-l-2 border-l-rose-400 dark:bg-rose-500/10'
+        : '',
     ]"
-    @click="$emit('seek', event.timestampMs)"
   >
-    <span class="font-mono text-[11px] text-muted-foreground tabular-nums">{{ time }}</span>
-    <span :class="['mt-px flex h-4 w-4 items-center justify-center', iconColor]">
-      <Icon :name="iconName" :size="13" :stroke-width="1.75" />
-    </span>
-    <span class="min-w-0 break-words" :class="isError ? 'text-rose-700 dark:text-rose-300' : 'text-foreground/90'">
-      <!-- Repeat-count badge sits before the summary when present. -->
-      <span
-        v-if="repeatCount && repeatCount > 1"
-        class="mr-1.5 inline-flex items-center rounded bg-rose-500 px-1 py-px text-[10px] font-semibold text-white tabular-nums"
-      >
-        {{ repeatCount }}×
+    <div
+      role="button"
+      tabindex="0"
+      :class="[
+        'grid w-full grid-cols-[56px_22px_1fr_20px] items-start gap-2 px-3 py-1.5 text-left text-[13px] leading-snug cursor-pointer transition-colors',
+        isError ? 'hover:bg-rose-100/50 dark:hover:bg-rose-500/15' : 'hover:bg-muted/60',
+      ]"
+      @click="$emit('seek', event.timestampMs)"
+      @keydown.enter="$emit('seek', event.timestampMs)"
+    >
+      <span class="font-mono text-[11px] text-muted-foreground tabular-nums">{{ time }}</span>
+      <span :class="['mt-px flex h-4 w-4 items-center justify-center', iconColor]">
+        <Icon :name="iconName" :size="13" :stroke-width="1.75" />
       </span>
-      <slot>{{ event.summary }}</slot>
-    </span>
-  </button>
+      <span class="min-w-0 break-words" :class="isError ? 'text-rose-700 dark:text-rose-300' : 'text-foreground/90'">
+        <!-- Repeat-count badge sits before the summary when present. -->
+        <span
+          v-if="repeatCount && repeatCount > 1"
+          class="mr-1.5 inline-flex items-center rounded bg-rose-500 px-1 py-px text-[10px] font-semibold text-white tabular-nums"
+        >
+          {{ repeatCount }}×
+        </span>
+        <slot>{{ event.summary }}</slot>
+      </span>
+
+      <button
+        v-if="stack"
+        type="button"
+        class="flex h-5 w-5 items-center justify-center rounded text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+        :aria-label="expanded ? 'Hide stack trace' : 'Show stack trace'"
+        @click.stop="expanded = !expanded"
+      >
+        <Icon :name="expanded ? 'chevron-down' : 'chevron-right'" :size="13" :stroke-width="2" />
+      </button>
+      <span v-else />
+    </div>
+
+    <!-- Stack trace -->
+    <pre
+      v-if="stack && expanded"
+      class="overflow-x-auto border-t border-border/60 bg-muted/40 px-3 py-2 font-mono text-[11px] leading-relaxed text-foreground/70 whitespace-pre-wrap break-words"
+    >{{ stack }}</pre>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { Icon } from "@deveprobe/ui";
 import type { TimelineEvent } from "@deveprobe/shared";
 
@@ -46,6 +74,13 @@ const props = defineProps<{
 }>();
 
 defineEmits<{ seek: [ms: number] }>();
+
+const expanded = ref(false);
+
+const stack = computed(() => {
+  const s = (props.event.data as { stack?: string })?.stack;
+  return typeof s === "string" && s.trim() ? s : null;
+});
 
 const isError = computed(() => {
   if (props.event.kind === "error") return true;

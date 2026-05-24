@@ -58,34 +58,108 @@ export function startCaptureStreams(startedAtEpoch: number): CaptureStreams {
       kind: 'error',
       severity: 'high',
       summary: msg,
-      data: { source: e.filename, line: e.lineno, col: e.colno },
+      data: {
+        source: e.filename,
+        line:   e.lineno,
+        col:    e.colno,
+        type:   e.error?.name ?? 'Error',
+        ...(e.error?.stack && { stack: String(e.error.stack).slice(0, 2000) }),
+      },
     });
   };
   window.addEventListener('error', onError, true);
 
   // ── unhandledrejection ────────────────────────────────────────────────────
   const onRejection = (e: PromiseRejectionEvent) => {
-    const reason = e.reason instanceof Error ? e.reason.message : String(e.reason);
+    const isErr  = e.reason instanceof Error;
+    const reason = isErr ? (e.reason as Error).message : String(e.reason);
     const msg = `Unhandled rejection: ${reason}`;
     pushMarker('error', msg);
-    pushEvent({ kind: 'error', severity: 'high', summary: msg });
+    pushEvent({
+      kind: 'error',
+      severity: 'high',
+      summary: msg,
+      data: {
+        type: isErr ? (e.reason as Error).name : 'UnhandledRejection',
+        ...(isErr && (e.reason as Error).stack && { stack: String((e.reason as Error).stack).slice(0, 2000) }),
+      },
+    });
   };
   window.addEventListener('unhandledrejection', onRejection);
 
-  // ── User clicks ──────────────────────────────────────────────────────────
-  // Saved but NOT shown on the trimmer (per user direction). Click labels
-  // are produced by the redaction helper, which masks password/payment
-  // fields and never captures input values.
+  // ── User actions ──────────────────────────────────────────────────────────
+  // Saved but NOT shown on the trimmer (per user direction). Labels are
+  // produced by the redaction helper, which masks password/payment fields and
+  // never captures input VALUES — only the field's role/label.
+  //
+  // Summaries use the verb prefixes the web ActionRow glyph map expects
+  // (Clicked / Typed / Focused / Scrolled / Submitted).
+
+  // Clicks.
   const onClick = (e: MouseEvent) => {
     const t = e.target as Element | null;
     if (!t) return;
     pushEvent({
       kind: 'user_action',
-      summary: `Click: ${redactClickTarget(t)}`,
-      data: { tag: t.tagName.toLowerCase(), x: e.clientX, y: e.clientY },
+      summary: `Clicked ${redactClickTarget(t)}`,
+      data: { action: 'click', tag: t.tagName.toLowerCase(), x: e.clientX, y: e.clientY },
     });
   };
   document.addEventListener('click', onClick, true);
+
+  // Typing / value changes. `change` fires once per committed edit (blur or
+  // Enter for text inputs; immediately for select/checkbox), so it's one
+  // high-signal row per field — never the raw value.
+  const onChange = (e: Event) => {
+    const t = e.target as Element | null;
+    if (!t) return;
+    const tag  = t.tagName.toLowerCase();
+    const verb = tag === 'select' || (t as HTMLInputElement).type === 'checkbox' || (t as HTMLInputElement).type === 'radio'
+      ? 'Changed' : 'Typed in';
+    pushEvent({
+      kind: 'user_action',
+      summary: `${verb} ${redactClickTarget(t)}`,
+      data: { action: 'change', tag },
+    });
+  };
+  document.addEventListener('change', onChange, true);
+
+  // Form submissions.
+  const onSubmit = (e: Event) => {
+    const t = e.target as Element | null;
+    if (!t) return;
+    pushEvent({
+      kind: 'user_action',
+      summary: `Submitted ${redactClickTarget(t)}`,
+      data: { action: 'submit', tag: t.tagName.toLowerCase() },
+    });
+  };
+  document.addEventListener('submit', onSubmit, true);
+
+  // Scroll depth milestones — emit each 25% threshold once, rAF-throttled so a
+  // fast scroll doesn't flood the stream.
+  const seenScrollPct = new Set<number>();
+  let scrollRafPending = false;
+  const onScroll = () => {
+    if (scrollRafPending) return;
+    scrollRafPending = true;
+    requestAnimationFrame(() => {
+      scrollRafPending = false;
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - window.innerHeight;
+      if (max <= 0) return;
+      const pct = Math.min(100, Math.round((window.scrollY / max) * 100));
+      const milestone = Math.floor(pct / 25) * 25;   // 0,25,50,75,100
+      if (milestone <= 0 || seenScrollPct.has(milestone)) return;
+      seenScrollPct.add(milestone);
+      pushEvent({
+        kind: 'user_action',
+        summary: `Scrolled to ${milestone}%`,
+        data: { action: 'scroll', depthPct: milestone },
+      });
+    });
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
 
   // ── Navigations (popstate; pushState/replaceState come via page-probe) ────
   // Stored for the issue details timeline panels, but NOT marked on the
@@ -110,20 +184,31 @@ export function startCaptureStreams(startedAtEpoch: number): CaptureStreams {
         } catch { return ev.url; }
       })();
 
+      // Span timebase: the probe posts on completion, so receive-time ≈ end.
+      // Derive the start by subtracting the measured duration (clamped ≥ 0).
+      const durationMs      = Math.round(ev.durationMs);
+      const endTimestampMs  = tsMs();
+      const startTimestampMs = Math.max(0, endTimestampMs - durationMs);
+
       // Always record the request (full network log).
       pushEvent({
         kind: 'network',
-        summary: `${ev.method} ${shortUrl} → ${ev.status} (${Math.round(ev.durationMs)}ms)`,
+        summary: `${ev.method} ${shortUrl} → ${ev.status} (${durationMs}ms)`,
         severity: ev.graphqlErrors?.length || ev.status >= 500 ? 'high'
                 : ev.status >= 400                              ? 'medium'
                 : ev.durationMs > SLOW_REQUEST_MS               ? 'low'
                 : undefined,
+        startTimestampMs,
+        endTimestampMs,
         data: {
           url: redactUrl(ev.url),
           method: ev.method,
           status: ev.status,
-          durationMs: Math.round(ev.durationMs),
+          durationMs,
           ok: ev.ok,
+          resourceType: ev.resourceType,
+          ...(ev.contentType && { contentType: ev.contentType }),
+          ...(Number.isFinite(ev.sizeBytes) && { sizeBytes: ev.sizeBytes }),
           ...(ev.graphqlErrors?.length && { graphqlErrors: ev.graphqlErrors }),
         },
       });
@@ -148,7 +233,7 @@ export function startCaptureStreams(startedAtEpoch: number): CaptureStreams {
         severity: ev.level === 'error' ? 'high'
                 : ev.level === 'warn'  ? 'medium'
                 : undefined,
-        data: { level: ev.level },
+        data: { level: ev.level, ...(ev.stack && { stack: ev.stack }) },
       });
       if (ev.level === 'error')      pushMarker('error',   `Console error: ${ev.message.slice(0, 80)}`);
       else if (ev.level === 'warn')  pushMarker('warning', `Console warn: ${ev.message.slice(0, 80)}`);
@@ -169,6 +254,9 @@ export function startCaptureStreams(startedAtEpoch: number): CaptureStreams {
       window.removeEventListener('error',              onError, true);
       window.removeEventListener('unhandledrejection', onRejection);
       document.removeEventListener('click',            onClick, true);
+      document.removeEventListener('change',           onChange, true);
+      document.removeEventListener('submit',           onSubmit, true);
+      window.removeEventListener('scroll',             onScroll);
       window.removeEventListener('popstate',           onPopstate);
       window.removeEventListener('message',            onProbe);
       return { markers, events };

@@ -97,26 +97,33 @@ export default defineContentScript({
           res = await origFetch.call(this, input as RequestInfo, init);
         } catch (e) {
           post({
-            kind:       'network',
+            kind:         'network',
             url,
             method,
-            status:     0,
-            durationMs: performance.now() - startMs,
-            ok:         false,
+            status:       0,
+            durationMs:   performance.now() - startMs,
+            ok:           false,
+            resourceType: 'fetch',
           });
           throw e;
         }
 
         const durationMs    = performance.now() - startMs;
         const graphqlErrors = await detectGraphqlErrors(res);
+        const contentType   = res.headers.get('content-type') || undefined;
+        const lenHeader     = res.headers.get('content-length');
+        const sizeBytes     = lenHeader != null && Number.isFinite(+lenHeader) ? +lenHeader : undefined;
 
         post({
-          kind:       'network',
+          kind:         'network',
           url,
           method,
-          status:     res.status,
+          status:       res.status,
           durationMs,
-          ok:         res.ok,
+          ok:           res.ok,
+          resourceType: 'fetch',
+          contentType,
+          sizeBytes,
           graphqlErrors,
         });
 
@@ -182,13 +189,18 @@ export default defineContentScript({
               }
             } catch { /* not JSON */ }
           }
+          const lenHeader = this.getResponseHeader('content-length');
+          const sizeBytes = lenHeader != null && Number.isFinite(+lenHeader) ? +lenHeader : undefined;
           post({
-            kind:       'network',
-            url:        meta.url,
-            method:     meta.method,
-            status:     this.status,
+            kind:         'network',
+            url:          meta.url,
+            method:       meta.method,
+            status:       this.status,
             durationMs,
-            ok:         this.status >= 200 && this.status < 400,
+            ok:           this.status >= 200 && this.status < 400,
+            resourceType: 'xhr',
+            contentType:  ct || undefined,
+            sizeBytes,
             graphqlErrors,
           });
         }, { once: true });
@@ -204,7 +216,10 @@ export default defineContentScript({
       console[level] = function (...args: unknown[]) {
         try {
           const message = args.map(redactConsoleArg).join(' ').slice(0, 500);
-          post({ kind: 'console', level, message });
+          // Capture the stack from the first Error arg (redacted, capped).
+          const errArg = args.find((a) => a instanceof Error) as Error | undefined;
+          const stack  = errArg?.stack ? redactNumericPII(errArg.stack).slice(0, 2000) : undefined;
+          post({ kind: 'console', level, message, stack });
         } catch { /* never break the page's logging */ }
         return orig.apply(this, args);
       };

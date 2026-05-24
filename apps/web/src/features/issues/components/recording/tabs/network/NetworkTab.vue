@@ -43,13 +43,14 @@
     />
 
     <!-- Column header -->
-    <div class="grid grid-cols-[28px_1fr_56px_56px_1.2fr_64px] items-center gap-3 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground border-y border-border bg-muted/30">
+    <div class="grid grid-cols-[22px_1fr_44px_52px_54px_46px_20px] items-center gap-2 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground border-y border-border bg-muted/30">
       <span></span>
       <span>Name</span>
-      <span>Method</span>
       <span>Status</span>
-      <span>Domain</span>
+      <span>Time</span>
+      <span>Size</span>
       <span>Type</span>
+      <span></span>
     </div>
 
     <!-- Rows -->
